@@ -1,0 +1,15 @@
+{
+  "name": "@looport/eslint-config",
+  "version": "1.0.0",
+  "files": [
+    "./src/base.js",
+    "./src/react.js",
+    "./src/.prettierrc.js"
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint-plugin-github": "^4.8.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2"
+  }
+}
