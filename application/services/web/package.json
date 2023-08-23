@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "name": "@looport/passport",
+  "author": "Vitalii Khotei <khoteiv.dev@gmail.com>",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "format": "pnpm lint --fix"
+  },
+  "dependencies": {
+    "next": "13.4.19",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@looport/eslint-config": "workspace:*",
+    "tailwindcss": "3.3.3",
+    "postcss": "8.4.28",
+    "autoprefixer": "10.4.15",
+    "eslint-config-next": "13.4.19",
+    "eslint": "8.47.0",
+    "prettier": "^2.8.8",
+    "typescript": "5.1.6",
+    "@types/node": "20.5.3",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7"
+  },
+  "eslintConfig": {
+    "extends": [
+      "next/core-web-vitals",
+      "@looport/eslint-config/src/react"
+    ],
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
+  "prettier": "@looport/eslint-config/src/.prettierrc.js"
+}
