@@ -15,7 +15,7 @@ export const Header = () => {
       className="
       flex justify-between items-center mt-[40px]
       font-bold
-    "
+      "
     >
       <div className="flex">
         <Image
@@ -28,7 +28,7 @@ export const Header = () => {
           className="
           h-[35px] w-[2px] ml-[40px]
           bg-gray-50/25 
-        "
+          "
         />
       </div>
       <nav>
@@ -44,10 +44,10 @@ export const Header = () => {
           <button
             className="
             relative
-            after:absolute after:top-[1px] after:right-[0px]
-            after:content-[' '] after:w-[6px] after:h-[6px] after:rounded-[50%]
+            after:absolute after:top-[-1px] after:right-[-1px]
+            after:content-[' '] after:w-[5px] after:h-[5px] after:rounded-[50%]
           after:bg-red-600
-          "
+            "
           >
             <AiOutlineGift />
           </button>
@@ -62,8 +62,8 @@ export const Header = () => {
             className="
             flex gap-[13px] items-center
             py-[13px] px-[30px] rounded-[50px] 
-            border-2 border-slate-50/25
-          "
+            border border-slate-50/25
+            "
           >
             <BsTelephoneOutbound />
             <span>Join a Call</span>
@@ -72,8 +72,8 @@ export const Header = () => {
             className="
             flex gap-[13px] items-center
             py-[13px] px-[30px] rounded-[50px] 
-            border-2 border-slate-50/25 bg-blue-500
-          "
+            border border-slate-50/25 bg-blue-500
+            "
             href="/signin"
           >
             <BiUser />

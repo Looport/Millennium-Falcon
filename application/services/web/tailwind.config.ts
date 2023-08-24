@@ -9,7 +9,12 @@ const config: Config = {
   plugins: [],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        main: '#151517',
+      },
+      gridTemplateRows: {
+        home: 'repeat(10, 100px)',
+      },
     },
   },
 }
