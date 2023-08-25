@@ -9,7 +9,7 @@ export const ExploreWorld = () => (
     className="
     row-span-5
     border rounded-[25px] border-slate-50/25 drop-shadow-xl
-    bg-main/40
+    bg-zinc-700/10 backdrop-blur-sm
     pb-[80px]
     "
   >
@@ -44,6 +44,7 @@ export const ExploreWorld = () => (
     </div>
     <div>
       <img
+        className="w-full"
         src="/Explore-Map.png"
         alt="Explore Map"
       />
