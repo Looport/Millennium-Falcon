@@ -10,11 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        exloreTitle: 'linear-gradient(to right, #FF343F, #FFE853)',
         main: '#151517',
       },
       gridTemplateRows: {
-        home: 'repeat(10, 100px)',
+        home: 'repeat(10, 1fr)',
       },
+    },
+    fontFamily: {
+      body: ['Inter', 'sans-serif'],
     },
   },
 }

@@ -13,7 +13,7 @@ export const Header = () => {
   return (
     <header
       className="
-      flex justify-between items-center mt-[40px]
+      flex justify-between items-center pt-[40px]
       font-bold
       "
     >

@@ -6,7 +6,9 @@ import {AiOutlineTwitter} from 'react-icons/ai'
 import {BiLogoTelegram} from 'react-icons/bi'
 import {BsCameraVideo, BsInstagram} from 'react-icons/bs'
 
+import {ExploreWorld} from '@/app/_components/explore-world'
 import {Header} from '@/app/_components/header'
+import {Meetings} from '@/app/_components/meeting'
 
 export default function Home() {
   return (
@@ -19,40 +21,8 @@ export default function Home() {
           mt-[40px] gap-[40px]
           "
         >
-          <article
-            className="
-            row-span-5
-            p-[20px]
-            border rounded-[25px] border-slate-50/25 drop-shadow-xl
-            bg-main/40
-            "
-          >
-            <header>
-              <div>Tooltip</div>
-            </header>
-            <h1>Around The Globe, Just Pick Where</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              ut dolor elit. In ornare posuere.
-            </p>
-          </article>
-          <article
-            className="
-            row-span-4
-            p-[20px]
-            border rounded-[25px] border-slate-50/25 drop-shadow-xl
-            bg-main/40
-            "
-          >
-            <header>
-              <div>Tooltip</div>
-            </header>
-            <h1>Quick & Functional Meetings For Everyone</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              ut dolor elit. In ornare posuere.
-            </p>
-          </article>
+          <ExploreWorld />
+          <Meetings />
           <article
             className="
             row-span-4
@@ -109,7 +79,6 @@ export default function Home() {
       <footer
         className="
         bg-zinc-950
-        h-[170px]
         mt-[40px]
         py-[40px] px-[90px]
         "
