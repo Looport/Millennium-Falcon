@@ -74,10 +74,10 @@ export const Header = () => {
             py-[13px] px-[30px] rounded-[50px] 
             border border-slate-50/25 bg-blue-500
             "
-            href="/signin"
+            href="/join"
           >
             <BiUser />
-            <span>Sign In</span>
+            <span>Join In</span>
           </a>
         </IconContext.Provider>
       </div>

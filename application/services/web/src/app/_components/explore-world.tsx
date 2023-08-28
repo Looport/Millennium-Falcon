@@ -11,6 +11,8 @@ export const ExploreWorld = () => (
     border rounded-[25px] border-slate-50/25 drop-shadow-xl
     bg-zinc-700/10 backdrop-blur-sm
     pb-[80px]
+
+    h-[715px]
     "
   >
     <header className="flex items-center gap-[10px] p-[20px] mb-[15px]">
@@ -27,7 +29,7 @@ export const ExploreWorld = () => (
         Try New Feature
       </span>
     </header>
-    <div className="mx-[35px] text-center">
+    <div className="mx-[35px] text-center mb-[20px]">
       <h1
         className="
         font-black text-[30px] text-transparent
@@ -43,15 +45,17 @@ export const ExploreWorld = () => (
       </p>
     </div>
     <div>
-      <img
-        className="w-full"
+      <Image
+        className="object-cover w-full h-[296px]"
+        width={530}
+        height={296}
         src="/Explore-Map.png"
         alt="Explore Map"
       />
     </div>
     <div
       className="
-      mt-[-20px]
+      mt-[20px]
       flex flex-col gap-[5px] justify-center items-center
       "
     >

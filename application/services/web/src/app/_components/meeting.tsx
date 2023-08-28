@@ -26,22 +26,22 @@ export const Meetings = () => (
       <header className="mb-[20px]">
         <h2
           className="
-        font-bold text-[20px] text-white
-        mb-[20px]
-        "
+          font-bold text-[20px] text-white
+          mb-[20px]
+          "
         >
           Communicate in a New Way
         </h2>
         <h1
           className="
-        font-black text-[30px] text-transparent
-        mb-[20px]
-        bg-gradient-to-r from-[#FFE853] to-[#FF343F] bg-clip-text
-      "
+          font-black text-[30px] text-transparent
+          mb-[20px]
+          bg-gradient-to-r from-[#FFE853] to-[#FF343F] bg-clip-text
+          "
         >
           Quick & Functional Meetings For Everyone
         </h1>
-        <p>
+        <p className="text-zinc-50/60">
           With AI-powered features and useful built-in Utilities, our app will
           become an indispensable companion for any type of conversation.
         </p>
@@ -64,10 +64,10 @@ export const Meetings = () => (
         <span>or</span>
         <button
           className="
-        flex gap-[13px] items-center
-        py-[13px] px-[30px] rounded-[50px] 
-        border border-slate-50/25
-        "
+          flex gap-[13px] items-center
+          py-[13px] px-[30px] rounded-[50px] 
+          border border-slate-50/25
+          "
         >
           <IconContext.Provider value={{size: '24px'}}>
             <BsCameraVideo />

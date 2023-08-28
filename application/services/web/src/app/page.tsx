@@ -1,5 +1,6 @@
 'use client'
 
+import {Contribution} from '@/app/_components/contribution'
 import {ExploreWorld} from '@/app/_components/explore-world'
 import {Footer} from '@/app/_components/footer'
 import {Header} from '@/app/_components/header'
@@ -18,23 +19,7 @@ export default function Home() {
         >
           <ExploreWorld />
           <Meetings />
-          <article
-            className="
-            row-span-4
-            p-[20px]
-            border rounded-[25px] border-slate-50/25 drop-shadow-xl
-            bg-main/40
-            "
-          >
-            <header>
-              <div>Tooltip</div>
-            </header>
-            <h1>Support Unique Ideas</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              ut dolor elit. In ornare posuere.
-            </p>
-          </article>
+          <Contribution />
           <article
             className="
             row-span-3
