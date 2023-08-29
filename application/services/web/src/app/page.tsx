@@ -6,6 +6,7 @@ import {ExploreWorld} from '@/app/_components/explore-world'
 import {Footer} from '@/app/_components/footer'
 import {Header} from '@/app/_components/header'
 import {Meetings} from '@/app/_components/meeting'
+import { Roadmap } from '@/app/_components/readmap'
 
 export default function Home() {
   return (
@@ -22,23 +23,7 @@ export default function Home() {
           <Meetings />
           <Contribution />
           <Bullerin />
-          <article
-            className="
-            row-span-2 col-span-2
-            p-[20px]
-            border rounded-[25px] border-slate-50/25 drop-shadow-md
-            bg-main/40
-            "
-          >
-            <header>
-              <div>Tooltip</div>
-            </header>
-            <h1>Roadmap</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              ut dolor elit. In ornare posuere.
-            </p>
-          </article>
+          <Roadmap />
         </section>
       </main>
       <Footer />
