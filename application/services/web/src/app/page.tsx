@@ -11,7 +11,7 @@ import { Roadmap } from '@/app/_components/readmap'
 export default function Home() {
   return (
     <>
-      <main className="w-4/5 mx-auto">
+      <main className="max-w-screen-xl w-4/5 mx-auto">
         <Header />
         <section
           className="
