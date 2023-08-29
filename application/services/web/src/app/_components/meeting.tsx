@@ -1,3 +1,6 @@
+'use client'
+
+import Image from 'next/image'
 import {IconContext} from 'react-icons'
 import {BiUserCircle} from 'react-icons/bi'
 import {BsCameraVideo} from 'react-icons/bs'
@@ -76,7 +79,9 @@ export const Meetings = () => (
         </button>
       </div>
       <div className="flex gap-[10px] items-center">
-        <img
+        <Image
+          width={100}
+          height={100}
           src=""
           alt="users icons"
         />

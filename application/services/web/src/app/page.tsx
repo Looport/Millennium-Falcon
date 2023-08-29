@@ -1,5 +1,6 @@
 'use client'
 
+import {Bullerin} from '@/app/_components/bulletin'
 import {Contribution} from '@/app/_components/contribution'
 import {ExploreWorld} from '@/app/_components/explore-world'
 import {Footer} from '@/app/_components/footer'
@@ -20,23 +21,7 @@ export default function Home() {
           <ExploreWorld />
           <Meetings />
           <Contribution />
-          <article
-            className="
-            row-span-3
-            p-[20px]
-            border rounded-[25px] border-slate-50/25 drop-shadow-xl
-            bg-main/40
-            "
-          >
-            <header>
-              <div>Tooltip</div>
-            </header>
-            <h1>Around The Globe, Just Pick Where</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              ut dolor elit. In ornare posuere.
-            </p>
-          </article>
+          <Bullerin />
           <article
             className="
             row-span-2 col-span-2
