@@ -9,5 +9,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Looport/Millennium-Falcon"
+  },
+  "scripts": {
+    "web": "pnpm --filter '@looport/web' dev"
   }
 }

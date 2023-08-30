@@ -6,8 +6,8 @@ import { HomeCard } from "./home-card";
 
 export const Contribution = () => (
   <HomeCard className="h-full text-[14px]">
-    <header className="mb-[20px]">
-      <div className="mb-[20px]">
+    <header className="mb-[15px]">
+      <div className="mb-[10px]">
         <HomeCard.Tooltip
           text="Featured"
           icon={
@@ -19,11 +19,12 @@ export const Contribution = () => (
       </div>
       <HomeCard.Title className="
         bg-gradient-to-r from-[#FFE853] to-[#FF343F]
+        pl-[15px]
         ">
         Support Unique Ideas
       </HomeCard.Title>
     </header>
-    <div className="mb-[40px]">
+    <div className="mb-[30px]">
       <ul className="font-extrabold flex flex-col gap-[10px] mb-[10px]">
         <li className="
           flex justify-between items-center
@@ -84,7 +85,7 @@ export const Contribution = () => (
         <span className="underline">See all features</span>
       </div>
     </div>
-    <div className="mb-[25px]">
+    <div className="mb-[20px]">
       <div className="mb-[20px]">
         <div className="
           h-[3px] rounded-xl
@@ -111,15 +112,15 @@ export const Contribution = () => (
           <span>Inspiration</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-extrabold text-[20px]">$100+</span>
-          <span>Goal</span>
+          <span className="font-extrabold text-[20px]">$100k+</span>
+          <span className="text-right">Goal</span>
         </div>
       </div>
     </div>
     <div className="flex justify-center gap-[20px]">
       <a
         className="
-        font-bold
+        font-bold text-[14px]
         flex gap-[13px] items-center
         py-[13px] px-[30px] rounded-[50px] 
         border border-slate-50/25 bg-blue-500
@@ -132,7 +133,7 @@ export const Contribution = () => (
         <span>Suggest Feature</span>
       </a>
       <button className="
-          font-bold
+          font-bold text-[14px]
           flex gap-[13px] items-center
           py-[13px] px-[30px] rounded-[50px] 
           border border-slate-50/25
