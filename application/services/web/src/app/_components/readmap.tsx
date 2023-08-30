@@ -1,16 +1,10 @@
 import { IconContext } from "react-icons";
 import { BiMapAlt } from "react-icons/bi";
+import { HomeCard } from "./home-card";
 
 export const Roadmap = () => {
   return (
-    <article
-      className="
-      row-span-2 col-span-2
-      p-[20px]
-      border rounded-[25px] border-slate-50/25 drop-shadow-xl
-      bg-zinc-700/10 backdrop-blur-sm
-      overflow-hidden
-
+    <HomeCard className="
       relative
 
       before:absolute before:top-[-30px] before:left-[40px]
@@ -23,16 +17,13 @@ export const Roadmap = () => {
       after:bg-[url('/Elips-Orange.png')] after:bg-no-repeat
       after:bg-[length:cover] after:rounded-[25px]
 
-      "
-    >
-      <header>
-        <h1 className="
-          font-black text-[30px] text-transparent
-          mb-[20px] text-center
-          bg-gradient-to-r from-[#FF343F] from-0% via-[#FFE853] via-50% to-[#FF343F] to-100% bg-clip-text
+      ">
+      <header className="text-center mb-[20px]">
+        <HomeCard.Title className="
+          bg-gradient-to-r from-[#FF343F] from-0% via-[#FFE853] via-50% to-[#FF343F] to-100%
           ">
           Roadmap
-        </h1>
+        </HomeCard.Title>
       </header>
 
       <div className="
@@ -43,18 +34,18 @@ export const Roadmap = () => {
         <div className="text-[#354AEB] font-black text-[28px] justify-self-start self-end leading-none">
           2023
         </div>
-        <div className="text-white/60 text-[14px]">
+        <HomeCard.Text>
           Lorem ipsum Dolor sit amet Consectetur adipiscing Roadmap 1
-        </div>
-        <div className="text-white/60 text-[14px]">
+        </HomeCard.Text>
+        <HomeCard.Text>
           Dolor sit amet Consectetur adipiscing Roadmap 1
-        </div>
-        <div className="text-white/60 text-[14px]">
+        </HomeCard.Text>
+        <HomeCard.Text>
           Consectetur adipiscing Roadmap 1
-        </div>
-        <div className="text-white/60 text-[14px]">
+        </HomeCard.Text>
+        <HomeCard.Text>
           Lorem ipsum Dolor sit amet Consectetur adipiscing Roadmap 1
-        </div>
+        </HomeCard.Text>
         <div className="text-[#FF222E] font-black text-[28px] justify-self-end leading-none">
           2024
         </div>
@@ -96,6 +87,6 @@ export const Roadmap = () => {
           <span>Learn More</span>
         </a>
       </div>
-    </article>
+    </HomeCard>
   );
 };

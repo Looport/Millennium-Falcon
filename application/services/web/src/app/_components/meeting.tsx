@@ -1,17 +1,15 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import {IconContext} from 'react-icons'
-import {BiUserCircle} from 'react-icons/bi'
-import {BsCameraVideo} from 'react-icons/bs'
+import Image from "next/image";
+import { IconContext } from "react-icons";
+import { BiUserCircle } from "react-icons/bi";
+import { BsCameraVideo } from "react-icons/bs";
+import { HomeCard } from "./home-card";
 
 export const Meetings = () => (
-  <article
-    className="
-    row-span-4
-    px-[40px]
-    border rounded-[25px] border-slate-50/25 drop-shadow-xl
-    bg-zinc-700/10 backdrop-blur-sm
+  <HomeCard className="
+    h-full
+
     relative
 
     before:absolute before:top-[0px] before:right-[0px]
@@ -23,31 +21,24 @@ export const Meetings = () => (
     after:content-[' '] after:w-[100%] after:h-[100px]
     after:bg-[url('/Meeting-Bottom-Wave.png')] after:bg-no-repeat
     after:bg-[length:cover] after:bg-[top_82%_left_0] after:rounded-[25px]
-    "
-  >
+    ">
     <div className="translate-y-[-50%] absolute top-[50%]">
       <header className="mb-[20px]">
-        <h2
-          className="
+        <h3 className="
           font-bold text-[20px] text-white
           mb-[20px]
-          "
-        >
+          ">
           Communicate in a New Way
-        </h2>
-        <h1
-          className="
-          font-black text-[30px] text-transparent
-          mb-[20px]
-          bg-gradient-to-r from-[#FFE853] to-[#FF343F] bg-clip-text
-          "
-        >
+        </h3>
+        <HomeCard.Title className="
+          bg-gradient-to-r from-[#FFE853] to-[#FF343F]
+          ">
           Quick & Functional Meetings For Everyone
-        </h1>
-        <p className="text-zinc-50/60">
+        </HomeCard.Title>
+        <HomeCard.Text>
           With AI-powered features and useful built-in Utilities, our app will
           become an indispensable companion for any type of conversation.
-        </p>
+        </HomeCard.Text>
       </header>
       <div className="flex items-center gap-[10px] mb-[20px]">
         <a
@@ -59,20 +50,18 @@ export const Meetings = () => (
         "
           href="/world"
         >
-          <IconContext.Provider value={{size: '24px'}}>
+          <IconContext.Provider value={{ size: "24px" }}>
             <BiUserCircle />
           </IconContext.Provider>
           <span>Join Now</span>
         </a>
         <span>or</span>
-        <button
-          className="
+        <button className="
           flex gap-[13px] items-center
           py-[13px] px-[30px] rounded-[50px] 
           border border-slate-50/25
-          "
-        >
-          <IconContext.Provider value={{size: '24px'}}>
+          ">
+          <IconContext.Provider value={{ size: "24px" }}>
             <BsCameraVideo />
           </IconContext.Provider>
           <span>Start Call</span>
@@ -91,5 +80,5 @@ export const Meetings = () => (
         </div>
       </div>
     </div>
-  </article>
-)
+  </HomeCard>
+);

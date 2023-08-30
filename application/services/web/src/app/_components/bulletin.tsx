@@ -1,26 +1,18 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
+import Image from "next/image";
+import { HomeCard } from "./home-card";
 
 export const Bullerin = () => (
-  <article
-    className="
-    row-span-3
-    border rounded-[25px] border-slate-50/25 drop-shadow-xl
-    bg-zinc-700/10 backdrop-blur-sm
-
-    overflow-hidden
-    "
-  >
-    <div
-      className="text-center 
+  <HomeCard className="h-full p-[0!important]">
+    <div className="
+      text-center 
       h-full
       flex flex-col justify-center items-center
       bg-cover bg-center
       bg-gradient-to-b from-blue-800/60 to-red-600/10
       relative
-      "
-    >
+      ">
       <Image
         width={100}
         height={100}
@@ -29,41 +21,31 @@ export const Bullerin = () => (
         className="z-[-1] absolute w-full h-full object-cover"
       />
       <header>
-        <h1
-          className="
-          font-black text-[30px] text-transparent
-          bg-gradient-to-r from-[#FFE853] to-[#FF343F] bg-clip-text
-          mb-[20px]
-          "
-        >
+        <HomeCard.Title className="
+          bg-gradient-to-r from-[#FFE853] to-[#FF343F]
+          ">
           Around The Globe, Just Pick Where
-        </h1>
+        </HomeCard.Title>
       </header>
-      <p className="text-zinc-50/60">
+      <HomeCard.Text className="px-[35px]">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut
         dolor elit. In ornare posuere.
-      </p>
+      </HomeCard.Text>
       <div className="absolute bottom-[20px] flex gap-[20px]">
-        <span
-          className="
+        <span className="
           w-[10px] h-[10px] 
           rounded-full bg-zinc-50
-          "
-        />
-        <span
-          className="
+          " />
+        <span className="
           w-[10px] h-[10px] 
           rounded-full border border-zinc-50/60
-          "
-        />
-        <span
-          className="
+          " />
+        <span className="
           w-[10px] h-[10px] 
           rounded-full border 
           border-zinc-50/60
-          "
-        />
+          " />
       </div>
     </div>
-  </article>
-)
+  </HomeCard>
+);
