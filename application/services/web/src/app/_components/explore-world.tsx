@@ -8,8 +8,9 @@ import { HomeCard } from "./home-card";
 export const ExploreWorld = () => (
   <HomeCard className="
     h-full
+    p-[0!important]
     ">
-    <header className="mb-[20px]">
+    <header className="p-[20px] pb-[0]">
       <div className="mb-[35px]">
         <HomeCard.Tooltip
           text={"Try New Feture"}
@@ -32,9 +33,29 @@ export const ExploreWorld = () => (
         </HomeCard.Text>
       </div>
     </header>
-    <div>
+    <div
+      className="
+      relative
+
+      before:absolute before:top-[20px] before:right-[-35px]
+      before:content-[' '] before:w-[80px] before:h-[80px]
+      before:bg-[url('/Elips-Orange.png')] before:bg-no-repeat
+      before:bg-[length:cover] before:rounded-[25px]
+      before:z-[-1]
+
+      after:absolute after:bottom-[30px] after:left-[-30px]
+      after:content-[' '] after:w-[90px] after:h-[90px]
+      after:bg-[url('/Elips-Orange.png')] after:bg-no-repeat
+      after:bg-[length:cover] after:rounded-[25px]
+      after:rotate-[70deg]
+      "
+    >
       <Image
-        className="object-cover w-full h-[296px]"
+        className="
+        object-cover
+        w-full 
+        h-[296px]
+        "
         width={530}
         height={296}
         src="/Explore-Map.png"
@@ -42,6 +63,7 @@ export const ExploreWorld = () => (
       />
     </div>
     <div className="
+      p-[20px]
       mt-[20px]
       flex flex-col gap-[5px] justify-center items-center
       ">

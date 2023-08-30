@@ -6,7 +6,7 @@ import { ExploreWorld } from "@/app/_components/explore-world";
 import { Footer } from "@/app/_components/footer";
 import { Header } from "@/app/_components/header";
 import { Meetings } from "@/app/_components/meeting";
-import { Roadmap } from "@/app/_components/readmap";
+import { Roadmap } from "@/app/_components/roadmap";
 
 export default function Home() {
   return (
