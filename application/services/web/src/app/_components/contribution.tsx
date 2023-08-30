@@ -5,9 +5,9 @@ import { LiaAwardSolid, LiaHandHoldingHeartSolid } from "react-icons/lia";
 import { HomeCard } from "./home-card";
 
 export const Contribution = () => (
-  <HomeCard className="pb-[40px] h-full">
+  <HomeCard className="h-full text-[14px]">
     <header className="mb-[20px]">
-      <div className="mb-[30px]">
+      <div className="mb-[20px]">
         <HomeCard.Tooltip
           text="Featured"
           icon={
@@ -84,7 +84,7 @@ export const Contribution = () => (
         <span className="underline">See all features</span>
       </div>
     </div>
-    <div className="mb-[40px]">
+    <div className="mb-[25px]">
       <div className="mb-[20px]">
         <div className="
           h-[3px] rounded-xl
@@ -99,19 +99,19 @@ export const Contribution = () => (
       </div>
       <div className="flex justify-between">
         <div className="flex flex-col">
-          <span className="font-extrabold">$500k+</span>
+          <span className="font-extrabold text-[20px]">$500k+</span>
           <span>Raised</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-extrabold">20k+</span>
+          <span className="font-extrabold text-[20px]">20k+</span>
           <span>Sponsors</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-extrabold">50+</span>
+          <span className="font-extrabold text-[20px]">50+</span>
           <span>Inspiration</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-extrabold">$100+</span>
+          <span className="font-extrabold text-[20px]">$100+</span>
           <span>Goal</span>
         </div>
       </div>

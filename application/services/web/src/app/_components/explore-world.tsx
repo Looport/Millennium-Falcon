@@ -8,7 +8,6 @@ import { HomeCard } from "./home-card";
 export const ExploreWorld = () => (
   <HomeCard className="
     h-full
-    pb-[80px]
     ">
     <header className="mb-[20px]">
       <div className="mb-[35px]">

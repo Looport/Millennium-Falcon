@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       gridTemplateRows: {
-        home: 'repeat(10, 1fr)',
+        home: 'repeat(10, 115px)',
       },
     },
     fontFamily: {
@@ -18,4 +18,5 @@ const config: Config = {
     },
   },
 }
+
 export default config

@@ -20,7 +20,6 @@ HomeCard.Title = ({ children, className }) => {
   return (
     <h2
       className={`
-      mb-[20px]
       font-black text-[30px] text-transparent bg-clip-text
       ${className}
       `}
