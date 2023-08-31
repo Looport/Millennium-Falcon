@@ -20,28 +20,28 @@ export const Bullerin = () => (
         alt="Image"
         className="z-[-1] absolute w-full h-full object-cover"
       />
-      <header>
+      <header className="px-[3.5rem]">
         <HomeCard.Title className="
           bg-gradient-to-r from-[#FFE853] to-[#FF343F]
           ">
           Around The Globe, Just Pick Where
         </HomeCard.Title>
-      </header>
-      <HomeCard.Text className="px-[35px]">
+      <HomeCard.Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut
         dolor elit. In ornare posuere.
       </HomeCard.Text>
-      <div className="absolute bottom-[20px] flex gap-[20px]">
+      </header>
+      <div className="absolute bottom-[2rem] flex gap-[2rem]">
         <span className="
-          w-[10px] h-[10px] 
+          w-[1rem] h-[1rem] 
           rounded-full bg-zinc-50
           " />
         <span className="
-          w-[10px] h-[10px] 
+          w-[1rem] h-[1rem] 
           rounded-full border border-zinc-50/60
           " />
         <span className="
-          w-[10px] h-[10px] 
+          w-[1rem] h-[1rem] 
           rounded-full border 
           border-zinc-50/60
           " />

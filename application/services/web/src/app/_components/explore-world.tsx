@@ -4,24 +4,39 @@ import { BiMapAlt } from "react-icons/bi";
 import { BsStars } from "react-icons/bs";
 import { TbUsersPlus } from "react-icons/tb";
 import { HomeCard } from "./home-card";
+import { Button } from "@/components/button";
 
 export const ExploreWorld = () => (
   <HomeCard className="
-    h-full
-    p-[0!important]
+      h-full
+      p-[0!important]
+
+      relative
+
+      before:absolute before:top-[25rem] before:right-[-3.5rem]
+      before:content-[' '] before:w-[8rem] before:h-[8rem]
+      before:bg-[url('/Elips-Orange.png')] before:bg-no-repeat
+      before:bg-[length:cover] before:rounded-[2.5rem]
+      before:z-[-1]
+
+      after:absolute after:bottom-[21rem] after:left-[-3rem]
+      after:content-[' '] after:w-[9rem] after:h-[9rem]
+      after:bg-[url('/Elips-Orange.png')] after:bg-no-repeat
+      after:bg-[length:cover] after:rounded-[2.5rem]
+      after:rotate-[70deg]
     ">
-    <header className="p-[20px] pb-[0]">
-      <div className="mb-[35px]">
+    <header className="p-[2rem] pb-[0]">
+      <div className="mb-[3.5rem]">
         <HomeCard.Tooltip
           text={"Try New Feture"}
           icon={
-            <div className="bg-red-600 rounded-[100px] p-[7px]">
+            <div className="bg-red-600 rounded-[10rem] p-[0.7rem]">
               <BsStars />
             </div>
           }
         />
       </div>
-      <div className="mx-[35px] text-center">
+      <div className="mx-[3.5rem] text-center">
         <HomeCard.Title className="
           bg-gradient-to-r from-[#FF343F] to-[#FFE853]
         ">
@@ -33,28 +48,14 @@ export const ExploreWorld = () => (
         </HomeCard.Text>
       </div>
     </header>
-    <div
-      className="
-      relative
-
-      before:absolute before:top-[20px] before:right-[-35px]
-      before:content-[' '] before:w-[80px] before:h-[80px]
-      before:bg-[url('/Elips-Orange.png')] before:bg-no-repeat
-      before:bg-[length:cover] before:rounded-[25px]
-      before:z-[-1]
-
-      after:absolute after:bottom-[30px] after:left-[-30px]
-      after:content-[' '] after:w-[90px] after:h-[90px]
-      after:bg-[url('/Elips-Orange.png')] after:bg-no-repeat
-      after:bg-[length:cover] after:rounded-[25px]
-      after:rotate-[70deg]
-      "
-    >
+    <div className="
+      w-[53rem]
+      mx-auto
+      ">
       <Image
         className="
         object-cover
-        w-full 
-        h-[296px]
+        w-full
         "
         width={530}
         height={296}
@@ -63,34 +64,20 @@ export const ExploreWorld = () => (
       />
     </div>
     <div className="
-      p-[20px]
-      mt-[20px]
-      flex flex-col gap-[5px] justify-center items-center
+      p-[2rem]
+      mt-[-2.5rem]
+      flex flex-col gap-[0.5rem] justify-center items-center
       ">
-      <a
-        className="
-        font-bold
-        flex gap-[13px] items-center
-        py-[13px] px-[30px] rounded-[50px] 
-        border border-slate-50/25 bg-blue-500
-        "
-        href="/world"
+      <Button
+        type="primary"
+        icon={<BiMapAlt />}
       >
-        <IconContext.Provider value={{ size: "24px" }}>
-          <BiMapAlt />
-        </IconContext.Provider>
-        <span>Explore The World</span>
-      </a>
+        Explore The World
+      </Button>
       <span>or</span>
-      <button className="
-        flex gap-[13px] items-center
-        font-bold underline decoration-solid
-        ">
-        <IconContext.Provider value={{ size: "24px" }}>
-          <TbUsersPlus />
-        </IconContext.Provider>
-        <span>Bring Friends With You</span>
-      </button>
+      <Button type="link" icon={<TbUsersPlus />}>
+Bring Friends With You
+      </Button>
     </div>
   </HomeCard>
 );

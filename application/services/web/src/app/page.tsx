@@ -12,23 +12,23 @@ export default function Home() {
   return (
     <>
       <main className="max-w-screen-xl w-4/5 mx-auto">
-        <div className="mb-[20px]">
+        <div className="mb-[2rem]">
           <Header />
         </div>
-        <section className="flex gap-[40px] mb-[40px]">
-          <div className="flex flex-col gap-[40px] basis-1/2">
-            <div className="h-[715px]">
+        <section className="flex gap-[4rem] mb-[4rem]">
+          <div className="flex flex-col gap-[4rem] basis-1/2">
+            <div className="h-[71.5rem]">
               <ExploreWorld />
             </div>
-            <div className="h-[255px]">
+            <div className="h-[28.5rem]">
               <Bullerin />
             </div>
           </div>
-          <div className="flex flex-col gap-[40px] basis-1/2">
-            <div className="h-[485px]">
+          <div className="flex flex-col gap-[4rem] basis-1/2">
+            <div className="h-[50rem]">
               <Meetings />
             </div>
-            <div className="h-[485px]">
+            <div className="h-[50rem]">
               <Contribution />
             </div>
           </div>

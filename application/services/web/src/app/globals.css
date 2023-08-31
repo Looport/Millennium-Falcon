@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-size: 10px;
+}
+
 body {
   color: rgba(255, 255, 255, 0.8);
+  font-size: 1.4rem;
+
   background: linear-gradient(
         45deg,
         rgba(197, 30, 43, 0.1) 0%,
@@ -17,8 +23,6 @@ body {
       )
       no-repeat,
     #151517 !important;
-
-  box-sizing: content-box;
 }
 
 h1,

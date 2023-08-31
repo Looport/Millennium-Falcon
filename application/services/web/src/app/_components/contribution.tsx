@@ -3,15 +3,16 @@ import { AiFillHeart, AiOutlineStar } from "react-icons/ai";
 import { FiThumbsUp } from "react-icons/fi";
 import { LiaAwardSolid, LiaHandHoldingHeartSolid } from "react-icons/lia";
 import { HomeCard } from "./home-card";
+import { Button } from "@/components/button";
 
 export const Contribution = () => (
-  <HomeCard className="h-full text-[14px]">
-    <header className="mb-[15px]">
-      <div className="mb-[10px]">
+  <HomeCard className="h-full">
+    <header className="mb-[1.5rem]">
+      <div className="mb-[1rem]">
         <HomeCard.Tooltip
           text="Featured"
           icon={
-            <div className="bg-red-600 rounded-[100px] p-[7px]">
+            <div className="bg-red-600 rounded-[10rem] p-[0.7rem]">
               <AiFillHeart />
             </div>
           }
@@ -19,63 +20,63 @@ export const Contribution = () => (
       </div>
       <HomeCard.Title className="
         bg-gradient-to-r from-[#FFE853] to-[#FF343F]
-        pl-[15px]
+        pl-[1.5rem]
         ">
         Support Unique Ideas
       </HomeCard.Title>
     </header>
-    <div className="mb-[30px]">
-      <ul className="font-extrabold flex flex-col gap-[10px] mb-[10px]">
+    <div className="mb-[3rem]">
+      <ul className="font-extrabold flex flex-col gap-[1rem] mb-[1rem]">
         <li className="
           flex justify-between items-center
-          rounded-lg bg-white/5 px-[15px] py-[8px]
+          rounded-lg bg-white/5 px-[1.5rem] py-[0.8rem]
           ">
-          <div className="flex items-center gap-[6px]">
+          <div className="flex items-center gap-[0.6rem]">
             <span>
-              <IconContext.Provider value={{ color: "#FFE753", size: "20px" }}>
+              <IconContext.Provider value={{ color: "#FFE753", size: "2rem" }}>
                 <LiaAwardSolid />
               </IconContext.Provider>
             </span>
             Add More Profile Settings
           </div>
           <span>
-            <IconContext.Provider value={{ size: "20px" }}>
+            <IconContext.Provider value={{ size: "2rem" }}>
               <FiThumbsUp />
             </IconContext.Provider>
           </span>
         </li>
         <li className="
           flex justify-between items-center
-          rounded-lg bg-white/5 px-[15px] py-[8px]
+          rounded-lg bg-white/5 px-[1.5rem] py-[0.8rem]
           ">
-          <div className="flex items-center gap-[6px]">
+          <div className="flex items-center gap-[0.6rem]">
             <span>
-              <IconContext.Provider value={{ color: "#A4A4A7", size: "20px" }}>
+              <IconContext.Provider value={{ color: "#A4A4A7", size: "2rem" }}>
                 <LiaAwardSolid />
               </IconContext.Provider>
             </span>
             Add Dark Theme and More Accessibility
           </div>
           <span>
-            <IconContext.Provider value={{ size: "20px" }}>
+            <IconContext.Provider value={{ size: "2rem" }}>
               <FiThumbsUp />
             </IconContext.Provider>
           </span>
         </li>
         <li className="
           flex justify-between items-center
-          rounded-lg bg-white/5 px-[15px] py-[8px]
+          rounded-lg bg-white/5 px-[1.5rem] py-[0.8rem]
           ">
-          <div className="flex items-center gap-[6px]">
+          <div className="flex items-center gap-[0.6rem]">
             <span>
-              <IconContext.Provider value={{ color: "#FF7B47", size: "20px" }}>
+              <IconContext.Provider value={{ color: "#FF7B47", size: "2rem" }}>
                 <LiaAwardSolid />
               </IconContext.Provider>
             </span>
             Add Animated Emojis in Chat
           </div>
           <span>
-            <IconContext.Provider value={{ size: "20px" }}>
+            <IconContext.Provider value={{ size: "2rem" }}>
               <FiThumbsUp />
             </IconContext.Provider>
           </span>
@@ -85,10 +86,10 @@ export const Contribution = () => (
         <span className="underline">See all features</span>
       </div>
     </div>
-    <div className="mb-[20px]">
-      <div className="mb-[20px]">
+    <div className="mb-[2rem]">
+      <div className="mb-[2rem]">
         <div className="
-          h-[3px] rounded-xl
+          h-[0.3rem] rounded-xl
           bg-gradient-to-r 
           from-indigo-500 from-0% 
           via-pink-500 via-20% 
@@ -100,49 +101,33 @@ export const Contribution = () => (
       </div>
       <div className="flex justify-between">
         <div className="flex flex-col">
-          <span className="font-extrabold text-[20px]">$500k+</span>
+          <span className="font-extrabold text-[2rem]">$500k+</span>
           <span>Raised</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-extrabold text-[20px]">20k+</span>
+          <span className="font-extrabold text-[2rem]">20k+</span>
           <span>Sponsors</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-extrabold text-[20px]">50+</span>
+          <span className="font-extrabold text-[2rem]">50+</span>
           <span>Inspiration</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-extrabold text-[20px]">$100k+</span>
+          <span className="font-extrabold text-[2rem]">$100k+</span>
           <span className="text-right">Goal</span>
         </div>
       </div>
     </div>
-    <div className="flex justify-center gap-[20px]">
-      <a
-        className="
-        font-bold text-[14px]
-        flex gap-[13px] items-center
-        py-[13px] px-[30px] rounded-[50px] 
-        border border-slate-50/25 bg-blue-500
-        "
-        href="/world"
+    <div className="flex justify-center gap-[2rem]">
+      <Button
+        type="primary"
+        icon={<AiOutlineStar />}
       >
-        <IconContext.Provider value={{ size: "24px" }}>
-          <AiOutlineStar />
-        </IconContext.Provider>
-        <span>Suggest Feature</span>
-      </a>
-      <button className="
-          font-bold text-[14px]
-          flex gap-[13px] items-center
-          py-[13px] px-[30px] rounded-[50px] 
-          border border-slate-50/25
-          ">
-        <IconContext.Provider value={{ size: "24px" }}>
-          <LiaHandHoldingHeartSolid />
-        </IconContext.Provider>
-        <span>Support Ideas</span>
-      </button>
+        Suggest Feature
+      </Button>
+      <Button icon={<LiaHandHoldingHeartSolid />}>
+        Support Ideas
+      </Button>
     </div>
   </HomeCard>
 );

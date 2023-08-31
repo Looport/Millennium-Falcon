@@ -4,8 +4,8 @@ export const HomeCard = ({ children, className }) => {
   return (
     <article
       className={`
-      p-[20px]
-      border rounded-[25px] border-slate-50/25 drop-shadow-xl
+      p-[2rem]
+      border rounded-[2.5rem] border-slate-50/25 drop-shadow-xl
       bg-zinc-700/10 backdrop-blur-sm
       overflow-hidden
       ${className}
@@ -20,7 +20,7 @@ HomeCard.Title = ({ children, className }) => {
   return (
     <h2
       className={`
-      font-black text-[30px] text-transparent bg-clip-text
+      font-black text-[3rem] text-transparent bg-clip-text
       ${className}
       `}
     >
@@ -31,7 +31,7 @@ HomeCard.Title = ({ children, className }) => {
 
 HomeCard.Text = ({ children, className }) => {
   return (
-    <p className={`text-zinc-50/60 text-[14px] ${className}`}>
+    <p className={`text-zinc-50/60 ${className}`}>
       {children}
     </p>
   );
@@ -39,12 +39,12 @@ HomeCard.Text = ({ children, className }) => {
 
 HomeCard.Tooltip = ({ text, icon }) => {
   return (
-    <div className="flex items-center gap-[10px]">
-      <IconContext.Provider value={{ size: "14px" }}>
+    <div className="flex items-center gap-[1rem]">
+      <IconContext.Provider value={{ size: "1.4rem" }}>
         {icon}
       </IconContext.Provider>
       <span className="
-        font-bold text-[20px] text-white
+        font-bold text-[2rem] text-white
         ">
         {text}
       </span>

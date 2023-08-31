@@ -8,11 +8,11 @@ export const Footer = () => (
   <footer
     className="
         bg-zinc-950
-        mt-[40px]
-        py-[40px] px-[90px]
+        mt-[4rem]
+        py-[4rem] px-[9rem]
         "
   >
-    <div className="flex justify-between mb-[20px]">
+    <div className="flex justify-between mb-[2rem]">
       <div>
         <Image
           width={130}
@@ -22,13 +22,13 @@ export const Footer = () => (
         />
       </div>
 
-      <IconContext.Provider value={{size: '25px'}}>
-        <ul className="flex gap-[20px] items-center">
+      <IconContext.Provider value={{size: '2.5rem'}}>
+        <ul className="flex gap-[2rem] items-center">
           <li>
             <button
               className="
-                flex gap-[13px] items-center
-                py-[13px] px-[30px] rounded-[50px] 
+                flex gap-[1.3rem] items-center
+                py-[1.3rem] px-[3rem] rounded-[5rem] 
                 border border-slate-50/25
                 "
             >
@@ -41,7 +41,7 @@ export const Footer = () => (
             <button
               className="
                 flex
-                p-[17px] rounded-[50px] 
+                p-[1.7rem] rounded-[5rem] 
                 border border-slate-50/25
                 "
             >
@@ -52,7 +52,7 @@ export const Footer = () => (
             <button
               className="
                 flex
-                p-[17px] rounded-[50px] 
+                p-[1.7rem] rounded-[5rem] 
                 border border-slate-50/25
                 "
             >
@@ -63,7 +63,7 @@ export const Footer = () => (
             <button
               className="
                 flex
-                p-[17px] rounded-[50px] 
+                p-[1.7rem] rounded-[5rem] 
                 border border-slate-50/25
                 "
             >
@@ -75,7 +75,7 @@ export const Footer = () => (
     </div>
     <div className="font-bold flex justify-between">
       <nav className="flex">
-        <ul className="flex gap-[40px]">
+        <ul className="flex gap-[4rem]">
           <li>Terms and Conditionals</li>
           <li>Privacy Policy</li>
           <li>About Us</li>
