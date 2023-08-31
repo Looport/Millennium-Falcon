@@ -65,6 +65,7 @@ export const ExploreWorld = () => (
     </div>
     <div className="
       p-[2rem]
+      mb-[20px]
       mt-[-2.5rem]
       flex flex-col gap-[0.5rem] justify-center items-center
       ">
