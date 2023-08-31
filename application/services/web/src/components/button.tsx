@@ -1,7 +1,7 @@
 import { cloneElement, createElement } from "react";
 import { IconContext } from "react-icons";
 
-export const Button = ({ iconSize, icon, children, type, href }) => {
+export const Button = ({ iconSize, icon, children, type, href, className }) => {
   let iconComponent;
 
 
@@ -28,6 +28,9 @@ export const Button = ({ iconSize, icon, children, type, href }) => {
     classTypes.push('border-none')
     classTypes.push('p-[0!important]')
   }
+  if (type === 'icon') {
+    classTypes.push('p-[1.7rem!important]')
+  }
 
   let label
   if (children) {
@@ -47,6 +50,8 @@ export const Button = ({ iconSize, icon, children, type, href }) => {
       border border-slate-50/25
   
       ${classTypes.join(' ')}
+
+      ${className}
       `
   }, iconComponent, label)
 };

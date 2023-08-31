@@ -22,8 +22,10 @@ export const Meetings = () => (
     after:content-[' '] after:w-[100%] after:h-[10rem]
     after:bg-[url('/Meeting-Bottom-Wave.png')] after:bg-no-repeat
     after:bg-[length:cover] after:bg-[top_82%_left_0] after:rounded-[2.5rem]
+
+    flex justify-center items-center
     ">
-    <div className="translate-y-[-50%] absolute top-[50%]">
+    <div className="">
       <header className="mb-[2rem]">
         <h3 className="
           font-bold text-[2rem] text-white
