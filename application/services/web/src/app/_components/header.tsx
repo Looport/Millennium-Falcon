@@ -27,14 +27,14 @@ export const Header = () => {
           " />
       </div>
       <nav>
-        <ul className="flex gap-[4rem]">
+        <ul className="md:flex gap-[4rem] hidden">
           <li>About Us</li>
           <li>Rouad Map</li>
           <li>Donate</li>
           <li>Register</li>
         </ul>
       </nav>
-      <div className="flex gap-[4rem]">
+      <div className="md:flex gap-[4rem] hidden">
         <IconContext.Provider value={{ size: "2.5rem" }}>
           <div className="
             relative
@@ -49,7 +49,7 @@ export const Header = () => {
           </div>
         </IconContext.Provider>
       </div>
-      <div className="flex gap-[40px] items-center">
+      <div className="md:flex gap-[2rem] items-center hidden">
         <Button
           iconSize="2rem"
           icon={<BsTelephoneOutbound />}

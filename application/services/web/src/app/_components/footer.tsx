@@ -10,6 +10,8 @@ export const Footer = () => (
         bg-zinc-950
         mt-[4rem]
         py-[4rem] px-[9rem]
+        md:block
+        hidden
         ">
     <div className="flex justify-between mb-[2rem]">
       <div>

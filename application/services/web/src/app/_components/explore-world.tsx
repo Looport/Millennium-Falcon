@@ -36,7 +36,7 @@ export const ExploreWorld = () => (
           }
         />
       </div>
-      <div className="mx-[3.5rem] text-center">
+      <div className="xl:mx-[3.5rem] mx-[2rem] text-center">
         <HomeCard.Title className="
           bg-gradient-to-r from-[#FF343F] to-[#FFE853]
         ">
@@ -48,14 +48,11 @@ export const ExploreWorld = () => (
         </HomeCard.Text>
       </div>
     </header>
-    <div className="
-      w-[53rem]
-      mx-auto
-      ">
+    <div>
       <Image
         className="
+        mx-auto
         object-cover
-        w-full
         "
         width={530}
         height={296}

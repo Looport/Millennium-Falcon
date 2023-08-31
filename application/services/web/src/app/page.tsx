@@ -15,17 +15,17 @@ export default function Home() {
         <div className="mb-[2rem]">
           <Header />
         </div>
-        <section className="grid grid-cols-2 grid-rows-6 gap-[4rem] mb-[4rem]">
-          <div className="row-span-4">
+        <section className="grid lg:grid-cols-2 lg:grid-rows-6 gap-[4rem] mb-[4rem]">
+          <div className="lg:row-span-4">
             <ExploreWorld />
           </div>
-          <div className="row-span-3">
+          <div className="lg:row-span-3 h-[500px]">
             <Meetings />
           </div>
-          <div className="row-span-3">
+          <div className="lg:row-span-3">
             <Contribution />
           </div>
-          <div className="row-span-2">
+          <div className="lg:row-span-2 h-[300px]">
             <Bullerin />
           </div>
         </section>
