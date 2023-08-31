@@ -1,14 +1,17 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import { IconContext } from "react-icons";
-import { BiUserCircle } from "react-icons/bi";
-import { BsCameraVideo } from "react-icons/bs";
-import { HomeCard } from "./home-card";
-import { Button } from "@/components/button";
+import Image from 'next/image'
+import {IconContext} from 'react-icons'
+import {BiUserCircle} from 'react-icons/bi'
+import {BsCameraVideo} from 'react-icons/bs'
+
+import {Button} from '@/components/button'
+
+import {HomeCard} from './home-card'
 
 export const Meetings = () => (
-  <HomeCard className="
+  <HomeCard
+    className="
     h-full
 
     relative
@@ -24,18 +27,23 @@ export const Meetings = () => (
     after:bg-[length:cover] after:bg-[top_82%_left_0] after:rounded-[2.5rem]
 
     flex justify-center items-center
-    ">
+    "
+  >
     <div className="">
       <header className="mb-[2rem]">
-        <h3 className="
+        <h3
+          className="
           font-bold text-[2rem] text-white
           mb-[2rem]
-          ">
+          "
+        >
           Communicate in a New Way
         </h3>
-        <HomeCard.Title className="
+        <HomeCard.Title
+          className="
           bg-gradient-to-r from-[#FFE853] to-[#FF343F]
-          ">
+          "
+        >
           Quick & Functional Meetings For Everyone
         </HomeCard.Title>
         <HomeCard.Text>
@@ -51,9 +59,7 @@ export const Meetings = () => (
           Join Now
         </Button>
         <span>or</span>
-        <Button icon={<BsCameraVideo />}>
-          Start Call
-        </Button>
+        <Button icon={<BsCameraVideo />}>Start Call</Button>
       </div>
       <div className="flex gap-[1rem] items-center">
         <Image
@@ -69,4 +75,4 @@ export const Meetings = () => (
       </div>
     </div>
   </HomeCard>
-);
+)

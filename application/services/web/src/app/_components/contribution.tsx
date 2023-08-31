@@ -1,9 +1,11 @@
-import { IconContext } from "react-icons";
-import { AiFillHeart, AiOutlineStar } from "react-icons/ai";
-import { FiThumbsUp } from "react-icons/fi";
-import { LiaAwardSolid, LiaHandHoldingHeartSolid } from "react-icons/lia";
-import { HomeCard } from "./home-card";
-import { Button } from "@/components/button";
+import {IconContext} from 'react-icons'
+import {AiFillHeart, AiOutlineStar} from 'react-icons/ai'
+import {FiThumbsUp} from 'react-icons/fi'
+import {LiaAwardSolid, LiaHandHoldingHeartSolid} from 'react-icons/lia'
+
+import {Button} from '@/components/button'
+
+import {HomeCard} from './home-card'
 
 export const Contribution = () => (
   <HomeCard className="h-full">
@@ -18,65 +20,73 @@ export const Contribution = () => (
           }
         />
       </div>
-      <HomeCard.Title className="
+      <HomeCard.Title
+        className="
         bg-gradient-to-r from-[#FFE853] to-[#FF343F]
         pl-[1.5rem]
-        ">
+        "
+      >
         Support Unique Ideas
       </HomeCard.Title>
     </header>
     <div className="mb-[3rem]">
       <ul className="font-extrabold flex flex-col gap-[1rem] mb-[1rem]">
-        <li className="
+        <li
+          className="
           flex justify-between items-center
           rounded-lg bg-white/5 px-[1.5rem] py-[0.8rem]
-          ">
+          "
+        >
           <div className="flex items-center gap-[0.6rem]">
             <span>
-              <IconContext.Provider value={{ color: "#FFE753", size: "2rem" }}>
+              <IconContext.Provider value={{color: '#FFE753', size: '2rem'}}>
                 <LiaAwardSolid />
               </IconContext.Provider>
             </span>
             Add More Profile Settings
           </div>
           <span>
-            <IconContext.Provider value={{ size: "2rem" }}>
+            <IconContext.Provider value={{size: '2rem'}}>
               <FiThumbsUp />
             </IconContext.Provider>
           </span>
         </li>
-        <li className="
+        <li
+          className="
           flex justify-between items-center
           rounded-lg bg-white/5 px-[1.5rem] py-[0.8rem]
-          ">
+          "
+        >
           <div className="flex items-center gap-[0.6rem]">
             <span>
-              <IconContext.Provider value={{ color: "#A4A4A7", size: "2rem" }}>
+              <IconContext.Provider value={{color: '#A4A4A7', size: '2rem'}}>
                 <LiaAwardSolid />
               </IconContext.Provider>
             </span>
             Add Dark Theme and More Accessibility
           </div>
           <span>
-            <IconContext.Provider value={{ size: "2rem" }}>
+            <IconContext.Provider value={{size: '2rem'}}>
               <FiThumbsUp />
             </IconContext.Provider>
           </span>
         </li>
-        <li className="
+        <li
+          className="
           flex justify-between items-center
           rounded-lg bg-white/5 px-[1.5rem] py-[0.8rem]
-          ">
+          "
+        >
           <div className="flex items-center gap-[0.6rem]">
             <span>
-              <IconContext.Provider value={{ color: "#FF7B47", size: "2rem" }}>
+              <IconContext.Provider value={{color: '#FF7B47', size: '2rem'}}>
                 <LiaAwardSolid />
               </IconContext.Provider>
             </span>
             Add Animated Emojis in Chat
           </div>
           <span>
-            <IconContext.Provider value={{ size: "2rem" }}>
+            <IconContext.Provider value={{size: '2rem'}}>
               <FiThumbsUp />
             </IconContext.Provider>
           </span>
@@ -88,7 +98,8 @@ export const Contribution = () => (
     </div>
     <div className="mb-[2rem]">
       <div className="mb-[2rem]">
-        <div className="
+        <div
+          className="
           h-[0.3rem] rounded-xl
           bg-gradient-to-r 
           from-indigo-500 from-0% 
@@ -96,8 +107,8 @@ export const Contribution = () => (
           via-rose-600 via-50% 
           via-white via-60%
           to-white to-100%
-          ">
-        </div>
+          "
+        ></div>
       </div>
       <div className="flex justify-between">
         <div className="flex flex-col">
@@ -125,9 +136,7 @@ export const Contribution = () => (
       >
         Suggest Feature
       </Button>
-      <Button icon={<LiaHandHoldingHeartSolid />}>
-        Support Ideas
-      </Button>
+      <Button icon={<LiaHandHoldingHeartSolid />}>Support Ideas</Button>
     </div>
   </HomeCard>
-);
+)

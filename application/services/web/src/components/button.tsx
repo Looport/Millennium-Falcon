@@ -1,20 +1,17 @@
-import { cloneElement, createElement } from "react";
-import { IconContext } from "react-icons";
+import {cloneElement, createElement} from 'react'
+import {IconContext} from 'react-icons'
 
-export const Button = ({ iconSize, icon, children, type, href, className }) => {
-  let iconComponent;
+export const Button = ({iconSize, icon, children, type, href, className}) => {
+  let iconComponent
 
-
-  let iSize = iconSize ?? "2.4rem"
+  const iSize = iconSize ?? '2.4rem'
   if (icon) {
     iconComponent = (
-      <IconContext.Provider value={{ size: iSize }}>
-        {icon}
-      </IconContext.Provider>
-    );
+      <IconContext.Provider value={{size: iSize}}>{icon}</IconContext.Provider>
+    )
   }
 
-  let classTypes = []
+  const classTypes = []
   if (type === 'primary') {
     classTypes.push('bg-blue-500')
   }
@@ -42,8 +39,10 @@ export const Button = ({ iconSize, icon, children, type, href, className }) => {
     component = createElement('a', {href})
   }
 
-  return cloneElement(component, {
-    className: `
+  return cloneElement(
+    component,
+    {
+      className: `
       font-bold text-[14px]
       flex gap-[1.3rem] items-center
       py-[1.3rem] px-[3rem] rounded-[5rem] 
@@ -52,6 +51,9 @@ export const Button = ({ iconSize, icon, children, type, href, className }) => {
       ${classTypes.join(' ')}
 
       ${className}
-      `
-  }, iconComponent, label)
-};
+      `,
+    },
+    iconComponent,
+    label
+  )
+}

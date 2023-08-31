@@ -1,18 +1,21 @@
-import { Button } from "@/components/button";
-import Image from "next/image";
-import { IconContext } from "react-icons";
-import { AiOutlineTwitter } from "react-icons/ai";
-import { BiLogoTelegram } from "react-icons/bi";
-import { BsCameraVideo, BsInstagram } from "react-icons/bs";
+import Image from 'next/image'
+import {IconContext} from 'react-icons'
+import {AiOutlineTwitter} from 'react-icons/ai'
+import {BiLogoTelegram} from 'react-icons/bi'
+import {BsCameraVideo, BsInstagram} from 'react-icons/bs'
+
+import {Button} from '@/components/button'
 
 export const Footer = () => (
-  <footer className="
+  <footer
+    className="
         bg-zinc-950
         mt-[4rem]
         py-[4rem] px-[9rem]
         md:block
         hidden
-        ">
+        "
+  >
     <div className="flex justify-between mb-[2rem]">
       <div>
         <Image
@@ -25,11 +28,7 @@ export const Footer = () => (
 
       <ul className="flex gap-[2rem] items-center">
         <li>
-          <Button
-            icon={<BsCameraVideo />}
-          >
-            Start Call
-          </Button>
+          <Button icon={<BsCameraVideo />}>Start Call</Button>
         </li>
 
         <li>
@@ -69,4 +68,4 @@ export const Footer = () => (
       <span>Copyright © 2023. All rights reserved.</span>
     </div>
   </footer>
-);
+)
