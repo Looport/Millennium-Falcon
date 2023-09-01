@@ -3,12 +3,13 @@ import {IconContext} from 'react-icons'
 export const HomeCard = ({children, className}) => (
   <article
     className={`
-      p-[2rem]
-      border rounded-[2.5rem] border-slate-50/25 drop-shadow-xl
-      bg-zinc-700/10 backdrop-blur-sm
-      overflow-hidden
-      ${className}
-`}
+    p-[2rem]
+    border rounded-[2.5rem] border-slate-50/25 drop-shadow-xl
+    bg-zinc-700/10 backdrop-blur-sm
+    overflow-hidden
+
+    ${className}
+    `}
   >
     {children}
   </article>
@@ -17,9 +18,10 @@ export const HomeCard = ({children, className}) => (
 HomeCard.Title = ({children, className}) => (
   <h2
     className={`
-      font-black text-[3rem] text-transparent bg-clip-text
-      ${className}
-      `}
+    font-black text-[3rem] text-transparent bg-clip-text
+
+    ${className}
+    `}
   >
     {children}
   </h2>

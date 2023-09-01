@@ -108,9 +108,9 @@ export const Contribution = () => (
           via-white via-60%
           to-white to-100%
           "
-        ></div>
+        />
       </div>
-      <div className="flex justify-between">
+      <div className="flex sm:flex-row flex-col justify-between">
         <div className="flex flex-col">
           <span className="font-extrabold text-[2rem]">$500k+</span>
           <span>Raised</span>
@@ -129,7 +129,7 @@ export const Contribution = () => (
         </div>
       </div>
     </div>
-    <div className="flex justify-center gap-[2rem]">
+    <div className="flex sm:flex-row flex-col justify-center gap-[2rem]">
       <Button
         type="primary"
         icon={<AiOutlineStar />}

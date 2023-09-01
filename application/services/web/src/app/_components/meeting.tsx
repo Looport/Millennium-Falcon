@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import {IconContext} from 'react-icons'
 import {BiUserCircle} from 'react-icons/bi'
 import {BsCameraVideo} from 'react-icons/bs'
 
@@ -51,7 +50,7 @@ export const Meetings = () => (
           become an indispensable companion for any type of conversation.
         </HomeCard.Text>
       </header>
-      <div className="flex items-center gap-[1rem] mb-[2rem]">
+      <div className="flex sm:flex-row flex-col items-center gap-[1rem] mb-[2rem]">
         <Button
           type="primary"
           icon={<BiUserCircle />}
@@ -61,7 +60,7 @@ export const Meetings = () => (
         <span>or</span>
         <Button icon={<BsCameraVideo />}>Start Call</Button>
       </div>
-      <div className="flex gap-[1rem] items-center">
+      <div className="flex sm:flex-row flex-col gap-[1rem] items-center">
         <Image
           width={100}
           height={100}

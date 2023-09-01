@@ -9,15 +9,13 @@ import {Button} from '@/components/button'
 export const Footer = () => (
   <footer
     className="
-        bg-zinc-950
-        mt-[4rem]
-        py-[4rem] px-[9rem]
-        md:block
-        hidden
-        "
+    bg-zinc-950
+    mt-[4rem]
+    py-[4rem] sm:px-[9rem]
+    "
   >
-    <div className="flex justify-between mb-[2rem]">
-      <div>
+    <div className="flex justify-center sm:justify-between mb-[2rem]">
+        <div className="sm:block hidden">
         <Image
           width={130}
           height={35}
@@ -31,21 +29,21 @@ export const Footer = () => (
           <Button icon={<BsCameraVideo />}>Start Call</Button>
         </li>
 
-        <li>
+        <li className="sm:block hidden">
           <Button
             href="/twitter"
             type="icon"
             icon={<AiOutlineTwitter />}
           />
         </li>
-        <li>
+        <li className="sm:block hidden">
           <Button
             href="/instagram"
             type="icon"
             icon={<BsInstagram />}
           />
         </li>
-        <li>
+        <li className="sm:block hidden">
           <Button
             href="/telegram"
             type="icon"
@@ -54,7 +52,7 @@ export const Footer = () => (
         </li>
       </ul>
     </div>
-    <div className="font-bold flex justify-between">
+    <div className="font-bold flex justify-between sm:block hidden">
       <nav className="flex">
         <ul className="flex gap-[4rem]">
           <li>Terms and Conditionals</li>

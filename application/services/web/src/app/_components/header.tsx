@@ -31,7 +31,7 @@ export const Header = () => (
       />
     </div>
     <nav>
-      <ul className="md:flex gap-[4rem] hidden">
+      <ul className="xl:flex gap-[4rem] hidden">
         <li>About Us</li>
         <li>Rouad Map</li>
         <li>Donate</li>
