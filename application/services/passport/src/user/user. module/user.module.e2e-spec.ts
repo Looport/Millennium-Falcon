@@ -1,7 +1,7 @@
 import {describe, beforeEach, it} from 'node:test'
 
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
-import {Test, TestingModule} from '@nestjs/testing'
+import {Test} from '@nestjs/testing'
 
 import {AppModule} from '@/app/app.module/app.module'
 
@@ -9,7 +9,7 @@ describe('UserController (e2e)', () => {
   let app: NestFastifyApplication
 
   beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     }).compile()
 
@@ -19,7 +19,7 @@ describe('UserController (e2e)', () => {
     await app.getHttpAdapter().getInstance().ready()
   })
 
-  describe('/authentication/register (POST)', () => {
+  describe('/user/iam (GET)', () => {
     it.todo('returns authenticated user by token', async () => {})
   })
 })

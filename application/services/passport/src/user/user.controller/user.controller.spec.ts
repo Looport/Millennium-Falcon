@@ -1,7 +1,7 @@
 import {ok} from 'node:assert/strict'
 import {beforeEach, describe, it} from 'node:test'
 
-import {Test, TestingModule} from '@nestjs/testing'
+import {Test} from '@nestjs/testing'
 
 import {UserController} from './user.controller'
 
@@ -9,7 +9,7 @@ describe('UserController', () => {
   let controller: UserController
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const module = await Test.createTestingModule({
       controllers: [UserController],
     }).compile()
 

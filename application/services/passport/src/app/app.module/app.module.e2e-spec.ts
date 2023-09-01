@@ -1,7 +1,7 @@
 import {describe, it, beforeEach} from 'node:test'
 
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
-import {Test, TestingModule} from '@nestjs/testing'
+import {Test} from '@nestjs/testing'
 import request from 'supertest'
 
 import {AppModule} from '@/app/app.module/app.module'
@@ -10,7 +10,7 @@ describe('AppController (e2e)', () => {
   let app: NestFastifyApplication
 
   beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     }).compile()
 

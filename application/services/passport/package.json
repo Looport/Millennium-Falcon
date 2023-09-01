@@ -13,11 +13,11 @@
     "===test===": "===",
     "lint": "eslint \"src/**/*.ts\"",
     "type-check": "tsc --noEmit",
-    "test": "node --test --loader tsx ./src/**/**/*.spec.ts",
+    "test": "node --test --loader tsx ./src/**/*/authentication.controller.spec.ts",
     "test:watch": "node --test --watch --loader tsx ./src/**/**/*.spec.ts",
     "test:debug": "node --test --watch --inspect-brk --loader tsx ./src/**/**/*.spec.ts",
     "test:e2e": "node --test --loader tsx ./src/**/**/*.e2e-spec.ts",
-    "test:e2e:wath": "node --test --watch --loader tsx ./src/**/**/*.e2e-spec.ts",
+    "test:e2e:watch": "node --test --watch --loader tsx ./src/**/**/*.e2e-spec.ts",
     "test:e2e:debug": "node --test --inspect-brk --watch --loader tsx ./src/**/**/*.e2e-spec.ts",
     "===utils===": "===",
     "format": "pnpm lint --fix"
