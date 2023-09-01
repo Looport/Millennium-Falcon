@@ -1,9 +1,9 @@
 import {ok} from 'node:assert'
-import {describe, it, beforeEach} from 'node:test'
+import {beforeEach, describe, it} from 'node:test'
 
 import {Test, TestingModule} from '@nestjs/testing'
 
-import {AppController} from '../app.controller'
+import {AppController} from './app.controller'
 
 describe('AppController', () => {
   let controller: AppController
