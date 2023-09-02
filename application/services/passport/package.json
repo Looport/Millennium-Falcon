@@ -13,8 +13,9 @@
     "===test===": "===",
     "lint": "eslint \"src/**/*.ts\"",
     "type-check": "tsc --noEmit",
-    "test": "node -r @swc-node/register --test src/**/**/*.test.ts",
+    "test": "node -r @swc-node/register --test src/**/**/*.test.ts src/**/**/**/*.test.ts",
     "test:e2e": "node -r @swc-node/register --test src/test/**/*.e2e-test.ts",
+    "test:all": "node -r @swc-node/register --test src/**/**/*.test.ts src/**/**/**/*.test.ts src/test/**/*.e2e-test.ts",
     "===utils===": "===",
     "format": "pnpm lint --fix"
   },

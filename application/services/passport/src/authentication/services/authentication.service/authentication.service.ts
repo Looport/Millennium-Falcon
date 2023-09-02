@@ -4,7 +4,7 @@ import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 
 import {RegisterCredentialsDto} from '@/authentication/dtos/register-credentials.dto'
-import {PasswordHashService} from '@/authentication/services/password-hash.service'
+import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
 import {UserEntity} from '@/user/entities/user.entity'
 
 @Injectable()
@@ -22,9 +22,8 @@ export class AuthenticationService {
     const passwordHash = await this.passwordHashService.createHash(
       credentials.password
     )
-    const userData = {email: credentials.email, passwordHash}
     const user = await this.userRepository.save(
-      this.userRepository.create(userData)
+      this.userRepository.create({email: credentials.email, passwordHash})
     )
 
     const token = await this.jwtService.signAsync({

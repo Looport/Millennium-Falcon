@@ -1,10 +1,10 @@
 import {Module} from '@nestjs/common'
 import {JwtModule} from '@nestjs/jwt'
 
-import {PasswordHashService} from './services/password-hash.service'
+import {PasswordHashService} from './services/password-hash.service/password-hash.service'
 
 import {AuthenticationController} from '@/authentication/authentication.controller'
-import {AuthenticationService} from '@/authentication/services/authentication.service'
+import {AuthenticationService} from '@/authentication/services/authentication.service/authentication.service'
 import {UserModule} from '@/user/user.module'
 
 @Module({

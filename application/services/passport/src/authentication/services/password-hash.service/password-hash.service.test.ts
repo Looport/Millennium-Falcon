@@ -1,9 +1,10 @@
-import {ok} from 'node:assert/strict'
+import {notEqual, ok} from 'node:assert/strict'
 import {beforeEach, describe, it} from 'node:test'
 
 import {Test, TestingModule} from '@nestjs/testing'
 
-import {PasswordHashService} from '../services/password-hash.service'
+import {PasswordHashService} from './password-hash.service'
+import {validCredentials} from "@/authentication/test/authentication.mocks";
 
 describe('PasswordHashService', () => {
   let service: PasswordHashService
@@ -17,16 +18,15 @@ describe('PasswordHashService', () => {
   })
 
   it('returns hash', async () => {
-    const password = 'jJ(3400J*#'
-
+    const password = validCredentials.password
     const hash = await service.createHash(password)
 
     ok(hash)
+    notEqual(hash, password)
   })
 
   it('validates password', async () => {
-    const password = 'jJ(3400J*#'
-
+    const password = validCredentials.password
     const hash = await service.createHash(password)
 
     const valid = await service.validatePassword(password, hash)

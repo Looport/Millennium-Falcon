@@ -10,6 +10,7 @@ import {Repository} from 'typeorm'
 
 import {AppModule} from '@/app/app.module'
 import {UserEntity} from '@/user/entities/user.entity'
+import {validCredentials} from "@/authentication/test/authentication.mocks";
 
 describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
@@ -34,14 +35,10 @@ describe('AuthenticationController (e2e)', () => {
   })
 
   describe('/authentication/register (POST)', () => {
-    it('returns token', async () => {
-      const credentials = {
-        email: 'elliot@e-corp.com',
-        password: 'Xjied**33#ppC',
-      }
+    it('should return token', async () => {
       const {body} = await request(app.getHttpServer())
         .post('/authentication/register')
-        .send(credentials)
+        .send(validCredentials)
         .expect(201)
 
       deepEqual(body, {
@@ -51,27 +48,23 @@ describe('AuthenticationController (e2e)', () => {
       const payload = await jwtService.verifyAsync(body.accessToken)
 
       ok(payload.sub)
-      equal(credentials.email, payload.email)
+      equal(validCredentials.email, payload.email)
       ok(!payload.password)
     })
 
-    it('save user and hash password', async () => {
-      const credentials = {
-        email: 'elliot@e-corp.com',
-        password: 'Xjied**33#ppC',
-      }
-
+    it('should save user and hash password', async () => {
       await request(app.getHttpServer())
         .post('/authentication/register')
-        .send(credentials)
+        .send(validCredentials)
 
       const user = await userRepository.findOne({
-        where: {email: credentials.email},
+        where: {email: validCredentials.email},
       })
 
       ok(user)
-      equal(user.email, credentials.email)
-      notEqual(user.passwordHash, credentials.password)
+
+      equal(user.email, validCredentials.email)
+      notEqual(user.passwordHash, validCredentials.password)
     })
   })
 })

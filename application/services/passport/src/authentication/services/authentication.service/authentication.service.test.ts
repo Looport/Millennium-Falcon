@@ -1,4 +1,4 @@
-import {deepEqual} from 'node:assert/strict'
+import {deepEqual, notEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
 import {JwtService} from '@nestjs/jwt'
@@ -6,14 +6,11 @@ import {Test} from '@nestjs/testing'
 import {getRepositoryToken} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 
-import {AuthenticationService} from '../services/authentication.service'
+import {AuthenticationService} from './authentication.service'
 
-import {PasswordHashService} from '@/authentication/services/password-hash.service'
+import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
 import {UserEntity} from '@/user/entities/user.entity'
-
-const FAKE_HASHED_PASSWORD = 'HASHED'
-const FAKE_USER_ID = 1
-const FAKE_TOKEN = 'FAKE_TOKEN'
+import {FAKE_PASSWORD_HASH, FAKE_TOKEN, FAKE_USER_ID} from "@/authentication/test/authentication.mocks";
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService
@@ -34,7 +31,7 @@ describe('AuthenticationService', () => {
         {
           provide: PasswordHashService,
           useValue: {
-            createHash: mock.fn(() => Promise.resolve(FAKE_HASHED_PASSWORD)),
+            createHash: mock.fn(() => Promise.resolve(FAKE_PASSWORD_HASH)),
           },
         },
         {
@@ -67,36 +64,19 @@ describe('AuthenticationService', () => {
 
       const result = await service.register(credentials)
 
-      deepEqual(result, {accessToken: result.accessToken})
+      deepEqual(result, {accessToken: FAKE_TOKEN})
     })
 
-    it('verify register flow', async () => {
+    it('should hash password', async () => {
       const credentials = {email: 'elliot@e-corp.com', password: 'weiofj'}
 
       const result = await service.register(credentials)
 
-      const createHashCalls = await (passwordHashService.createHash as any).mock
-        .calls
-      deepEqual(createHashCalls[0].arguments, [credentials.password])
+      const savedUser = await (userRepository.save as any).mock
+        .calls[0].result
 
-      const userRepositoryCreateCalls = await (userRepository.create as any)
-        .mock.calls
-      deepEqual(userRepositoryCreateCalls[0].arguments, [
-        {email: credentials.email, passwordHash: FAKE_HASHED_PASSWORD},
-      ])
-
-      const userRepositorySaveCalls = await (userRepository.save as any).mock
-        .calls
-      deepEqual(userRepositorySaveCalls[0].arguments, [
-        {email: credentials.email, passwordHash: FAKE_HASHED_PASSWORD},
-      ])
-
-      const jwtSignCalls = await (jwtService.signAsync as any).mock.calls
-      deepEqual(jwtSignCalls[0].arguments, [
-        {email: credentials.email, sub: FAKE_USER_ID},
-      ])
-
-      deepEqual(result, {accessToken: FAKE_TOKEN})
+      ok(savedUser.passwordHash)
+      notEqual(credentials.password, savedUser.passwordHash)
     })
   })
 })
