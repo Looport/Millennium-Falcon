@@ -38,9 +38,12 @@ describe('AuthenticationController', () => {
 
       const result = await controller.register(credentials)
 
-      deepEqual(await (authenticationService.register as any).mock.calls[0].result, {
-        accessToken: FAKE_TOKEN,
-      })
+      deepEqual(
+        await (authenticationService.register as any).mock.calls[0].result,
+        {
+          accessToken: FAKE_TOKEN,
+        }
+      )
       deepEqual(result, {accessToken: FAKE_TOKEN})
     })
   })

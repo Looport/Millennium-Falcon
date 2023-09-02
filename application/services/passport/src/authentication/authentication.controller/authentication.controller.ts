@@ -10,7 +10,6 @@ export class AuthenticationController {
   @HttpCode(HttpStatus.CREATED)
   @Post('register')
   async register(@Body() credentials: RegisterCredentialsDto) {
-
     const {accessToken} = await this.authenticationService.register(credentials)
 
     return {
