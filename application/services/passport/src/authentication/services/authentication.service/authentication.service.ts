@@ -3,7 +3,7 @@ import {JwtService} from '@nestjs/jwt'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 
-import {RegisterCredentialsDto} from '@/authentication/dtos/register-credentials.dto'
+import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
 import {UserEntity} from '@/user/entities/user.entity'
 
@@ -17,7 +17,7 @@ export class AuthenticationService {
   ) {}
 
   async register(
-    credentials: RegisterCredentialsDto
+    credentials: CredentialsDto
   ): Promise<{accessToken: string}> {
     const passwordHash = await this.passwordHashService.createHash(
       credentials.password

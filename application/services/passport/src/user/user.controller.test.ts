@@ -3,7 +3,7 @@ import {beforeEach, describe, it} from 'node:test'
 
 import {Test} from '@nestjs/testing'
 
-import {UserController} from '../user.controller'
+import {UserController} from './user.controller'
 
 describe('UserController', () => {
   let controller: UserController

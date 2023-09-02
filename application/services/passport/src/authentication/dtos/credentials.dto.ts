@@ -1,4 +1,4 @@
-export class RegisterCredentialsDto {
+export class CredentialsDto {
   email: string
 
   password: string
