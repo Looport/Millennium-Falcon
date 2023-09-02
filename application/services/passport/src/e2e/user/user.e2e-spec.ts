@@ -3,7 +3,7 @@ import {describe, beforeEach, it} from 'node:test'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
 
-import {AppModule} from '@/app/app.module/app.module'
+import {AppModule} from '@/app/app.module'
 
 describe('UserController (e2e)', () => {
   let app: NestFastifyApplication

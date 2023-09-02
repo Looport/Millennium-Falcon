@@ -10,8 +10,6 @@ export class AuthenticationController {
   @HttpCode(HttpStatus.CREATED)
   @Post('register')
   async register(@Body() credentials: RegisterCredentialsDto) {
-    console.log('register >>>>', AuthenticationService)
-    console.log('register this >>>>', this)
 
     const {accessToken} = await this.authenticationService.register(credentials)
 
