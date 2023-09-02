@@ -5,6 +5,7 @@ import {Repository} from 'typeorm'
 
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
+import {ValidationException} from '@/common/exeptions/validation.exception'
 import {UserEntity} from '@/user/entities/user.entity'
 
 @Injectable()
@@ -16,9 +17,20 @@ export class AuthenticationService {
     private readonly passwordHashService: PasswordHashService
   ) {}
 
-  async register(
-    credentials: CredentialsDto
-  ): Promise<{accessToken: string}> {
+  async register(credentials: CredentialsDto): Promise<{accessToken: string}> {
+    const existedUser = await this.userRepository.findOne({
+      where: {email: credentials.email},
+    })
+    if (existedUser) {
+      throw new ValidationException([
+        {
+          field: 'email',
+          messages: ['email already exists'],
+          value: credentials.email,
+        },
+      ])
+    }
+
     const passwordHash = await this.passwordHashService.createHash(
       credentials.password
     )
@@ -31,6 +43,8 @@ export class AuthenticationService {
       sub: user.id,
     })
 
-    return {accessToken: token}
+    return {
+      accessToken: token,
+    }
   }
 }

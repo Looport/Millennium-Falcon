@@ -1,5 +1,5 @@
 import {deepEqual, ok, notEqual, equal} from 'node:assert/strict'
-import {describe, it, beforeEach} from 'node:test'
+import {describe, it, beforeEach, afterEach} from 'node:test'
 
 import {JwtService} from '@nestjs/jwt'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
@@ -9,8 +9,11 @@ import request from 'supertest'
 import {Repository} from 'typeorm'
 
 import {AppModule} from '@/app/app.module'
+import {
+  invalidCredentials,
+  validCredentials,
+} from '@/authentication/test/authentication.mocks'
 import {UserEntity} from '@/user/entities/user.entity'
-import {invalidCredentials, validCredentials} from "@/authentication/test/authentication.mocks";
 
 describe('AuthenticationController (e2e)', {only: true}, () => {
   let app: NestFastifyApplication
@@ -35,6 +38,10 @@ describe('AuthenticationController (e2e)', {only: true}, () => {
   })
 
   describe('/authentication/register (POST)', () => {
+    afterEach(async () => {
+      await userRepository.delete({})
+    })
+
     it('should return token', async () => {
       const {body} = await request(app.getHttpServer())
         .post('/authentication/register')
@@ -68,32 +75,52 @@ describe('AuthenticationController (e2e)', {only: true}, () => {
       notEqual(user.passwordHash, validCredentials.password)
     })
 
-    it.only('should throw validation error', async () => {
+    it('should throw validation error', async () => {
       const {body} = await request(app.getHttpServer())
         .post('/authentication/register')
         .send(invalidCredentials)
         .expect(400)
 
       deepEqual(body, {
-        message: 'Validation',
         errors: [
           {
-            "field": "email",
-            "value": "elliot",
-            "messages": [
-              "email must be an email"
-            ],
-            children: []
+            children: [],
+            field: 'email',
+            messages: ['email must be an email'],
+            value: 'elliot',
           },
           {
-            "field": "password",
-            "value": "oj(3",
-            "messages": [
-              "password must be longer than or equal to 6 characters"
-            ],
-            children: []
-          }
-        ]
+            children: [],
+            field: 'password',
+            messages: ['password must be longer than or equal to 6 characters'],
+            value: 'oj(3',
+          },
+        ],
+        message: 'Validation',
+      })
+    })
+
+    it('should throw validation error on email already exists', async () => {
+      await request(app.getHttpServer())
+        .post('/authentication/register')
+        .send(validCredentials)
+        .expect(201)
+
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/register')
+        .send(validCredentials)
+        .expect(400)
+
+      deepEqual(body, {
+        errors: [
+          {
+            children: [],
+            field: 'email',
+            messages: ['email already exists'],
+            value: validCredentials.email,
+          },
+        ],
+        message: 'Validation',
       })
     })
   })

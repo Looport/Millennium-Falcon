@@ -1,21 +1,22 @@
 import {Module, Provider} from '@nestjs/common'
+import {APP_PIPE} from '@nestjs/core'
 import {TypeOrmModule} from '@nestjs/typeorm'
 
 import {AppController} from './app.controller'
 
 import {AuthenticationModule} from '@/authentication/authentication.module'
+import {ValidationPipe} from '@/common/pipes/validation.pipe'
 import {UserModule} from '@/user/user.module'
-import {APP_PIPE} from "@nestjs/core";
-import {ValidationPipe} from "@/app/pipes/validation.pipe";
 
 const GLOBAL_PROVIDERS: Provider[] = [
   {
     provide: APP_PIPE,
-    useValue: new ValidationPipe()
-  }
+    useValue: new ValidationPipe(),
+  },
 ]
 
 @Module({
+  controllers: [AppController],
   imports: [
     TypeOrmModule.forRoot({
       autoLoadEntities: true,
@@ -29,10 +30,6 @@ const GLOBAL_PROVIDERS: Provider[] = [
     AuthenticationModule,
     UserModule,
   ],
-  controllers: [AppController],
-  providers: [
-    ...GLOBAL_PROVIDERS
-  ]
+  providers: [...GLOBAL_PROVIDERS],
 })
-export class AppModule {
-}
+export class AppModule {}

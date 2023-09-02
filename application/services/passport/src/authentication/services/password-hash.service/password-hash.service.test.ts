@@ -4,7 +4,8 @@ import {beforeEach, describe, it} from 'node:test'
 import {Test, TestingModule} from '@nestjs/testing'
 
 import {PasswordHashService} from './password-hash.service'
-import {validCredentials} from "@/authentication/test/authentication.mocks";
+
+import {validCredentials} from '@/authentication/test/authentication.mocks'
 
 describe('PasswordHashService', () => {
   let service: PasswordHashService
@@ -18,7 +19,7 @@ describe('PasswordHashService', () => {
   })
 
   it('returns hash', async () => {
-    const password = validCredentials.password
+    const {password} = validCredentials
     const hash = await service.createHash(password)
 
     ok(hash)
@@ -26,7 +27,7 @@ describe('PasswordHashService', () => {
   })
 
   it('validates password', async () => {
-    const password = validCredentials.password
+    const {password} = validCredentials
     const hash = await service.createHash(password)
 
     const valid = await service.validatePassword(password, hash)

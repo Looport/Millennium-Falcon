@@ -1,4 +1,4 @@
-import {deepEqual, notEqual, ok} from 'node:assert/strict'
+import {deepEqual, notEqual, ok, rejects} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
 import {JwtService} from '@nestjs/jwt'
@@ -9,8 +9,14 @@ import {Repository} from 'typeorm'
 import {AuthenticationService} from './authentication.service'
 
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
+import {
+  FAKE_PASSWORD_HASH,
+  FAKE_TOKEN,
+  FAKE_USER_ID,
+  validCredentials,
+} from '@/authentication/test/authentication.mocks'
+import {ValidationException} from '@/common/exeptions/validation.exception'
 import {UserEntity} from '@/user/entities/user.entity'
-import {FAKE_PASSWORD_HASH, FAKE_TOKEN, FAKE_USER_ID} from "@/authentication/test/authentication.mocks";
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService
@@ -38,6 +44,7 @@ describe('AuthenticationService', () => {
           provide: getRepositoryToken(UserEntity),
           useValue: {
             create: mock.fn((data) => data),
+            findOne: () => null,
             save: mock.fn((data) =>
               Promise.resolve({id: FAKE_USER_ID, ...data})
             ),
@@ -54,29 +61,39 @@ describe('AuthenticationService', () => {
     )
   })
 
-  afterEach(() => {
-    mock.reset()
-  })
-
   describe('register', () => {
-    it('should return token', async () => {
-      const credentials = {email: 'elliot@e-corp.com', password: 'weiofj'}
+    afterEach(() => {
+      mock.reset()
+    })
 
-      const result = await service.register(credentials)
+    it('should return token', async () => {
+      const result = await service.register(validCredentials)
 
       deepEqual(result, {accessToken: FAKE_TOKEN})
     })
 
     it('should hash password', async () => {
-      const credentials = {email: 'elliot@e-corp.com', password: 'weiofj'}
-
-      const result = await service.register(credentials)
-
-      const savedUser = await (userRepository.save as any).mock
-        .calls[0].result
+      const savedUser = await (userRepository.save as any).mock.calls[0].result
 
       ok(savedUser.passwordHash)
-      notEqual(credentials.password, savedUser.passwordHash)
+      notEqual(validCredentials.password, savedUser.passwordHash)
+    })
+
+    it('should throw error on email already exists', async () => {
+      userRepository.findOne = mock.fn(userRepository.findOne, () =>
+        Promise.resolve({id: FAKE_USER_ID, ...validCredentials})
+      ) as any
+
+      await rejects(
+        service.register(validCredentials),
+        new ValidationException([
+          {
+            field: 'email',
+            messages: ['email already exists'],
+            value: validCredentials.email,
+          },
+        ])
+      )
     })
   })
 })
