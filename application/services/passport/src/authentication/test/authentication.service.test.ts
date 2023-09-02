@@ -1,5 +1,5 @@
 import {deepEqual} from 'node:assert/strict'
-import {describe, it, beforeEach, afterEach, mock} from 'node:test'
+import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
 import {JwtService} from '@nestjs/jwt'
 import {Test} from '@nestjs/testing'
@@ -93,7 +93,7 @@ describe('AuthenticationService', () => {
 
       const jwtSignCalls = await (jwtService.signAsync as any).mock.calls
       deepEqual(jwtSignCalls[0].arguments, [
-        {email: credentials.email, id: FAKE_USER_ID},
+        {email: credentials.email, sub: FAKE_USER_ID},
       ])
 
       deepEqual(result, {accessToken: FAKE_TOKEN})

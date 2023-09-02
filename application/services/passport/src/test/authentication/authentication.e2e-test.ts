@@ -50,7 +50,7 @@ describe('AuthenticationController (e2e)', () => {
 
       const payload = await jwtService.verifyAsync(body.accessToken)
 
-      ok(payload.id)
+      ok(payload.sub)
       equal(credentials.email, payload.email)
       ok(!payload.password)
     })
