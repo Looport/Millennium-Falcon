@@ -13,20 +13,20 @@
     "===test===": "===",
     "lint": "eslint \"src/**/*.ts\"",
     "type-check": "tsc --noEmit",
-    "test": "node --test -r @swc-node/register ./src/**/**/*.spec.ts",
-    "test:watch": "node --test --watch -r @swc-node/register ./src/**/**/*.spec.ts",
-    "test:debug": "node --test --inspect-brk -r @swc-node/register ./src/**/**/*.spec.ts",
-    "test:e2e": "node --test -r @swc-node/register ./src/e2e/**/*.e2e-spec.ts",
-    "test:e2e:watch": "node --test --watch -r @swc-node/register ./src/e2e/**/*.e2e-spec.ts",
-    "test:e2e:debug": "node --test --inspect-brk -r @swc-node/register ./src/e2e/**/*.e2e-spec.tss",
+    "test": "node -r @swc-node/register --test src/**/**/*.test.ts",
+    "test:e2e": "node -r @swc-node/register --test src/test/**/*.e2e-test.ts",
     "===utils===": "===",
     "format": "pnpm lint --fix"
   },
   "dependencies": {
     "@nestjs/common": "^10.2.4",
     "@nestjs/core": "^10.2.4",
+    "@nestjs/jwt": "^10.1.1",
     "@nestjs/platform-fastify": "^10.2.4",
-    "rxjs": "^7.8.1"
+    "@nestjs/typeorm": "^10.0.0",
+    "pg": "^8.11.3",
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.17"
   },
   "devDependencies": {
     "@looport/eslint-config": "workspace:*",

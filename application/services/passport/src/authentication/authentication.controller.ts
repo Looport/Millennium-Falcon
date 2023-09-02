@@ -1,7 +1,7 @@
 import {Body, Controller, HttpCode, HttpStatus, Post} from '@nestjs/common'
 
 import {RegisterCredentialsDto} from '@/authentication/dtos/register-credentials.dto'
-import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
+import {AuthenticationService} from '@/authentication/services/authentication.service'
 
 @Controller('authentication')
 export class AuthenticationController {
