@@ -8,7 +8,7 @@ import {AuthenticationService} from '@/authentication/services/authentication.se
 import {
   FAKE_TOKEN,
   validCredentials,
-} from '@/authentication/test/authentication.mocks'
+} from '@/authentication/test/authentication.mock'
 
 describe('AuthenticationController', () => {
   let controller: AuthenticationController

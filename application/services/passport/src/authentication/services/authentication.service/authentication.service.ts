@@ -31,11 +31,13 @@ export class AuthenticationService {
       ])
     }
 
-    const passwordHash = await this.passwordHashService.createHash(
-      credentials.password
-    )
     const user = await this.userRepository.save(
-      this.userRepository.create({email: credentials.email, passwordHash})
+      this.userRepository.create({
+        email: credentials.email,
+        passwordHash: await this.passwordHashService.createHash(
+          credentials.password
+        ),
+      })
     )
 
     const token = await this.jwtService.signAsync({

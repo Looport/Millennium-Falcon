@@ -5,7 +5,7 @@ import {Test, TestingModule} from '@nestjs/testing'
 
 import {PasswordHashService} from './password-hash.service'
 
-import {validCredentials} from '@/authentication/test/authentication.mocks'
+import {validCredentials} from '@/authentication/test/authentication.mock'
 
 describe('PasswordHashService', () => {
   let service: PasswordHashService

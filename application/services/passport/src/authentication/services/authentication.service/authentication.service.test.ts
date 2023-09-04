@@ -4,25 +4,32 @@ import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 import {JwtService} from '@nestjs/jwt'
 import {Test} from '@nestjs/testing'
 import {getRepositoryToken} from '@nestjs/typeorm'
-import {Repository} from 'typeorm'
 
 import {AuthenticationService} from './authentication.service'
 
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
+import {validCredentials} from '@/authentication/test/authentication.mock'
 import {
-  FAKE_PASSWORD_HASH,
+  createJwtServiceMock,
   FAKE_TOKEN,
-  FAKE_USER_ID,
-  validCredentials,
-} from '@/authentication/test/authentication.mocks'
+} from '@/authentication/test/jwt.service.mock'
+import {
+  createPasswordServiceMock,
+  FAKE_PASSWORD_HASH,
+} from '@/authentication/test/password-hash-service.mock'
 import {ValidationException} from '@/common/exeptions/validation.exception'
 import {UserEntity} from '@/user/entities/user.entity'
+import {
+  createUserRepositoryMock,
+  FAKE_USER_ID,
+} from '@/user/test/user.repository.mock'
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService
-  let jwtService: JwtService
-  let passwordHashService: PasswordHashService
-  let userRepository: Repository<UserEntity>
+
+  const jwtServiceMock = createJwtServiceMock()
+  const userRepositoryMock = createUserRepositoryMock()
+  const passwordHashServiceMock = createPasswordServiceMock()
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -30,35 +37,20 @@ describe('AuthenticationService', () => {
         AuthenticationService,
         {
           provide: JwtService,
-          useValue: {
-            signAsync: mock.fn(() => Promise.resolve(FAKE_TOKEN)),
-          },
+          useValue: jwtServiceMock,
         },
         {
           provide: PasswordHashService,
-          useValue: {
-            createHash: mock.fn(() => Promise.resolve(FAKE_PASSWORD_HASH)),
-          },
+          useValue: passwordHashServiceMock,
         },
         {
           provide: getRepositoryToken(UserEntity),
-          useValue: {
-            create: mock.fn((data) => data),
-            findOne: () => null,
-            save: mock.fn((data) =>
-              Promise.resolve({id: FAKE_USER_ID, ...data})
-            ),
-          },
+          useValue: userRepositoryMock,
         },
       ],
     }).compile()
 
     service = module.get<AuthenticationService>(AuthenticationService)
-    jwtService = module.get<JwtService>(JwtService)
-    passwordHashService = module.get<PasswordHashService>(PasswordHashService)
-    userRepository = module.get<Repository<UserEntity>>(
-      getRepositoryToken(UserEntity)
-    )
   })
 
   describe('register', () => {
@@ -67,22 +59,44 @@ describe('AuthenticationService', () => {
     })
 
     it('should return token', async () => {
+      const {signAsync} = createJwtServiceMock({
+        signAsync: mock.fn(() => Promise.resolve(FAKE_TOKEN)),
+      })
+      jwtServiceMock.signAsync = signAsync
+
       const result = await service.register(validCredentials)
 
       deepEqual(result, {accessToken: FAKE_TOKEN})
     })
 
     it('should hash password', async () => {
-      const savedUser = await (userRepository.save as any).mock.calls[0].result
+      const {save} = createUserRepositoryMock({
+        save: mock.fn((data) => Promise.resolve({id: FAKE_USER_ID, ...data})),
+      })
+      userRepositoryMock.save = save
 
-      ok(savedUser.passwordHash)
-      notEqual(validCredentials.password, savedUser.passwordHash)
+      const {createHash} = createPasswordServiceMock({
+        createHash: mock.fn(() => Promise.resolve(FAKE_PASSWORD_HASH)),
+      })
+      passwordHashServiceMock.createHash = createHash
+
+      await service.register(validCredentials)
+
+      deepEqual(createHash.mock.calls[0].arguments, [validCredentials.password])
+      ok(!(save.mock.calls[0].arguments[0] as any).password)
+      notEqual(
+        await save.mock.calls[0].result,
+        (save.mock.calls[0].arguments as any).passwordHash
+      )
     })
 
     it('should throw error on email already exists', async () => {
-      userRepository.findOne = mock.fn(userRepository.findOne, () =>
-        Promise.resolve({id: FAKE_USER_ID, ...validCredentials})
-      ) as any
+      const {findOne} = createUserRepositoryMock({
+        findOne: mock.fn((data) =>
+          Promise.resolve({id: FAKE_USER_ID, ...data})
+        ),
+      })
+      userRepositoryMock.findOne = findOne
 
       await rejects(
         service.register(validCredentials),

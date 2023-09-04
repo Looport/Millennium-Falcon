@@ -12,10 +12,10 @@ import {AppModule} from '@/app/app.module'
 import {
   invalidCredentials,
   validCredentials,
-} from '@/authentication/test/authentication.mocks'
+} from '@/authentication/test/authentication.mock'
 import {UserEntity} from '@/user/entities/user.entity'
 
-describe('AuthenticationController (e2e)', {only: true}, () => {
+describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
 
   let jwtService: JwtService
@@ -42,7 +42,7 @@ describe('AuthenticationController (e2e)', {only: true}, () => {
       await userRepository.delete({})
     })
 
-    it('should return token', async () => {
+    it('should return token with respective payload', async () => {
       const {body} = await request(app.getHttpServer())
         .post('/authentication/register')
         .send(validCredentials)
@@ -122,6 +122,34 @@ describe('AuthenticationController (e2e)', {only: true}, () => {
         ],
         message: 'Validation',
       })
+    })
+  })
+
+  describe('/authentication/login (POST)', () => {
+    afterEach(async () => {
+      await userRepository.delete({})
+    })
+
+    it('should return token with respective payload', async () => {
+      await request(app.getHttpServer())
+        .post('/authentication/register')
+        .send(validCredentials)
+        .expect(201)
+
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/login')
+        .send(validCredentials)
+        .expect(201)
+
+      deepEqual(body, {
+        accessToken: body.accessToken,
+      })
+
+      const payload = await jwtService.verifyAsync(body.accessToken)
+
+      ok(payload.sub)
+      equal(validCredentials.email, payload.email)
+      ok(!payload.password)
     })
   })
 })
