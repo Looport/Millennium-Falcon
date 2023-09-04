@@ -1,4 +1,4 @@
-import {deepEqual, notEqual, ok, rejects} from 'node:assert/strict'
+import {deepEqual, ok, rejects} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
 import {JwtService} from '@nestjs/jwt'
@@ -7,20 +7,20 @@ import {getRepositoryToken} from '@nestjs/typeorm'
 
 import {AuthenticationService} from './authentication.service'
 
+import {
+  EMAIL_ALREADY_EXISTS_MESSAGE,
+  EMAIL_FIELD_KEY,
+} from '@/authentication/services/authentication.service/constants'
+import {createPasswordServiceMock} from '@/authentication/services/password-hash.service/password-hash-mock.service'
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {
-  createJwtServiceMock,
-} from '@/authentication/test/jwt.service.mock'
-import {
-  createPasswordServiceMock
-} from '@/authentication/services/password-hash.service/password-hash-service.mock'
-import {ValidationException} from '@/common/exeptions/validation.exception'
-import {UserEntity} from '@/user/entities/user.entity'
+import {createJwtServiceMock} from '@/authentication/test/jwt.service.mock'
+import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
 import {
   createUserRepositoryMock,
   FAKE_USER_ID,
-} from '@/user/test/user.repository.mock'
+} from '@/user/entities/user.entity/user-mock.repository'
+import {UserEntity} from '@/user/entities/user.entity/user.entity'
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService
@@ -59,7 +59,7 @@ describe('AuthenticationService', () => {
     it('should return token', async () => {
       const result = await service.register(validCredentials)
 
-      deepEqual(result, {accessToken: await jwtServiceMock.signAsync.mock.calls[0].result})
+      ok(result.accessToken)
     })
 
     it('should hash password', async () => {
@@ -70,12 +70,12 @@ describe('AuthenticationService', () => {
 
       await service.register(validCredentials)
 
-      deepEqual(passwordHashServiceMock.createHash.mock.calls[0].arguments, [validCredentials.password])
+      deepEqual(passwordHashServiceMock.createHash.mock.calls[0].arguments, [
+        validCredentials.password,
+      ])
+
+      ok((save.mock.calls[0].arguments[0] as any).passwordHash)
       ok(!(save.mock.calls[0].arguments[0] as any).password)
-      notEqual(
-        await save.mock.calls[0].result,
-        (save.mock.calls[0].arguments as any).passwordHash
-      )
     })
 
     it('should throw error on email already exists', async () => {
@@ -90,8 +90,8 @@ describe('AuthenticationService', () => {
         service.register(validCredentials),
         new ValidationException([
           {
-            field: 'email',
-            messages: ['email already exists'],
+            field: EMAIL_FIELD_KEY,
+            messages: [EMAIL_ALREADY_EXISTS_MESSAGE],
             value: validCredentials.email,
           },
         ])

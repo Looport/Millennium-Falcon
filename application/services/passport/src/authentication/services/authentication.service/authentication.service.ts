@@ -4,9 +4,13 @@ import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
+import {
+  EMAIL_ALREADY_EXISTS_MESSAGE,
+  EMAIL_FIELD_KEY,
+} from '@/authentication/services/authentication.service/constants'
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
-import {ValidationException} from '@/common/exeptions/validation.exception'
-import {UserEntity} from '@/user/entities/user.entity'
+import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
+import {UserEntity} from '@/user/entities/user.entity/user.entity'
 
 @Injectable()
 export class AuthenticationService {
@@ -24,8 +28,8 @@ export class AuthenticationService {
     if (existedUser) {
       throw new ValidationException([
         {
-          field: 'email',
-          messages: ['email already exists'],
+          field: EMAIL_FIELD_KEY,
+          messages: [EMAIL_ALREADY_EXISTS_MESSAGE],
           value: credentials.email,
         },
       ])

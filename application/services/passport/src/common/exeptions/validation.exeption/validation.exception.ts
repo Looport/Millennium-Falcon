@@ -1,5 +1,7 @@
 import {BadRequestException} from '@nestjs/common'
 
+import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
+
 export interface ValidationError {
   field: string
   value: string
@@ -14,7 +16,7 @@ export class ValidationException extends BadRequestException {
         ...error,
         children: error.children ?? [],
       })),
-      message: 'Validation',
+      message: VALIDATION_EXEPTION_MESSAGE,
     })
   }
 }

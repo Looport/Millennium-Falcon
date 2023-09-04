@@ -3,7 +3,7 @@ import {TypeOrmModule} from '@nestjs/typeorm'
 
 import {UserController} from './user.controller'
 
-import {UserEntity} from '@/user/entities/user.entity'
+import {UserEntity} from '@/user/entities/user.entity/user.entity'
 
 @Module({
   controllers: [UserController],

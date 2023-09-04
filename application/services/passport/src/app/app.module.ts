@@ -5,7 +5,7 @@ import {TypeOrmModule} from '@nestjs/typeorm'
 import {AppController} from './app.controller'
 
 import {AuthenticationModule} from '@/authentication/authentication.module'
-import {ValidationPipe} from '@/common/pipes/validation.pipe'
+import {ValidationPipe} from '@/common/pipes/validation.pipe/validation.pipe'
 import {UserModule} from '@/user/user.module'
 
 const GLOBAL_PROVIDERS: Provider[] = [

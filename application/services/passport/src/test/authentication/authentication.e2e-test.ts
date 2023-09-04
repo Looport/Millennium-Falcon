@@ -10,10 +10,15 @@ import {Repository} from 'typeorm'
 
 import {AppModule} from '@/app/app.module'
 import {
+  EMAIL_ALREADY_EXISTS_MESSAGE,
+  EMAIL_FIELD_KEY,
+} from '@/authentication/services/authentication.service/constants'
+import {
   invalidCredentials,
   validCredentials,
 } from '@/authentication/test/authentication.mock'
-import {UserEntity} from '@/user/entities/user.entity'
+import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
+import {UserEntity} from '@/user/entities/user.entity/user.entity'
 
 describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
@@ -96,7 +101,7 @@ describe('AuthenticationController (e2e)', () => {
             value: 'oj(3',
           },
         ],
-        message: 'Validation',
+        message: VALIDATION_EXEPTION_MESSAGE,
       })
     })
 
@@ -115,12 +120,12 @@ describe('AuthenticationController (e2e)', () => {
         errors: [
           {
             children: [],
-            field: 'email',
-            messages: ['email already exists'],
+            field: EMAIL_FIELD_KEY,
+            messages: [EMAIL_ALREADY_EXISTS_MESSAGE],
             value: validCredentials.email,
           },
         ],
-        message: 'Validation',
+        message: VALIDATION_EXEPTION_MESSAGE,
       })
     })
   })

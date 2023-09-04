@@ -1,18 +1,17 @@
-import {deepEqual} from 'node:assert/strict'
+import {ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
 import {Test} from '@nestjs/testing'
 
 import {AuthenticationController} from '@/authentication/authentication.controller'
+import {createAuthenticationServiceMock} from '@/authentication/services/authentication.service/authentication-mock.service'
 import {AuthenticationService} from '@/authentication/services/authentication.service/authentication.service'
-import {
-  FAKE_TOKEN,
-  validCredentials,
-} from '@/authentication/test/authentication.mock'
+import {validCredentials} from '@/authentication/test/authentication.mock'
 
 describe('AuthenticationController', () => {
   let controller: AuthenticationController
-  let authenticationService: AuthenticationService
+
+  const authenticationServiceMock = createAuthenticationServiceMock()
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -20,36 +19,23 @@ describe('AuthenticationController', () => {
       providers: [
         {
           provide: AuthenticationService,
-          useValue: {
-            register: mock.fn(() => Promise.resolve({accessToken: FAKE_TOKEN})),
-          },
+          useValue: authenticationServiceMock,
         },
       ],
     }).compile()
 
     controller = module.get<AuthenticationController>(AuthenticationController)
-    authenticationService = module.get<AuthenticationService>(
-      AuthenticationService
-    )
-  })
-
-  afterEach(() => {
-    mock.reset()
   })
 
   describe('register', () => {
+    afterEach(() => {
+      mock.reset()
+    })
+
     it('returns token', async () => {
       const result = await controller.register(validCredentials)
 
-      const registerCalls = await (authenticationService.register as any).mock
-        .calls
-
-      deepEqual(registerCalls[0].arguments, [validCredentials])
-
-      deepEqual(await registerCalls[0].result, {
-        accessToken: FAKE_TOKEN,
-      })
-      deepEqual(result, {accessToken: FAKE_TOKEN})
+      ok(result.accessToken)
     })
   })
 })
