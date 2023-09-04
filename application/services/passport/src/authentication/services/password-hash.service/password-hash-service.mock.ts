@@ -11,7 +11,7 @@ type PasswordHashServiceMock = {
 export const createPasswordServiceMock = (
   spies?: Partial<PasswordHashServiceMock>
 ): Partial<PasswordHashServiceMock> => {
-  const createHashSpy = mock.fn()
+  const createHashSpy = mock.fn(() => Promise.resolve(FAKE_PASSWORD_HASH))
   const validatePasswordSpy = mock.fn()
 
   return {

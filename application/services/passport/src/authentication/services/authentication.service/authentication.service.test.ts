@@ -11,12 +11,10 @@ import {PasswordHashService} from '@/authentication/services/password-hash.servi
 import {validCredentials} from '@/authentication/test/authentication.mock'
 import {
   createJwtServiceMock,
-  FAKE_TOKEN,
 } from '@/authentication/test/jwt.service.mock'
 import {
-  createPasswordServiceMock,
-  FAKE_PASSWORD_HASH,
-} from '@/authentication/test/password-hash-service.mock'
+  createPasswordServiceMock
+} from '@/authentication/services/password-hash.service/password-hash-service.mock'
 import {ValidationException} from '@/common/exeptions/validation.exception'
 import {UserEntity} from '@/user/entities/user.entity'
 import {
@@ -59,14 +57,9 @@ describe('AuthenticationService', () => {
     })
 
     it('should return token', async () => {
-      const {signAsync} = createJwtServiceMock({
-        signAsync: mock.fn(() => Promise.resolve(FAKE_TOKEN)),
-      })
-      jwtServiceMock.signAsync = signAsync
-
       const result = await service.register(validCredentials)
 
-      deepEqual(result, {accessToken: FAKE_TOKEN})
+      deepEqual(result, {accessToken: await jwtServiceMock.signAsync.mock.calls[0].result})
     })
 
     it('should hash password', async () => {
@@ -75,14 +68,9 @@ describe('AuthenticationService', () => {
       })
       userRepositoryMock.save = save
 
-      const {createHash} = createPasswordServiceMock({
-        createHash: mock.fn(() => Promise.resolve(FAKE_PASSWORD_HASH)),
-      })
-      passwordHashServiceMock.createHash = createHash
-
       await service.register(validCredentials)
 
-      deepEqual(createHash.mock.calls[0].arguments, [validCredentials.password])
+      deepEqual(passwordHashServiceMock.createHash.mock.calls[0].arguments, [validCredentials.password])
       ok(!(save.mock.calls[0].arguments[0] as any).password)
       notEqual(
         await save.mock.calls[0].result,

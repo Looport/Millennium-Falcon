@@ -11,7 +11,7 @@ type JwtServiceMock = {
 export const createJwtServiceMock = (
   spies?: Partial<JwtServiceMock>
 ): Partial<JwtServiceMock> => {
-  const signAsyncSpy = mock.fn()
+  const signAsyncSpy = mock.fn(() => Promise.resolve(FAKE_TOKEN))
 
   return {
     signAsync: signAsyncSpy,
