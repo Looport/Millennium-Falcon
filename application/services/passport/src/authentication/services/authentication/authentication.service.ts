@@ -96,9 +96,9 @@ export class AuthenticationService {
   }
 
   async generateToken({
-                        email,
-                        userId,
-                      }: {
+    email,
+    userId,
+  }: {
     email: string
     userId: number
   }): Promise<string> {

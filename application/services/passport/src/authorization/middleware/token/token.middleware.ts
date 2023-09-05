@@ -1,7 +1,7 @@
 import {Injectable, NestMiddleware} from '@nestjs/common'
 import {JwtService} from '@nestjs/jwt'
 
-import {REQUEST_ACTIVE_USER_KEY} from '@/authentication/middleware/token/constants'
+import {REQUEST_ACTIVE_USER_KEY} from '@/authorization/constants'
 
 @Injectable()
 export class TokenMiddleware implements NestMiddleware {

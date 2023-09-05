@@ -3,9 +3,9 @@ import {beforeEach, describe, it} from 'node:test'
 
 import {Test, TestingModule} from '@nestjs/testing'
 
-import {PasswordHashService} from './password-hash.service'
-
 import {validCredentials} from '@/authentication/test/authentication.mock'
+
+import {PasswordHashService} from './password-hash.service'
 
 describe('PasswordHashService', () => {
   let service: PasswordHashService

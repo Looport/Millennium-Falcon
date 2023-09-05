@@ -2,11 +2,12 @@ import {Module, Provider} from '@nestjs/common'
 import {APP_PIPE} from '@nestjs/core'
 import {TypeOrmModule} from '@nestjs/typeorm'
 
-import {AppController} from './app.controller'
-
 import {AuthenticationModule} from '@/authentication/authentication.module'
+import {AuthorizationModule} from '@/authorization/authorization.module'
 import {ValidationPipe} from '@/common/pipes/validation.pipe/validation.pipe'
 import {UserModule} from '@/user/user.module'
+
+import {AppController} from './app.controller'
 
 const GLOBAL_PROVIDERS: Provider[] = [
   {
@@ -28,6 +29,7 @@ const GLOBAL_PROVIDERS: Provider[] = [
       username: 'root',
     }),
     AuthenticationModule,
+    AuthorizationModule,
     UserModule,
   ],
   providers: [...GLOBAL_PROVIDERS],

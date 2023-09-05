@@ -1,14 +1,14 @@
 import {deepEqual, equal} from 'node:assert/strict'
 import {describe, it, mock} from 'node:test'
 
-import {TokenMiddleware} from './token.middleware'
-
-import {REQUEST_ACTIVE_USER_KEY} from '@/authentication/middleware/token/constants'
 import {
   authMock,
   createJwtServiceMock,
   FAKE_TOKEN,
 } from '@/authentication/test/jwt.service.mock'
+import {REQUEST_ACTIVE_USER_KEY} from '@/authorization/constants'
+
+import {TokenMiddleware} from './token.middleware'
 
 describe('TokenMiddleware', () => {
   it('should inject token payload when header present', async () => {

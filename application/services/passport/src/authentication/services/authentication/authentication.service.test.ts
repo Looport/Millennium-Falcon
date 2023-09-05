@@ -5,8 +5,6 @@ import {JwtService} from '@nestjs/jwt'
 import {Test} from '@nestjs/testing'
 import {getRepositoryToken} from '@nestjs/typeorm'
 
-import {AuthenticationService} from './authentication.service'
-
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
@@ -26,6 +24,8 @@ import {
   userMock,
 } from '@/user/entities/user/user-mock.repository'
 import {UserEntity} from '@/user/entities/user/user.entity'
+
+import {AuthenticationService} from './authentication.service'
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService

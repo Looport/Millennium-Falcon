@@ -11,7 +11,8 @@ import {Repository} from 'typeorm'
 import {AppModule} from '@/app/app.module'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY, INVALID_LOGIN_CREDENTIALS_MESSAGE,
+  EMAIL_FIELD_KEY,
+  INVALID_LOGIN_CREDENTIALS_MESSAGE,
 } from '@/authentication/services/authentication/constants'
 import {
   invalidCredentials,

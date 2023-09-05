@@ -35,7 +35,7 @@ module.exports = {
             "position": "after"
           },
           {
-            "pattern": "@app/**",
+            "pattern": "@/**",
             "group": "internal"
           }
         ],
