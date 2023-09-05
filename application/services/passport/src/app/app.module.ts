@@ -8,6 +8,7 @@ import {ValidationPipe} from '@/common/pipes/validation.pipe/validation.pipe'
 import {UserModule} from '@/user/user.module'
 
 import {AppController} from './app.controller'
+import * as process from "process";
 
 const GLOBAL_PROVIDERS: Provider[] = [
   {
@@ -21,12 +22,12 @@ const GLOBAL_PROVIDERS: Provider[] = [
   imports: [
     TypeOrmModule.forRoot({
       autoLoadEntities: true,
-      database: 'db',
-      host: 'localhost',
-      password: 'root',
+      database: process.env.DB_NAME ?? 'db',
+      host: process.env.DB_HOST ?? 'localhost',
+      password: process.env.DB_PASSWORD ?? 'root',
       synchronize: true,
       type: 'postgres',
-      username: 'root',
+      username: process.env.DB_USER ?? 'root',
     }),
     AuthenticationModule,
     AuthorizationModule,
