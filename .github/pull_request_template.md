@@ -27,7 +27,7 @@ Describe steps how to test old and new behaviour.
 # Checklist
 - [ ] I performed a **self-review** (clean, lint, type check, build) of my code
 - [ ] I added **tests** for _core features_
-- [ ] I followed _user flow_ of implemented code
+- [ ] I followed all possible cases of the implemented _user flow_
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Code Refactoring
