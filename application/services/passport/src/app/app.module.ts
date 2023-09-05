@@ -20,12 +20,12 @@ const GLOBAL_PROVIDERS: Provider[] = [
   imports: [
     TypeOrmModule.forRoot({
       autoLoadEntities: true,
-      database: 'hxljydzm',
-      host: 'trumpet.db.elephantsql.com',
-      password: 'Glq24OmOBfDtsYovbDl5Ufkrky21SjJ5',
+      database: 'db',
+      host: 'localhost',
+      password: 'root',
+      username: 'root',
       synchronize: true,
       type: 'postgres',
-      username: 'hxljydzm',
     }),
     AuthenticationModule,
     UserModule,

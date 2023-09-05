@@ -6,7 +6,7 @@ import {Repository} from 'typeorm'
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY,
+  EMAIL_FIELD_KEY, EMAIL_NOT_EXIST_MESSAGE,
 } from '@/authentication/services/authentication.service/constants'
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
@@ -43,6 +43,31 @@ export class AuthenticationService {
         ),
       })
     )
+
+    const token = await this.jwtService.signAsync({
+      email: user.email,
+      sub: user.id,
+    })
+
+    return {
+      accessToken: token,
+    }
+  }
+
+  async login(credentials: CredentialsDto) {
+    const user = await this.userRepository.findOne({
+      where: {email: credentials.email},
+    })
+
+    if (!user) {
+      throw new ValidationException([
+        {
+          field: EMAIL_FIELD_KEY,
+          messages: [EMAIL_NOT_EXIST_MESSAGE],
+          value: credentials.email,
+        },
+      ])
+    }
 
     const token = await this.jwtService.signAsync({
       email: user.email,

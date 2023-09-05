@@ -32,8 +32,20 @@ describe('AuthenticationController', () => {
       mock.reset()
     })
 
-    it('returns token', async () => {
+    it('should return token', async () => {
       const result = await controller.register(validCredentials)
+
+      ok(result.accessToken)
+    })
+  })
+
+  describe('login', () => {
+    afterEach(() => {
+      mock.reset()
+    })
+
+    it('should return token', async () => {
+      const result = await controller.login(validCredentials)
 
       ok(result.accessToken)
     })
