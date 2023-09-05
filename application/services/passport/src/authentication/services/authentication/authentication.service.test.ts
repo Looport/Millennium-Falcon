@@ -21,7 +21,6 @@ import {ValidationException} from '@/common/exeptions/validation.exeption/valida
 import {
   createUserRepositoryMock,
   FAKE_USER_ID,
-  userMock,
 } from '@/user/entities/user/user-mock.repository'
 import {UserEntity} from '@/user/entities/user/user.entity'
 
