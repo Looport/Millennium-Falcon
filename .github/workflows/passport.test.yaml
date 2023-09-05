@@ -34,7 +34,7 @@ jobs:
           DB_PASSWORD: root
           DB_USER: root
           DB_NAME: db
-          DB_HOST: 127.0.0.1
+          DB_HOST: postgres
   lint:
     runs-on: ubuntu-22.04
     steps:
