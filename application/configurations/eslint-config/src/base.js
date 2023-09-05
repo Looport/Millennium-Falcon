@@ -35,7 +35,7 @@ module.exports = {
             "position": "after"
           },
           {
-            "pattern": "@app/**",
+            "pattern": "@/**",
             "group": "internal"
           }
         ],
@@ -54,7 +54,7 @@ module.exports = {
       {
         "code": 80,
         "ignoreUrls": true,
-        "ignorePattern": "^import.*from.*"
+        "ignorePattern": "(^import.*from.*)|(^\\} from.*)"
       }
     ],
     // Clean plugins rules
@@ -73,7 +73,8 @@ module.exports = {
     "no-use-before-define": 0,
     "consistent-return": 0,
     "max-statements": [2, { "max": 40 }],
-    "max-lines-per-function": [2, { "max": 200 }],
+    "max-lines-per-function": 0,
+    "no-useless-constructor": 0,
     "no-param-reassign": 0,
     "require-await": 0,
     "init-declarations": 0,
@@ -85,6 +86,8 @@ module.exports = {
     "capitalized-comments": 0,
     "new-cap": 0,
     "class-methods-use-this": 0,
-    "filenames/match-regex": 0
+    "filenames/match-regex": 0,
+    "@typescript-eslint/no-empty-function": 1,
+    "require-atomic-updates": 1
   },
 }

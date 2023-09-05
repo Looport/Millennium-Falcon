@@ -6,11 +6,12 @@ import {Repository} from 'typeorm'
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY, EMAIL_NOT_EXIST_MESSAGE,
-} from '@/authentication/services/authentication.service/constants'
-import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
+  EMAIL_FIELD_KEY,
+  INVALID_LOGIN_CREDENTIALS_MESSAGE,
+} from '@/authentication/services/authentication/constants'
+import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
-import {UserEntity} from '@/user/entities/user.entity/user.entity'
+import {UserEntity} from '@/user/entities/user/user.entity'
 
 @Injectable()
 export class AuthenticationService {
@@ -44,9 +45,9 @@ export class AuthenticationService {
       })
     )
 
-    const token = await this.jwtService.signAsync({
+    const token = await this.generateToken({
       email: user.email,
-      sub: user.id,
+      userId: user.id,
     })
 
     return {
@@ -54,7 +55,7 @@ export class AuthenticationService {
     }
   }
 
-  async login(credentials: CredentialsDto) {
+  async login(credentials: CredentialsDto): Promise<{accessToken: string}> {
     const user = await this.userRepository.findOne({
       where: {email: credentials.email},
     })
@@ -63,19 +64,47 @@ export class AuthenticationService {
       throw new ValidationException([
         {
           field: EMAIL_FIELD_KEY,
-          messages: [EMAIL_NOT_EXIST_MESSAGE],
+          messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
           value: credentials.email,
         },
       ])
     }
 
-    const token = await this.jwtService.signAsync({
+    if (
+      !(await this.passwordHashService.validatePassword(
+        credentials.password,
+        user.passwordHash
+      ))
+    ) {
+      throw new ValidationException([
+        {
+          field: EMAIL_FIELD_KEY,
+          messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
+          value: credentials.email,
+        },
+      ])
+    }
+
+    const token = await this.generateToken({
       email: user.email,
-      sub: user.id,
+      userId: user.id,
     })
 
     return {
       accessToken: token,
     }
+  }
+
+  async generateToken({
+    email,
+    userId,
+  }: {
+    email: string
+    userId: number
+  }): Promise<string> {
+    return this.jwtService.signAsync({
+      email,
+      sub: userId,
+    })
   }
 }

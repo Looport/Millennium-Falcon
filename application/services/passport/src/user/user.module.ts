@@ -1,9 +1,9 @@
 import {Module} from '@nestjs/common'
 import {TypeOrmModule} from '@nestjs/typeorm'
 
-import {UserController} from './user.controller'
+import {UserEntity} from '@/user/entities/user/user.entity'
 
-import {UserEntity} from '@/user/entities/user.entity/user.entity'
+import {UserController} from './user.controller'
 
 @Module({
   controllers: [UserController],

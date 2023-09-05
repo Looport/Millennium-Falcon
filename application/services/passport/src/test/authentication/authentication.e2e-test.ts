@@ -11,14 +11,15 @@ import {Repository} from 'typeorm'
 import {AppModule} from '@/app/app.module'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY, EMAIL_NOT_EXIST_MESSAGE,
-} from '@/authentication/services/authentication.service/constants'
+  EMAIL_FIELD_KEY,
+  INVALID_LOGIN_CREDENTIALS_MESSAGE,
+} from '@/authentication/services/authentication/constants'
 import {
   invalidCredentials,
   validCredentials,
 } from '@/authentication/test/authentication.mock'
 import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
-import {UserEntity} from '@/user/entities/user.entity/user.entity'
+import {UserEntity} from '@/user/entities/user/user.entity'
 
 describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
@@ -105,7 +106,7 @@ describe('AuthenticationController (e2e)', () => {
       })
     })
 
-    it('should throw validation error on email already exists', async () => {
+    it('should throw validation error when email already exists', async () => {
       await request(app.getHttpServer())
         .post('/authentication/register')
         .send(validCredentials)
@@ -182,7 +183,7 @@ describe('AuthenticationController (e2e)', () => {
       })
     })
 
-    it('should throw validation error on user don\'t exist', async () => {
+    it("should throw validation error when user don't exist", async () => {
       const {body} = await request(app.getHttpServer())
         .post('/authentication/login')
         .send(validCredentials)
@@ -193,7 +194,7 @@ describe('AuthenticationController (e2e)', () => {
           {
             children: [],
             field: EMAIL_FIELD_KEY,
-            messages: [EMAIL_NOT_EXIST_MESSAGE],
+            messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
             value: validCredentials.email,
           },
         ],

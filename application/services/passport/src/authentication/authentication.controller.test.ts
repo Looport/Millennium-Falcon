@@ -4,8 +4,8 @@ import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 import {Test} from '@nestjs/testing'
 
 import {AuthenticationController} from '@/authentication/authentication.controller'
-import {createAuthenticationServiceMock} from '@/authentication/services/authentication.service/authentication-mock.service'
-import {AuthenticationService} from '@/authentication/services/authentication.service/authentication.service'
+import {createAuthenticationServiceMock} from '@/authentication/services/authentication/authentication-mock.service'
+import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
 
 describe('AuthenticationController', () => {

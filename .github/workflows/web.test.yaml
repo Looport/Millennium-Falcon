@@ -1,0 +1,43 @@
+name: Running @looport/web tests
+
+on:
+  pull_request:
+    paths:
+      - 'application/services/web/**'
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm -F @looport/web install
+      - run: pnpm -F @looport/web lint
+  type-check:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm -F @looport/web install
+      - run: pnpm -F @looport/web type-check
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm -F @looport/web install
+      - run: pnpm -F @looport/web build
