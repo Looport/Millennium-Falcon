@@ -65,6 +65,29 @@ sudo minikube tunnel
 # Visit http://millenium.com 🚀
 ```
 
+### Alternative
+In order to skip Kubernetes start up you could create service dependencies manually
+and connect them in environment variables.
+One way to do this is to run Docker images of a specific dependency and inject them.
+
+```shell
+docker run -d \
+	--name postgres \
+	-p 5432:5432
+	-e POSTGRES_PASSWORD=root \
+	-e POSTGRES_USER=root \
+	-e POSTGRES_DB=storage \
+	-e PGDATA=/var/lib/postgresql/data/pgdata \
+	-v /custom/mount:/var/lib/postgresql/data \
+	postgres
+	
+docker run -d \
+	--name nats \
+	-p 4222:4222 \
+	-p 8222:8222 nats \
+	--http_port 8222
+```
+
 ## Workspace
 You could find services in the `application/services` folder. Here is the main logic of the application. <br />
 Configuration packages lives in the `application/configuraion` folder. <br />
