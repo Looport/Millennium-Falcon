@@ -11,7 +11,7 @@ import {Repository} from 'typeorm'
 import {AppModule} from '@/app/app.module'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY, EMAIL_NOT_EXIST_MESSAGE,
+  EMAIL_FIELD_KEY, INVALID_LOGIN_CREDENTIALS_MESSAGE,
 } from '@/authentication/services/authentication.service/constants'
 import {
   invalidCredentials,
@@ -183,6 +183,30 @@ describe('AuthenticationController (e2e)', () => {
     })
 
     it('should throw validation error on user don\'t exist', async () => {
+      await request(app.getHttpServer())
+        .post('/authentication/register')
+        .send(validCredentials)
+        .expect(201)
+
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/login')
+        .send({...validCredentials, password: `${validCredentials.password}_wrong`})
+        .expect(400)
+
+      deepEqual(body, {
+        errors: [
+          {
+            children: [],
+            field: EMAIL_FIELD_KEY,
+            messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
+            value: validCredentials.email,
+          },
+        ],
+        message: VALIDATION_EXEPTION_MESSAGE,
+      })
+    })
+
+    it('should throw validation error on invalid password', async () => {
       const {body} = await request(app.getHttpServer())
         .post('/authentication/login')
         .send(validCredentials)
@@ -193,7 +217,7 @@ describe('AuthenticationController (e2e)', () => {
           {
             children: [],
             field: EMAIL_FIELD_KEY,
-            messages: [EMAIL_NOT_EXIST_MESSAGE],
+            messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
             value: validCredentials.email,
           },
         ],

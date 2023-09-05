@@ -6,7 +6,7 @@ import {Repository} from 'typeorm'
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY, EMAIL_NOT_EXIST_MESSAGE,
+  EMAIL_FIELD_KEY, INVALID_LOGIN_CREDENTIALS_MESSAGE,
 } from '@/authentication/services/authentication.service/constants'
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
@@ -63,7 +63,17 @@ export class AuthenticationService {
       throw new ValidationException([
         {
           field: EMAIL_FIELD_KEY,
-          messages: [EMAIL_NOT_EXIST_MESSAGE],
+          messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
+          value: credentials.email,
+        },
+      ])
+    }
+
+    if (!await this.passwordHashService.validatePassword(credentials.password, user.passwordHash)) {
+      throw new ValidationException([
+        {
+          field: EMAIL_FIELD_KEY,
+          messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
           value: credentials.email,
         },
       ])

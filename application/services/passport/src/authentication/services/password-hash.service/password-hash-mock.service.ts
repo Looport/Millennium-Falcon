@@ -12,7 +12,7 @@ export const createPasswordServiceMock = (
   spies?: Partial<PasswordHashMockService>
 ): Partial<PasswordHashMockService> => {
   const createHashSpy = mock.fn(() => Promise.resolve(FAKE_PASSWORD_HASH))
-  const validatePasswordSpy = mock.fn()
+  const validatePasswordSpy = mock.fn(() => Promise.resolve(true))
 
   return {
     createHash: createHashSpy,
