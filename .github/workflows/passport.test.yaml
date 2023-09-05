@@ -2,10 +2,8 @@ name: Running @looport/passport tests
 
 on:
   pull_request:
-    types:
-      - opened
     paths:
-      - 'applications/services/passport/**'
+      - 'application/services/passport/**'
 jobs:
   lint:
     runs-on: ubuntu-22.04
