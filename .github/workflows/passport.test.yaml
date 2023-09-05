@@ -7,7 +7,7 @@ on:
 jobs:
   container-job:
     runs-on: ubuntu-latest
-    container: node:20-jessie
+    container: ubuntu-22.04
     services:
       postgres:
         image: postgres
