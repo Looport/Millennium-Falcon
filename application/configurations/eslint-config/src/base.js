@@ -86,6 +86,8 @@ module.exports = {
     "capitalized-comments": 0,
     "new-cap": 0,
     "class-methods-use-this": 0,
-    "filenames/match-regex": 0
+    "filenames/match-regex": 0,
+    "@typescript-eslint/no-empty-function": 1,
+    "require-atomic-updates": 1
   },
 }

@@ -98,7 +98,7 @@ describe('AuthenticationService', () => {
       ok(!(save.mock.calls[0].arguments[0] as any).password)
     })
 
-    it('should throw error on email already exists', async () => {
+    it('should throw error when email already exists', async () => {
       const {findOne} = createUserRepositoryMock()
       userRepositoryMock.findOne = findOne
 
@@ -138,7 +138,7 @@ describe('AuthenticationService', () => {
       ok(result.accessToken)
     })
 
-    it("should throw error on user don't exist", async () => {
+    it("should throw error when user don't exist", async () => {
       const {findOne} = createUserRepositoryMock({
         findOne: mock.fn(userRepositoryMock.findOne, () =>
           Promise.resolve(null)
@@ -158,7 +158,7 @@ describe('AuthenticationService', () => {
       )
     })
 
-    it('should throw error on invalid password', async () => {
+    it('should throw error when invalid password', async () => {
       const {findOne} = createUserRepositoryMock({
         findOne: mock.fn(userRepositoryMock.findOne, () =>
           Promise.resolve(validCredentials)

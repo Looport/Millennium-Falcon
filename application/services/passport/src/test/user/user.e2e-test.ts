@@ -1,6 +1,7 @@
-import {deepEqual, ok} from 'node:assert/strict'
-import {describe, beforeEach, it, afterEach} from 'node:test'
+import {deepEqual, ok, notEqual, equal} from 'node:assert/strict'
+import {describe, it, beforeEach, afterEach} from 'node:test'
 
+import {JwtService} from '@nestjs/jwt'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
 import {getRepositoryToken} from '@nestjs/typeorm'
@@ -8,12 +9,22 @@ import request from 'supertest'
 import {Repository} from 'typeorm'
 
 import {AppModule} from '@/app/app.module'
-import {validCredentials} from '@/authentication/test/authentication.mock'
+import {
+  EMAIL_ALREADY_EXISTS_MESSAGE,
+  EMAIL_FIELD_KEY,
+  INVALID_LOGIN_CREDENTIALS_MESSAGE,
+} from '@/authentication/services/authentication/constants'
+import {
+  invalidCredentials,
+  validCredentials,
+} from '@/authentication/test/authentication.mock'
+import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
 import {UserEntity} from '@/user/entities/user/user.entity'
 
-describe('UserController (e2e)', () => {
+describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
 
+  let jwtService: JwtService
   let userRepository: Repository<UserEntity>
 
   beforeEach(async () => {
@@ -23,6 +34,7 @@ describe('UserController (e2e)', () => {
 
     app = moduleFixture.createNestApplication(new FastifyAdapter())
 
+    jwtService = moduleFixture.get<JwtService>(JwtService)
     userRepository = moduleFixture.get<Repository<UserEntity>>(
       getRepositoryToken(UserEntity)
     )
@@ -31,7 +43,7 @@ describe('UserController (e2e)', () => {
     await app.getHttpAdapter().getInstance().ready()
   })
 
-  describe('/user/iam (GET)', () => {
+  describe('/authentication/register (POST)', () => {
     beforeEach(async () => {
       await userRepository.delete({})
     })
@@ -40,39 +52,189 @@ describe('UserController (e2e)', () => {
       await userRepository.delete({})
     })
 
-    it('should return authenticated user by token', async () => {
-      const {
-        body: {accessToken},
-      } = await request(app.getHttpServer())
+    it('should return token with respective payload', async () => {
+      const {body} = await request(app.getHttpServer())
         .post('/authentication/register')
         .send(validCredentials)
         .expect(201)
 
-      const {
-        body: {id, ...user},
-      } = await request(app.getHttpServer())
-        .get('/user/iam')
-        .set('Authorization', `Bearer ${accessToken}`)
-        .expect(200)
+      deepEqual(body, {
+        accessToken: body.accessToken,
+      })
 
-      ok(id)
-      deepEqual({email: validCredentials.email}, user)
+      const payload = await jwtService.verifyAsync(body.accessToken)
+
+      ok(payload.sub)
+      equal(validCredentials.email, payload.email)
+      ok(!payload.password)
     })
 
-    it('should return serialized authenticated user by token', async () => {
-      const {
-        body: {accessToken},
-      } = await request(app.getHttpServer())
+    it('should save user and hash password', async () => {
+      await request(app.getHttpServer())
+        .post('/authentication/register')
+        .send(validCredentials)
+        .expect(201)
+
+      const user = await userRepository.findOne({
+        where: {email: validCredentials.email},
+      })
+
+      ok(user)
+
+      equal(user.email, validCredentials.email)
+      notEqual(user.passwordHash, validCredentials.password)
+    })
+
+    it('should throw validation error', async () => {
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/register')
+        .send(invalidCredentials)
+        .expect(400)
+
+      deepEqual(body, {
+        errors: [
+          {
+            children: [],
+            field: 'email',
+            messages: ['email must be an email'],
+            value: invalidCredentials.email,
+          },
+          {
+            children: [],
+            field: 'password',
+            messages: ['password must be longer than or equal to 6 characters'],
+            value: invalidCredentials.password,
+          },
+        ],
+        message: VALIDATION_EXEPTION_MESSAGE,
+      })
+    })
+
+    it('should throw validation error on email already exists', async () => {
+      await request(app.getHttpServer())
         .post('/authentication/register')
         .send(validCredentials)
         .expect(201)
 
       const {body} = await request(app.getHttpServer())
-        .get('/user/iam')
-        .set('Authorization', `Bearer ${accessToken}`)
+        .post('/authentication/register')
+        .send(validCredentials)
+        .expect(400)
+
+      deepEqual(body, {
+        errors: [
+          {
+            children: [],
+            field: EMAIL_FIELD_KEY,
+            messages: [EMAIL_ALREADY_EXISTS_MESSAGE],
+            value: validCredentials.email,
+          },
+        ],
+        message: VALIDATION_EXEPTION_MESSAGE,
+      })
+    })
+  })
+
+  describe('/authentication/login (POST)', () => {
+    beforeEach(async () => {
+      await userRepository.delete({})
+    })
+
+    afterEach(async () => {
+      await userRepository.delete({})
+    })
+
+    it('should return token with respective payload', async () => {
+      await request(app.getHttpServer())
+        .post('/authentication/register')
+        .send(validCredentials)
+        .expect(201)
+
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/login')
+        .send(validCredentials)
         .expect(200)
 
-      ok(!body.passwordHash)
+      deepEqual(body, {
+        accessToken: body.accessToken,
+      })
+
+      const payload = await jwtService.verifyAsync(body.accessToken)
+
+      ok(payload.sub)
+      equal(validCredentials.email, payload.email)
+      ok(!payload.password)
+    })
+
+    it('should throw validation error', async () => {
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/login')
+        .send(invalidCredentials)
+        .expect(400)
+
+      deepEqual(body, {
+        errors: [
+          {
+            children: [],
+            field: 'email',
+            messages: ['email must be an email'],
+            value: invalidCredentials.email,
+          },
+          {
+            children: [],
+            field: 'password',
+            messages: ['password must be longer than or equal to 6 characters'],
+            value: invalidCredentials.password,
+          },
+        ],
+        message: VALIDATION_EXEPTION_MESSAGE,
+      })
+    })
+
+    it("should throw validation error when wrong password", async () => {
+      await request(app.getHttpServer())
+        .post('/authentication/register')
+        .send(validCredentials)
+        .expect(201)
+
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/login')
+        .send({
+          ...validCredentials,
+          password: `${validCredentials.password}_wrong`,
+        })
+        .expect(400)
+
+      deepEqual(body, {
+        errors: [
+          {
+            children: [],
+            field: EMAIL_FIELD_KEY,
+            messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
+            value: validCredentials.email,
+          },
+        ],
+        message: VALIDATION_EXEPTION_MESSAGE,
+      })
+    })
+
+    it('should throw validation error on user don\'t exist', async () => {
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/login')
+        .send(validCredentials)
+        .expect(400)
+
+      deepEqual(body, {
+        errors: [
+          {
+            children: [],
+            field: EMAIL_FIELD_KEY,
+            messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
+            value: validCredentials.email,
+          },
+        ],
+        message: VALIDATION_EXEPTION_MESSAGE,
+      })
     })
   })
 })
