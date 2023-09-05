@@ -17,10 +17,13 @@ export class AuthenticationController {
     }
   }
 
+  @HttpCode(HttpStatus.OK)
   @Post('login')
-  login() {
+  async login(@Body() credentials: CredentialsDto) {
+    const {accessToken} = await this.authenticationService.login(credentials)
+
     return {
-      accessToken: 'token',
+      accessToken,
     }
   }
 }

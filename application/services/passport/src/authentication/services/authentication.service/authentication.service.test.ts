@@ -9,7 +9,7 @@ import {AuthenticationService} from './authentication.service'
 
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY,
+  EMAIL_FIELD_KEY, EMAIL_NOT_EXIST_MESSAGE,
 } from '@/authentication/services/authentication.service/constants'
 import {createPasswordServiceMock} from '@/authentication/services/password-hash.service/password-hash-mock.service'
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
@@ -22,7 +22,7 @@ import {
 } from '@/user/entities/user.entity/user-mock.repository'
 import {UserEntity} from '@/user/entities/user.entity/user.entity'
 
-describe('AuthenticationService', () => {
+describe('AuthenticationService',() => {
   let service: AuthenticationService
 
   const jwtServiceMock = createJwtServiceMock()
@@ -53,16 +53,26 @@ describe('AuthenticationService', () => {
 
   describe('register', () => {
     afterEach(() => {
-      mock.reset()
+      mock.restoreAll()
     })
 
     it('should return token', async () => {
+      const {findOne} = createUserRepositoryMock({
+        findOne: mock.fn(() => Promise.resolve(null)),
+      })
+      userRepositoryMock.findOne = findOne
+
       const result = await service.register(validCredentials)
 
       ok(result.accessToken)
     })
 
     it('should hash password', async () => {
+      const {findOne} = createUserRepositoryMock({
+        findOne: mock.fn(() => Promise.resolve(null)),
+      })
+      userRepositoryMock.findOne = findOne
+
       const {save} = createUserRepositoryMock({
         save: mock.fn((data) => Promise.resolve({id: FAKE_USER_ID, ...data})),
       })
@@ -79,11 +89,7 @@ describe('AuthenticationService', () => {
     })
 
     it('should throw error on email already exists', async () => {
-      const {findOne} = createUserRepositoryMock({
-        findOne: mock.fn((data) =>
-          Promise.resolve({id: FAKE_USER_ID, ...data})
-        ),
-      })
+      const {findOne} = createUserRepositoryMock()
       userRepositoryMock.findOne = findOne
 
       await rejects(
@@ -92,6 +98,38 @@ describe('AuthenticationService', () => {
           {
             field: EMAIL_FIELD_KEY,
             messages: [EMAIL_ALREADY_EXISTS_MESSAGE],
+            value: validCredentials.email,
+          },
+        ])
+      )
+    })
+  })
+
+  describe('login', () => {
+    afterEach(() => {
+      mock.reset()
+    })
+
+    it('should return token', async () => {
+      const result = await service.login(validCredentials)
+
+      ok(result.accessToken)
+    })
+
+    it('should throw error on user don\'t exist', async () => {
+      const {findOne} = createUserRepositoryMock({
+        findOne: mock.fn(() =>
+          Promise.resolve(null)
+        ),
+      })
+      userRepositoryMock.findOne = findOne
+
+      await rejects(
+        service.login(validCredentials),
+        new ValidationException([
+          {
+            field: EMAIL_FIELD_KEY,
+            messages: [EMAIL_NOT_EXIST_MESSAGE],
             value: validCredentials.email,
           },
         ])

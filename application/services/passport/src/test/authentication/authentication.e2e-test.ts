@@ -11,7 +11,7 @@ import {Repository} from 'typeorm'
 import {AppModule} from '@/app/app.module'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY,
+  EMAIL_FIELD_KEY, EMAIL_NOT_EXIST_MESSAGE,
 } from '@/authentication/services/authentication.service/constants'
 import {
   invalidCredentials,
@@ -144,7 +144,7 @@ describe('AuthenticationController (e2e)', () => {
       const {body} = await request(app.getHttpServer())
         .post('/authentication/login')
         .send(validCredentials)
-        .expect(201)
+        .expect(200)
 
       deepEqual(body, {
         accessToken: body.accessToken,
@@ -155,6 +155,50 @@ describe('AuthenticationController (e2e)', () => {
       ok(payload.sub)
       equal(validCredentials.email, payload.email)
       ok(!payload.password)
+    })
+
+    it('should throw validation error', async () => {
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/login')
+        .send(invalidCredentials)
+        .expect(400)
+
+      deepEqual(body, {
+        errors: [
+          {
+            children: [],
+            field: 'email',
+            messages: ['email must be an email'],
+            value: invalidCredentials.email,
+          },
+          {
+            children: [],
+            field: 'password',
+            messages: ['password must be longer than or equal to 6 characters'],
+            value: invalidCredentials.password,
+          },
+        ],
+        message: VALIDATION_EXEPTION_MESSAGE,
+      })
+    })
+
+    it('should throw validation error on user don\'t exist', async () => {
+      const {body} = await request(app.getHttpServer())
+        .post('/authentication/login')
+        .send(validCredentials)
+        .expect(400)
+
+      deepEqual(body, {
+        errors: [
+          {
+            children: [],
+            field: EMAIL_FIELD_KEY,
+            messages: [EMAIL_NOT_EXIST_MESSAGE],
+            value: validCredentials.email,
+          },
+        ],
+        message: VALIDATION_EXEPTION_MESSAGE,
+      })
     })
   })
 })
