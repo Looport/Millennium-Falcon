@@ -44,9 +44,9 @@ export class AuthenticationService {
       })
     )
 
-    const token = await this.jwtService.signAsync({
-      email: user.email,
-      sub: user.id,
+    const token = await this.generateToken({
+      userId: user.id,
+      email: user.email
     })
 
     return {
@@ -54,7 +54,7 @@ export class AuthenticationService {
     }
   }
 
-  async login(credentials: CredentialsDto) {
+  async login(credentials: CredentialsDto): Promise<{accessToken: string}> {
     const user = await this.userRepository.findOne({
       where: {email: credentials.email},
     })
@@ -79,13 +79,20 @@ export class AuthenticationService {
       ])
     }
 
-    const token = await this.jwtService.signAsync({
-      email: user.email,
-      sub: user.id,
+    const token = await this.generateToken({
+      userId: user.id,
+      email: user.email
     })
 
     return {
       accessToken: token,
     }
+  }
+
+  async generateToken({email, userId}: {email: string, userId: number}): Promise<string> {
+    return await this.jwtService.signAsync({
+      email,
+      sub: userId,
+    })
   }
 }
