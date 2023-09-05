@@ -99,3 +99,7 @@ Services packages lives in the `application/packages` folder. All shared login y
 ```
 TODO
 ```
+
+## Links
+- [Application Concept](https://www.notion.so/dormammun/Product-Concept-01c721c64cbc4060aa768d5fb97faeb4?pvs=4)
+- [Design](https://www.figma.com/file/kjHb3gcPDZ9wHmQle0474n/Untitled?type=design&node-id=0-1&mode=design&t=xiiu4bSlGt9aF3g5-0)
