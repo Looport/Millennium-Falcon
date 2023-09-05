@@ -21,7 +21,7 @@ const GLOBAL_PROVIDERS: Provider[] = [
   imports: [
     TypeOrmModule.forRootAsync({
       useFactory: () => {
-        console.log( {
+        console.log({
           autoLoadEntities: true,
           database: process.env.DB_NAME ?? 'db',
           host: process.env.DB_HOST ?? 'localhost',
@@ -39,7 +39,7 @@ const GLOBAL_PROVIDERS: Provider[] = [
           type: 'postgres',
           username: process.env.DB_USER ?? 'root',
         }
-      }
+      },
     }),
     AuthenticationModule,
     AuthorizationModule,
