@@ -28,13 +28,13 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - run: pnpm -F @looport/passport install
+      - run: pnpm -F @looport/passport test:all
         env:
           DB_PASSWORD: root
           DB_USER: root
           DB_NAME: db
           DB_HOST: localhost
-      - run: pnpm -F @looport/passport install
-      - run: pnpm -F @looport/passport test:all
   lint:
     runs-on: ubuntu-22.04
     steps:
