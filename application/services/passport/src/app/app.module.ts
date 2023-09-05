@@ -20,17 +20,15 @@ const GLOBAL_PROVIDERS: Provider[] = [
   controllers: [AppController],
   imports: [
     TypeOrmModule.forRootAsync({
-      useFactory: () => {
-        return {
-          autoLoadEntities: true,
-          database: process.env.DB_NAME ?? 'db',
-          host: process.env.DB_HOST ?? 'localhost',
-          password: process.env.DB_PASSWORD ?? 'root',
-          synchronize: true,
-          type: 'postgres',
-          username: process.env.DB_USER ?? 'root',
-        }
-      },
+      useFactory: () => ({
+        autoLoadEntities: true,
+        database: process.env.DB_NAME ?? 'db',
+        host: process.env.DB_HOST ?? 'localhost',
+        password: process.env.DB_PASSWORD ?? 'root',
+        synchronize: true,
+        type: 'postgres',
+        username: process.env.DB_USER ?? 'root',
+      }),
     }),
     AuthenticationModule,
     AuthorizationModule,
