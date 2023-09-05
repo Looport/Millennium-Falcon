@@ -71,6 +71,7 @@ and connect them in environment variables.
 One way to do this is to run Docker images of a specific dependency and inject them.
 
 ```shell
+# Learn more at https://hub.docker.com/_/postgres
 docker run -d \
 	--name postgres \
 	-p 5432:5432
@@ -80,12 +81,13 @@ docker run -d \
 	-e PGDATA=/var/lib/postgresql/data/pgdata \
 	-v /custom/mount:/var/lib/postgresql/data \
 	postgres
-	
+
+# Learn more at https://hub.docker.com/_/nats/
 docker run -d \
 	--name nats \
 	-p 4222:4222 \
-	-p 8222:8222 nats \
-	--http_port 8222
+	-p 8222:8222 \
+	nats --http_port 8222
 ```
 
 ## Workspace
