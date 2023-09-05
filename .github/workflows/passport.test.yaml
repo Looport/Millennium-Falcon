@@ -15,8 +15,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install -w @looport/passport
-      - run: pnpm lint -w @looport/passport
+      - run: pnpm -F @looport/passport install
+      - run: pnpm -F @looport/passport lint
   type-check:
     runs-on: ubuntu-22.04
     steps:
@@ -27,8 +27,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install -w @looport/passport
-      - run: pnpm type-check -w @looport/passport
+      - run: pnpm -F @looport/passport install
+      - run: pnpm -F @looport/passport type-check
   test:
     runs-on: ubuntu-22.04
     steps:
@@ -39,5 +39,5 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install -w @looport/passport
-      - run: pnpm test:all -w @looport/passport
+      - run: pnpm -F @looport/passport install
+      - run: pnpm -F @looport/passport test:all
