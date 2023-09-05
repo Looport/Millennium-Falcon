@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "@looport/verifier",
+  "author": "Vitalii Khotei <khoteiv.dev@gmail.com>",
+  "scripts": {
+    "test": "npx playwright test",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint \"tests/**/*.ts\"",
+    "format": "pnpm lint --fix"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.37.1",
+    "@looport/eslint-config": "workspace:*",
+    "@types/node": "20.5.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@looport/eslint-config/src/base"
+    ],
+    "env": {
+      "node": true
+    }
+  },
+  "prettier": "@looport/eslint-config/src/.prettierrc.js"
+}
