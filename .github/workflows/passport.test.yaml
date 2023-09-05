@@ -5,9 +5,9 @@ on:
     paths:
       - 'application/services/passport/**'
 jobs:
-  container-job:
+  test:
     runs-on: ubuntu-latest
-    container: ubuntu-22.04
+    container: ubuntu-latest
     services:
       postgres:
         image: postgres
@@ -32,6 +32,7 @@ jobs:
           POSTGRES_PASSWORD: root
           POSTGRES_USER: root
           POSTGRES_DB: db
+          DB_HOST: localhost
       - run: pnpm -F @looport/passport install
       - run: pnpm -F @looport/passport test:all
   lint:
