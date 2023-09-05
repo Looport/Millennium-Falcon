@@ -11,7 +11,8 @@ import {Repository} from 'typeorm'
 import {AppModule} from '@/app/app.module'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY, INVALID_LOGIN_CREDENTIALS_MESSAGE,
+  EMAIL_FIELD_KEY,
+  INVALID_LOGIN_CREDENTIALS_MESSAGE,
 } from '@/authentication/services/authentication.service/constants'
 import {
   invalidCredentials,
@@ -182,7 +183,7 @@ describe('AuthenticationController (e2e)', () => {
       })
     })
 
-    it('should throw validation error on user don\'t exist', async () => {
+    it("should throw validation error on user don't exist", async () => {
       await request(app.getHttpServer())
         .post('/authentication/register')
         .send(validCredentials)
@@ -190,7 +191,10 @@ describe('AuthenticationController (e2e)', () => {
 
       const {body} = await request(app.getHttpServer())
         .post('/authentication/login')
-        .send({...validCredentials, password: `${validCredentials.password}_wrong`})
+        .send({
+          ...validCredentials,
+          password: `${validCredentials.password}_wrong`,
+        })
         .expect(400)
 
       deepEqual(body, {

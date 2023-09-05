@@ -54,7 +54,7 @@ module.exports = {
       {
         "code": 80,
         "ignoreUrls": true,
-        "ignorePattern": "^import.*from.*"
+        "ignorePattern": "(^import.*from.*)|(^\\} from.*)"
       }
     ],
     // Clean plugins rules
@@ -73,7 +73,8 @@ module.exports = {
     "no-use-before-define": 0,
     "consistent-return": 0,
     "max-statements": [2, { "max": 40 }],
-    "max-lines-per-function": [2, { "max": 200 }],
+    "max-lines-per-function": 0,
+    "no-useless-constructor": 0,
     "no-param-reassign": 0,
     "require-await": 0,
     "init-declarations": 0,

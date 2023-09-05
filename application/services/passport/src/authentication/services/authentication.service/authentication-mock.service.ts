@@ -10,16 +10,20 @@ type AuthenticationMockService = {
 export const createAuthenticationServiceMock = (
   spies?: Partial<AuthenticationMockService>
 ): Partial<AuthenticationMockService> => {
-  const registerSpy = mock.fn(() => Promise.resolve({
-    accessToken: FAKE_TOKEN
-  }))
-  const loginSpy = mock.fn(() => Promise.resolve({
-    accessToken: FAKE_TOKEN
-  }))
+  const registerSpy = mock.fn(() =>
+    Promise.resolve({
+      accessToken: FAKE_TOKEN,
+    })
+  )
+  const loginSpy = mock.fn(() =>
+    Promise.resolve({
+      accessToken: FAKE_TOKEN,
+    })
+  )
 
   return {
-    register: registerSpy,
     login: loginSpy,
+    register: registerSpy,
     ...spies,
   }
 }

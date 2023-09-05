@@ -9,11 +9,12 @@ import {AuthenticationService} from './authentication.service'
 
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY, INVALID_LOGIN_CREDENTIALS_MESSAGE,
+  EMAIL_FIELD_KEY,
+  INVALID_LOGIN_CREDENTIALS_MESSAGE,
 } from '@/authentication/services/authentication.service/constants'
 import {
   createPasswordServiceMock,
-  FAKE_PASSWORD_HASH
+  FAKE_PASSWORD_HASH,
 } from '@/authentication/services/password-hash.service/password-hash-mock.service'
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
@@ -21,11 +22,12 @@ import {createJwtServiceMock} from '@/authentication/test/jwt.service.mock'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
 import {
   createUserRepositoryMock,
-  FAKE_USER_ID, userMock,
+  FAKE_USER_ID,
+  userMock,
 } from '@/user/entities/user.entity/user-mock.repository'
 import {UserEntity} from '@/user/entities/user.entity/user.entity'
 
-describe('AuthenticationService',() => {
+describe('AuthenticationService', () => {
   let service: AuthenticationService
 
   const jwtServiceMock = createJwtServiceMock()
@@ -77,7 +79,7 @@ describe('AuthenticationService',() => {
       userRepositoryMock.findOne = findOne
 
       const {createHash} = createPasswordServiceMock({
-        createHash: mock.fn(() => FAKE_PASSWORD_HASH)
+        createHash: mock.fn(() => FAKE_PASSWORD_HASH),
       })
       passwordHashServiceMock.createHash = createHash
 
@@ -127,7 +129,7 @@ describe('AuthenticationService',() => {
       userRepositoryMock.findOne = findOne
 
       const {validatePassword} = createPasswordServiceMock({
-        validatePassword: mock.fn(() => Promise.resolve(true))
+        validatePassword: mock.fn(() => Promise.resolve(true)),
       })
       passwordHashServiceMock.validatePassword = validatePassword
 
@@ -136,7 +138,7 @@ describe('AuthenticationService',() => {
       ok(result.accessToken)
     })
 
-    it('should throw error on user don\'t exist', async () => {
+    it("should throw error on user don't exist", async () => {
       const {findOne} = createUserRepositoryMock({
         findOne: mock.fn(userRepositoryMock.findOne, () =>
           Promise.resolve(null)
@@ -165,12 +167,15 @@ describe('AuthenticationService',() => {
       userRepositoryMock.findOne = findOne
 
       const {validatePassword} = createPasswordServiceMock({
-        validatePassword: mock.fn(() => Promise.resolve(false))
+        validatePassword: mock.fn(() => Promise.resolve(false)),
       })
       passwordHashServiceMock.validatePassword = validatePassword
 
       await rejects(
-        service.login({...validCredentials, password: `${validCredentials.password}_wrong`}),
+        service.login({
+          ...validCredentials,
+          password: `${validCredentials.password}_wrong`,
+        }),
         new ValidationException([
           {
             field: EMAIL_FIELD_KEY,

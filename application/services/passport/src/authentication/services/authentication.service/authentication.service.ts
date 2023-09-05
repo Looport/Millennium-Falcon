@@ -6,7 +6,8 @@ import {Repository} from 'typeorm'
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY, INVALID_LOGIN_CREDENTIALS_MESSAGE,
+  EMAIL_FIELD_KEY,
+  INVALID_LOGIN_CREDENTIALS_MESSAGE,
 } from '@/authentication/services/authentication.service/constants'
 import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
@@ -45,8 +46,8 @@ export class AuthenticationService {
     )
 
     const token = await this.generateToken({
+      email: user.email,
       userId: user.id,
-      email: user.email
     })
 
     return {
@@ -69,7 +70,12 @@ export class AuthenticationService {
       ])
     }
 
-    if (!await this.passwordHashService.validatePassword(credentials.password, user.passwordHash)) {
+    if (
+      !(await this.passwordHashService.validatePassword(
+        credentials.password,
+        user.passwordHash
+      ))
+    ) {
       throw new ValidationException([
         {
           field: EMAIL_FIELD_KEY,
@@ -80,8 +86,8 @@ export class AuthenticationService {
     }
 
     const token = await this.generateToken({
+      email: user.email,
       userId: user.id,
-      email: user.email
     })
 
     return {
@@ -89,8 +95,14 @@ export class AuthenticationService {
     }
   }
 
-  async generateToken({email, userId}: {email: string, userId: number}): Promise<string> {
-    return await this.jwtService.signAsync({
+  async generateToken({
+    email,
+    userId,
+  }: {
+    email: string
+    userId: number
+  }): Promise<string> {
+    return this.jwtService.signAsync({
       email,
       sub: userId,
     })
