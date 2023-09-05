@@ -8,7 +8,6 @@ import {ValidationPipe} from '@/common/pipes/validation.pipe/validation.pipe'
 import {UserModule} from '@/user/user.module'
 
 import {AppController} from './app.controller'
-import * as process from "process";
 
 const GLOBAL_PROVIDERS: Provider[] = [
   {

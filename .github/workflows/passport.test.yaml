@@ -8,7 +8,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: node:20-alpine:3.14
+      image: node:20-alpine
     services:
       postgres:
         image: postgres
