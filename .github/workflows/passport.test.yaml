@@ -1,0 +1,37 @@
+name: Running @looport/passport tests
+
+on:
+  pull_request:
+    paths:
+      - 'applications/services/passport/**'
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - uses: pnpm/action-setup@v2
+      - run: pnpm install -w @looport/passport
+      - run: pnpm lint -w @looport/passport
+  type-check:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - uses: pnpm/action-setup@v2
+      - run: pnpm install -w @looport/passport
+      - run: pnpm type-check -w @looport/passport
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - uses: pnpm/action-setup@v2
+      - run: pnpm install -w @looport/passport
+      - run: pnpm test:all -w @looport/passport
