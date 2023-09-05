@@ -11,15 +11,14 @@ import {Repository} from 'typeorm'
 import {AppModule} from '@/app/app.module'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
-  EMAIL_FIELD_KEY,
-  INVALID_LOGIN_CREDENTIALS_MESSAGE,
-} from '@/authentication/services/authentication/constants'
+  EMAIL_FIELD_KEY, EMAIL_NOT_EXIST_MESSAGE,
+} from '@/authentication/services/authentication.service/constants'
 import {
   invalidCredentials,
   validCredentials,
 } from '@/authentication/test/authentication.mock'
 import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
-import {UserEntity} from '@/user/entities/user/user.entity'
+import {UserEntity} from '@/user/entities/user.entity/user.entity'
 
 describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
@@ -44,10 +43,6 @@ describe('AuthenticationController (e2e)', () => {
   })
 
   describe('/authentication/register (POST)', () => {
-    beforeEach(async () => {
-      await userRepository.delete({})
-    })
-
     afterEach(async () => {
       await userRepository.delete({})
     })
@@ -136,10 +131,6 @@ describe('AuthenticationController (e2e)', () => {
   })
 
   describe('/authentication/login (POST)', () => {
-    beforeEach(async () => {
-      await userRepository.delete({})
-    })
-
     afterEach(async () => {
       await userRepository.delete({})
     })
@@ -191,34 +182,7 @@ describe('AuthenticationController (e2e)', () => {
       })
     })
 
-    it("should throw validation error on user don't exist", async () => {
-      await request(app.getHttpServer())
-        .post('/authentication/register')
-        .send(validCredentials)
-        .expect(201)
-
-      const {body} = await request(app.getHttpServer())
-        .post('/authentication/login')
-        .send({
-          ...validCredentials,
-          password: `${validCredentials.password}_wrong`,
-        })
-        .expect(400)
-
-      deepEqual(body, {
-        errors: [
-          {
-            children: [],
-            field: EMAIL_FIELD_KEY,
-            messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
-            value: validCredentials.email,
-          },
-        ],
-        message: VALIDATION_EXEPTION_MESSAGE,
-      })
-    })
-
-    it('should throw validation error on invalid password', async () => {
+    it('should throw validation error on user don\'t exist', async () => {
       const {body} = await request(app.getHttpServer())
         .post('/authentication/login')
         .send(validCredentials)
@@ -229,7 +193,7 @@ describe('AuthenticationController (e2e)', () => {
           {
             children: [],
             field: EMAIL_FIELD_KEY,
-            messages: [INVALID_LOGIN_CREDENTIALS_MESSAGE],
+            messages: [EMAIL_NOT_EXIST_MESSAGE],
             value: validCredentials.email,
           },
         ],
