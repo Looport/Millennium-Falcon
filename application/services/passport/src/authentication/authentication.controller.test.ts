@@ -29,7 +29,7 @@ describe('AuthenticationController', () => {
 
   describe('register', () => {
     afterEach(() => {
-      mock.reset()
+      mock.restoreAll()
     })
 
     it('should return token', async () => {
@@ -41,7 +41,7 @@ describe('AuthenticationController', () => {
 
   describe('login', () => {
     afterEach(() => {
-      mock.reset()
+      mock.restoreAll()
     })
 
     it('should return token', async () => {

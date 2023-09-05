@@ -62,10 +62,9 @@ describe('AuthenticationService', () => {
     })
 
     it('should return token', async () => {
-      const {findOne} = createUserRepositoryMock({
-        findOne: mock.fn(() => Promise.resolve(null)),
-      })
-      userRepositoryMock.findOne = findOne
+      userRepositoryMock.findOne.mock.mockImplementation(() =>
+        Promise.resolve(null)
+      )
 
       const result = await service.register(validCredentials)
 
@@ -73,20 +72,15 @@ describe('AuthenticationService', () => {
     })
 
     it('should hash password', async () => {
-      const {findOne} = createUserRepositoryMock({
-        findOne: mock.fn(() => Promise.resolve(null)),
-      })
-      userRepositoryMock.findOne = findOne
-
-      const {createHash} = createPasswordServiceMock({
-        createHash: mock.fn(() => FAKE_PASSWORD_HASH),
-      })
-      passwordHashServiceMock.createHash = createHash
-
-      const {save} = createUserRepositoryMock({
-        save: mock.fn((data) => Promise.resolve({id: FAKE_USER_ID, ...data})),
-      })
-      userRepositoryMock.save = save
+      userRepositoryMock.findOne.mock.mockImplementation(() =>
+        Promise.resolve(null)
+      )
+      passwordHashServiceMock.createHash.mock.mockImplementation(
+        () => FAKE_PASSWORD_HASH
+      )
+      userRepositoryMock.save.mock.mockImplementation((data) =>
+        Promise.resolve({id: FAKE_USER_ID, ...data})
+      )
 
       await service.register(validCredentials)
 
@@ -94,14 +88,13 @@ describe('AuthenticationService', () => {
         validCredentials.password,
       ])
 
-      ok((save.mock.calls[0].arguments[0] as any).passwordHash)
-      ok(!(save.mock.calls[0].arguments[0] as any).password)
+      ok(
+        (userRepositoryMock.save.mock.calls[0].arguments[0] as any).passwordHash
+      )
+      ok(!(userRepositoryMock.save.mock.calls[0].arguments[0] as any).password)
     })
 
     it('should throw error when email already exists', async () => {
-      const {findOne} = createUserRepositoryMock()
-      userRepositoryMock.findOne = findOne
-
       await rejects(
         service.register(validCredentials),
         new ValidationException([
@@ -117,34 +110,19 @@ describe('AuthenticationService', () => {
 
   describe('login', () => {
     afterEach(() => {
-      mock.reset()
+      mock.restoreAll()
     })
 
     it('should return token', async () => {
-      const {findOne} = createUserRepositoryMock({
-        findOne: mock.fn(userRepositoryMock.findOne, () =>
-          Promise.resolve(userMock)
-        ),
-      })
-      userRepositoryMock.findOne = findOne
-
-      const {validatePassword} = createPasswordServiceMock({
-        validatePassword: mock.fn(() => Promise.resolve(true)),
-      })
-      passwordHashServiceMock.validatePassword = validatePassword
-
       const result = await service.login(validCredentials)
 
       ok(result.accessToken)
     })
 
     it("should throw error when user don't exist", async () => {
-      const {findOne} = createUserRepositoryMock({
-        findOne: mock.fn(userRepositoryMock.findOne, () =>
-          Promise.resolve(null)
-        ),
-      })
-      userRepositoryMock.findOne = findOne
+      userRepositoryMock.findOne.mock.mockImplementation(() =>
+        Promise.resolve(null)
+      )
 
       await rejects(
         service.login(validCredentials),
@@ -159,17 +137,9 @@ describe('AuthenticationService', () => {
     })
 
     it('should throw error when invalid password', async () => {
-      const {findOne} = createUserRepositoryMock({
-        findOne: mock.fn(userRepositoryMock.findOne, () =>
-          Promise.resolve(validCredentials)
-        ),
-      })
-      userRepositoryMock.findOne = findOne
-
-      const {validatePassword} = createPasswordServiceMock({
-        validatePassword: mock.fn(() => Promise.resolve(false)),
-      })
-      passwordHashServiceMock.validatePassword = validatePassword
+      passwordHashServiceMock.validatePassword.mock.mockImplementation(() =>
+        Promise.resolve(false)
+      )
 
       await rejects(
         service.login({

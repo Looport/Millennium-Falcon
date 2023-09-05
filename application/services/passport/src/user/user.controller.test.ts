@@ -33,11 +33,6 @@ describe('UserController', () => {
   })
 
   it('should return active user', async () => {
-    const {findOne} = createUserRepositoryMock({
-      findOne: mock.fn(() => Promise.resolve(userMock)),
-    })
-    userRepositoryMock.findOne = findOne
-
     const activeUser = {email: userMock.email, sub: FAKE_USER_ID}
     const result = await controller.iam(activeUser)
 
