@@ -4,7 +4,7 @@
 </p>
 <br />
 <p align="center">
-    <img src="https://cdn.dribbble.com/users/673247/screenshots/3929270/media/5134ca6144669a782ad63a6daea1d3cb.gif" alt="Icebreaker">
+    <img src="https://cdn.dribbble.com/users/1107691/screenshots/4523506/media/7f356b2c7d30aabd0037fede0ef3ba3a.gif" alt="Icebreaker">
 </p>
 
 <br />
