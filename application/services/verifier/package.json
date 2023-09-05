@@ -9,12 +9,14 @@
     "format": "pnpm lint --fix"
   },
   "devDependencies": {
-    "@playwright/test": "^1.37.1",
     "@looport/eslint-config": "workspace:*",
-    "@types/node": "20.5.3"
+    "@playwright/test": "^1.37.1",
+    "@types/node": "20.5.3",
+    "eslint-plugin-playwright": "^0.16.0"
   },
   "eslintConfig": {
     "extends": [
+      "plugin:playwright/recommended",
       "@looport/eslint-config/src/base"
     ],
     "env": {
