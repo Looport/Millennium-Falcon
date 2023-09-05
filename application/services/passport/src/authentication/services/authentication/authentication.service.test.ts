@@ -11,12 +11,12 @@ import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
-} from '@/authentication/services/authentication.service/constants'
+} from '@/authentication/services/authentication/constants'
 import {
   createPasswordServiceMock,
   FAKE_PASSWORD_HASH,
-} from '@/authentication/services/password-hash.service/password-hash-mock.service'
-import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
+} from '@/authentication/services/password-hash/password-hash-mock.service'
+import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
 import {createJwtServiceMock} from '@/authentication/test/jwt.service.mock'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
@@ -24,8 +24,8 @@ import {
   createUserRepositoryMock,
   FAKE_USER_ID,
   userMock,
-} from '@/user/entities/user.entity/user-mock.repository'
-import {UserEntity} from '@/user/entities/user.entity/user.entity'
+} from '@/user/entities/user/user-mock.repository'
+import {UserEntity} from '@/user/entities/user/user.entity'
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService

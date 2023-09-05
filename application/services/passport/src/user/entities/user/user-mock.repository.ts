@@ -2,9 +2,9 @@ import {mock} from 'node:test'
 
 import {Repository} from 'typeorm'
 
-import {FAKE_PASSWORD_HASH} from '@/authentication/services/password-hash.service/password-hash-mock.service'
+import {FAKE_PASSWORD_HASH} from '@/authentication/services/password-hash/password-hash-mock.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {UserEntity} from '@/user/entities/user.entity/user.entity'
+import {UserEntity} from '@/user/entities/user/user.entity'
 
 export const FAKE_USER_ID = 1
 

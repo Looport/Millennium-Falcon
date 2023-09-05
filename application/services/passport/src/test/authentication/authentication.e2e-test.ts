@@ -13,13 +13,13 @@ import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
-} from '@/authentication/services/authentication.service/constants'
+} from '@/authentication/services/authentication/constants'
 import {
   invalidCredentials,
   validCredentials,
 } from '@/authentication/test/authentication.mock'
 import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
-import {UserEntity} from '@/user/entities/user.entity/user.entity'
+import {UserEntity} from '@/user/entities/user/user.entity'
 
 describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
@@ -44,6 +44,10 @@ describe('AuthenticationController (e2e)', () => {
   })
 
   describe('/authentication/register (POST)', () => {
+    beforeEach(async () => {
+      await userRepository.delete({})
+    })
+
     afterEach(async () => {
       await userRepository.delete({})
     })
@@ -132,6 +136,10 @@ describe('AuthenticationController (e2e)', () => {
   })
 
   describe('/authentication/login (POST)', () => {
+    beforeEach(async () => {
+      await userRepository.delete({})
+    })
+
     afterEach(async () => {
       await userRepository.delete({})
     })

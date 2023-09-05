@@ -8,10 +8,10 @@ import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
-} from '@/authentication/services/authentication.service/constants'
-import {PasswordHashService} from '@/authentication/services/password-hash.service/password-hash.service'
+} from '@/authentication/services/authentication/constants'
+import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
-import {UserEntity} from '@/user/entities/user.entity/user.entity'
+import {UserEntity} from '@/user/entities/user/user.entity'
 
 @Injectable()
 export class AuthenticationService {

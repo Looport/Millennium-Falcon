@@ -1,10 +1,10 @@
-import {Module} from '@nestjs/common'
+import {MiddlewareConsumer, Module, NestModule} from '@nestjs/common'
 import {JwtModule} from '@nestjs/jwt'
 
-import {PasswordHashService} from './services/password-hash.service/password-hash.service'
-
 import {AuthenticationController} from '@/authentication/authentication.controller'
-import {AuthenticationService} from '@/authentication/services/authentication.service/authentication.service'
+import {TokenMiddleware} from '@/authentication/middleware/token/token.middleware'
+import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
+import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
 import {UserModule} from '@/user/user.module'
 
 @Module({
@@ -19,4 +19,8 @@ import {UserModule} from '@/user/user.module'
   ],
   providers: [AuthenticationService, PasswordHashService],
 })
-export class AuthenticationModule {}
+export class AuthenticationModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(TokenMiddleware).forRoutes('*')
+  }
+}

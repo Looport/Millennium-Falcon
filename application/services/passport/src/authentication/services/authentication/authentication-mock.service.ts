@@ -1,6 +1,6 @@
 import {mock} from 'node:test'
 
-import {AuthenticationService} from '@/authentication/services/authentication.service/authentication.service'
+import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {FAKE_TOKEN} from '@/authentication/test/jwt.service.mock'
 
 type AuthenticationMockService = {
