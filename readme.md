@@ -62,10 +62,10 @@ minikube addons enable metrics-server
 minikube addons enable ingress
 
 # Add to /etc/hosts
-127.0.0.1 millenium.com
+127.0.0.1 millennium.com
 
 # Build and Deploy Containers
-cd deployment/k8s
+cd infrastructure/k8s
 skaffold dev
 
 # Finally... In new terminal window 😭 Release Icebreaker 🎉 🎉 🎉
