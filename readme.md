@@ -66,7 +66,11 @@ minikube addons enable ingress
 
 # Build and Deploy Containers
 cd infrastructure/k8s
+
+# Option 1: Will rebuild on change
 skaffold dev
+# Option 2: Will build and deploy once
+skaffold run
 
 # Finally... In new terminal window 😭 Release Icebreaker 🎉 🎉 🎉
 sudo minikube tunnel
