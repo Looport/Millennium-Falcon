@@ -18,7 +18,7 @@
 
 **Deployment:** [Docker](https://www.docker.com), [Kubernetes](https://kubernetes.io), [Skaffold](https://skaffold.dev), [Minikube](https://minikube.sigs.k8s.io/docs/start/), [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/);
 
-**Testing:**: [Node Test Runner](https://nodejs.org/api/test.html), [Node Assertions](https://nodejs.org/api/assert.html), [Playwright](https://playwright.dev/docs/intro)
+**Testing:**: [Node Test Runner](https://nodejs.org/api/test.html), [Node Assertions](https://nodejs.org/api/assert.html), [Playwright](https://playwright.dev/docs/intro);
 
 **CI**: [GitHub Actions](https://docs.github.com/en/actions)
 
@@ -36,6 +36,15 @@ nvm install 20
 
 pnpm i
 ```
+
+Then you can visit `application/service/*` and run `dev` like scripts.
+But before you should install dependencies like Postgres, NATS and others.
+After you need to connect services, apis, web with each other via environment variables.
+This is all complex stuff, so for the first try, I am simplifying it via Kubernetes.  
+
+More about it, you could find above.
+
+---
 
 So, you have the necessary packages installed, but now you're wondering how to connect them to external services like databases. 🤔
 Not to worry, you can accomplish this using tools like Docker, Kubernetes, and Skaffold.
@@ -90,9 +99,11 @@ docker run -d \
 	nats --http_port 8222
 ```
 
+After snip, you will get demons with witch you could connect services.
+
 ## Workspace
-You could find services in the `application/services` folder. Here is the main logic of the application. <br />
-Configuration packages lives in the `application/configuraion` folder. <br />
+You could find services in the `application/services` folder. Here is the main logic of the application. <Br />
+Configuration packages lives in the `application/configuraion` folder. <Br />
 Services packages lives in the `application/packages` folder. All shared login you could put there.
 
 ## Infrastructure
