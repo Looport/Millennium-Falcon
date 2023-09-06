@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: passport
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: passport
+  template:
+    metadata:
+      labels:
+        app: passport
+    spec:
+      initContainers:
+        - name: test-postgres
+          image: postgres:12.2
+          env:
+            - name: DB_HOST
+              value: "passport-database-cluster-ip"
+            - name: DB_USER
+              value: "root"
+          command: ['sh', '-c']
+          args:
+            - |
+              until pg_isready -h $DB_HOST -U $DB_USER
+              do
+                echo "Waiting for postgres..."
+                sleep 2
+              done
+              echo "Postgres Ready!"
+      containers:
+        - name: passport
+          image: dormammun/looport-passport
+          env:
+            - name: DB_HOST
+              value: "passport-database-cluster-ip"
+            - name: DB_NAME
+              value: "passport"
+            - name: DB_PASSWORD
+              value: "root"
+            - name: DB_USER
+              value: "root"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: passport-cluster-ip
+spec:
+  type: ClusterIP
+  selector:
+    app: passport
+  ports:
+    - name: passport
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: passport-debug-load-balancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: passport
+  ports:
+    - name: passport-debug
+      protocol: TCP
+      port: 9202
+      targetPort: 9229

@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: looport-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: millennium.com
+      http:
+        paths:
+          - path: /api/passport(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: passport-cluster-ip
+                port:
+                  number: 3000
+          - path: /(|)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: web-cluster-ip
+                port:
+                  number: 3000

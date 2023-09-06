@@ -1,5 +1,5 @@
 import {deepEqual} from 'node:assert/strict'
-import {beforeEach, describe, it, mock} from 'node:test'
+import {beforeEach, describe, it} from 'node:test'
 
 import {Test} from '@nestjs/testing'
 import {getRepositoryToken} from '@nestjs/typeorm'
@@ -33,11 +33,6 @@ describe('UserController', () => {
   })
 
   it('should return active user', async () => {
-    const {findOne} = createUserRepositoryMock({
-      findOne: mock.fn(() => Promise.resolve(userMock)),
-    })
-    userRepositoryMock.findOne = findOne
-
     const activeUser = {email: userMock.email, sub: FAKE_USER_ID}
     const result = await controller.iam(activeUser)
 

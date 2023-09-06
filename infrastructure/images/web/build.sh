@@ -1,0 +1,1 @@
+docker build --progress=plain -t dormammun/looport-web:latest -f ./Dockerfile ../../..

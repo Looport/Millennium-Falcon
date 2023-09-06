@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./**/*.yaml
+build:
+  local:
+    concurrency: 3
+  artifacts:
+    - image: dormammun/looport-passport
+      docker:
+        dockerfile: infrastructure/images/passport/Dockerfile
+      context: ../../
+    - image: dormammun/looport-web
+      docker:
+        dockerfile: infrastructure/images/web/Dockerfile
+      context: ../../

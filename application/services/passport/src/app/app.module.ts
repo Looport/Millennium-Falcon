@@ -22,7 +22,7 @@ const GLOBAL_PROVIDERS: Provider[] = [
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         autoLoadEntities: true,
-        database: process.env.DB_NAME ?? 'db',
+        database: process.env.DB_NAME ?? 'passport',
         host: process.env.DB_HOST ?? 'localhost',
         password: process.env.DB_PASSWORD ?? 'root',
         synchronize: true,
