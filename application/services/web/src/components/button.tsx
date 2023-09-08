@@ -1,5 +1,6 @@
 import {cloneElement, createElement} from 'react'
 import {IconContext} from 'react-icons'
+import Link from "next/link";
 
 export const Button = ({iconSize, icon, children, type, href, className}) => {
   let iconComponent
@@ -36,7 +37,7 @@ export const Button = ({iconSize, icon, children, type, href, className}) => {
 
   let component = createElement('button')
   if (href) {
-    component = createElement('a', {href})
+    component = createElement(Link, {href})
   }
 
   return cloneElement(

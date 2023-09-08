@@ -62,7 +62,7 @@ minikube addons enable metrics-server
 minikube addons enable ingress
 
 # Add to /etc/hosts
-127.0.0.1 millennium.com
+127.0.0.1 aloco.local
 
 # Build and Deploy Containers
 cd infrastructure/k8s
@@ -75,7 +75,7 @@ skaffold run
 # Finally... In new terminal window 😭 Release Icebreaker 🎉 🎉 🎉
 sudo minikube tunnel
 
-# Visit http://millenium.com 🚀
+# Visit http://aloco.local 🚀
 ```
 
 ### Alternative
@@ -105,14 +105,33 @@ docker run -d \
 
 After snip, you will get demons with witch you could connect services.
 
-## Workspace
-You could find services in the `application/services` folder. Here is the main logic of the application. <Br />
-Configuration packages lives in the `application/configuraion` folder. <Br />
-Services packages lives in the `application/packages` folder. All shared login you could put there.
+## Deployment
 
-## Infrastructure
-```
-TODO
+The Current application could be hosted on DO
+
+```sh
+# Install DigitalOcean CLI
+brew install doctl
+
+# Authorize in you account
+doctl auth init
+
+# Connect to the cluster
+doctl kubernetes cluster kubeconfig save <token>
+
+# Verify. Now all kubectl command references to this context
+kubectl config get-contexts
+kubectl cluster-info
+kubectl get nodes
+
+# Deploy application to the cluster
+kubectl apply \
+ -f ./web \
+ -f ./passport \
+ -f ./system/ingress.yaml
+ 
+ # Deploy Nginx Ingress
+ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/cloud/deploy.yaml
 ```
 
 ## Links

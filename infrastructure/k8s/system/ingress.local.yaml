@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: aloco.club
+    - host: aloco.local
       http:
         paths:
           - path: /api/passport(/|$)(.*)

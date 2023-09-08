@@ -1,1 +1,0 @@
-docker push dormammun/looport-web:latest
