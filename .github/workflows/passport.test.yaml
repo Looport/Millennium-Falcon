@@ -1,4 +1,4 @@
-name: Running @looport/passport tests
+name: Test @looport/passport
 
 on:
   pull_request:

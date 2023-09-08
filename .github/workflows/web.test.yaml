@@ -1,4 +1,4 @@
-name: Running @looport/web tests
+name: Test @looport/web tests
 
 on:
   pull_request:

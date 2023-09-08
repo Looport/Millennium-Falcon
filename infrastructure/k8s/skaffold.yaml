@@ -3,7 +3,9 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - ./**/*.yaml
+      - ./web/*
+      - ./passport/*
+      - ./system/ingress.local.yaml
 build:
   local:
     concurrency: 3

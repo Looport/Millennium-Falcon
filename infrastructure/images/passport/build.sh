@@ -1,1 +1,0 @@
-docker build --progress=plain -t dormammun/looport-passport:latest -f ./Dockerfile ../../..
