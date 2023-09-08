@@ -12,14 +12,14 @@ spec:
       http:
         paths:
           - path: /api/passport(/|$)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: passport-cluster-ip
                 port:
                   number: 3000
           - path: /(|)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: web-cluster-ip
