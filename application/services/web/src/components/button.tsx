@@ -2,7 +2,18 @@ import Link from 'next/link'
 import {cloneElement, createElement} from 'react'
 import {IconContext} from 'react-icons'
 
-export const Button = ({iconSize, icon, children, type, href, className}) => {
+type ButtonType = 'primary' | 'link' | 'text' | 'icon'
+
+type ButtonProps = {
+  children?: React.ReactNode
+  iconSize?: string
+  icon?: React.ReactNode
+  type?: ButtonType
+  href?: string
+  className?: string
+}
+
+export const Button = ({iconSize, icon, children, type, href, className}: ButtonProps) => {
   let iconComponent
 
   const iSize = iconSize ?? '2.4rem'
@@ -37,6 +48,7 @@ export const Button = ({iconSize, icon, children, type, href, className}) => {
 
   let component = createElement('button')
   if (href) {
+    // @ts-ignore
     component = createElement(Link, {href})
   }
 

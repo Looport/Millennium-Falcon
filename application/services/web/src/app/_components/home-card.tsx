@@ -1,6 +1,11 @@
 import {IconContext} from 'react-icons'
 
-export const HomeCard = ({children, className}) => (
+type HomeCardProps = {
+  children?: React.ReactNode
+  className?: string
+}
+
+export const HomeCard = ({children, className}: HomeCardProps) => (
   <article
     className={`
     p-[2rem]
@@ -15,34 +20,52 @@ export const HomeCard = ({children, className}) => (
   </article>
 )
 
-HomeCard.Title = ({children, className}) => (
-  <h2
-    className={`
+type TitleProps = {
+  children?: React.ReactNode
+  className?: string
+}
+
+HomeCard.Title = function Title({children, className}: TitleProps) {
+  return (
+    <h2
+      className={`
     font-black text-[3rem] text-transparent bg-clip-text
 
     ${className}
     `}
-  >
-    {children}
-  </h2>
-)
-HomeCard.Title.displayName = 'Title'
+    >
+      {children}
+    </h2>
+  )
+}
 
-HomeCard.Text = ({children, className}) => (
-  <p className={`text-zinc-50/60 ${className}`}>{children}</p>
-)
-HomeCard.Text.displayName = 'Text'
+type TextProps = {
+  children?: React.ReactNode
+  className?: string
+}
 
-HomeCard.Tooltip = ({text, icon}) => (
-  <div className="flex items-center gap-[1rem]">
-    <IconContext.Provider value={{size: '1.4rem'}}>{icon}</IconContext.Provider>
-    <span
-      className="
+HomeCard.Text = function Text({children, className}: TextProps) {
+  return (
+    <p className={`text-zinc-50/60 ${className}`}>{children}</p>
+  )
+}
+
+type TooltipProps = {
+  text: string
+  icon: React.ReactNode
+}
+
+HomeCard.Tooltip = function Tooltip({text, icon}: TooltipProps) {
+  return (
+    <div className="flex items-center gap-[1rem]">
+      <IconContext.Provider value={{size: '1.4rem'}}>{icon}</IconContext.Provider>
+      <span
+        className="
         font-bold text-[2rem] text-white
         "
-    >
+      >
       {text}
     </span>
-  </div>
-)
-HomeCard.Tooltip.displayName = 'Tooltip'
+    </div>
+  )
+}
