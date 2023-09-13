@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import {IconContext} from 'react-icons'
 import {AiOutlineGift} from 'react-icons/ai'
 import {BiUser} from 'react-icons/bi'
@@ -16,20 +17,22 @@ export const Header = () => (
     font-bold
     "
   >
-    <div className="flex">
-      <Image
-        width={130}
-        height={35}
-        src="/Logo.png"
-        alt="Logo"
-      />
-      <div
-        className="
+    <Link href={'/'}>
+      <div className="flex">
+        <Image
+          width={130}
+          height={35}
+          src="/Logo.png"
+          alt="Logo"
+        />
+        <div
+          className="
         h-[3.5rem] w-[0.2rem] ml-[4rem]
-        bg-gray-50/25 
+        bg-gray-50/25
         "
-      />
-    </div>
+        />
+      </div>
+    </Link>
     <nav>
       <ul className="xl:flex gap-[4rem] hidden">
         <li>About Us</li>

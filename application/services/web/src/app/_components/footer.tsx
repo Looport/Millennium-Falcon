@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import {IconContext} from 'react-icons'
 import {AiOutlineTwitter} from 'react-icons/ai'
 import {BiLogoTelegram} from 'react-icons/bi'
 import {BsCameraVideo, BsInstagram} from 'react-icons/bs'
@@ -15,7 +14,7 @@ export const Footer = () => (
     "
   >
     <div className="flex justify-center sm:justify-between mb-[2rem]">
-        <div className="sm:block hidden">
+      <div className="sm:block hidden">
         <Image
           width={130}
           height={35}
@@ -52,7 +51,7 @@ export const Footer = () => (
         </li>
       </ul>
     </div>
-    <div className="font-bold flex justify-between sm:block hidden">
+    <div className="font-bold sm:flex justify-between hidden">
       <nav className="flex">
         <ul className="flex gap-[4rem]">
           <li>Terms and Conditionals</li>

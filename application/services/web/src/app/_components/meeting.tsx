@@ -50,7 +50,11 @@ export const Meetings = () => (
           become an indispensable companion for any type of conversation.
         </HomeCard.Text>
       </header>
-      <div className="flex sm:flex-row flex-col items-center gap-[1rem] mb-[2rem]">
+      <div
+        className="
+        flex sm:flex-row flex-col items-center gap-[1rem] mb-[2rem]
+        "
+      >
         <Button
           type="primary"
           icon={<BiUserCircle />}

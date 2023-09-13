@@ -1,4 +1,3 @@
-import {IconContext} from 'react-icons'
 import {BiMapAlt} from 'react-icons/bi'
 
 import {Button} from '@/components/button'
