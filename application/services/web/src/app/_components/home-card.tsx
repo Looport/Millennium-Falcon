@@ -1,5 +1,7 @@
 import {IconContext} from 'react-icons'
 
+import {classname} from '@/common/utils/classname'
+
 type HomeCardProps = {
   children?: React.ReactNode
   className?: string
@@ -7,14 +9,13 @@ type HomeCardProps = {
 
 export const HomeCard = ({children, className}: HomeCardProps) => (
   <article
-    className={`
-    p-[2rem]
-    border rounded-[2.5rem] border-slate-50/25 drop-shadow-xl
-    bg-zinc-700/10 backdrop-blur-sm
-    overflow-hidden
-
-    ${className}
-    `}
+    className={classname([
+      'p-[2rem]',
+      'border rounded-[2.5rem] border-slate-50/25 drop-shadow-xl',
+      'bg-zinc-700/10 backdrop-blur-sm',
+      'overflow-hidden',
+      className ?? '',
+    ])}
   >
     {children}
   </article>
@@ -28,11 +29,10 @@ type TitleProps = {
 HomeCard.Title = function Title({children, className}: TitleProps) {
   return (
     <h2
-      className={`
-    font-black text-[3rem] text-transparent bg-clip-text
-
-    ${className}
-    `}
+      className={classname([
+        'font-black text-[3rem] text-transparent bg-clip-text',
+        className ?? '',
+      ])}
     >
       {children}
     </h2>
@@ -46,7 +46,9 @@ type TextProps = {
 
 HomeCard.Text = function Text({children, className}: TextProps) {
   return (
-    <p className={`text-zinc-50/60 ${className}`}>{children}</p>
+    <p className={classname(['text-zinc-50/60', className ?? ''])}>
+      {children}
+    </p>
   )
 }
 
@@ -57,15 +59,13 @@ type TooltipProps = {
 
 HomeCard.Tooltip = function Tooltip({text, icon}: TooltipProps) {
   return (
-    <div className="flex items-center gap-[1rem]">
-      <IconContext.Provider value={{size: '1.4rem'}}>{icon}</IconContext.Provider>
-      <span
-        className="
-        font-bold text-[2rem] text-white
-        "
-      >
-      {text}
-    </span>
+    <div className={classname(['flex items-center gap-[1rem]'])}>
+      <IconContext.Provider value={{size: '1.4rem'}}>
+        {icon}
+      </IconContext.Provider>
+      <span className={classname(['font-bold text-[2rem] text-white'])}>
+        {text}
+      </span>
     </div>
   )
 }

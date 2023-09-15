@@ -2,6 +2,8 @@ import Link from 'next/link'
 import {cloneElement, createElement} from 'react'
 import {IconContext} from 'react-icons'
 
+import {classname} from '@/common/utils/classname'
+
 type ButtonType = 'primary' | 'link' | 'text' | 'icon'
 
 type ButtonProps = {
@@ -13,7 +15,14 @@ type ButtonProps = {
   className?: string
 }
 
-export const Button = ({iconSize, icon, children, type, href, className}: ButtonProps) => {
+export const Button = ({
+  iconSize,
+  icon,
+  children,
+  type,
+  href,
+  className,
+}: ButtonProps) => {
   let iconComponent
 
   const iSize = iconSize ?? '2.4rem'
@@ -46,25 +55,19 @@ export const Button = ({iconSize, icon, children, type, href, className}: Button
     label = <span>{children}</span>
   }
 
-  let component = createElement('button')
-  if (href) {
-    // @ts-ignore
-    component = createElement(Link, {href})
-  }
+  const component = href ? createElement(Link, {href}) : createElement('button')
 
   return cloneElement(
     component,
     {
-      className: `
-      font-bold text-[14px] text-blue-100
-      flex gap-[1.3rem] items-center
-      py-[1.3rem] px-[3rem] rounded-[5rem] 
-      border border-slate-50/25
-  
-      ${classTypes.join(' ')}
-
-      ${className}
-      `,
+      className: classname([
+        'font-bold text-[14px] text-blue-100',
+        'flex gap-[1.3rem] items-center',
+        'py-[1.3rem] px-[3rem] rounded-[5rem]',
+        'border border-slate-50/25',
+        ...classTypes,
+        className ?? '',
+      ]),
     },
     iconComponent,
     label

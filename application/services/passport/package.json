@@ -41,7 +41,7 @@
     "@types/node": "20.5.1",
     "@types/supertest": "^2.0.12",
     "eslint": "^8.42.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.3",
     "supertest": "^6.3.3",
     "typescript": "^5.1.3"
   },
