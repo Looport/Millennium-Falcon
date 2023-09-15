@@ -15,6 +15,8 @@ type ButtonProps = {
   className?: string
 }
 
+const DEFAULT_ICON_SIZE = '2.4rem'
+
 export const Button = ({
   iconSize,
   icon,
@@ -25,7 +27,7 @@ export const Button = ({
 }: ButtonProps) => {
   let iconComponent
 
-  const iSize = iconSize ?? '2.4rem'
+  const iSize = iconSize ?? DEFAULT_ICON_SIZE
   if (icon) {
     iconComponent = (
       <IconContext.Provider value={{size: iSize}}>{icon}</IconContext.Provider>
