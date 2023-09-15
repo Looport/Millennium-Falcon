@@ -9,9 +9,6 @@ const config: Config = {
   plugins: [],
   theme: {
     extend: {
-      gridTemplateRows: {
-        home: 'repeat(10, 115px)',
-      },
     },
     fontFamily: {
       body: ['Inter', 'sans-serif'],

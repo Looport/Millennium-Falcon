@@ -28,7 +28,7 @@ It will be a steep climb, but step by step we will get there.
 
 It's better to set it up once than every time. Good luck and have fun 🪖
 
-```bash
+```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew install nvm
@@ -52,7 +52,7 @@ Not to worry, you can accomplish this using tools like Docker, Kubernetes, and S
 With these tools, you can automate the installation and building of all the necessary dependencies, making the process feel almost magical 🪄.
 For example, you can easily install and connect PostgresSQL, NATS Streaming service, and other services to your API services.
 
-```bash
+```shell
 brew install --cask docker
 brew install skaffold
 brew install minikube
@@ -67,12 +67,13 @@ minikube addons enable ingress
 # Build and Deploy Containers
 cd infrastructure/k8s
 
-# Option 1: Will rebuild on change
+# Run Application 
+## Option 1: Will rebuild on change
 skaffold dev
-# Option 2: Will build and deploy once
+## Option 2: Will build and deploy once
 skaffold run
 
-# Finally... In new terminal window 😭 Release Icebreaker 🎉 🎉 🎉
+# Finally... In new terminal window 😭 Release Millennium Falcon 🎉 🎉 🎉
 sudo minikube tunnel
 
 # Visit http://aloco.local 🚀
@@ -107,17 +108,23 @@ After snip, you will get demons with witch you could connect services.
 
 ## Deployment
 
-The Current application could be hosted on DO
+You could deploy application to the DigitalOcean provider using these commands.
 
-```sh
+⚠️ But before you need to create DigitalOcean Kubernetes Cluster.
+<Br />
+Next execute below commands. 
+<br />
+Then you will need to _register domain_ name and **connect it** to the DigitalOcean and Ingress Load Balancer that will be created after deploy.
+
+```shell
 # Install DigitalOcean CLI
 brew install doctl
 
-# Authorize in you account
+# Authorize in your DO account via token
 doctl auth init
 
-# Connect to the cluster
-doctl kubernetes cluster kubeconfig save <token>
+# Connect to the DO cluster via context id
+doctl kubernetes cluster kubeconfig save <context-id>
 
 # Verify. Now all kubectl command references to this context
 kubectl config get-contexts

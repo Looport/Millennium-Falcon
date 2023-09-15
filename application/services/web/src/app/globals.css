@@ -3,25 +3,23 @@
 @tailwind utilities;
 
 html {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 body {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.4rem;
 
-  background: linear-gradient(
-        45deg,
-        rgba(197, 30, 43, 0.1) 0%,
-        rgba(93, 144, 142, 0) 50%
-      )
-      no-repeat 0% 100% / contain,
+    background: linear-gradient(
+            45deg,
+            rgba(197, 30, 43, 0.1) 0%,
+            rgba(93, 144, 142, 0) 50%
+    ) no-repeat 0 100% / contain,
     radial-gradient(
-        90% 100% at 80% 30%,
-        rgba(44, 56, 146, 1) 0%,
-        rgba(35, 21, 84, 0) 50%
-      )
-      no-repeat,
+            90% 100% at 80% 30%,
+            rgba(44, 56, 146, 1) 0%,
+            rgba(35, 21, 84, 0) 50%
+    ) no-repeat,
     #151517 !important;
 }
 
@@ -30,5 +28,5 @@ h2,
 h3,
 h4,
 h5 {
-  margin-block: 0 !important;
+    margin-block: 0 !important;
 }

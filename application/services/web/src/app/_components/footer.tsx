@@ -1,21 +1,21 @@
 import Image from 'next/image'
-import {IconContext} from 'react-icons'
 import {AiOutlineTwitter} from 'react-icons/ai'
 import {BiLogoTelegram} from 'react-icons/bi'
 import {BsCameraVideo, BsInstagram} from 'react-icons/bs'
 
+import {classname} from '@/common/utils/classname'
 import {Button} from '@/components/button'
 
 export const Footer = () => (
   <footer
-    className="
-    bg-zinc-950
-    mt-[4rem]
-    py-[4rem] sm:px-[9rem]
-    "
+    className={classname(['bg-zinc-950 mt-[4rem] py-[4rem] sm:px-[9rem]'])}
   >
-    <div className="flex justify-center sm:justify-between mb-[2rem]">
-        <div className="sm:block hidden">
+    <div
+      className={classname([
+        'flex justify-center sm:justify-between mb-[2rem]',
+      ])}
+    >
+      <div className={classname(['sm:block hidden'])}>
         <Image
           width={130}
           height={35}
@@ -24,26 +24,26 @@ export const Footer = () => (
         />
       </div>
 
-      <ul className="flex gap-[2rem] items-center">
+      <ul className={classname(['flex gap-[2rem] items-center'])}>
         <li>
           <Button icon={<BsCameraVideo />}>Start Call</Button>
         </li>
 
-        <li className="sm:block hidden">
+        <li className={classname(['sm:block hidden'])}>
           <Button
             href="/twitter"
             type="icon"
             icon={<AiOutlineTwitter />}
           />
         </li>
-        <li className="sm:block hidden">
+        <li className={classname(['sm:block hidden'])}>
           <Button
             href="/instagram"
             type="icon"
             icon={<BsInstagram />}
           />
         </li>
-        <li className="sm:block hidden">
+        <li className={classname(['sm:block hidden'])}>
           <Button
             href="/telegram"
             type="icon"
@@ -52,9 +52,9 @@ export const Footer = () => (
         </li>
       </ul>
     </div>
-    <div className="font-bold flex justify-between sm:block hidden">
-      <nav className="flex">
-        <ul className="flex gap-[4rem]">
+    <div className={classname(['font-bold sm:flex justify-between hidden'])}>
+      <nav className={classname(['flex'])}>
+        <ul className={classname(['flex gap-[4rem]'])}>
           <li>Terms and Conditionals</li>
           <li>Privacy Policy</li>
           <li>About Us</li>
