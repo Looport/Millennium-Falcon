@@ -1,8 +1,6 @@
-'use client'
-
-import {Footer} from '@/app/_components/footer'
-import {Header} from '@/app/_components/header'
-import {classname} from '@/common/utils/classname'
+import {classname} from '@/ui/common/utils/classname'
+import {Footer} from '@/ui/home/components/footer'
+import {Header} from '@/ui/home/components/header'
 
 type LandingLayoutProps = {
   children: React.ReactNode

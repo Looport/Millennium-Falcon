@@ -1,16 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import {BiUserCircle} from 'react-icons/bi'
-import {BsCameraVideo} from 'react-icons/bs'
 
-import {classname} from '@/common/utils/classname'
-import {Button} from '@/components/button'
-
-import {HomeCard} from './home-card'
+import {Button} from '@/ui/common/components/button'
+import {Card} from '@/ui/common/components/card'
+import {BiUserCircle, BsCameraVideo} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
 
 export const Meetings = () => (
-  <HomeCard
+  <Card
     className={classname([
       'h-full',
       'relative',
@@ -36,17 +34,17 @@ export const Meetings = () => (
         >
           Communicate in a New Way
         </h3>
-        <HomeCard.Title
+        <Card.Title
           className={classname([
             'bg-gradient-to-r from-[#FFE853] to-[#FF343F]',
           ])}
         >
           Quick & Functional Meetings For Everyone
-        </HomeCard.Title>
-        <HomeCard.Text>
+        </Card.Title>
+        <Card.Text>
           With AI-powered features and useful built-in Utilities, our app will
           become an indispensable companion for any type of conversation.
-        </HomeCard.Text>
+        </Card.Text>
       </header>
       <div
         className={classname([
@@ -97,5 +95,5 @@ export const Meetings = () => (
         </div>
       </div>
     </div>
-  </HomeCard>
+  </Card>
 )

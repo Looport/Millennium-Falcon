@@ -1,12 +1,10 @@
-'use client'
-
-import {Bullerin} from '@/app/_components/bulletin'
-import {Contribution} from '@/app/_components/contribution'
-import {ExploreWorld} from '@/app/_components/explore-world'
-import LandingLayout from '@/app/_components/landing-layout'
-import {Meetings} from '@/app/_components/meeting'
-import {Roadmap} from '@/app/_components/roadmap'
-import {classname} from '@/common/utils/classname'
+import {classname} from '@/ui/common/utils/classname'
+import {Bullerin} from '@/ui/home/components/bulletin'
+import {Contribution} from '@/ui/home/components/contribution'
+import {ExploreWorld} from '@/ui/home/components/explore-world'
+import LandingLayout from '@/ui/home/components/landing-layout'
+import {Meetings} from '@/ui/home/components/meeting'
+import {Roadmap} from '@/ui/home/components/roadmap'
 
 export default function Home() {
   return (

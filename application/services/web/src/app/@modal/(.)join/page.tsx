@@ -5,8 +5,8 @@
 import {useRouter} from 'next/navigation'
 import {MouseEventHandler, useRef} from 'react'
 
-import {JoinForm} from '@/app/join/join-form'
-import {classname} from '@/common/utils/classname'
+import {RegisterContainer} from '@/ui/auth/containers/register-container'
+import {classname} from '@/ui/common/utils/classname'
 
 export default function JoinInterceptor() {
   const router = useRouter()
@@ -33,7 +33,7 @@ export default function JoinInterceptor() {
         className={classname(['w-2/4 max-w-[60rem]'])}
         ref={formRef}
       >
-        <JoinForm />
+        <RegisterContainer />
       </div>
     </dialog>
   )

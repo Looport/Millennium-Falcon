@@ -2,12 +2,11 @@
 
 import Image from 'next/image'
 
-import {classname} from '@/common/utils/classname'
-
-import {HomeCard} from './home-card'
+import {Card} from '@/ui/common/components/card'
+import {classname} from '@/ui/common/utils/classname'
 
 export const Bullerin = () => (
-  <HomeCard className={classname(['h-full p-[0!important]'])}>
+  <Card className={classname(['h-full p-[0!important]'])}>
     <div
       className={classname([
         'text-center',
@@ -26,17 +25,17 @@ export const Bullerin = () => (
         className={classname(['z-[-1] absolute w-full h-full object-cover'])}
       />
       <header className={classname(['px-[3.5rem]'])}>
-        <HomeCard.Title
+        <Card.Title
           className={classname([
             'bg-gradient-to-r from-[#FFE853] to-[#FF343F]',
           ])}
         >
           Around The Globe, Just Pick Where
-        </HomeCard.Title>
-        <HomeCard.Text>
+        </Card.Title>
+        <Card.Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut
           dolor elit. In ornare posuere.
-        </HomeCard.Text>
+        </Card.Text>
       </header>
       <div className={classname(['absolute bottom-[2rem] flex gap-[2rem]'])}>
         <span
@@ -60,5 +59,5 @@ export const Bullerin = () => (
         />
       </div>
     </div>
-  </HomeCard>
+  </Card>
 )

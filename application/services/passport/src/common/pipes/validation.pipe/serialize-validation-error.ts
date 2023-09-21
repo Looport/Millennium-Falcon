@@ -5,7 +5,7 @@ import {ValidationError} from '@/common/exeptions/validation.exeption/validation
 export const serializeValidationError = (
   error: NestValidationError
 ): ValidationError => ({
-  children: error.children.length
+  children: error.children?.length
     ? error.children.map((child) => serializeValidationError(child))
     : [],
   field: error.property,

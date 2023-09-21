@@ -88,7 +88,7 @@ One way to do this is to run Docker images of a specific dependency and inject t
 # Learn more at https://hub.docker.com/_/postgres
 docker run -d \
 	--name postgres \
-	-p 5432:5432
+	-p 5432:5432 \
 	-e POSTGRES_PASSWORD=root \
 	-e POSTGRES_USER=root \
 	-e POSTGRES_DB=storage \

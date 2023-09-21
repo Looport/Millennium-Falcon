@@ -1,12 +1,10 @@
-import {BiMapAlt} from 'react-icons/bi'
-
-import {classname} from '@/common/utils/classname'
-import {Button} from '@/components/button'
-
-import {HomeCard} from './home-card'
+import {Button} from '@/ui/common/components/button'
+import {Card} from '@/ui/common/components/card'
+import {BiMapAlt} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
 
 export const Roadmap = () => (
-  <HomeCard
+  <Card
     className={classname([
       'relative',
       'before:absolute before:top-[-3rem] before:left-[4rem]',
@@ -20,7 +18,7 @@ export const Roadmap = () => (
     ])}
   >
     <header className={classname(['text-center mb-[2rem]'])}>
-      <HomeCard.Title
+      <Card.Title
         className={classname([
           'bg-gradient-to-r from-[#FF343F] from-0%',
           'via-[#FFE853] via-50%',
@@ -28,7 +26,7 @@ export const Roadmap = () => (
         ])}
       >
         Roadmap
-      </HomeCard.Title>
+      </Card.Title>
     </header>
 
     <div
@@ -47,16 +45,14 @@ export const Roadmap = () => (
       >
         2023
       </div>
-      <HomeCard.Text>
+      <Card.Text>
         Lorem ipsum Dolor sit amet Consectetur adipiscing Roadmap 1
-      </HomeCard.Text>
-      <HomeCard.Text>
-        Dolor sit amet Consectetur adipiscing Roadmap 1
-      </HomeCard.Text>
-      <HomeCard.Text>Consectetur adipiscing Roadmap 1</HomeCard.Text>
-      <HomeCard.Text>
+      </Card.Text>
+      <Card.Text>Dolor sit amet Consectetur adipiscing Roadmap 1</Card.Text>
+      <Card.Text>Consectetur adipiscing Roadmap 1</Card.Text>
+      <Card.Text>
         Lorem ipsum Dolor sit amet Consectetur adipiscing Roadmap 1
-      </HomeCard.Text>
+      </Card.Text>
       <div
         className={classname([
           'text-[#FF222E] font-black text-[2.8rem]',
@@ -92,5 +88,5 @@ export const Roadmap = () => (
     <div className={classname(['flex justify-center'])}>
       <Button icon={<BiMapAlt />}>Learn More</Button>
     </div>
-  </HomeCard>
+  </Card>
 )
