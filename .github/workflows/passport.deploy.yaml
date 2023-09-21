@@ -14,7 +14,7 @@ jobs:
         env:
           DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd infrastructure/images/passport && sh buildx.sh
+      - run: cd infrastructure/images/passport && sh cmd.sh buildx
 
       - uses: digitalocean/action-doctl@v2
         with:

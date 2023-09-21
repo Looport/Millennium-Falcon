@@ -67,12 +67,28 @@ export const Meetings = () => (
           'flex sm:flex-row flex-col gap-[1rem] items-center',
         ])}
       >
-        <Image
-          width={100}
-          height={100}
-          src=""
-          alt="users icons"
-        />
+        <div className={classname(['flex'])}>
+          <Image
+            width={40}
+            height={40}
+            src="/Avatar 3.png"
+            alt="users icons"
+          />
+          <Image
+            className={classname(['-ml-[2rem]'])}
+            width={40}
+            height={40}
+            src="/Avatar 4.png"
+            alt="users icons"
+          />
+          <Image
+            className={classname(['-ml-[2rem]'])}
+            width={40}
+            height={40}
+            src="/Avatar 5.png"
+            alt="users icons"
+          />
+        </div>
         <div className={classname(['flex flex-col'])}>
           <span className={classname(['text-white/80 font-extrabold'])}>
             +5M
