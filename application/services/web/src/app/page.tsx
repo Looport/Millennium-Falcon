@@ -2,7 +2,7 @@ import {classname} from '@/ui/common/utils/classname'
 import {Bullerin} from '@/ui/home/components/bulletin'
 import {Contribution} from '@/ui/home/components/contribution'
 import {ExploreWorld} from '@/ui/home/components/explore-world'
-import LandingLayout from '@/ui/home/components/landing-layout'
+import {LandingLayout} from '@/ui/home/components/landing-layout'
 import {Meetings} from '@/ui/home/components/meeting'
 import {Roadmap} from '@/ui/home/components/roadmap'
 

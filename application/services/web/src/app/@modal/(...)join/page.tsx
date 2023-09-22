@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions*/
 'use client'
 
-import {useRouter} from 'next/navigation'
+import {usePathname, useRouter} from 'next/navigation'
 import {MouseEventHandler, useRef} from 'react'
 
 import {RegisterContainer} from '@/ui/auth/containers/register-container'
@@ -18,9 +18,18 @@ export default function JoinInterceptor() {
     }
   }
 
+  /**
+   * Warning
+   * Need to return null
+   * because if we push
+   * component doesn't remove
+   */
+  if (usePathname() !== '/join') {
+    return null
+  }
+
   return (
     <dialog
-      open
       className={classname([
         'w-full h-full z-10 fixed',
         'bg-slate-900',

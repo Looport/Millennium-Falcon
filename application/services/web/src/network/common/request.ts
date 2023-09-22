@@ -1,3 +1,9 @@
+class RequestError extends Error {
+  constructor(message: string, public readonly  status: number, public readonly errors: any[] = []) {
+    super(message)
+  }
+}
+
 export const request = async <T>(
   url: string,
   init: RequestInit = {}
@@ -14,7 +20,7 @@ export const request = async <T>(
   const body = await response.json()
 
   if (!response.ok) {
-    throw new Error(body)
+    throw new RequestError(body.message, response.status, body.errors)
   }
 
   return body

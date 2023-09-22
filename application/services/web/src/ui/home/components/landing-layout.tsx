@@ -1,12 +1,13 @@
 import {classname} from '@/ui/common/utils/classname'
 import {Footer} from '@/ui/home/components/footer'
 import {Header} from '@/ui/home/components/header'
+import React from "react";
 
 type LandingLayoutProps = {
   children: React.ReactNode
 }
 
-export default function LandingLayout({children}: LandingLayoutProps) {
+export const LandingLayout = ({children}: LandingLayoutProps) => {
   return (
     <>
       <main className={classname(['max-w-screen-xl w-4/5 mx-auto'])}>

@@ -1,3 +1,5 @@
+'use client'
+
 import {useRouter} from 'next/navigation'
 
 import {register} from '@/network/auth/requests/register.request'
@@ -11,8 +13,13 @@ export const RegisterContainer = () => {
 
     document.cookie = `accessToken=${body.accessToken};`
 
-    router.push('/')
+    /**
+     * Warning
+     * In another sequence of calls
+     * will not redirect to the page
+     */
     router.refresh()
+    router.push('/')
   }
 
   return <JoinForm onSubmit={submit} />
