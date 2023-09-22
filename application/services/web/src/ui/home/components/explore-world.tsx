@@ -1,15 +1,12 @@
 import Image from 'next/image'
-import {BiMapAlt} from 'react-icons/bi'
-import {BsStars} from 'react-icons/bs'
-import {TbUsersPlus} from 'react-icons/tb'
 
-import {classname} from '@/common/utils/classname'
-import {Button} from '@/components/button'
-
-import {HomeCard} from './home-card'
+import {Button} from '@/ui/common/components/button'
+import {Card} from '@/ui/common/components/card'
+import {BiMapAlt, BsStars, TbUsersPlus} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
 
 export const ExploreWorld = () => (
-  <HomeCard
+  <Card
     className={classname([
       'h-full p-[0!important] relative',
       'before:absolute before:top-[25rem] before:right-[-3.5rem]',
@@ -26,7 +23,7 @@ export const ExploreWorld = () => (
   >
     <header className={classname(['p-[2rem] pb-[0]'])}>
       <div className={classname(['mb-[3.5rem]'])}>
-        <HomeCard.Tooltip
+        <Card.Tooltip
           text={'Try New Feature'}
           icon={
             <div
@@ -38,17 +35,17 @@ export const ExploreWorld = () => (
         />
       </div>
       <div className={classname(['xl:mx-[3.5rem] mx-[2rem] text-center'])}>
-        <HomeCard.Title
+        <Card.Title
           className={classname([
             'bg-gradient-to-r from-[#FF343F] to-[#FFE853]',
           ])}
         >
           Around The Globe, Just Pick Where
-        </HomeCard.Title>
-        <HomeCard.Text>
+        </Card.Title>
+        <Card.Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut
           dolor elit. In ornare posuere.
-        </HomeCard.Text>
+        </Card.Text>
       </div>
     </header>
     <div>
@@ -80,5 +77,5 @@ export const ExploreWorld = () => (
         Bring Friends With You
       </Button>
     </div>
-  </HomeCard>
+  </Card>
 )

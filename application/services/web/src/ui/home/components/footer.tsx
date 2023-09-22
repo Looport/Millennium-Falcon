@@ -1,10 +1,13 @@
 import Image from 'next/image'
-import {AiOutlineTwitter} from 'react-icons/ai'
-import {BiLogoTelegram} from 'react-icons/bi'
-import {BsCameraVideo, BsInstagram} from 'react-icons/bs'
 
-import {classname} from '@/common/utils/classname'
-import {Button} from '@/components/button'
+import {Button} from '@/ui/common/components/button'
+import {
+  AiOutlineTwitter,
+  BiLogoTelegram,
+  BsCameraVideo,
+  BsInstagram,
+} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
 
 export const Footer = () => (
   <footer

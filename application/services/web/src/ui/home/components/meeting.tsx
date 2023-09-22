@@ -1,16 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import {BiUserCircle} from 'react-icons/bi'
-import {BsCameraVideo} from 'react-icons/bs'
 
-import {classname} from '@/common/utils/classname'
-import {Button} from '@/components/button'
-
-import {HomeCard} from './home-card'
+import {Button} from '@/ui/common/components/button'
+import {Card} from '@/ui/common/components/card'
+import {BiUserCircle, BsCameraVideo} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
 
 export const Meetings = () => (
-  <HomeCard
+  <Card
     className={classname([
       'h-full',
       'relative',
@@ -36,17 +34,17 @@ export const Meetings = () => (
         >
           Communicate in a New Way
         </h3>
-        <HomeCard.Title
+        <Card.Title
           className={classname([
             'bg-gradient-to-r from-[#FFE853] to-[#FF343F]',
           ])}
         >
           Quick & Functional Meetings For Everyone
-        </HomeCard.Title>
-        <HomeCard.Text>
+        </Card.Title>
+        <Card.Text>
           With AI-powered features and useful built-in Utilities, our app will
           become an indispensable companion for any type of conversation.
-        </HomeCard.Text>
+        </Card.Text>
       </header>
       <div
         className={classname([
@@ -67,12 +65,28 @@ export const Meetings = () => (
           'flex sm:flex-row flex-col gap-[1rem] items-center',
         ])}
       >
-        <Image
-          width={100}
-          height={100}
-          src=""
-          alt="users icons"
-        />
+        <div className={classname(['flex'])}>
+          <Image
+            width={40}
+            height={40}
+            src="/Avatar 3.png"
+            alt="users icons"
+          />
+          <Image
+            className={classname(['-ml-[2rem]'])}
+            width={40}
+            height={40}
+            src="/Avatar 4.png"
+            alt="users icons"
+          />
+          <Image
+            className={classname(['-ml-[2rem]'])}
+            width={40}
+            height={40}
+            src="/Avatar 5.png"
+            alt="users icons"
+          />
+        </div>
         <div className={classname(['flex flex-col'])}>
           <span className={classname(['text-white/80 font-extrabold'])}>
             +5M
@@ -81,5 +95,5 @@ export const Meetings = () => (
         </div>
       </div>
     </div>
-  </HomeCard>
+  </Card>
 )

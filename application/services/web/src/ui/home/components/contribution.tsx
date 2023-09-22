@@ -1,18 +1,20 @@
-import {IconContext} from 'react-icons'
-import {AiFillHeart, AiOutlineStar} from 'react-icons/ai'
-import {FiThumbsUp} from 'react-icons/fi'
-import {LiaAwardSolid, LiaHandHoldingHeartSolid} from 'react-icons/lia'
-
-import {classname} from '@/common/utils/classname'
-import {Button} from '@/components/button'
-
-import {HomeCard} from './home-card'
+import {Button} from '@/ui/common/components/button'
+import {Card} from '@/ui/common/components/card'
+import {
+  IconProvider,
+  AiFillHeart,
+  AiOutlineStar,
+  FiThumbsUp,
+  LiaAwardSolid,
+  LiaHandHoldingHeartSolid,
+} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
 
 export const Contribution = () => (
-  <HomeCard className={classname(['h-full'])}>
+  <Card className={classname(['h-full'])}>
     <header className={classname(['mb-[1.5rem]'])}>
       <div className={classname(['mb-[1rem]'])}>
-        <HomeCard.Tooltip
+        <Card.Tooltip
           text="Featured"
           icon={
             <div
@@ -23,14 +25,14 @@ export const Contribution = () => (
           }
         />
       </div>
-      <HomeCard.Title
+      <Card.Title
         className={classname([
           'bg-gradient-to-r from-[#FFE853] to-[#FF343F]',
           'pl-[1.5rem]',
         ])}
       >
         Support Unique Ideas
-      </HomeCard.Title>
+      </Card.Title>
     </header>
     <div className={classname(['mb-[3rem]'])}>
       <ul
@@ -46,16 +48,16 @@ export const Contribution = () => (
         >
           <div className={classname(['flex items-center gap-[0.6rem]'])}>
             <span>
-              <IconContext.Provider value={{color: '#FFE753', size: '2rem'}}>
+              <IconProvider value={{color: '#FFE753', size: '2rem'}}>
                 <LiaAwardSolid />
-              </IconContext.Provider>
+              </IconProvider>
             </span>
             Add More Profile Settings
           </div>
           <span>
-            <IconContext.Provider value={{size: '2rem'}}>
+            <IconProvider value={{size: '2rem'}}>
               <FiThumbsUp />
-            </IconContext.Provider>
+            </IconProvider>
           </span>
         </li>
         <li
@@ -66,16 +68,16 @@ export const Contribution = () => (
         >
           <div className={classname(['flex items-center gap-[0.6rem]'])}>
             <span>
-              <IconContext.Provider value={{color: '#A4A4A7', size: '2rem'}}>
+              <IconProvider value={{color: '#A4A4A7', size: '2rem'}}>
                 <LiaAwardSolid />
-              </IconContext.Provider>
+              </IconProvider>
             </span>
             Add Dark Theme and More Accessibility
           </div>
           <span>
-            <IconContext.Provider value={{size: '2rem'}}>
+            <IconProvider value={{size: '2rem'}}>
               <FiThumbsUp />
-            </IconContext.Provider>
+            </IconProvider>
           </span>
         </li>
         <li
@@ -86,16 +88,16 @@ export const Contribution = () => (
         >
           <div className={classname(['flex items-center gap-[0.6rem]'])}>
             <span>
-              <IconContext.Provider value={{color: '#FF7B47', size: '2rem'}}>
+              <IconProvider value={{color: '#FF7B47', size: '2rem'}}>
                 <LiaAwardSolid />
-              </IconContext.Provider>
+              </IconProvider>
             </span>
             Add Animated Emojis in Chat
           </div>
           <span>
-            <IconContext.Provider value={{size: '2rem'}}>
+            <IconProvider value={{size: '2rem'}}>
               <FiThumbsUp />
-            </IconContext.Provider>
+            </IconProvider>
           </span>
         </li>
       </ul>
@@ -155,5 +157,5 @@ export const Contribution = () => (
       </Button>
       <Button icon={<LiaHandHoldingHeartSolid />}>Support Ideas</Button>
     </div>
-  </HomeCard>
+  </Card>
 )

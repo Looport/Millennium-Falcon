@@ -1,8 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import {cloneElement, createElement} from 'react'
-import {IconContext} from 'react-icons'
 
-import {classname} from '@/common/utils/classname'
+import {IconProvider} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
 
 type ButtonType = 'primary' | 'link' | 'text' | 'icon'
 
@@ -29,9 +31,7 @@ export const Button = ({
 
   const iSize = iconSize ?? DEFAULT_ICON_SIZE
   if (icon) {
-    iconComponent = (
-      <IconContext.Provider value={{size: iSize}}>{icon}</IconContext.Provider>
-    )
+    iconComponent = <IconProvider value={{size: iSize}}>{icon}</IconProvider>
   }
 
   const classTypes = []

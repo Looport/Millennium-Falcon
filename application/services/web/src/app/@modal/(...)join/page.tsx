@@ -2,11 +2,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions*/
 'use client'
 
-import {useRouter} from 'next/navigation'
+import {usePathname, useRouter} from 'next/navigation'
 import {MouseEventHandler, useRef} from 'react'
 
-import {JoinForm} from '@/app/join/join-form'
-import {classname} from '@/common/utils/classname'
+import {RegisterContainer} from '@/ui/auth/containers/register-container'
+import {classname} from '@/ui/common/utils/classname'
 
 export default function JoinInterceptor() {
   const router = useRouter()
@@ -18,9 +18,18 @@ export default function JoinInterceptor() {
     }
   }
 
+  /**
+   * Warning
+   * Need to return null
+   * because if we push
+   * component doesn't remove
+   */
+  if (usePathname() !== '/join') {
+    return null
+  }
+
   return (
     <dialog
-      open
       className={classname([
         'w-full h-full z-10 fixed',
         'bg-slate-900',
@@ -33,7 +42,7 @@ export default function JoinInterceptor() {
         className={classname(['w-2/4 max-w-[60rem]'])}
         ref={formRef}
       >
-        <JoinForm />
+        <RegisterContainer />
       </div>
     </dialog>
   )

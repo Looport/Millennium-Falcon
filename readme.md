@@ -12,7 +12,7 @@
 ### Technologies Stack
 **Build Pack:** [PNPM & Workspaces](https://pnpm.io/workspaces), [TypeScript](https://www.typescriptlang.org/docs/);
 
-**Backend:** [Node.js](https://nodejs.dev/en/), [Nest.js](https://nestjs.com), [TypeORM](https://typeorm.io), [PostgresSQL](https://www.postgresql.org);
+**Backend:** [Node.js](https://nodejs.dev/en/), [Nest.js](https://nestjs.com), [TypeORM](https://typeorm.io), [PostgresSQL](https://www.postgresql.org), [NATS](https://nats.io);
 
 **Frontend:** [Next.js](https://nextjs.org), [React](https://react.dev), [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API), [Tailwind](https://tailwindcss.com/docs/installation);
 
@@ -20,7 +20,7 @@
 
 **Testing:**: [Node Test Runner](https://nodejs.org/api/test.html), [Node Assertions](https://nodejs.org/api/assert.html), [Playwright](https://playwright.dev/docs/intro);
 
-**CI**: [GitHub Actions](https://docs.github.com/en/actions)
+**CI/CD**: [GitHub Actions](https://docs.github.com/en/actions), [Digital Ocean](https://www.digitalocean.com)
 
 
 ## Starting Point
@@ -88,7 +88,7 @@ One way to do this is to run Docker images of a specific dependency and inject t
 # Learn more at https://hub.docker.com/_/postgres
 docker run -d \
 	--name postgres \
-	-p 5432:5432
+	-p 5432:5432 \
 	-e POSTGRES_PASSWORD=root \
 	-e POSTGRES_USER=root \
 	-e POSTGRES_DB=storage \

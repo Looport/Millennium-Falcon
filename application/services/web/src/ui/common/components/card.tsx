@@ -1,13 +1,12 @@
-import {IconContext} from 'react-icons'
-
-import {classname} from '@/common/utils/classname'
+import {IconProvider} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
 
 type HomeCardProps = {
   children?: React.ReactNode
   className?: string
 }
 
-export const HomeCard = ({children, className}: HomeCardProps) => (
+export const Card = ({children, className}: HomeCardProps) => (
   <article
     className={classname([
       'p-[2rem]',
@@ -26,7 +25,7 @@ type TitleProps = {
   className?: string
 }
 
-HomeCard.Title = function Title({children, className}: TitleProps) {
+Card.Title = function Title({children, className}: TitleProps) {
   return (
     <h2
       className={classname([
@@ -44,7 +43,7 @@ type TextProps = {
   className?: string
 }
 
-HomeCard.Text = function Text({children, className}: TextProps) {
+Card.Text = function Text({children, className}: TextProps) {
   return (
     <p className={classname(['text-zinc-50/60', className ?? ''])}>
       {children}
@@ -57,12 +56,10 @@ type TooltipProps = {
   icon: React.ReactNode
 }
 
-HomeCard.Tooltip = function Tooltip({text, icon}: TooltipProps) {
+Card.Tooltip = function Tooltip({text, icon}: TooltipProps) {
   return (
     <div className={classname(['flex items-center gap-[1rem]'])}>
-      <IconContext.Provider value={{size: '1.4rem'}}>
-        {icon}
-      </IconContext.Provider>
+      <IconProvider value={{size: '1.4rem'}}>{icon}</IconProvider>
       <span className={classname(['font-bold text-[2rem] text-white'])}>
         {text}
       </span>

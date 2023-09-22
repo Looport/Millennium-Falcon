@@ -8,7 +8,8 @@ const EXPOSED_IP = '0.0.0.0'
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter()
+    new FastifyAdapter(),
+    {cors: true}
   )
 
   await app.listen(3000, EXPOSED_IP)

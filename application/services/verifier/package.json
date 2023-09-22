@@ -4,6 +4,7 @@
   "author": "Vitalii Khotei <khoteiv.dev@gmail.com>",
   "scripts": {
     "test": "npx playwright test",
+    "run": "npx playwright test --ui",
     "type-check": "tsc --noEmit",
     "lint": "eslint \"tests/**/*.ts\"",
     "format": "pnpm lint --fix"
