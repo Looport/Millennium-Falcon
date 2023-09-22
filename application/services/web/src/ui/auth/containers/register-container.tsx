@@ -1,9 +1,8 @@
 'use client'
 
-
 import {register} from '@/network/auth/requests/register.request'
 import {JoinForm} from '@/ui/auth/components/join-form'
-import {useRefreshPage} from "@/ui/common/hooks/refresh-page";
+import {useRefreshPage} from '@/ui/common/hooks/refresh-page'
 
 export const RegisterContainer = () => {
   const {refresh} = useRefreshPage()

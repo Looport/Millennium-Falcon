@@ -1,5 +1,5 @@
-import {useRouter} from "next/navigation";
-import {useCallback} from "react";
+import {useRouter} from 'next/navigation'
+import {useCallback} from 'react'
 
 export const useRefreshPage = () => {
   const router = useRouter()
@@ -17,6 +17,6 @@ export const useRefreshPage = () => {
   }, [])
 
   return {
-    refresh
+    refresh,
   }
 }
