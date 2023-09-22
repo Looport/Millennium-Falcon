@@ -21,6 +21,7 @@ test('page should show on visit', async ({page}) => {
   await page.goto('http://localhost:3000/join')
 
   await expect( page.getByRole('dialog')).not.toBeVisible()
+
   await expect(page.getByPlaceholder(/username/i)).toBeVisible()
   await expect(page.getByPlaceholder(/password/i)).toBeVisible()
   await expect(page.getByPlaceholder(/email/i)).toBeVisible()
@@ -53,5 +54,8 @@ test('should register user from modal and redirect on "/"', async ({page}) => {
   await page.getByText(/sign up/i).click()
 
   await page.waitForURL(/\/$/)
+
+  await expect(page.getByRole('dialog')).not.toBeVisible()
+
   await expect(page.getByText(email)).toBeVisible()
 })
