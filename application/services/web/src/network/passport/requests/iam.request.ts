@@ -5,9 +5,11 @@ import {PASSPORT_API_URL} from '@/network/passport/requests/constants'
 
 export const fetchIam = async ({
   accessToken,
-}: TokenResponse): Promise<UserResponse> =>
+  headers
+}: TokenResponse & {headers?: Record<string, string | undefined>}): Promise<UserResponse> =>
   request<UserResponse>(`${PASSPORT_API_URL}/user/iam`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
+      ...headers
     },
   })

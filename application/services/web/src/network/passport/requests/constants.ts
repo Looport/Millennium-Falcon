@@ -1,3 +1,3 @@
-import {API_URL} from '@/network/common/constants'
+import {getApiUrl} from "@/network/common/get-api-url";
 
-export const PASSPORT_API_URL = `${API_URL}/passport`
+export const PASSPORT_API_URL = `${getApiUrl()}/passport`
