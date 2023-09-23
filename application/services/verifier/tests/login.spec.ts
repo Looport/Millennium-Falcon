@@ -22,13 +22,16 @@ test('should open join modal and switch to login form', async ({page}) => {
 
 test('should login user and redirect on "/"', async ({page, request}) => {
   const credentials = generateAuthCredentials()
-  await request.fetch(`${PASSPORT_API_URL}/authentication/register`, {
-    data: JSON.stringify(credentials),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-  })
+   await request.fetch(
+    `${PASSPORT_API_URL}/authentication/register`,
+    {
+      data: JSON.stringify(credentials),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    }
+  )
 
   await page.goto(WEB_URL)
   await page.getByText(/join in/iu).click()
@@ -48,13 +51,16 @@ test('should login user from modal and redirect on "/"', async ({
   request,
 }) => {
   const credentials = await generateAuthCredentials()
-  await request.fetch(`${PASSPORT_API_URL}/authentication/register`, {
-    data: JSON.stringify(credentials),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-  })
+  await request.fetch(
+    `${PASSPORT_API_URL}/authentication/register`,
+    {
+      data: JSON.stringify(credentials),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    }
+  )
 
   await page.goto(WEB_URL)
   await page.getByText(/join in/iu).click()
