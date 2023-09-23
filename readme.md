@@ -16,7 +16,7 @@
 
 **Frontend:** [Next.js](https://nextjs.org), [React](https://react.dev), [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API), [Tailwind](https://tailwindcss.com/docs/installation);
 
-**Deployment:** [Docker](https://www.docker.com), [Kubernetes](https://kubernetes.io), [Skaffold](https://skaffold.dev), [Minikube](https://minikube.sigs.k8s.io/docs/start/), [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/);
+**Deployment:** [Docker](https://www.docker.com), [Kubernetes](https://kubernetes.io), [Helm](https://helm.sh/docs/), [Skaffold](https://skaffold.dev), [Minikube](https://minikube.sigs.k8s.io/docs/start/), [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/);
 
 **Testing:**: [Node Test Runner](https://nodejs.org/api/test.html), [Node Assertions](https://nodejs.org/api/assert.html), [Playwright](https://playwright.dev/docs/intro);
 
@@ -53,30 +53,31 @@ With these tools, you can automate the installation and building of all the nece
 For example, you can easily install and connect PostgresSQL, NATS Streaming service, and other services to your API services.
 
 ```shell
+# 1️⃣ Install dependencies
 brew install --cask docker
 brew install skaffold
 brew install minikube
+brew install helm
 
 minikube start
 minikube addons enable metrics-server
 minikube addons enable ingress
 
-# Add to /etc/hosts
+# 2️⃣ Add to /etc/hosts
 127.0.0.1 aloco.local
 
-# Build and Deploy Containers
+# 3️⃣ Run Application in Development Mode
 cd infrastructure/k8s
+## 🥇Option 1: Will build and deploy once
+sh cmd.sh run
+## 🥈Option 2: Will rebuild on change
+sh cmd.sh dev
 
-# Run Application 
-## Option 1: Will rebuild on change
-skaffold dev
-## Option 2: Will build and deploy once
-skaffold run
 
-# Finally... In new terminal window 😭 Release Millennium Falcon 🎉 🎉 🎉
+# 🏆 Finally... In new terminal window Release Millennium Falcon 🎉 🎉 🎉
 sudo minikube tunnel
 
-# Visit http://aloco.local 🚀
+# 🥤 Visit http://aloco.local 🚀
 ```
 
 ### Alternative
@@ -131,14 +132,14 @@ kubectl config get-contexts
 kubectl cluster-info
 kubectl get nodes
 
-# Deploy application to the cluster
-kubectl apply \
- -f ./web \
- -f ./passport \
- -f ./system/ingress.yaml
- 
  # Deploy Nginx Ingress
- kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/cloud/deploy.yaml
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
+
+# Deploy application to the cluster
+cd infrastructure/k8s
+sh cmd.sh deploy-prod
 ```
 
 ## Links

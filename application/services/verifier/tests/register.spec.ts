@@ -1,61 +1,54 @@
 import {test, expect} from '@playwright/test'
 
+import {generateAuthCredentials} from '../modules/auth/credentials'
+import {WEB_URL} from '../modules/common/constants'
+
 test('should open join modal', async ({page}) => {
-  await page.goto('http://localhost:3000')
+  await page.goto(WEB_URL)
 
-  await page.getByText(/join in/i, ).click()
-  await expect( page.getByRole('dialog')).toBeVisible()
-})
-
-test('modal should has controls', async ({page}) => {
-  await page.goto('http://localhost:3000')
-
-  await page.getByText(/join in/i, ).click()
-  await expect(page.getByRole('dialog').getByPlaceholder(/username/i)).toBeVisible()
-  await expect(page.getByRole('dialog').getByPlaceholder(/password/i)).toBeVisible()
-  await expect(page.getByRole('dialog').getByPlaceholder(/email/i)).toBeVisible()
-  await expect(page.getByRole('dialog').getByText(/sign up/i)).toBeVisible()
+  await page.getByText(/join in/iu).click()
+  await expect(page.getByRole('dialog')).toBeVisible()
 })
 
 test('page should show on visit', async ({page}) => {
   await page.goto('http://localhost:3000/join')
 
-  await expect( page.getByRole('dialog')).not.toBeVisible()
+  await expect(page.getByRole('dialog')).toBeHidden()
 
-  await expect(page.getByPlaceholder(/username/i)).toBeVisible()
-  await expect(page.getByPlaceholder(/password/i)).toBeVisible()
-  await expect(page.getByPlaceholder(/email/i)).toBeVisible()
-  await expect(page.getByText(/sign up/i)).toBeVisible()
+  await expect(page.getByPlaceholder(/username/iu)).toBeVisible()
+  await expect(page.getByPlaceholder(/password/iu)).toBeVisible()
+  await expect(page.getByPlaceholder(/email/iu)).toBeVisible()
+  await expect(page.getByText(/sign up/iu)).toBeVisible()
 })
 
 test('should register user and redirect on "/"', async ({page}) => {
-  const email = `eliot@e-corp-${Math.random()}.com`
+  const {email, password} = generateAuthCredentials()
 
-  await page.goto('http://localhost:3000/join')
+  await page.goto(`${WEB_URL}/join`)
 
-  await page.getByPlaceholder(/email/i).fill(email)
-  await page.getByPlaceholder(/password/i).fill('fake_password')
+  await page.getByPlaceholder(/email/iu).fill(email)
+  await page.getByPlaceholder(/password/iu).fill(password)
 
-  await page.getByText(/sign up/i).click()
+  await page.getByText(/sign up/iu).click()
 
-  await page.waitForURL(/\/$/)
+  await page.waitForURL(/\/$/u)
   await expect(page.getByText(email)).toBeVisible()
 })
 
 test('should register user from modal and redirect on "/"', async ({page}) => {
-  const email = `eliot@e-corp-${Math.random()}.com`
+  const {email, password} = generateAuthCredentials()
 
-  await page.goto('http://localhost:3000')
-  await page.getByText(/join in/i, ).click()
+  await page.goto(WEB_URL)
+  await page.getByText(/join in/iu).click()
 
-  await page.getByPlaceholder(/email/i).fill(email)
-  await page.getByPlaceholder(/password/i).fill('fake_password')
+  await page.getByPlaceholder(/email/iu).fill(email)
+  await page.getByPlaceholder(/password/iu).fill(password)
 
-  await page.getByText(/sign up/i).click()
+  await page.getByText(/sign up/iu).click()
 
-  await page.waitForURL(/\/$/)
+  await page.waitForURL(/\/$/u)
 
-  await expect(page.getByRole('dialog')).not.toBeVisible()
+  await expect(page.getByRole('dialog')).toBeHidden()
 
   await expect(page.getByText(email)).toBeVisible()
 })

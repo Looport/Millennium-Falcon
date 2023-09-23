@@ -1,3 +1,5 @@
+import {development} from '@/common/utils/env'
+
 class RequestError extends Error {
   constructor(
     message: string,
@@ -14,14 +16,18 @@ export const request = async <T>(
 ): Promise<T> => {
   const response = await fetch(url, {
     ...init,
-    headers: new Headers({
+    headers: {
       'Content-Type': 'application/json',
       ...init?.headers,
-    }),
+    },
     method: init.method ?? init?.body ? 'POST' : 'GET',
   })
 
   const body = await response.json()
+
+  if (development()) {
+    console.log('request', url, init, body)
+  }
 
   if (!response.ok) {
     throw new RequestError(body.message, response.status, body.errors)

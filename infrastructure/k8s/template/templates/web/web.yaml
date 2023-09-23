@@ -14,7 +14,12 @@ spec:
     spec:
       containers:
         - name: web
-          image: dormammun/looport-web
+          image: dormammun/looport-web:latest
+          env:
+            - name: NEXT_PUBLIC_API_HOST
+              value: {{.Values.app.host}}
+            - name: ENV
+              value: {{.Values.app.env}}
 ---
 apiVersion: v1
 kind: Service

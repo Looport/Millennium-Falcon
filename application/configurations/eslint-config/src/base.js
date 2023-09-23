@@ -88,6 +88,7 @@ module.exports = {
     "class-methods-use-this": 0,
     "filenames/match-regex": 0,
     "@typescript-eslint/no-empty-function": 1,
-    "require-atomic-updates": 1
+    "require-atomic-updates": 1,
+    "max-lines": 1
   },
 }

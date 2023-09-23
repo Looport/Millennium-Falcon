@@ -1,11 +1,12 @@
 apiVersion: skaffold/v2beta29
 kind: Config
 deploy:
-  kubectl:
-    manifests:
-      - ./web/*
-      - ./passport/*
-      - ./system/ingress.local.yaml
+  helm:
+    releases:
+      - name: aloco
+        chartPath: ./template
+        valuesFiles:
+          - ./template/values-development.yaml
 build:
   local:
     concurrency: 3

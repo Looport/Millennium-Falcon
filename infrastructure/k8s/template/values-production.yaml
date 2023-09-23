@@ -1,0 +1,11 @@
+app:
+  env: production
+  name: aloco
+  host: aloco.club
+
+passport:
+  name: "passport"
+  pg:
+    user: "root"
+    password: "root"
+    db: "passport"

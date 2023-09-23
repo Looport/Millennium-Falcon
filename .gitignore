@@ -56,7 +56,10 @@ build
 *.pem
 
 # local env files
-.env*.local
+.env
+.env.development
+.env.production
+.env.test
 
 # vercel
 .vercel

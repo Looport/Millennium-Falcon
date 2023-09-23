@@ -1,16 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: passport
+  name: {{ .Values.passport.name }}
+  labels:
+    app: {{ .Values.app.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: passport
+      service: passport
   template:
     metadata:
       labels:
-        app: passport
+        service: passport
     spec:
       initContainers:
         - name: test-postgres
@@ -19,7 +21,7 @@ spec:
             - name: DB_HOST
               value: "passport-database-cluster-ip"
             - name: DB_USER
-              value: "root"
+              value: {{ .Values.passport.pg.user }}
           command: ['sh', '-c']
           args:
             - |
@@ -31,16 +33,16 @@ spec:
               echo "Postgres Ready!"
       containers:
         - name: passport
-          image: dormammun/looport-passport
+          image: dormammun/looport-passport:latest
           env:
             - name: DB_HOST
               value: "passport-database-cluster-ip"
             - name: DB_NAME
-              value: "passport"
+              value: {{ .Values.passport.pg.db }}
             - name: DB_PASSWORD
-              value: "root"
+              value: {{ .Values.passport.pg.password }}
             - name: DB_USER
-              value: "root"
+              value: {{ .Values.passport.pg.user }}
 ---
 apiVersion: v1
 kind: Service
@@ -49,7 +51,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: passport
+    service: passport
   ports:
     - name: passport
       protocol: TCP
@@ -63,7 +65,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: passport
+    service: passport
   ports:
     - name: passport-debug
       protocol: TCP
