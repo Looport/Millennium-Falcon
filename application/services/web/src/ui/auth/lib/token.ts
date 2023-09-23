@@ -1,8 +1,7 @@
 'use client'
 
 export const setToken = (token: string) => {
-  document.cookie =
-    `accessToken=${token};`
+  document.cookie = `accessToken=${token};`
 }
 
 export const cleanToken = () => {

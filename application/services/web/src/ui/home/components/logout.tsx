@@ -1,7 +1,7 @@
 'use client'
 
+import {cleanToken} from '@/ui/auth/lib/token'
 import {useRefreshPage} from '@/ui/common/hooks/refresh-page'
-import {cleanToken} from "@/ui/auth/lib/token";
 
 export const Logout = () => {
   const {refresh} = useRefreshPage()
