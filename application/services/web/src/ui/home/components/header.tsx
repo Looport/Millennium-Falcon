@@ -14,12 +14,14 @@ import {
   BsFastForward,
 } from '@/ui/common/components/icons'
 import {classname} from '@/ui/common/utils/classname'
+import {getHeaders} from '@/ui/common/utils/get-headers'
 import {Logout} from '@/ui/home/components/logout'
-import {getHeaders} from "@/ui/common/utils/get-headers";
 
 export const Header = async () => {
   const accessToken = cookies().get('accessToken')?.value
-  const body = accessToken ? await fetchIam({accessToken, headers: getHeaders()}) : null
+  const body = accessToken
+    ? await fetchIam({accessToken, headers: getHeaders()})
+    : null
 
   return (
     <header
