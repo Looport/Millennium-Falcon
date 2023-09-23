@@ -16,10 +16,10 @@ export const request = async <T>(
 ): Promise<T> => {
   const response = await fetch(url, {
     ...init,
-    headers: new Headers({
+    headers: {
       'Content-Type': 'application/json',
       ...init?.headers,
-    }),
+    },
     method: init.method ?? init?.body ? 'POST' : 'GET',
   })
 

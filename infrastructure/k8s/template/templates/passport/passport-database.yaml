@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: passport-database
+  labels:
+    app: {{ .Values.app.name }}
 spec:
   replicas: 1
   selector:
@@ -17,11 +19,11 @@ spec:
           image: postgres:12.2
           env:
             - name: POSTGRES_PASSWORD
-              value: "root"
+              value: {{ .Values.passport.pg.password }}
             - name: POSTGRES_USER
-              value: "root"
+              value: {{ .Values.passport.pg.user }}
             - name: POSTGRES_DB
-              value: "passport"
+              value: {{ .Values.passport.pg.db }}
 ---
 apiVersion: v1
 kind: Service

@@ -1,9 +1,13 @@
 enum Environment {
   PRODUCTION = 'production',
   DEVELOPMENT = 'development',
+  LOCAL = 'local',
 }
 
-export const production = () => process.env.NODE_ENV === Environment.PRODUCTION
+export const production = () => process.env.ENV === Environment.PRODUCTION
 
 export const development = () =>
-  process.env.NODE_ENV === Environment.DEVELOPMENT
+  process.env.ENV === Environment.DEVELOPMENT
+
+export const local = () =>
+  process.env.ENV === Environment.LOCAL
