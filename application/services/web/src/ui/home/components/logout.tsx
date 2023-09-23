@@ -1,12 +1,12 @@
 'use client'
 
 import {useRefreshPage} from '@/ui/common/hooks/refresh-page'
+import {cleanToken} from "@/ui/auth/lib/token";
 
 export const Logout = () => {
   const {refresh} = useRefreshPage()
   const logout = () => {
-    document.cookie =
-      'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    cleanToken()
 
     refresh({redirectTo: '/'})
   }
