@@ -1,5 +1,5 @@
-import {development} from '@/common/utils/env'
-import {API_HOST, INGRESS_API_URL} from '@/network/common/constants'
+import {development} from '@/common/utils/envs'
+import {API_HOST, INGRESS_API_URL} from '@/network/common/envs'
 
 export const getApiUrl = () => {
   if (typeof window === 'undefined' && development()) {

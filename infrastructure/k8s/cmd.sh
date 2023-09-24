@@ -1,11 +1,11 @@
 cmd="$1"
 
 case $cmd in
-"run")
+"run-local")
   skaffold run
   ;;
-"dev")
-  skaffold run
+"watch-local")
+  skaffold dev
   ;;
 "deploy-dev")
   helm install aloco template --values template/values-development.yaml

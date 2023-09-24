@@ -43,6 +43,8 @@ spec:
               value: {{ .Values.passport.pg.password }}
             - name: DB_USER
               value: {{ .Values.passport.pg.user }}
+            - name: NODE_ENV
+              value: {{ .Values.app.env }}
 ---
 apiVersion: v1
 kind: Service
@@ -57,17 +59,3 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: passport-debug-load-balancer
-spec:
-  type: LoadBalancer
-  selector:
-    service: passport
-  ports:
-    - name: passport-debug
-      protocol: TCP
-      port: 9202
-      targetPort: 9229
