@@ -11,6 +11,7 @@
     "url": "https://github.com/Looport/Millennium-Falcon"
   },
   "scripts": {
-    "web": "pnpm --filter '@looport/web' dev"
+    "web": "pnpm --filter '@looport/web' dev",
+    "passport": "pnpm --filter '@looport/passport' start:dev"
   }
 }

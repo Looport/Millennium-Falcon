@@ -10,13 +10,23 @@ export const JoinContainer = () => {
   const {refresh} = useRefreshPage()
 
   const submit = async (data: any, variant: JoinFormVariantEnum) => {
-    const action = {login, register}[variant]
-    const body = await action(data)
-
-    setToken(body.accessToken)
+    const action = getSubmitAction(variant)
+    await action(data)
 
     refresh({redirectTo: '/'})
   }
 
   return <JoinForm onSubmit={submit} />
+}
+
+const getSubmitAction = (variant: JoinFormVariantEnum) => {
+  const action = {login, register}[variant]
+
+  return async function submit (data: any) {
+    const body = await action(data)
+
+    setToken(body.accessToken)
+
+    return body
+  }
 }
