@@ -68,11 +68,10 @@ minikube addons enable ingress
 
 # 3️⃣ Run Application in Development Mode
 cd infrastructure/k8s
-## 🥇Option 1: Will build and deploy once
-sh cmd.sh run
-## 🥈Option 2: Will rebuild on change
-sh cmd.sh dev
-
+## 🥇 Option 1: Will build and deploy once
+sh cmd.sh run-local
+## 🥈 Option 2: Will rebuild on change
+sh cmd.sh watch-local
 
 # 🏆 Finally... In new terminal window Release Millennium Falcon 🎉 🎉 🎉
 sudo minikube tunnel
@@ -127,7 +126,8 @@ doctl auth init
 # Connect to the DO cluster via context id
 doctl kubernetes cluster kubeconfig save <context-id>
 
-# Verify. Now all kubectl command references to this context
+# 🚨 Verify. Now all kubectl command references to this context
+# ☢️ This is very important, because you could accidentally corrupt to the wrong cluster
 kubectl config get-contexts
 kubectl cluster-info
 kubectl get nodes

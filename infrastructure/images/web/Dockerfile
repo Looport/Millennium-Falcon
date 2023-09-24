@@ -26,8 +26,6 @@ COPY --from=builder /app/application/services/web/.next ./application/services/w
 
 COPY ./infrastructure/images/web/entrypoint.sh ./application/services/web/entrypoint.sh
 
-ENV NODE_ENV=production
-
 EXPOSE 3000
 
 ENTRYPOINT ["sh", "./application/services/web/entrypoint.sh"]

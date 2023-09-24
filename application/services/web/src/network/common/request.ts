@@ -1,4 +1,4 @@
-import {development} from '@/common/utils/env'
+import {development} from '@/common/utils/envs'
 
 class RequestError extends Error {
   constructor(
