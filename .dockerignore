@@ -1,26 +1,28 @@
 # NestJS
 ## compiled output
-dist
+/**dist
 node_modules
+**/node_modules
 
 ## Logs
-logs
-*.log
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
+**/logs
+**/*.log
+**/npm-debug.log*
+**/pnpm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/lerna-debug.log*
 
 ## OS
-.DS_Store
+**/.DS_Store
 
 ## Tests
-coverage
-.nyc_output
+**/coverage
+**/.nyc_output
 
 ## IDEs and editors
 .idea
+**/.idea
 .project
 .classpath
 .c9/
@@ -29,43 +31,46 @@ coverage
 *.sublime-workspace
 
 ## IDE - VSCode
-.vscode/*
+**/.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
-
 ## NextJS
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-.pnp
-.pnp.js
+**/.pnp
+**/.pnp.js
 
 # testing
 
 # next.js
-.next/
-out/
+**/.next/
+**/out/
 
 # production
-build
+**/build
 
 # misc
-*.pem
+**/*.pem
 
 # local env files
-.env*.local
+**/.env*.local
+**/.env
+**/.env.development
+**/.env.production
+**/.env.test
 
 # vercel
-.vercel
+**/.vercel
 
 # typescript
-*.tsbuildinfo
-next-env.d.ts
+**/*.tsbuildinfo
+**/next-env.d.ts
 
 # Playwright
-/**/*/test-results
-**/*/playwright-report
-/**/playwright/.cache
+**/test-results
+**/playwright-report
+**/playwright/.cache
