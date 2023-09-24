@@ -18,7 +18,7 @@ spec:
           env:
             - name: NEXT_PUBLIC_API_HOST
               value: {{.Values.app.host}}
-            - name: ENV
+            - name: NEXT_PUBLIC_ENV
               value: {{.Values.app.env}}
 ---
 apiVersion: v1
@@ -34,6 +34,7 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
+{{- if .Values.app.env | eq "production" }}
 ---
 apiVersion: v1
 kind: Service
@@ -48,3 +49,4 @@ spec:
       protocol: TCP
       port: 9204
       targetPort: 9229
+{{- end }}

@@ -38,6 +38,7 @@ spec:
       protocol: TCP
       port: 5432
       targetPort: 5432
+{{ if eq .Values.app.env "development" }}
 ---
 apiVersion: v1
 kind: Service
@@ -52,3 +53,4 @@ spec:
       protocol: TCP
       port: 5302
       targetPort: 5432
+{{ end }}
