@@ -45,6 +45,8 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
     )
   }
 
+  const register = variant === JoinFormVariantEnum.login
+
   return (
     <Card
       className={classname([
@@ -67,7 +69,7 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
             'text-center flex flex-col gap-[2rem] mb-[2rem]',
           ])}
         >
-          {variant === 'register' && (
+          {register && (
             <Card.Title
               className={classname([
                 'bg-gradient-to-r from-[#FFE853] to-[#FF343F]',
@@ -85,7 +87,7 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
               Login to your Account
             </Card.Title>
           )}
-          {variant === 'register' && (
+          {register && (
             <div className={classname(['text-center'])}>
               Already registered?{' '}
               <Button
@@ -130,7 +132,7 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
               />
             </li>
           </ul>
-          {variant === 'register' && (
+          {register && (
             <div>or use your email for registration:</div>
           )}
           {variant === 'login' && <div>or use your email for login:</div>}
@@ -138,7 +140,7 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
         <div>
           <form onSubmit={submitForm}>
             <div className={classname(['flex flex-col gap-[2rem]'])}>
-              {variant === 'register' && (
+              {register && (
                 <div className={classname(['relative'])}>
                   <div
                     className={classname([
@@ -203,7 +205,7 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
                   ])}
                 />
               </div>
-              {variant === 'register' && (
+              {register && (
                 <div className={classname(['text-[1.2rem]'])}>
                   <div
                     className={classname([
@@ -248,7 +250,7 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
                   </div>
                 </div>
               )}
-              {variant === 'register' && (
+              {register && (
                 <div className={classname(['text-[1.2rem]'])}>
                   <div
                     className={classname([
@@ -298,7 +300,7 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
                   type="primary"
                   className={classname(['py-[2rem] px-[6rem]'])}
                 >
-                  {{login: 'Login', register: 'Sign Up'}[variant]}
+                  {getButtonLabel(variant)}
                 </Button>
               </div>
             </div>
@@ -307,4 +309,12 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
       </div>
     </Card>
   )
+}
+
+const getButtonLabel = (variant: JoinFormVariantEnum) => {
+  if (variant === JoinFormVariantEnum.login) {
+    return 'Login'
+  }
+
+  return 'Sign Up'
 }
