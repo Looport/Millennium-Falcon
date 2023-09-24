@@ -2,7 +2,6 @@ app:
   env: production
   name: aloco
   host: aloco.club
-  enableIngress: true
 
 passport:
   name: "passport"

@@ -2,7 +2,6 @@ app:
   env: development
   name: aloco
   host: aloco.local
-  enableIngress: false
 
 passport:
   name: "passport"

@@ -132,6 +132,11 @@ kubectl config get-contexts
 kubectl cluster-info
 kubectl get nodes
 
+ # Deploy Nginx Ingress
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
+
 # Deploy application to the cluster
 cd infrastructure/k8s
 sh cmd.sh deploy-prod
