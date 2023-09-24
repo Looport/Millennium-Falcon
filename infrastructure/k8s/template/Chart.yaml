@@ -10,6 +10,6 @@ appVersion: "1.16.0"
 
 dependencies:
   - name: ingress-nginx
-    condition: false
+    condition: app.enableIngress
     version: "4.7.*"
     repository: "https://kubernetes.github.io/ingress-nginx"
