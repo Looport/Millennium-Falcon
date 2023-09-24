@@ -4,6 +4,7 @@ enum Environment {
   LOCAL = 'local',
 }
 
+// __REPLACE__NEXT_PUBLIC_ENV__ -> replaces while deployment
 const ENV = process.env.NEXT_PUBLIC_ENV ?? '__REPLACE__NEXT_PUBLIC_ENV__'
 
 export const env = () => ENV
