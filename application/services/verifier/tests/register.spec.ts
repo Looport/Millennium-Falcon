@@ -11,7 +11,7 @@ test('should open join modal', async ({page}) => {
 })
 
 test('page should show on visit', async ({page}) => {
-  await page.goto('http://localhost:3000/join')
+  await page.goto(`${WEB_URL}/join`)
 
   await expect(page.getByRole('dialog')).toBeHidden()
 
