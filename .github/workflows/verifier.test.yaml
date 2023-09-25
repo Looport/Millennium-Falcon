@@ -1,8 +1,7 @@
 name: Verifier e2e Test
+
 on:
-  push:
-    branches:
-      - main
+  pull_request:
     paths:
       - 'application/services/**'
 jobs:
