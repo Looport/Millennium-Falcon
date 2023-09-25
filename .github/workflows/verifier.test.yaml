@@ -12,6 +12,13 @@ jobs:
       - uses: actions/checkout@v3
         env:
           WEB_URL: http://aloco.local
+          API_URL: http://aloco.local/api
+      - uses: hiberbee/github-action-skaffold@1.20.0
+        with:
+          command: build
+          repository: ghcr.io/hiberbee/docker
+          image: nodejs
+          tag: ${{ github.sha }}
       - uses: medyagh/setup-minikube@master
         with:
           kubernetes-version: 1.22.2
