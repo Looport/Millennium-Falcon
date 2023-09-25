@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'application/services/**'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -12,7 +13,6 @@ jobs:
         env:
           WEB_URL: http://aloco.local
       - run: |
-            export SHELL=/bin/bash
             eval $(minikube -p minikube docker-env)
             cd infrastructure/k8s/web/images && sh cmd.sh buildx
             cd infrastructure/k8s/passport/images && sh cmd.sh buildx
