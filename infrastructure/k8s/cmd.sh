@@ -7,6 +7,9 @@ case $cmd in
 "watch-local")
   skaffold dev
   ;;
+"clean-local")
+  skaffold delete
+  ;;
 "deploy-dev")
   helm install aloco template --values template/values-development.yaml
   ;;

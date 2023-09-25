@@ -45,7 +45,8 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
     )
   }
 
-  const register = variant === JoinFormVariantEnum.login
+  const register = variant === JoinFormVariantEnum.register
+  const login = variant === JoinFormVariantEnum.login
 
   return (
     <Card
@@ -78,7 +79,7 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
               Create an Account
             </Card.Title>
           )}
-          {variant === 'login' && (
+          {login && (
             <Card.Title
               className={classname([
                 'bg-gradient-to-r to-[#FF343F] from-[#FFE853]',
@@ -98,7 +99,7 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
               </Button>
             </div>
           )}
-          {variant === 'login' && (
+          {login && (
             <div className={classname(['text-center'])}>
               Want to register{' '}
               <Button
@@ -132,10 +133,8 @@ export const JoinForm = ({onSubmit}: JoinFormProps) => {
               />
             </li>
           </ul>
-          {register && (
-            <div>or use your email for registration:</div>
-          )}
-          {variant === 'login' && <div>or use your email for login:</div>}
+          {register && <div>or use your email for registration:</div>}
+          {login && <div>or use your email for login:</div>}
         </header>
         <div>
           <form onSubmit={submitForm}>

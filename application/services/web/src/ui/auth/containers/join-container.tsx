@@ -22,7 +22,7 @@ export const JoinContainer = () => {
 const getSubmitAction = (variant: JoinFormVariantEnum) => {
   const action = {login, register}[variant]
 
-  return async function submit (data: any) {
+  return async function submit(data: any) {
     const body = await action(data)
 
     setToken(body.accessToken)

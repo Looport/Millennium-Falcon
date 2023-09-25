@@ -40,7 +40,10 @@ test('should login user and redirect on "/"', async ({page, request}) => {
   await page.getByRole('button', {name: /login/iu}).click()
 
   await page.waitForURL(/\/$/u)
-  await expect(page.getByText(credentials.email)).toBeVisible()
+
+  await expect(page.getByLabel(credentials.email)).toBeVisible()
+  await expect(page.getByRole('img', {name: credentials.email})).toBeVisible()
+
 })
 
 test('should login user from modal and redirect on "/"', async ({
@@ -66,5 +69,7 @@ test('should login user from modal and redirect on "/"', async ({
   await page.getByRole('button', {name: /login/iu}).click()
 
   await page.waitForURL(/\/$/u)
-  await expect(page.getByText(credentials.email)).toBeVisible()
+
+  await expect(page.getByLabel(credentials.email)).toBeVisible()
+  await expect(page.getByRole('img', {name: credentials.email})).toBeVisible()
 })

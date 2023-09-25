@@ -32,7 +32,9 @@ test('should register user and redirect on "/"', async ({page}) => {
   await page.getByText(/sign up/iu).click()
 
   await page.waitForURL(/\/$/u)
-  await expect(page.getByText(email)).toBeVisible()
+
+  await expect(page.getByLabel(email)).toBeVisible()
+  await expect(page.getByRole('img', {name: email})).toBeVisible()
 })
 
 test('should register user from modal and redirect on "/"', async ({page}) => {
@@ -50,5 +52,6 @@ test('should register user from modal and redirect on "/"', async ({page}) => {
 
   await expect(page.getByRole('dialog')).toBeHidden()
 
-  await expect(page.getByText(email)).toBeVisible()
+  await expect(page.getByLabel(email)).toBeVisible()
+  await expect(page.getByRole('img', {name: email})).toBeVisible()
 })
