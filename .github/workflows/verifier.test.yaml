@@ -18,8 +18,6 @@ jobs:
         with:
           helm: '3.12.3'
           skaffold: '2.7.0'
-      - run: helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-      - run: helm repo update
       - run: cd infrastructure/k8s && sh cmd.sh run-local
       - uses: actions/setup-node@v3
         with:
