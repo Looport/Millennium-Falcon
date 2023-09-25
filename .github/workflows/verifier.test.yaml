@@ -13,6 +13,7 @@ jobs:
         env:
           WEB_URL: http://aloco.local
           API_URL: http://aloco.local/api
+      - uses: medyagh/setup-minikube@master
       - uses: yokawasa/action-setup-kube-tools@v0.9.2
         with:
           setup-tools: |
