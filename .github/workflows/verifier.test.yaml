@@ -27,7 +27,7 @@ jobs:
       - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
       - run: pnpm -F @looport/verifier install
       - run: cd application/services/verifier && npx playwright install --with-deps
-      - run: minikube tunnel &> /dev/null &
+      - run: minikube tunnel
       - run: pnpm -F @looport/verifier test
         env:
           WEB_URL: http://aloco.local
