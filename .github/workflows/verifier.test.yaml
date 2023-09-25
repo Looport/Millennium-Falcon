@@ -14,6 +14,7 @@ jobs:
           WEB_URL: http://aloco.local
           API_URL: http://aloco.local/api
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          PLAYWRIGHT_BROWSERS_PATH: 0
       - uses: medyagh/setup-minikube@master
         with:
           addons: ingress
@@ -31,4 +32,5 @@ jobs:
       - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
       - run: npx playwright install-deps
       - run: pnpm -F @looport/verifier install
+      - run: npx playwright install
       - run: pnpm -F @looport/verifier test
