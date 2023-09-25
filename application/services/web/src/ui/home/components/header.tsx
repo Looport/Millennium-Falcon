@@ -157,6 +157,7 @@ export const Header = async () => {
               >
                 <Image
                   className={classname(['rounded-full'])}
+                  aria-label={body.email}
                   width={47}
                   height={47}
                   src="/Avatar.png"
@@ -175,7 +176,9 @@ export const Header = async () => {
                 ])}
               >
                 <ul className={classname(['cursor-pointer'])}>
-                  <Logout />
+                  <Logout>
+                    <li>Logout</li>
+                  </Logout>
                 </ul>
               </div>
             </div>

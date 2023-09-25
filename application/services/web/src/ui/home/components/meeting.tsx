@@ -52,13 +52,19 @@ export const Meetings = () => (
         ])}
       >
         <Button
+          href="/join"
           type="primary"
           icon={<BiUserCircle />}
         >
           Join Now
         </Button>
         <span>or</span>
-        <Button icon={<BsCameraVideo />}>Start Call</Button>
+        <Button
+          href="/room/f09f8943jfoisjfj34f98j"
+          icon={<BsCameraVideo />}
+        >
+          Start Call
+        </Button>
       </div>
       <div
         className={classname([
