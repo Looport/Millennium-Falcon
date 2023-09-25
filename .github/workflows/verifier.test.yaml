@@ -13,18 +13,18 @@ jobs:
         env:
           WEB_URL: http://aloco.local
           API_URL: http://aloco.local/api
-      - uses: hiberbee/github-action-skaffold@1.20.0
-        with:
-          command: build
-          repository: ghcr.io/hiberbee/docker
-          image: nodejs
-          tag: ${{ github.sha }}
       - uses: medyagh/setup-minikube@master
         with:
           kubernetes-version: 1.22.2
           memory: 4096
           cpus: 2
           driver: docker
+      - uses: hiberbee/github-action-skaffold@1.20.0
+        with:
+          command: build
+          repository: ghcr.io/hiberbee/docker
+          image: nodejs
+          tag: ${{ github.sha }}
       - run: |
             export SHELL=/bin/bash
             eval $(minikube -p minikube docker-env)
