@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        env:
-          WEB_URL: http://aloco.local
-          API_URL: http://aloco.local/api
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-          PLAYWRIGHT_BROWSERS_PATH: 0
       - uses: medyagh/setup-minikube@master
         with:
           addons: ingress
@@ -29,6 +24,11 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+        env:
+          WEB_URL: http://aloco.local
+          API_URL: http://aloco.local/api
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          PLAYWRIGHT_BROWSERS_PATH: 0
       - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
       - run: pnpm -F @looport/verifier install
       - run: cd application/services/verifier && npx playwright install --with-deps
