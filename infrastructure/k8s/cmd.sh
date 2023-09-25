@@ -1,5 +1,8 @@
 cmd="$1"
 
+prod_value="template/values-production.yaml"
+dev_value="template/values-development.yaml"
+
 case $cmd in
 "run-local")
   skaffold run
@@ -11,16 +14,19 @@ case $cmd in
   skaffold delete
   ;;
 "deploy-dev")
-  helm install aloco template --values template/values-development.yaml
+  helm install aloco template --values "$dev_value"
   ;;
 "deploy-prod")
-  helm install aloco template --values template/values-production.yaml
+  helm install aloco template --values "$prod_value"
   ;;
 "upgrade-dev")
-  helm upgrade aloco template --values template/values-development.yaml
+  helm upgrade aloco template --values "$dev_value"
   ;;
 "upgrade-prod")
-  helm upgrade aloco template --values template/values-production.yaml
+  helm upgrade aloco template --values "$prod_value"
+  ;;
+"lint")
+  helm lint template --values "$prod_value" && helm lint template --values "$dev_value"
   ;;
 *)
   echo "$cmd" "don't exits"

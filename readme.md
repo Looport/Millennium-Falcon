@@ -20,7 +20,7 @@
 
 **Testing:**: [Node Test Runner](https://nodejs.org/api/test.html), [Node Assertions](https://nodejs.org/api/assert.html), [Playwright](https://playwright.dev/docs/intro);
 
-**CI/CD**: [GitHub Actions](https://docs.github.com/en/actions), [Digital Ocean](https://www.digitalocean.com)
+**CI/CD**: [GitHub Actions](https://docs.github.com/en/actions), [Digital Ocean](https://www.digitalocean.com);
 
 
 ## Starting Point
@@ -127,7 +127,7 @@ doctl auth init
 doctl kubernetes cluster kubeconfig save <context-id>
 
 # 🚨 Verify. Now all kubectl command references to this context
-# ☢️ This is very important, because you could accidentally corrupt to the wrong cluster
+# ☢️ This is very important because you may accidentally damage the wrong cluster
 kubectl config get-contexts
 kubectl cluster-info
 kubectl get nodes
