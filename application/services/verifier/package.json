@@ -13,8 +13,7 @@
     "@looport/eslint-config": "workspace:*",
     "@playwright/test": "^1.37.1",
     "@types/node": "20.5.3",
-    "eslint-plugin-playwright": "^0.16.0",
-    "playwright": "^1.38.1"
+    "eslint-plugin-playwright": "^0.16.0"
   },
   "eslintConfig": {
     "extends": [
