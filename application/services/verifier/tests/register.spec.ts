@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 
 import {generateAuthCredentials} from '../modules/auth/credentials'
-import {WEB_URL} from '../modules/common/constants'
+import {WEB_URL} from '../modules/common/envs'
 
 test('should open join modal', async ({page}) => {
   await page.goto(WEB_URL)

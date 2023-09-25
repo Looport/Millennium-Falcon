@@ -1,0 +1,32 @@
+name: Verifier e2e Test
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'application/services/**'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        env:
+          WEB_URL: http://aloco.local
+      - run: |
+            export SHELL=/bin/bash
+            eval $(minikube -p minikube docker-env)
+            cd infrastructure/k8s/web/images && sh cmd.sh buildx
+            cd infrastructure/k8s/passport/images && sh cmd.sh buildx
+            echo -n "verifying images:"
+            docker images
+      - uses: azure/setup-helm@v3
+      - run: cd infrastructure/k8s && sh cmd.sh run-local
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
+      - run: pnpm -F @looport/verifier install
+      - run: pnpm -F @looport/verifier test
