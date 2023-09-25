@@ -13,9 +13,13 @@ jobs:
         env:
           WEB_URL: http://aloco.local
           API_URL: http://aloco.local/api
-      - uses: medyagh/setup-minikube@master
-      - uses: azure/setup-helm@v3
-      - uses: hiberbee/github-action-skaffold@1.20.0
+      - uses: yokawasa/action-setup-kube-tools@v0.9.2
+        with:
+          setup-tools: |
+            kubectl
+            helm
+            kustomize
+            skaffold
       - run: cd infrastructure/k8s && sh cmd.sh run-local
       - uses: actions/setup-node@v3
         with:
@@ -26,3 +30,35 @@ jobs:
       - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
       - run: pnpm -F @looport/verifier install
       - run: pnpm -F @looport/verifier test
+
+
+#
+#
+#        name: Verifier e2e Test
+#
+#        on:
+#          pull_request:
+#            paths:
+#              - 'application/services/**'
+#
+#        jobs:
+#          e2e:
+#            runs-on: ubuntu-latest
+#            steps:
+#              - uses: actions/checkout@v3
+#                env:
+#                  WEB_URL: http://aloco.local
+#                  API_URL: http://aloco.local/api
+#              - uses: medyagh/setup-minikube@master
+#              - uses: azure/setup-helm@v3
+#              - uses: hiberbee/github-action-skaffold@1.20.0
+#              - run: cd infrastructure/k8s && sh cmd.sh run-local
+#              - uses: actions/setup-node@v3
+#                with:
+#                  node-version: 20
+#              - uses: pnpm/action-setup@v2
+#                with:
+#                  version: 8
+#              - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
+#              - run: pnpm -F @looport/verifier install
+#              - run: pnpm -F @looport/verifier test
