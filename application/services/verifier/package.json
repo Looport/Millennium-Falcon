@@ -3,8 +3,8 @@
   "name": "@looport/verifier",
   "author": "Vitalii Khotei <khoteiv.dev@gmail.com>",
   "scripts": {
-    "test": "npx playwright test",
-    "run": "npx playwright test --ui",
+    "test": "playwright test",
+    "run": "playwright test --ui",
     "type-check": "tsc --noEmit",
     "lint": "eslint \"tests/**/*.ts\"",
     "format": "pnpm lint --fix"
@@ -13,7 +13,8 @@
     "@looport/eslint-config": "workspace:*",
     "@playwright/test": "^1.37.1",
     "@types/node": "20.5.3",
-    "eslint-plugin-playwright": "^0.16.0"
+    "eslint-plugin-playwright": "^0.16.0",
+    "playwright": "^1.38.1"
   },
   "eslintConfig": {
     "extends": [

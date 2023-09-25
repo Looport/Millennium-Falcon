@@ -4,6 +4,7 @@ deploy:
   helm:
     releases:
       - name: aloco
+        skipBuildDependencies: true
         chartPath: ./template
         valuesFiles:
           - ./template/values-development.yaml
