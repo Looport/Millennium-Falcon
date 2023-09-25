@@ -1,4 +1,4 @@
-name: Deploy @looport/web
+name: Deploy Infrastructure
 on:
   push:
     branches:

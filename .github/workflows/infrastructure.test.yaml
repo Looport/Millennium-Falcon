@@ -1,4 +1,4 @@
-name: Deploy @looport/web
+name: Test Infrastructure
 on:
   pull_request:
     paths:
