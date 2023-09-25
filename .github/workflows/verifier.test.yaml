@@ -31,5 +31,5 @@ jobs:
           version: 8
       - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
       - run: pnpm -F @looport/verifier install
-      - run: cd application/services/verifier && npx playwright install
+      - run: cd application/services/verifier && npx playwright install --with-deps
       - run: pnpm -F @looport/verifier test
