@@ -13,7 +13,6 @@ jobs:
         env:
           WEB_URL: http://aloco.local
       - run: |
-            eval $(minikube -p minikube docker-env)
             cd infrastructure/k8s/web/images && sh cmd.sh buildx
             cd infrastructure/k8s/passport/images && sh cmd.sh buildx
             echo -n "verifying images:"
