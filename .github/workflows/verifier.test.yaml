@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@v3
         env:
           WEB_URL: http://aloco.local
+      - uses: medyagh/setup-minikube@master
       - run: |
             cd infrastructure/k8s/web/images && sh cmd.sh buildx
             cd infrastructure/k8s/passport/images && sh cmd.sh buildx
