@@ -20,7 +20,7 @@
 
 **Testing:**: [Node Test Runner](https://nodejs.org/api/test.html), [Node Assertions](https://nodejs.org/api/assert.html), [Playwright](https://playwright.dev/docs/intro);
 
-**CI/CD**: [GitHub Actions](https://docs.github.com/en/actions), [Digital Ocean](https://www.digitalocean.com)
+**CI/CD**: [GitHub Actions](https://docs.github.com/en/actions), [Digital Ocean](https://www.digitalocean.com);
 
 
 ## Starting Point
@@ -63,8 +63,8 @@ minikube start
 minikube addons enable metrics-server
 minikube addons enable ingress
 
-# 2️⃣ Add to /etc/hosts
-127.0.0.1 aloco.local
+# 2️⃣ Update /etc/hosts
+sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
 
 # 3️⃣ Run Application in Development Mode
 cd infrastructure/k8s
@@ -127,7 +127,7 @@ doctl auth init
 doctl kubernetes cluster kubeconfig save <context-id>
 
 # 🚨 Verify. Now all kubectl command references to this context
-# ☢️ This is very important, because you could accidentally corrupt to the wrong cluster
+# ☢️ This is very important because you may accidentally damage the wrong cluster
 kubectl config get-contexts
 kubectl cluster-info
 kubectl get nodes

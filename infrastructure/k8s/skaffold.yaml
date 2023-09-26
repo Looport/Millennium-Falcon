@@ -1,9 +1,10 @@
-apiVersion: skaffold/v2beta29
+apiVersion: skaffold/v4beta6
 kind: Config
 deploy:
   helm:
     releases:
       - name: aloco
+        skipBuildDependencies: true
         chartPath: ./template
         valuesFiles:
           - ./template/values-development.yaml

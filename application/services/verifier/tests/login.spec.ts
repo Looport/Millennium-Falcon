@@ -1,8 +1,8 @@
 import {test, expect} from '@playwright/test'
 
-import {PASSPORT_API_URL} from '../modules/auth/contants'
+import {PASSPORT_API_URL} from '../modules/auth/envs'
 import {generateAuthCredentials} from '../modules/auth/credentials'
-import {WEB_URL} from '../modules/common/constants'
+import {WEB_URL} from '../modules/common/envs'
 
 test('should open join modal and switch to login form', async ({page}) => {
   await page.goto(WEB_URL)

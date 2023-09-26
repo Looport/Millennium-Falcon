@@ -59,3 +59,19 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
+{{- if .Values.app.env | eq "development" }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: passport-load-balancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - name: web-debug
+      protocol: TCP
+      port: 4000
+      targetPort: 3000
+{{- end }}

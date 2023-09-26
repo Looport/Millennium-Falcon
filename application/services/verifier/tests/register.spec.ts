@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 
 import {generateAuthCredentials} from '../modules/auth/credentials'
-import {WEB_URL} from '../modules/common/constants'
+import {WEB_URL} from '../modules/common/envs'
 
 test('should open join modal', async ({page}) => {
   await page.goto(WEB_URL)
@@ -11,7 +11,7 @@ test('should open join modal', async ({page}) => {
 })
 
 test('page should show on visit', async ({page}) => {
-  await page.goto('http://localhost:3000/join')
+  await page.goto(`${WEB_URL}/join`)
 
   await expect(page.getByRole('dialog')).toBeHidden()
 

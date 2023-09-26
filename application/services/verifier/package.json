@@ -3,8 +3,8 @@
   "name": "@looport/verifier",
   "author": "Vitalii Khotei <khoteiv.dev@gmail.com>",
   "scripts": {
-    "test": "npx playwright test",
-    "run": "npx playwright test --ui",
+    "test": "playwright test",
+    "run": "playwright test --ui",
     "type-check": "tsc --noEmit",
     "lint": "eslint \"tests/**/*.ts\"",
     "format": "pnpm lint --fix"

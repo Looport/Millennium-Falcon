@@ -1,10 +1,10 @@
-name: Deploy @looport/web
+name: Deploy Infrastructure
 on:
   push:
     branches:
       - main
     paths:
-      - 'application/services/web/**'
+      - 'infrastructure/k8s/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,4 +19,5 @@ jobs:
         with:
           token: ${{ secrets.DO_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save ${{ secrets.DO_CLUSTER_CONTEXT_ID }}
-      - run: kubectl rollout restart deployment web
+      - uses: azure/setup-helm@v3
+      - run: cd infrastructure/k8s && sh cmd.sh upgrade-prod

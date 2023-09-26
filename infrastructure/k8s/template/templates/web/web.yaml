@@ -34,7 +34,7 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
-{{- if .Values.app.env | eq "production" }}
+{{- if .Values.app.env | eq "development" }}
 ---
 apiVersion: v1
 kind: Service

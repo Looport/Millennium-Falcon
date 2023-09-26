@@ -1,8 +1,8 @@
 import {test, expect} from '@playwright/test'
 
 import {generateAuthCredentials} from '../modules/auth/credentials'
-import {WEB_URL} from '../modules/common/constants'
-import {PASSPORT_API_URL} from "../modules/auth/contants";
+import {WEB_URL} from '../modules/common/envs'
+import {PASSPORT_API_URL} from "../modules/auth/envs";
 
 test('should register user from modal and redirect on "/"', async ({page, request, context}) => {
   const credentials = await generateAuthCredentials()

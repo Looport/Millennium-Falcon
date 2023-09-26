@@ -5,7 +5,7 @@ import {Repository} from 'typeorm'
 import {ActiveUser} from '@/authorization/decorators/active-user.decorator'
 import {ActiveUserInterface} from '@/authorization/interfaces/active-user.interface'
 import {Serialize} from '@/common/interceptors/serialize.interceptor'
-import {UserDto} from '@/user/dots/user.dto'
+import {UserDto} from '@/user/dtos/user.dto'
 import {UserEntity} from '@/user/entities/user/user.entity'
 
 @Serialize(UserDto)

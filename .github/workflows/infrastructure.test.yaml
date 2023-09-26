@@ -1,0 +1,12 @@
+name: Test Infrastructure
+on:
+  pull_request:
+    paths:
+      - 'infrastructure/k8s/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: azure/setup-helm@v3
+      - run: cd infrastructure/k8s && sh cmd.sh lint
