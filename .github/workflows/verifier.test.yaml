@@ -28,7 +28,8 @@ jobs:
         with:
           version: 8
       - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
-      - run: minikube runnel &> dev>null &
+#      - run: minikube runnel &> dev>null &
+      - run: minikube runnel
       - run: curl http://127.0.0.1:3000
       - run: pnpm -F @looport/verifier install
       - run: cd application/services/verifier && npx playwright install --with-deps
