@@ -17,10 +17,8 @@ jobs:
       - uses: medyagh/setup-minikube@master
         with:
           addons: ingress
-      - run: docker version
       - run: cd infrastructure/k8s && sh cmd.sh run-local
-      - run: minikube addons ls
-      - run: minikube service list
+      - run: kubectl get pods -n ingress-nginx
       - run: minikube tunnel
       - uses: actions/setup-node@v3
         with:
