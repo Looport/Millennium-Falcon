@@ -15,15 +15,10 @@ jobs:
           setup-tools: | 
             helm
             skaffold
-          helm: '3.12.3'
-          skaffold: '2.7.0'
       - uses: medyagh/setup-minikube@master
         with:
-          wait: all
-          addons: registry,ingress
+          addons: ingress
       - run: cd infrastructure/k8s && sh cmd.sh run-local
-      - run: kubectl get pods -n ingress-nginx
-      - run: minikube tunnel
       - uses: actions/setup-node@v3
         with:
           node-version: 20
