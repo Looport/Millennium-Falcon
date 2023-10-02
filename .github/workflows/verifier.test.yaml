@@ -30,11 +30,10 @@ jobs:
 #      - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
 #      - run: minikube service list
 #      - run: minikube tunnel &> dev>null &
-##      - run: minikube tunnel
-#      - run: curl http://127.0.0.1:3000
+#      - run: minikube tunnel <- Don't tack Ingress POD!!!
 #      - run: pnpm -F @looport/verifier install
 #      - run: cd application/services/verifier && npx playwright install --with-deps
 #      - run: pnpm -F @looport/verifier test
 #        env:
-#          WEB_URL: http://127.0.0.1:3000
-#          API_URL: http://127.0.0.1:4000/api
+#          WEB_URL: http://aloco.local
+#          API_URL: http://aloco.local/api

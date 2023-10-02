@@ -19,5 +19,5 @@ jobs:
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DO_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save ${{ secrets.DO_CLUSTER_CONTEXT }}
+      - run: doctl kubernetes cluster kubeconfig save ${{ secrets.DO_CLUSTER_CONTEXT_ID }}
       - run: kubectl rollout restart deployment passport
