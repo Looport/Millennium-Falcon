@@ -1,18 +1,20 @@
-import {classname} from "@/ui/common/utils/classname";
-import React from "react";
-import {VscSend, IconProvider} from "@/ui/common/components/icons";
-import Image from "next/image";
-import {Logout} from "@/ui/home/components/logout";
+import Image from 'next/image'
+import React from 'react'
+
+import {VscSend, IconProvider} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
 
 export default function Page() {
   return (
     <main className={classname(['w-full h-screen'])}>
       <div className={classname(['flex h-full'])}>
-        <div className={classname([
-          'w-[10rem] py-[2rem]',
-          'flex flex-col',
-          'items-center'
-        ])}>
+        <div
+          className={classname([
+            'w-[10rem] py-[2rem]',
+            'flex flex-col',
+            'items-center',
+          ])}
+        >
           <div
             className={classname([
               'w-[4.7rem] h-[4.7rem] rounded-full',
@@ -29,25 +31,24 @@ export default function Page() {
             />
           </div>
         </div>
-        <div className={classname(['flex-1'])}>
-          videos
-        </div>
-        <div  className={classname([
-          'w-[45rem] border-l-[1px] border-slate-50/10 drop-shadow-xl',
-          'bg-zinc-900/80 backdrop-blur-sm',
+        <div className={classname(['flex-1'])}>videos</div>
+        <div
+          className={classname([
+            'w-[45rem] border-l-[1px] border-slate-50/10 drop-shadow-xl',
+            'bg-zinc-900/80 backdrop-blur-sm',
 
-          'flex flex-col',
-          'px-[5rem] py-[1rem]'
-        ])}>
-          <div className={classname([
-            'h-[6rem]',
-            'border-b-[1px] border-slate-50/25'
-          ])}>
-          </div>
-          <div  className={classname(['flex-1'])}>
-            chat
-          </div>
-          <div  className={classname(['h-[10rem]'])}>
+            'flex flex-col',
+            'px-[5rem] py-[1rem]',
+          ])}
+        >
+          <div
+            className={classname([
+              'h-[6rem]',
+              'border-b-[1px] border-slate-50/25',
+            ])}
+          ></div>
+          <div className={classname(['flex-1'])}>chat</div>
+          <div className={classname(['h-[10rem]'])}>
             <div className={classname(['relative'])}>
               <div
                 className={classname([

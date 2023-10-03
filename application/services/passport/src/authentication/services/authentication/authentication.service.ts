@@ -22,7 +22,9 @@ export class AuthenticationService {
     private readonly passwordHashService: PasswordHashService
   ) {}
 
-  async register(credentials: CredentialsDto): Promise<{accessToken: string}> {
+  async register(
+    credentials: CredentialsDto
+  ): Promise<{accessToken: string; user: UserEntity}> {
     const existedUser = await this.userRepository.findOne({
       where: {email: credentials.email},
     })
@@ -52,10 +54,13 @@ export class AuthenticationService {
 
     return {
       accessToken: token,
+      user,
     }
   }
 
-  async login(credentials: CredentialsDto): Promise<{accessToken: string}> {
+  async login(
+    credentials: CredentialsDto
+  ): Promise<{accessToken: string; user: UserEntity}> {
     const user = await this.userRepository.findOne({
       where: {email: credentials.email},
     })
@@ -92,6 +97,7 @@ export class AuthenticationService {
 
     return {
       accessToken: token,
+      user,
     }
   }
 

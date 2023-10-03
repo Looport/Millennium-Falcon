@@ -12,6 +12,7 @@
   },
   "scripts": {
     "web": "pnpm --filter '@looport/web' dev",
-    "passport": "pnpm --filter '@looport/passport' start:dev"
+    "passport": "pnpm --filter '@looport/passport' start:dev",
+    "format": "pnpm --filter '*' format"
   }
 }

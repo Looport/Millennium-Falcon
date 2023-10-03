@@ -1,3 +1,4 @@
+import {NATSModule} from '@looport/nats'
 import {Module, Provider} from '@nestjs/common'
 import {APP_PIPE} from '@nestjs/core'
 import {TypeOrmModule} from '@nestjs/typeorm'
@@ -30,6 +31,7 @@ const GLOBAL_PROVIDERS: Provider[] = [
         username: process.env.DB_USER ?? 'root',
       }),
     }),
+    NATSModule.forRoot({url: process.env.NATS_URL ?? 'localhost'}),
     AuthenticationModule,
     AuthorizationModule,
     UserModule,
