@@ -74,9 +74,6 @@ importers:
       class-validator:
         specifier: ^0.14.0
         version: 0.14.0
-      nats:
-        specifier: ^2.17.0
-        version: 2.17.0
       pg:
         specifier: ^8.11.3
         version: 8.11.3
