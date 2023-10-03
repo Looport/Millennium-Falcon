@@ -28,7 +28,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/passport install
+      - run: pnpm -F @looport/passport install && pnpm -F @looport/passport^... build
       - run: pnpm -F @looport/passport test:all
         env:
           DB_PASSWORD: root
