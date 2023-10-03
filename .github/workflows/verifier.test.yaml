@@ -1,4 +1,4 @@
-name: Verifier e2e Test
+name: E2E Verifier Test
 
 on:
   pull_request:
