@@ -1,3 +1,4 @@
+import {NATSModule} from '@looport/nats'
 import {Module} from '@nestjs/common'
 import {JwtModule} from '@nestjs/jwt'
 
@@ -15,6 +16,7 @@ import {UserModule} from '@/user/user.module'
       secret: 'SECRET_JWT_STRING',
       signOptions: {expiresIn: '24h'},
     }),
+    NATSModule,
     UserModule,
   ],
   providers: [AuthenticationService, PasswordHashService],

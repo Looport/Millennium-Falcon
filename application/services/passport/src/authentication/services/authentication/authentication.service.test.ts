@@ -60,7 +60,7 @@ describe('AuthenticationService', () => {
       mock.restoreAll()
     })
 
-    it('should return token', async () => {
+    it('should return token and user', async () => {
       userRepositoryMock.findOne.mock.mockImplementation(() =>
         Promise.resolve(null)
       )
@@ -68,6 +68,7 @@ describe('AuthenticationService', () => {
       const result = await service.register(validCredentials)
 
       ok(result.accessToken)
+      ok(result.user)
     })
 
     it('should hash password', async () => {
@@ -112,10 +113,11 @@ describe('AuthenticationService', () => {
       mock.restoreAll()
     })
 
-    it('should return token', async () => {
+    it('should return token and user', async () => {
       const result = await service.login(validCredentials)
 
       ok(result.accessToken)
+      ok(result.user)
     })
 
     it("should throw error when user don't exist", async () => {

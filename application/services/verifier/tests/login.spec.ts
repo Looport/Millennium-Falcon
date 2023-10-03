@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 
-import {PASSPORT_API_URL} from '../modules/auth/envs'
 import {generateAuthCredentials} from '../modules/auth/credentials'
+import {PASSPORT_API_URL} from '../modules/auth/envs'
 import {WEB_URL} from '../modules/common/envs'
 
 test('should open join modal and switch to login form', async ({page}) => {
@@ -43,7 +43,6 @@ test('should login user and redirect on "/"', async ({page, request}) => {
 
   await expect(page.getByLabel(credentials.email)).toBeVisible()
   await expect(page.getByRole('img', {name: credentials.email})).toBeVisible()
-
 })
 
 test('should login user from modal and redirect on "/"', async ({

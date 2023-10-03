@@ -31,6 +31,19 @@ spec:
                 sleep 2
               done
               echo "Postgres Ready!"
+        - name: test-nats
+          image: curlimages/curl:7.87.0
+          env:
+            - name: NATS_URL
+              value: "http://nats-cluster-ip:8222/varz"
+          command: [ 'sh', '-c' ]
+          args:
+            - |
+              until curl -s $NATS_URL > /dev/null
+              do
+                echo "Waiting for nats..."
+                sleep 2
+              done
       containers:
         - name: passport
           image: dormammun/looport-passport:latest
@@ -43,6 +56,8 @@ spec:
               value: {{ .Values.passport.pg.password }}
             - name: DB_USER
               value: {{ .Values.passport.pg.user }}
+            - name: NATS_URL
+              value: nats-cluster-ip
             - name: NODE_ENV
               value: {{ .Values.app.env }}
 ---

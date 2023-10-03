@@ -48,7 +48,7 @@ describe('AuthenticationController (e2e)', () => {
       await userRepository.delete({})
     })
 
-    it('should return token with respective payload', async () => {
+    it('should return only token', async () => {
       const {body} = await request(app.getHttpServer())
         .post('/authentication/register')
         .send(validCredentials)
@@ -58,6 +58,7 @@ describe('AuthenticationController (e2e)', () => {
         accessToken: body.accessToken,
       })
 
+      // verify token payload
       const payload = await jwtService.verifyAsync(body.accessToken)
 
       ok(payload.sub)
