@@ -38,6 +38,7 @@ jobs:
           DB_PORT: 5432
           JWT_SECRET: 'secret'
           JWT_EXPIRES: '1d'
+          NATS_URL: 'nats-url'
   lint:
     runs-on: ubuntu-22.04
     steps:
