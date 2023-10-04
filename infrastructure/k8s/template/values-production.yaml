@@ -3,6 +3,9 @@ app:
   name: aloco
   host: aloco.club
   enableIngress: true
+  jwt:
+    secret: "ioj*(*jd##$"
+    expires: "1d"
 
 passport:
   name: "passport"
