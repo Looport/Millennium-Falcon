@@ -3,10 +3,14 @@ import {beforeEach, describe, it} from 'node:test'
 
 import {Test} from '@nestjs/testing'
 
-import {createUserRepositoryMock, FAKE_USER_ID, userMock,} from '@/storage/repositories/user/user-mock.repository'
+import {
+  createUserRepositoryMock,
+  FAKE_USER_ID,
+  userMock,
+} from '@/storage/repositories/user/user-mock.repository'
+import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 import {UserController} from './user.controller'
-import {UserRepository} from "@/storage/repositories/user/user.repository";
 
 describe('UserController', () => {
   let controller: UserController

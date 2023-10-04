@@ -2,7 +2,7 @@ import {mock} from 'node:test'
 
 import {FAKE_PASSWORD_HASH} from '@/authentication/services/password-hash/password-hash-mock.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {UserRepository} from "@/storage/repositories/user/user.repository";
+import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 export const FAKE_USER_ID = 1
 

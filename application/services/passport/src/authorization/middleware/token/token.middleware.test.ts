@@ -6,7 +6,7 @@ import {
   createJwtServiceMock,
   FAKE_TOKEN,
 } from '@/authentication/test/jwt.service.mock'
-import {REQUEST_ACTIVE_USER_KEY} from '@/authorization/constants'
+import {REQUEST_ACTIVE_USER_KEY} from '@/authorization/common/constants'
 
 import {TokenMiddleware} from './token.middleware'
 

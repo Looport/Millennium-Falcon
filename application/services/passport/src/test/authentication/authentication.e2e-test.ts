@@ -12,9 +12,12 @@ import {
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
 } from '@/authentication/services/authentication/constants'
-import {invalidCredentials, validCredentials,} from '@/authentication/test/authentication.mock'
+import {
+  invalidCredentials,
+  validCredentials,
+} from '@/authentication/test/authentication.mock'
 import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
-import {UserRepository} from "@/storage/repositories/user/user.repository";
+import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
@@ -30,9 +33,7 @@ describe('AuthenticationController (e2e)', () => {
     app = moduleFixture.createNestApplication(new FastifyAdapter())
 
     jwtService = moduleFixture.get<JwtService>(JwtService)
-    userRepository = moduleFixture.get<UserRepository>(
-      UserRepository
-    )
+    userRepository = moduleFixture.get<UserRepository>(UserRepository)
 
     await app.init()
     await app.getHttpAdapter().getInstance().ready()

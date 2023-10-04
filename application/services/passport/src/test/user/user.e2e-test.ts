@@ -7,7 +7,7 @@ import request from 'supertest'
 
 import {AppModule} from '@/app/app.module'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {UserRepository} from "@/storage/repositories/user/user.repository";
+import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('UserController (e2e)', () => {
   let app: NestFastifyApplication
@@ -21,9 +21,7 @@ describe('UserController (e2e)', () => {
 
     app = moduleFixture.createNestApplication(new FastifyAdapter())
 
-    userRepository = moduleFixture.get<UserRepository>(
-      UserRepository
-    )
+    userRepository = moduleFixture.get<UserRepository>(UserRepository)
 
     await app.init()
     await app.getHttpAdapter().getInstance().ready()

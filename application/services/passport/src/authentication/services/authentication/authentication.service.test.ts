@@ -22,9 +22,9 @@ import {
   createUserRepositoryMock,
   FAKE_USER_ID,
 } from '@/storage/repositories/user/user-mock.repository'
+import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 import {AuthenticationService} from './authentication.service'
-import {UserRepository} from "@/storage/repositories/user/user.repository";
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService

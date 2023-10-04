@@ -9,22 +9,24 @@ import {
 
 import {AuthenticationController} from '@/authentication/authentication.controller'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
+import {AuthenticationConfigService} from '@/authentication/services/authentication-config.service'
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
-import {UserEntity} from '@/storage/entities/user/user.entity'
 import {StorageModule} from '@/storage/storage.module'
-import {UserModule} from '@/user/user.module'
 
 @Module({
   controllers: [AuthenticationController],
-  exports: [JwtModule],
+  exports: [AuthenticationConfigService],
   imports: [
     JwtModule.registerAsync({
+      /**
+       * Should be global, until JwtService used directly.
+       * Example: token.middleware from authorization
+       */
       global: true,
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        secret: configService.getOrThrow('JWT_SECRET'),
-        signOptions: {expiresIn: configService.getOrThrow('JWT_EXPIRES')},
-      }),
+      imports: [AuthenticationModule],
+      inject: [AuthenticationConfigService],
+      useFactory: (authenticationConfigService: AuthenticationConfigService) =>
+        authenticationConfigService.getJWTConfig(),
     }),
     ClientsModule.register([
       {
@@ -38,6 +40,7 @@ import {UserModule} from '@/user/user.module'
   providers: [
     AuthenticationService,
     PasswordHashService,
+    AuthenticationConfigService,
     {
       inject: [ConfigService],
       provide: 'MATH_SERVICE',

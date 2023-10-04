@@ -1,6 +1,6 @@
 import {createParamDecorator, ExecutionContext} from '@nestjs/common'
 
-import {REQUEST_ACTIVE_USER_KEY} from '@/authorization/constants'
+import {REQUEST_ACTIVE_USER_KEY} from '@/authorization/common/constants'
 import {ActiveUserInterface} from '@/authorization/interfaces/active-user.interface'
 
 export const ActiveUser = createParamDecorator(
