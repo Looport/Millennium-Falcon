@@ -1,8 +1,8 @@
 import {mock} from 'node:test'
 
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
-import {FAKE_TOKEN} from '@/authentication/test/jwt.service.mock'
 import {userMock} from '@/storage/repositories/user/user-mock.repository'
+import {FAKE_TOKEN} from "@/authentication/services/token/token-mock.service";
 
 type AuthenticationMockService = {
   [method in keyof AuthenticationService]: ReturnType<(typeof mock)['fn']>

@@ -2,10 +2,10 @@
 import {ok} from 'node:assert'
 import {describe, it, mock} from 'node:test'
 
-import {FAKE_TOKEN} from '@/authentication/test/jwt.service.mock'
 import {REQUEST_ACTIVE_USER_KEY} from '@/authorization/common/constants'
 import {AccessTokenGuard} from '@/authorization/guards/access-token/access-token.guard'
 import {userMock} from '@/storage/repositories/user/user-mock.repository'
+import {FAKE_TOKEN} from "@/authentication/services/token/token-mock.service";
 
 describe('AccessTokenGuard', () => {
   it('should return true when header and active user present', async () => {

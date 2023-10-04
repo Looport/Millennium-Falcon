@@ -1,7 +1,6 @@
 import {deepEqual, ok, rejects} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
-import {JwtService} from '@nestjs/jwt'
 import {Test} from '@nestjs/testing'
 
 import {
@@ -14,8 +13,9 @@ import {
   FAKE_PASSWORD_HASH,
 } from '@/authentication/services/password-hash/password-hash-mock.service'
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
+import {createJwtServiceMock} from '@/authentication/services/token/token-mock.service'
+import {TokenService} from '@/authentication/services/token/token.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {createJwtServiceMock} from '@/authentication/test/jwt.service.mock'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
 import {
   createUserRepositoryMock,
@@ -28,7 +28,7 @@ import {AuthenticationService} from './authentication.service'
 describe('AuthenticationService', () => {
   let service: AuthenticationService
 
-  const jwtServiceMock = createJwtServiceMock()
+  const tokenService = createJwtServiceMock()
   const userRepositoryMock = createUserRepositoryMock()
   const passwordHashServiceMock = createPasswordServiceMock()
 
@@ -37,8 +37,8 @@ describe('AuthenticationService', () => {
       providers: [
         AuthenticationService,
         {
-          provide: JwtService,
-          useValue: jwtServiceMock,
+          provide: TokenService,
+          useValue: tokenService,
         },
         {
           provide: PasswordHashService,

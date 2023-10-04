@@ -5,7 +5,7 @@ import {
   authMock,
   createJwtServiceMock,
   FAKE_TOKEN,
-} from '@/authentication/test/jwt.service.mock'
+} from '@/authentication/services/token/token-mock.service'
 import {REQUEST_ACTIVE_USER_KEY} from '@/authorization/common/constants'
 
 import {TokenMiddleware} from './token.middleware'
@@ -13,13 +13,13 @@ import {TokenMiddleware} from './token.middleware'
 describe('TokenMiddleware', () => {
   it('should inject token payload when header present', async () => {
     const request = {headers: {authorization: `Bearer ${FAKE_TOKEN}`}}
-    const jwtServiceMock = createJwtServiceMock()
+    const tokenService = createJwtServiceMock()
 
     const nextSpy = mock.fn(() => {})
-    const middleware = new TokenMiddleware(jwtServiceMock as any)
+    const middleware = new TokenMiddleware(tokenService as any)
     await middleware.use(request, {}, nextSpy)
 
-    deepEqual(jwtServiceMock.verifyAsync.mock.calls[0].arguments, [FAKE_TOKEN])
+    deepEqual(tokenService.unwrap.mock.calls[0].arguments, [FAKE_TOKEN])
     deepEqual(request[REQUEST_ACTIVE_USER_KEY], authMock)
 
     deepEqual(nextSpy.mock.calls.length, 1)
@@ -27,13 +27,13 @@ describe('TokenMiddleware', () => {
 
   it('should skip token injection when header not present', async () => {
     const request = {headers: {}}
-    const jwtServiceMock = createJwtServiceMock()
+    const tokenService = createJwtServiceMock()
 
     const nextSpy = mock.fn(() => {})
-    const middleware = new TokenMiddleware(jwtServiceMock as any)
+    const middleware = new TokenMiddleware(tokenService as any)
     await middleware.use(request, {}, nextSpy)
 
-    equal(jwtServiceMock.verifyAsync.mock.calls.length, 0)
+    equal(tokenService.unwrap.mock.calls.length, 0)
     deepEqual(request[REQUEST_ACTIVE_USER_KEY], undefined)
 
     deepEqual(nextSpy.mock.calls.length, 1)
