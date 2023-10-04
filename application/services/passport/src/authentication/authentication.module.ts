@@ -1,24 +1,26 @@
-import {NATSModule} from '@looport/nats'
 import {Module} from '@nestjs/common'
 import {JwtModule} from '@nestjs/jwt'
 
 import {AuthenticationController} from '@/authentication/authentication.controller'
+import {getJWTModuleAsyncOptions} from '@/authentication/common/jwt-module-async.options'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
+import {AuthenticationConfigService} from '@/authentication/services/authentication-config.service'
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
-import {UserModule} from '@/user/user.module'
+import {MicroservicesModule} from '@/microservices/microservices.module'
+import {StorageModule} from '@/storage/storage.module'
 
 @Module({
   controllers: [AuthenticationController],
-  exports: [JwtModule],
+  exports: [AuthenticationConfigService],
   imports: [
-    JwtModule.register({
-      global: true,
-      secret: 'SECRET_JWT_STRING',
-      signOptions: {expiresIn: '24h'},
-    }),
-    NATSModule,
-    UserModule,
+    JwtModule.registerAsync(getJWTModuleAsyncOptions()),
+    MicroservicesModule,
+    StorageModule,
   ],
-  providers: [AuthenticationService, PasswordHashService],
+  providers: [
+    AuthenticationService,
+    PasswordHashService,
+    AuthenticationConfigService,
+  ],
 })
 export class AuthenticationModule {}

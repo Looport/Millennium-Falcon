@@ -56,6 +56,12 @@ spec:
               value: {{ .Values.passport.pg.password }}
             - name: DB_USER
               value: {{ .Values.passport.pg.user }}
+            - name: DB_PORT
+              value: "5432"
+            - name: JWT_SECRET
+              value: {{ .Values.passport.jwt.secret }}
+            - name: JWT_EXPIRES
+              value: {{ .Values.passport.jwt.expires }}
             - name: NATS_URL
               value: nats-cluster-ip
             - name: NODE_ENV

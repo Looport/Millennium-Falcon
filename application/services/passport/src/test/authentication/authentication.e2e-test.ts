@@ -1,12 +1,10 @@
-import {deepEqual, ok, notEqual, equal} from 'node:assert/strict'
-import {describe, it, beforeEach, afterEach} from 'node:test'
+import {deepEqual, equal, notEqual, ok} from 'node:assert/strict'
+import {afterEach, beforeEach, describe, it} from 'node:test'
 
 import {JwtService} from '@nestjs/jwt'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
-import {getRepositoryToken} from '@nestjs/typeorm'
 import request from 'supertest'
-import {Repository} from 'typeorm'
 
 import {AppModule} from '@/app/app.module'
 import {
@@ -19,13 +17,13 @@ import {
   validCredentials,
 } from '@/authentication/test/authentication.mock'
 import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
-import {UserEntity} from '@/user/entities/user/user.entity'
+import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
 
   let jwtService: JwtService
-  let userRepository: Repository<UserEntity>
+  let userRepository: UserRepository
 
   beforeEach(async () => {
     const moduleFixture = await Test.createTestingModule({
@@ -35,9 +33,7 @@ describe('AuthenticationController (e2e)', () => {
     app = moduleFixture.createNestApplication(new FastifyAdapter())
 
     jwtService = moduleFixture.get<JwtService>(JwtService)
-    userRepository = moduleFixture.get<Repository<UserEntity>>(
-      getRepositoryToken(UserEntity)
-    )
+    userRepository = moduleFixture.get<UserRepository>(UserRepository)
 
     await app.init()
     await app.getHttpAdapter().getInstance().ready()

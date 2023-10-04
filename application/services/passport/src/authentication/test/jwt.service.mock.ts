@@ -2,7 +2,10 @@ import {mock} from 'node:test'
 
 import {JwtService} from '@nestjs/jwt'
 
-import {FAKE_USER_ID, userMock} from '@/user/entities/user/user-mock.repository'
+import {
+  FAKE_USER_ID,
+  userMock,
+} from '@/storage/repositories/user/user-mock.repository'
 
 export const FAKE_TOKEN = 'FAKE_TOKEN'
 

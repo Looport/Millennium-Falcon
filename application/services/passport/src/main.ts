@@ -1,8 +1,9 @@
-import {createNATSOptions} from '@looport/nats'
 import {NestFactory} from '@nestjs/core'
+import {MicroserviceOptions} from '@nestjs/microservices'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 
 import {AppModule} from '@/app/app.module'
+import {MicroservicesConfigService} from '@/microservices/services/microservices-config.service'
 
 const EXPOSED_IP = '0.0.0.0'
 
@@ -13,8 +14,9 @@ async function bootstrap() {
     {cors: true}
   )
 
-  app.connectMicroservice(
-    createNATSOptions({url: process.env.NATS_URL ?? 'localhost'})
+  const microservicesConfigService = app.get(MicroservicesConfigService)
+  app.connectMicroservice<MicroserviceOptions>(
+    microservicesConfigService.getNATSConfig()
   )
 
   await app.startAllMicroservices()

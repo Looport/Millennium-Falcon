@@ -1,20 +1,18 @@
 import {deepEqual, ok} from 'node:assert/strict'
-import {describe, beforeEach, it, afterEach} from 'node:test'
+import {afterEach, beforeEach, describe, it} from 'node:test'
 
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
-import {getRepositoryToken} from '@nestjs/typeorm'
 import request from 'supertest'
-import {Repository} from 'typeorm'
 
 import {AppModule} from '@/app/app.module'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {UserEntity} from '@/user/entities/user/user.entity'
+import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('UserController (e2e)', () => {
   let app: NestFastifyApplication
 
-  let userRepository: Repository<UserEntity>
+  let userRepository: UserRepository
 
   beforeEach(async () => {
     const moduleFixture = await Test.createTestingModule({
@@ -23,9 +21,7 @@ describe('UserController (e2e)', () => {
 
     app = moduleFixture.createNestApplication(new FastifyAdapter())
 
-    userRepository = moduleFixture.get<Repository<UserEntity>>(
-      getRepositoryToken(UserEntity)
-    )
+    userRepository = moduleFixture.get<UserRepository>(UserRepository)
 
     await app.init()
     await app.getHttpAdapter().getInstance().ready()

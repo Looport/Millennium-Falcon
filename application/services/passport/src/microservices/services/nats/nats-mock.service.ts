@@ -1,12 +1,12 @@
 import {mock} from 'node:test'
 
-import {NATSService} from './nats.service'
+import {NatsService} from '@/microservices/services/nats/nats.service'
 
 type NatsMockService = {
-  [method in keyof NATSService]: ReturnType<(typeof mock)['fn']>
+  [method in keyof NatsService]: ReturnType<(typeof mock)['fn']>
 }
 
-export const createNATSMockService = (
+export const createNatsMockService = (
   spies?: Partial<NatsMockService>
 ): Partial<NatsMockService> => {
   const emit = mock.fn()

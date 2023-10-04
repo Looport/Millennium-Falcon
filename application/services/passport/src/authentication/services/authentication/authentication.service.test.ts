@@ -3,7 +3,6 @@ import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
 import {JwtService} from '@nestjs/jwt'
 import {Test} from '@nestjs/testing'
-import {getRepositoryToken} from '@nestjs/typeorm'
 
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
@@ -21,8 +20,8 @@ import {ValidationException} from '@/common/exeptions/validation.exeption/valida
 import {
   createUserRepositoryMock,
   FAKE_USER_ID,
-} from '@/user/entities/user/user-mock.repository'
-import {UserEntity} from '@/user/entities/user/user.entity'
+} from '@/storage/repositories/user/user-mock.repository'
+import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 import {AuthenticationService} from './authentication.service'
 
@@ -46,7 +45,7 @@ describe('AuthenticationService', () => {
           useValue: passwordHashServiceMock,
         },
         {
-          provide: getRepositoryToken(UserEntity),
+          provide: UserRepository,
           useValue: userRepositoryMock,
         },
       ],
