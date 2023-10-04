@@ -1,6 +1,8 @@
 import {deepEqual, ok, rejects} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
+import {createTokenMockService, TokenService} from '@looport/nest-auth'
+import {ValidationException} from '@looport/nest-common'
 import {Test} from '@nestjs/testing'
 
 import {
@@ -13,10 +15,7 @@ import {
   FAKE_PASSWORD_HASH,
 } from '@/authentication/services/password-hash/password-hash-mock.service'
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
-import {createTokenMockService} from '@/authentication/services/token/token-mock.service'
-import {TokenService} from '@/authentication/services/token/token.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
 import {
   createUserMockRepository,
   FAKE_USER_ID,

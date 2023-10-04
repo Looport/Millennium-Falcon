@@ -1,6 +1,7 @@
 import {deepEqual, equal, notEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it} from 'node:test'
 
+import {VALIDATION_EXCEPTION_MESSAGE} from '@looport/nest-common'
 import {JwtService} from '@nestjs/jwt'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
@@ -16,7 +17,6 @@ import {
   invalidCredentials,
   validCredentials,
 } from '@/authentication/test/authentication.mock'
-import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
 import {createNatsMockService} from '@/microservices/services/nats/nats-mock.service'
 import {NatsService} from '@/microservices/services/nats/nats.service'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
@@ -104,7 +104,7 @@ describe('AuthenticationController (e2e)', () => {
             value: invalidCredentials.password,
           },
         ],
-        message: VALIDATION_EXEPTION_MESSAGE,
+        message: VALIDATION_EXCEPTION_MESSAGE,
       })
     })
 
@@ -128,7 +128,7 @@ describe('AuthenticationController (e2e)', () => {
             value: validCredentials.email,
           },
         ],
-        message: VALIDATION_EXEPTION_MESSAGE,
+        message: VALIDATION_EXCEPTION_MESSAGE,
       })
     })
   })
@@ -181,7 +181,7 @@ describe('AuthenticationController (e2e)', () => {
             value: invalidCredentials.password,
           },
         ],
-        message: VALIDATION_EXEPTION_MESSAGE,
+        message: VALIDATION_EXCEPTION_MESSAGE,
       })
     })
 
@@ -200,7 +200,7 @@ describe('AuthenticationController (e2e)', () => {
             value: validCredentials.email,
           },
         ],
-        message: VALIDATION_EXEPTION_MESSAGE,
+        message: VALIDATION_EXCEPTION_MESSAGE,
       })
     })
   })

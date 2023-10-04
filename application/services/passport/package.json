@@ -32,7 +32,9 @@
     "nats": "^2.17.0",
     "pg": "^8.11.3",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.17"
+    "typeorm": "^0.3.17",
+    "@looport/nest-common": "workspace:*",
+    "@looport/nest-auth": "workspace:*"
   },
   "devDependencies": {
     "@looport/eslint-config": "workspace:*",

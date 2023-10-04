@@ -1,7 +1,8 @@
 import {mock} from 'node:test'
 
+import {FAKE_TOKEN} from '@looport/nest-auth'
+
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
-import {FAKE_TOKEN} from '@/authentication/services/token/token-mock.service'
 import {userMock} from '@/storage/repositories/user/user-mock.repository'
 
 type AuthenticationMockService = {
