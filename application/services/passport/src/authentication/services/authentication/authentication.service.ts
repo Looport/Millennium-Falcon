@@ -45,7 +45,7 @@ export class AuthenticationService {
       })
     )
 
-    const token = await this.tokenService.generate({
+    const token = await this.tokenService.wrap({
       email: user.email,
       userId: user.id,
     })
@@ -88,7 +88,7 @@ export class AuthenticationService {
       ])
     }
 
-    const token = await this.tokenService.generate({
+    const token = await this.tokenService.wrap({
       email: user.email,
       userId: user.id,
     })

@@ -17,7 +17,7 @@ type JwtServiceMock = {
 export const createTokenMockService = (
   spies?: Partial<JwtServiceMock>
 ): Partial<JwtServiceMock> => {
-  const generateSpy = mock.fn(() => Promise.resolve(FAKE_TOKEN))
+  const wrapSpy = mock.fn(() => Promise.resolve(FAKE_TOKEN))
   const unwrapSpy = mock.fn(() =>
     Promise.resolve({
       email: userMock.email,
@@ -26,7 +26,7 @@ export const createTokenMockService = (
   )
 
   return {
-    generate: generateSpy,
+    wrap: wrapSpy,
     unwrap: unwrapSpy,
     ...spies,
   }

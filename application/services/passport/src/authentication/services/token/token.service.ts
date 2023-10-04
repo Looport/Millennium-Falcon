@@ -12,7 +12,7 @@ export class TokenService {
     }>(token)
   }
 
-  async generate({
+  async wrap({
     email,
     userId,
   }: {
