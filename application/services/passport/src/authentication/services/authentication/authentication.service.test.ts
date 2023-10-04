@@ -3,7 +3,6 @@ import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
 import {JwtService} from '@nestjs/jwt'
 import {Test} from '@nestjs/testing'
-import {getRepositoryToken} from '@nestjs/typeorm'
 
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,

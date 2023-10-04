@@ -1,20 +1,12 @@
-import {Module, Provider} from '@nestjs/common'
+import {Module} from '@nestjs/common'
 import {ConfigModule} from '@nestjs/config'
-import {APP_PIPE} from '@nestjs/core'
 
+import {GLOBAL_PROVIDERS} from '@/app/common/global-providers'
 import {AuthenticationModule} from '@/authentication/authentication.module'
 import {AuthorizationModule} from '@/authorization/authorization.module'
-import {ValidationPipe} from '@/common/pipes/validation.pipe/validation.pipe'
 import {UserModule} from '@/user/user.module'
 
 import {AppController} from './app.controller'
-
-const GLOBAL_PROVIDERS: Provider[] = [
-  {
-    provide: APP_PIPE,
-    useValue: new ValidationPipe(),
-  },
-]
 
 @Module({
   controllers: [AppController],

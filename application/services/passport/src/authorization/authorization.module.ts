@@ -1,17 +1,9 @@
-import {MiddlewareConsumer, Module, NestModule, Provider} from '@nestjs/common'
-import {APP_GUARD} from '@nestjs/core'
+import {MiddlewareConsumer, Module, NestModule} from '@nestjs/common'
 
 import {AuthenticationModule} from '@/authentication/authentication.module'
+import {GLOBAL_PROVIDERS} from '@/authorization/common/global-providers'
 import {AccessTokenGuard} from '@/authorization/guards/access-token/access-token.guard'
-import {AuthenticationGuard} from '@/authorization/guards/auth/auth.guard'
 import {TokenMiddleware} from '@/authorization/middleware/token/token.middleware'
-
-const GLOBAL_PROVIDERS: Provider[] = [
-  {
-    provide: APP_GUARD,
-    useClass: AuthenticationGuard,
-  },
-]
 
 @Module({
   imports: [AuthenticationModule],

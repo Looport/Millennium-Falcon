@@ -1,4 +1,4 @@
-import {DynamicModule, Global, Module, Provider} from '@nestjs/common'
+import {DynamicModule, Global, Module} from '@nestjs/common'
 import {ClientsModule} from '@nestjs/microservices'
 
 import {createNATSClientsOptions} from './common/create-nats-options'

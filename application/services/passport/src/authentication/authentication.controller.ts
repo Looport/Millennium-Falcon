@@ -1,23 +1,16 @@
-import {
-  Body,
-  Controller,
-  HttpCode,
-  HttpStatus,
-  Inject,
-  Post,
-} from '@nestjs/common'
-import {ClientProxy} from '@nestjs/microservices'
+import {Body, Controller, HttpCode, HttpStatus, Post} from '@nestjs/common'
 
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {AuthType} from '@/authorization/decorators/auth/auth-types.enum'
 import {Auth} from '@/authorization/decorators/auth/auth.decorator'
+import {NatsService} from '@/microservices/services/nats/nats.service'
 
 @Controller('authentication')
 export class AuthenticationController {
   constructor(
     private readonly authenticationService: AuthenticationService,
-    @Inject('NATS_CLIENT') private readonly natsService: ClientProxy
+    private readonly natsService: NatsService
   ) {}
 
   @Auth(AuthType.None)
