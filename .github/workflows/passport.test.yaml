@@ -36,6 +36,8 @@ jobs:
           DB_NAME: db
           DB_HOST: postgres
           DB_PORT: 5432
+          JWT_SECRET: 'secret'
+          JWT_EXPIRES: '1d'
   lint:
     runs-on: ubuntu-22.04
     steps:
