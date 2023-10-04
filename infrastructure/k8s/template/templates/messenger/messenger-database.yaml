@@ -51,6 +51,6 @@ spec:
   ports:
     - name: messenger-database
       protocol: TCP
-      port: 5302
+      port: 5334
       targetPort: 5432
 {{ end }}
