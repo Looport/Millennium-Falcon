@@ -21,7 +21,7 @@ export class AuthenticationController {
       credentials
     )
 
-    this.natsService.send('passport.user.registered', user)
+    this.natsService.emit('passport.user.registered', user)
 
     return {
       accessToken,

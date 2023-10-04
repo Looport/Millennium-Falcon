@@ -7,6 +7,8 @@ import request from 'supertest'
 
 import {AppModule} from '@/app/app.module'
 import {validCredentials} from '@/authentication/test/authentication.mock'
+import {createNatsMockService} from '@/microservices/services/nats/nats-mock.service'
+import {NatsService} from '@/microservices/services/nats/nats.service'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('UserController (e2e)', () => {
@@ -17,7 +19,10 @@ describe('UserController (e2e)', () => {
   beforeEach(async () => {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile()
+    })
+      .overrideProvider(NatsService)
+      .useValue(createNatsMockService())
+      .compile()
 
     app = moduleFixture.createNestApplication(new FastifyAdapter())
 

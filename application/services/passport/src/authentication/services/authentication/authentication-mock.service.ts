@@ -1,14 +1,14 @@
 import {mock} from 'node:test'
 
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
+import {FAKE_TOKEN} from '@/authentication/services/token/token-mock.service'
 import {userMock} from '@/storage/repositories/user/user-mock.repository'
-import {FAKE_TOKEN} from "@/authentication/services/token/token-mock.service";
 
 type AuthenticationMockService = {
   [method in keyof AuthenticationService]: ReturnType<(typeof mock)['fn']>
 }
 
-export const createAuthenticationServiceMock = (
+export const createAuthenticationMockService = (
   spies?: Partial<AuthenticationMockService>
 ): Partial<AuthenticationMockService> => {
   const registerSpy = mock.fn(() =>

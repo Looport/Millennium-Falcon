@@ -9,7 +9,11 @@ export class NatsService {
     @Inject(NATS_CLIENT_KEY) private readonly natsClient: ClientProxy
   ) {}
 
-  emit: typeof this.natsClient.emit = this.natsClient.emit
+  emit: typeof this.natsClient.emit = this.natsClient.emit.bind(this.natsClient)
 
-  send: typeof this.natsClient.send = this.natsClient.send
+  send: typeof this.natsClient.send = this.natsClient.send.bind(this.natsClient)
+
+  close: typeof this.natsClient.close = this.natsClient.close.bind(
+    this.natsClient
+  )
 }
