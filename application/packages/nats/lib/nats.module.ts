@@ -1,4 +1,4 @@
-import {DynamicModule, Module} from '@nestjs/common'
+import {DynamicModule, Module, Provider} from '@nestjs/common'
 
 import {NATSCoreModule} from './nats-core.module'
 import {NATSService} from './services/nats.service/nats.service'
@@ -9,9 +9,9 @@ import {NATSService} from './services/nats.service/nats.service'
   providers: [NATSService],
 })
 export class NATSModule {
-  static forRoot({url}: {url: string}): DynamicModule {
+  static forRoot(provider: Provider): DynamicModule {
     return {
-      imports: [NATSCoreModule.forRoot({url})],
+      imports: [NATSCoreModule.forRoot({url: ''})],
       module: NATSModule,
     }
   }

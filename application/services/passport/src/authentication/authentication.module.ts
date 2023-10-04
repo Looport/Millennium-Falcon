@@ -1,6 +1,7 @@
-import {NATSModule} from '@looport/nats'
 import {Module} from '@nestjs/common'
+import {ConfigModule, ConfigService} from '@nestjs/config'
 import {JwtModule} from '@nestjs/jwt'
+import {ClientProxyFactory, ClientsModule, Transport} from '@nestjs/microservices'
 
 import {AuthenticationController} from '@/authentication/authentication.controller'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
@@ -11,14 +12,37 @@ import {UserModule} from '@/user/user.module'
   controllers: [AuthenticationController],
   exports: [JwtModule],
   imports: [
-    JwtModule.register({
+    JwtModule.registerAsync({
       global: true,
-      secret: 'SECRET_JWT_STRING',
-      signOptions: {expiresIn: '24h'},
+      useFactory: (configService: ConfigService) => ({
+        signOptions: {expiresIn: configService.getOrThrow('JWT_EXPIRES')},
+        secret: configService.getOrThrow('JWT_SECRET')
+      }),
+      inject: [ConfigService],
+
     }),
-    NATSModule,
+    ClientsModule.register([{
+      name: 'NATS_CLIENT',
+      transport: Transport.NATS
+    }]),
+    ConfigModule,
     UserModule,
   ],
-  providers: [AuthenticationService, PasswordHashService],
+  providers: [
+    AuthenticationService,
+    PasswordHashService,
+    {
+      inject: [ConfigService],
+      provide: 'MATH_SERVICE',
+      useFactory: (configService: ConfigService) =>
+        ClientProxyFactory.create({
+          options: {
+            name: 'NATS_CLIENT',
+            servers: [configService.getOrThrow('NATS_URL')],
+          },
+          transport: Transport.NATS,
+        }),
+    },
+  ],
 })
 export class AuthenticationModule {}

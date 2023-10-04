@@ -1,5 +1,5 @@
-import {NATSModule} from '@looport/nats'
 import {Module, Provider} from '@nestjs/common'
+import {ConfigModule, ConfigService} from '@nestjs/config'
 import {APP_PIPE} from '@nestjs/core'
 import {TypeOrmModule} from '@nestjs/typeorm'
 
@@ -20,18 +20,20 @@ const GLOBAL_PROVIDERS: Provider[] = [
 @Module({
   controllers: [AppController],
   imports: [
+    ConfigModule.forRoot({isGlobal: true}),
     TypeOrmModule.forRootAsync({
-      useFactory: () => ({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
         autoLoadEntities: true,
-        database: process.env.DB_NAME ?? 'passport',
-        host: process.env.DB_HOST ?? 'localhost',
-        password: process.env.DB_PASSWORD ?? 'root',
+        database: configService.getOrThrow('DB_NAME'),
+        host: configService.getOrThrow('DB_HOST'),
+        password: configService.getOrThrow('DB_PASSWORD'),
+        port: configService.getOrThrow('DB_PORT'),
         synchronize: true,
         type: 'postgres',
-        username: process.env.DB_USER ?? 'root',
+        username: configService.getOrThrow('DB_USER'),
       }),
     }),
-    NATSModule.forRoot({url: process.env.NATS_URL ?? 'localhost'}),
     AuthenticationModule,
     AuthorizationModule,
     UserModule,

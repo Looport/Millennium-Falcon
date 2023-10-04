@@ -7,7 +7,7 @@ import {InjectNATS} from '../../decorators/inject-nats.decorator'
 export class NATSService {
   constructor(@InjectNATS() private readonly client: NATSProxyClient) {}
 
-  emit = this.client.emit.bind(this.client)
+  emit = this.client.emit
 
-  send = this.client.send.bind(this.client)
+  send = this.client.send
 }

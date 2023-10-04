@@ -1,5 +1,6 @@
-import {createNATSOptions} from '@looport/nats'
+import {ConfigService} from '@nestjs/config'
 import {NestFactory} from '@nestjs/core'
+import {MicroserviceOptions, Transport} from '@nestjs/microservices'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 
 import {AppModule} from '@/app/app.module'
@@ -13,9 +14,13 @@ async function bootstrap() {
     {cors: true}
   )
 
-  app.connectMicroservice(
-    createNATSOptions({url: process.env.NATS_URL ?? 'localhost'})
-  )
+  const configService = app.get(ConfigService)
+  app.connectMicroservice<MicroserviceOptions>({
+    options: {
+      servers: [configService.getOrThrow('NATS_URL')],
+    },
+    transport: Transport.NATS,
+  })
 
   await app.startAllMicroservices()
   await app.listen(3000, EXPOSED_IP)

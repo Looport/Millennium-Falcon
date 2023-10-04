@@ -1,16 +1,16 @@
-import {NATSService} from '@looport/nats'
-import {Body, Controller, HttpCode, HttpStatus, Post} from '@nestjs/common'
+import {Body, Controller, HttpCode, HttpStatus, Inject, Post} from '@nestjs/common'
 
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {AuthType} from '@/authorization/decorators/auth/auth-types.enum'
 import {Auth} from '@/authorization/decorators/auth/auth.decorator'
+import {ClientProxy} from "@nestjs/microservices";
 
 @Controller('authentication')
 export class AuthenticationController {
   constructor(
     private readonly authenticationService: AuthenticationService,
-    private readonly natsService: NATSService
+    @Inject('NATS_CLIENT') private readonly natsService: ClientProxy
   ) {}
 
   @Auth(AuthType.None)
