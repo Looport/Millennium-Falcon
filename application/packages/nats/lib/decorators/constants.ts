@@ -1,1 +1,0 @@
-export const NATS_CLIENT_PROVIDER_KEY = Symbol('NATS_CLIENT')

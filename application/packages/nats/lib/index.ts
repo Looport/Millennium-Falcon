@@ -1,5 +1,0 @@
-export {NATSModule} from './nats.module'
-export {NATSService} from './services/nats.service/nats.service'
-export {createNATSMockService} from './services/nats.service/nats-mock.service'
-export {createNATSOptions} from './common/create-nats-options'
-export * from '@nestjs/microservices'
