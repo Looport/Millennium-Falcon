@@ -26,8 +26,8 @@ export const createTokenMockService = (
   )
 
   return {
-    wrap: wrapSpy,
     unwrap: unwrapSpy,
+    wrap: wrapSpy,
     ...spies,
   }
 }
