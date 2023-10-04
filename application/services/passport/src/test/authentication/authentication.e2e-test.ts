@@ -17,6 +17,8 @@ import {
   validCredentials,
 } from '@/authentication/test/authentication.mock'
 import {VALIDATION_EXEPTION_MESSAGE} from '@/common/exeptions/validation.exeption/constants'
+import {createNatsMockService} from '@/microservices/services/nats/nats-mock.service'
+import {NatsService} from '@/microservices/services/nats/nats.service'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('AuthenticationController (e2e)', () => {
@@ -28,7 +30,10 @@ describe('AuthenticationController (e2e)', () => {
   beforeEach(async () => {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile()
+    })
+      .overrideProvider(NatsService)
+      .useValue(createNatsMockService())
+      .compile()
 
     app = moduleFixture.createNestApplication(new FastifyAdapter())
 

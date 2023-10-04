@@ -1,5 +1,4 @@
 import {Injectable} from '@nestjs/common'
-import {JwtService} from '@nestjs/jwt'
 
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {
@@ -8,6 +7,7 @@ import {
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
 } from '@/authentication/services/authentication/constants'
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
+import {TokenService} from '@/authentication/services/token/token.service'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
 import {UserEntity} from '@/storage/entities/user/user.entity'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
@@ -15,7 +15,7 @@ import {UserRepository} from '@/storage/repositories/user/user.repository'
 @Injectable()
 export class AuthenticationService {
   constructor(
-    private readonly jwtService: JwtService,
+    private readonly tokenService: TokenService,
     private readonly userRepository: UserRepository,
     private readonly passwordHashService: PasswordHashService
   ) {}
@@ -45,7 +45,7 @@ export class AuthenticationService {
       })
     )
 
-    const token = await this.generateToken({
+    const token = await this.tokenService.wrap({
       email: user.email,
       userId: user.id,
     })
@@ -88,7 +88,7 @@ export class AuthenticationService {
       ])
     }
 
-    const token = await this.generateToken({
+    const token = await this.tokenService.wrap({
       email: user.email,
       userId: user.id,
     })
@@ -97,18 +97,5 @@ export class AuthenticationService {
       accessToken: token,
       user,
     }
-  }
-
-  async generateToken({
-    email,
-    userId,
-  }: {
-    email: string
-    userId: number
-  }): Promise<string> {
-    return this.jwtService.signAsync({
-      email,
-      sub: userId,
-    })
   }
 }

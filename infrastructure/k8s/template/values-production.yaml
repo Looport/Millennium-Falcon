@@ -3,6 +3,9 @@ app:
   name: aloco
   host: aloco.club
   enableIngress: true
+  jwt:
+    secret: "ioj*(*jd##$"
+    expires: "1d"
 
 passport:
   name: "passport"
@@ -10,6 +13,10 @@ passport:
     user: "root"
     password: "root"
     db: "passport"
-  jwt:
-    secret: "ioj*(*jd##$"
-    expires: "1d"
+
+messenger:
+  name: "messenger"
+  pg:
+    user: "root"
+    password: "root"
+    db: "messenger"

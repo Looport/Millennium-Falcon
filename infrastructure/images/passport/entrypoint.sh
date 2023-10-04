@@ -1,5 +1,5 @@
 #!/bin/sh
 
-cd application/services/passport/dist
+cd application/services/messenger/dist
 
 node main.js

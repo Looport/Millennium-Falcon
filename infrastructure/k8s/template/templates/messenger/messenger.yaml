@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.messenger.name }}
+  labels:
+    app: {{ .Values.app.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: messenger
+  template:
+    metadata:
+      labels:
+        service: messenger
+    spec:
+      initContainers:
+        - name: test-postgres
+          image: postgres:12.2
+          env:
+            - name: DB_HOST
+              value: "messenger-database-cluster-ip"
+            - name: DB_USER
+              value: {{ .Values.messenger.pg.user }}
+          command: ['sh', '-c']
+          args:
+            - |
+              until pg_isready -h $DB_HOST -U $DB_USER
+              do
+                echo "Waiting for postgres..."
+                sleep 2
+              done
+              echo "Postgres Ready!"
+        - name: test-nats
+          image: curlimages/curl:7.87.0
+          env:
+            - name: NATS_URL
+              value: "http://nats-cluster-ip:8222/varz"
+          command: [ 'sh', '-c' ]
+          args:
+            - |
+              until curl -s $NATS_URL > /dev/null
+              do
+                echo "Waiting for nats..."
+                sleep 2
+              done
+      containers:
+        - name: messenger
+          image: dormammun/looport-messenger:latest
+          env:
+            - name: DB_HOST
+              value: "messenger-database-cluster-ip"
+            - name: DB_NAME
+              value: {{ .Values.messenger.pg.db }}
+            - name: DB_PASSWORD
+              value: {{ .Values.messenger.pg.password }}
+            - name: DB_USER
+              value: {{ .Values.messenger.pg.user }}
+            - name: DB_PORT
+              value: "5432"
+            - name: JWT_SECRET
+              value: {{ .Values.app.jwt.secret }}
+            - name: JWT_EXPIRES
+              value: {{ .Values.app.jwt.expires }}
+            - name: NATS_URL
+              value: nats-cluster-ip
+            - name: NODE_ENV
+              value: {{ .Values.app.env }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: messenger-cluster-ip
+spec:
+  type: ClusterIP
+  selector:
+    service: messenger
+  ports:
+    - name: messenger
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+{{- if .Values.app.env | eq "development" }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: messenger-load-balancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - name: web-debug
+      protocol: TCP
+      port: 4000
+      targetPort: 3000
+{{- end }}

@@ -1,0 +1,60 @@
+{
+  "private": true,
+  "name": "@looport/telegraph",
+  "author": "Vitalii Khotei <khoteiv.dev@gmail.com>",
+  "scripts": {
+    "===dev===": "===",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "===prod===": "===",
+    "build": "nest build",
+    "start:prod": "node dist/main",
+    "===test===": "===",
+    "lint": "eslint \"src/**/*.ts\"",
+    "type-check": "tsc --noEmit",
+    "test": "find ./src -name \"*.test.ts\" -exec node -r @swc-node/register --test {} +;",
+    "test:e2e": "find ./src -name \"*.e2e-test.ts\" -exec node -r @swc-node/register --test {} +;",
+    "test:all": "find ./src -name \"*test.ts\" -exec node -r @swc-node/register --test {} +;",
+    "===utils===": "===",
+    "format": "pnpm lint --fix"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.2.4",
+    "@nestjs/config": "^3.1.1",
+    "@nestjs/core": "^10.2.4",
+    "@nestjs/microservices": "^10.2.6",
+    "@nestjs/platform-fastify": "^10.2.4",
+    "@nestjs/typeorm": "^10.0.0",
+    "@nestjs/jwt": "^10.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "nats": "^2.17.0",
+    "pg": "^8.11.3",
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.17"
+  },
+  "devDependencies": {
+    "@looport/eslint-config": "workspace:*",
+    "@nestjs/cli": "^10.1.17",
+    "@nestjs/testing": "^10.2.4",
+    "@swc-node/register": "^1.6.7",
+    "@swc/cli": "^0.1.62",
+    "@swc/core": "^1.3.82",
+    "@types/node": "20.5.1",
+    "@types/supertest": "^2.0.12",
+    "eslint": "^8.42.0",
+    "prettier": "^3.0.3",
+    "supertest": "^6.3.3",
+    "typescript": "^5.1.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@looport/eslint-config/src/base"
+    ],
+    "env": {
+      "node": true
+    }
+  },
+  "prettier": "@looport/eslint-config/src/.prettierrc.js"
+}

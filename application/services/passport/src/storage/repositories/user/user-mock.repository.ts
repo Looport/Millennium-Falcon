@@ -16,7 +16,7 @@ type UserMockRepository = {
   [method in keyof UserRepository]: ReturnType<(typeof mock)['fn']>
 }
 
-export const createUserRepositoryMock = (
+export const createUserMockRepository = (
   spies?: Partial<UserMockRepository>
 ): Partial<UserMockRepository> => {
   const createSpy = mock.fn((data) => data)

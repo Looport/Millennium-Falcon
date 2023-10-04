@@ -8,7 +8,7 @@ type PasswordHashMockService = {
   [method in keyof PasswordHashService]: ReturnType<(typeof mock)['fn']>
 }
 
-export const createPasswordServiceMock = (
+export const createPasswordMockService = (
   spies?: Partial<PasswordHashMockService>
 ): Partial<PasswordHashMockService> => {
   const createHashSpy = mock.fn(() => Promise.resolve(FAKE_PASSWORD_HASH))
