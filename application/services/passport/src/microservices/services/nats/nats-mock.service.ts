@@ -1,5 +1,6 @@
-import {mock} from "node:test";
-import {NatsService} from "@/microservices/services/nats/nats.service";
+import {mock} from 'node:test'
+
+import {NatsService} from '@/microservices/services/nats/nats.service'
 
 type NatsMockService = {
   [method in keyof NatsService]: ReturnType<(typeof mock)['fn']>

@@ -7,10 +7,9 @@ import {AuthenticationController} from '@/authentication/authentication.controll
 import {createAuthenticationServiceMock} from '@/authentication/services/authentication/authentication-mock.service'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
+import {createNatsMockService} from '@/microservices/services/nats/nats-mock.service'
+import {NatsService} from '@/microservices/services/nats/nats.service'
 import {userMock} from '@/storage/repositories/user/user-mock.repository'
-import {createNatsMockService} from "@/microservices/services/nats/nats-mock.service";
-import {NatsService} from "@/microservices/services/nats/nats.service";
-
 
 describe('AuthenticationController', () => {
   let controller: AuthenticationController
