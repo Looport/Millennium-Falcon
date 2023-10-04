@@ -1,10 +1,17 @@
-import {Body, Controller, HttpCode, HttpStatus, Inject, Post} from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Inject,
+  Post,
+} from '@nestjs/common'
+import {ClientProxy} from '@nestjs/microservices'
 
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {AuthType} from '@/authorization/decorators/auth/auth-types.enum'
 import {Auth} from '@/authorization/decorators/auth/auth.decorator'
-import {ClientProxy} from "@nestjs/microservices";
 
 @Controller('authentication')
 export class AuthenticationController {

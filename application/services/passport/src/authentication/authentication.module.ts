@@ -1,11 +1,17 @@
 import {Module} from '@nestjs/common'
 import {ConfigModule, ConfigService} from '@nestjs/config'
 import {JwtModule} from '@nestjs/jwt'
-import {ClientProxyFactory, ClientsModule, Transport} from '@nestjs/microservices'
+import {
+  ClientProxyFactory,
+  ClientsModule,
+  Transport,
+} from '@nestjs/microservices'
 
 import {AuthenticationController} from '@/authentication/authentication.controller'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
+import {UserEntity} from '@/storage/entities/user/user.entity'
+import {StorageModule} from '@/storage/storage.module'
 import {UserModule} from '@/user/user.module'
 
 @Module({
@@ -14,19 +20,20 @@ import {UserModule} from '@/user/user.module'
   imports: [
     JwtModule.registerAsync({
       global: true,
-      useFactory: (configService: ConfigService) => ({
-        signOptions: {expiresIn: configService.getOrThrow('JWT_EXPIRES')},
-        secret: configService.getOrThrow('JWT_SECRET')
-      }),
       inject: [ConfigService],
-
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.getOrThrow('JWT_SECRET'),
+        signOptions: {expiresIn: configService.getOrThrow('JWT_EXPIRES')},
+      }),
     }),
-    ClientsModule.register([{
-      name: 'NATS_CLIENT',
-      transport: Transport.NATS
-    }]),
+    ClientsModule.register([
+      {
+        name: 'NATS_CLIENT',
+        transport: Transport.NATS,
+      },
+    ]),
     ConfigModule,
-    UserModule,
+    StorageModule,
   ],
   providers: [
     AuthenticationService,

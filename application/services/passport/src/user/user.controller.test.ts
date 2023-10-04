@@ -2,16 +2,11 @@ import {deepEqual} from 'node:assert/strict'
 import {beforeEach, describe, it} from 'node:test'
 
 import {Test} from '@nestjs/testing'
-import {getRepositoryToken} from '@nestjs/typeorm'
 
-import {
-  createUserRepositoryMock,
-  FAKE_USER_ID,
-  userMock,
-} from '@/user/entities/user/user-mock.repository'
-import {UserEntity} from '@/user/entities/user/user.entity'
+import {createUserRepositoryMock, FAKE_USER_ID, userMock,} from '@/storage/repositories/user/user-mock.repository'
 
 import {UserController} from './user.controller'
+import {UserRepository} from "@/storage/repositories/user/user.repository";
 
 describe('UserController', () => {
   let controller: UserController
@@ -23,7 +18,7 @@ describe('UserController', () => {
       controllers: [UserController],
       providers: [
         {
-          provide: getRepositoryToken(UserEntity),
+          provide: UserRepository,
           useValue: userRepositoryMock,
         },
       ],

@@ -1,20 +1,15 @@
 import {Controller, Get} from '@nestjs/common'
-import {InjectRepository} from '@nestjs/typeorm'
-import {Repository} from 'typeorm'
 
 import {ActiveUser} from '@/authorization/decorators/active-user.decorator'
 import {ActiveUserInterface} from '@/authorization/interfaces/active-user.interface'
 import {Serialize} from '@/common/interceptors/serialize.interceptor'
-import {UserDto} from '@/user/dtos/user.dto'
-import {UserEntity} from '@/user/entities/user/user.entity'
+import {UserRepository} from '@/storage/repositories/user/user.repository'
+import {UserDto} from '@/user/dtos/user/user.dto'
 
 @Serialize(UserDto)
 @Controller('user')
 export class UserController {
-  constructor(
-    @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>
-  ) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   @Get('iam')
   async iam(@ActiveUser() activeUser: ActiveUserInterface) {

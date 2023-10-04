@@ -1,14 +1,31 @@
 import {deepEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
-import {createNATSMockService, NATSService} from '@looport/nats'
+import {ClientProxy} from '@nestjs/microservices'
 import {Test} from '@nestjs/testing'
 
 import {AuthenticationController} from '@/authentication/authentication.controller'
 import {createAuthenticationServiceMock} from '@/authentication/services/authentication/authentication-mock.service'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {userMock} from '@/user/entities/user/user-mock.repository'
+import {userMock} from '@/storage/repositories/user/user-mock.repository'
+
+type NatsMockService = {
+  [method in keyof ClientProxy]: ReturnType<(typeof mock)['fn']>
+}
+
+export const createNATSMockService = (
+  spies?: Partial<NatsMockService>
+): Partial<NatsMockService> => {
+  const emit = mock.fn()
+  const send = mock.fn()
+
+  return {
+    emit,
+    send,
+    ...spies,
+  }
+}
 
 describe('AuthenticationController', () => {
   let controller: AuthenticationController
@@ -25,7 +42,7 @@ describe('AuthenticationController', () => {
           useValue: authenticationServiceMock,
         },
         {
-          provide: NATSService,
+          provide: 'NATS_CLIENT',
           useValue: natsServiceMock,
         },
       ],

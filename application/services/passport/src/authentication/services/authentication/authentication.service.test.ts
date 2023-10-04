@@ -21,10 +21,10 @@ import {ValidationException} from '@/common/exeptions/validation.exeption/valida
 import {
   createUserRepositoryMock,
   FAKE_USER_ID,
-} from '@/user/entities/user/user-mock.repository'
-import {UserEntity} from '@/user/entities/user/user.entity'
+} from '@/storage/repositories/user/user-mock.repository'
 
 import {AuthenticationService} from './authentication.service'
+import {UserRepository} from "@/storage/repositories/user/user.repository";
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService
@@ -46,7 +46,7 @@ describe('AuthenticationService', () => {
           useValue: passwordHashServiceMock,
         },
         {
-          provide: getRepositoryToken(UserEntity),
+          provide: UserRepository,
           useValue: userRepositoryMock,
         },
       ],

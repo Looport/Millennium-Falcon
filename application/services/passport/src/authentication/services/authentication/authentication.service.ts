@@ -1,7 +1,5 @@
 import {Injectable} from '@nestjs/common'
 import {JwtService} from '@nestjs/jwt'
-import {InjectRepository} from '@nestjs/typeorm'
-import {Repository} from 'typeorm'
 
 import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
 import {
@@ -11,14 +9,14 @@ import {
 } from '@/authentication/services/authentication/constants'
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
 import {ValidationException} from '@/common/exeptions/validation.exeption/validation.exception'
-import {UserEntity} from '@/user/entities/user/user.entity'
+import {UserEntity} from '@/storage/entities/user/user.entity'
+import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 @Injectable()
 export class AuthenticationService {
   constructor(
     private readonly jwtService: JwtService,
-    @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
+    private readonly userRepository: UserRepository,
     private readonly passwordHashService: PasswordHashService
   ) {}
 
