@@ -35,6 +35,7 @@ jobs:
           DB_USER: root
           DB_NAME: db
           DB_HOST: postgres
+          DB_PORT: 5432
   lint:
     runs-on: ubuntu-22.04
     steps:
