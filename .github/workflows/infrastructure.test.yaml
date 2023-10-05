@@ -2,7 +2,7 @@ name: Test Infrastructure
 on:
   pull_request:
     paths:
-      - 'infrastructure/k8s/**'
+      - 'infrastructure/**'
 jobs:
   test:
     runs-on: ubuntu-latest

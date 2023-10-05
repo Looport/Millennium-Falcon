@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.messenger.name }}
+  name: {{ .Values.telegraph.name }}
   labels:
     app: {{ .Values.app.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: messenger
+      service: telegraph
   template:
     metadata:
       labels:
-        service: messenger
+        service: telegraph
     spec:
       initContainers:
         - name: test-postgres
           image: postgres:12.2
           env:
             - name: DB_HOST
-              value: "messenger-database-cluster-ip"
+              value: "telegraph-database-cluster-ip"
             - name: DB_USER
-              value: {{ .Values.messenger.pg.user }}
+              value: {{ .Values.telegraph.pg.user }}
           command: ['sh', '-c']
           args:
             - |
@@ -45,17 +45,17 @@ spec:
                 sleep 2
               done
       containers:
-        - name: messenger
-          image: dormammun/looport-messenger:latest
+        - name: telegraph
+          image: dormammun/looport-telegraph:latest
           env:
             - name: DB_HOST
-              value: "messenger-database-cluster-ip"
+              value: "telegraph-database-cluster-ip"
             - name: DB_NAME
-              value: {{ .Values.messenger.pg.db }}
+              value: {{ .Values.telegraph.pg.db }}
             - name: DB_PASSWORD
-              value: {{ .Values.messenger.pg.password }}
+              value: {{ .Values.telegraph.pg.password }}
             - name: DB_USER
-              value: {{ .Values.messenger.pg.user }}
+              value: {{ .Values.telegraph.pg.user }}
             - name: DB_PORT
               value: "5432"
             - name: JWT_SECRET
@@ -70,13 +70,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: messenger-cluster-ip
+  name: telegraph-cluster-ip
 spec:
   type: ClusterIP
   selector:
-    service: messenger
+    service: telegraph
   ports:
-    - name: messenger
+    - name: telegraph
       protocol: TCP
       port: 3000
       targetPort: 3000
@@ -85,7 +85,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: messenger-load-balancer
+  name: telegraph-load-balancer
 spec:
   type: LoadBalancer
   selector:

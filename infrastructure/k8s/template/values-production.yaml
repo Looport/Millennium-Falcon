@@ -14,9 +14,9 @@ passport:
     password: "root"
     db: "passport"
 
-messenger:
-  name: "messenger"
+telegraph:
+  name: "telegraph"
   pg:
     user: "root"
     password: "root"
-    db: "messenger"
+    db: "telegraph"

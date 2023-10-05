@@ -9,8 +9,8 @@ COPY ./pnpm-lock.yaml ./pnpm-lock.yaml
 COPY ./pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY ./application ./application
 
-RUN pnpm -F @looport/messenger install \
-    && pnpm -F @looport/messenger^... build
+RUN pnpm -F @looport/telegraph install \
+    && pnpm -F @looport/telegraph^... build
 
 FROM node:20-alpine as runner
 
@@ -20,10 +20,10 @@ WORKDIR /app
 
 COPY --from=builder /app .
 
-COPY ./infrastructure/images/messenger/entrypoint.sh ./application/services/messenger/entrypoint.sh
+COPY ./infrastructure/images/telegraph/entrypoint.sh ./application/services/telegraph/entrypoint.sh
 
 ENV NODE_ENV=production
 
 EXPOSE 3000
 
-ENTRYPOINT ["sh", "./application/services/messenger/entrypoint.sh"]
+ENTRYPOINT ["sh", "./application/services/telegraph/entrypoint.sh"]
