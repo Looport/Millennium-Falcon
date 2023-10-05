@@ -1,40 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: messenger-database
+  name: telegraph-database
   labels:
     app: {{ .Values.app.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: messenger-database
+      app: telegraph-database
   template:
     metadata:
       labels:
-        app: messenger-database
+        app: telegraph-database
     spec:
       containers:
-        - name: messenger-database
+        - name: telegraph-database
           image: postgres:12.2
           env:
             - name: POSTGRES_PASSWORD
-              value: {{ .Values.messenger.pg.password }}
+              value: {{ .Values.telegraph.pg.password }}
             - name: POSTGRES_USER
-              value: {{ .Values.messenger.pg.user }}
+              value: {{ .Values.telegraph.pg.user }}
             - name: POSTGRES_DB
-              value: {{ .Values.messenger.pg.db }}
+              value: {{ .Values.telegraph.pg.db }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: messenger-database-cluster-ip
+  name: telegraph-database-cluster-ip
 spec:
   type: ClusterIP
   selector:
-    app: messenger-database
+    app: telegraph-database
   ports:
-    - name: messenger-database
+    - name: telegraph-database
       protocol: TCP
       port: 5432
       targetPort: 5432
@@ -43,13 +43,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: messenger-database-load-balancer
+  name: telegraph-database-load-balancer
 spec:
   type: LoadBalancer
   selector:
-    app: messenger-database
+    app: telegraph-database
   ports:
-    - name: messenger-database
+    - name: telegraph-database
       protocol: TCP
       port: 5334
       targetPort: 5432
