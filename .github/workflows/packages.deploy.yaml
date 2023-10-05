@@ -16,7 +16,7 @@ jobs:
         with:
           version: 8
       - run: cd infrastructure/images/web && sh cmd.sh buildx
-      - run: cd infrastructure/images/messenger && sh cmd.sh buildx
+      - run: cd infrastructure/images/telegraph && sh cmd.sh buildx
       - run: cd infrastructure/images/passport && sh cmd.sh buildx
       - uses: digitalocean/action-doctl@v2
         with:
