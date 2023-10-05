@@ -1,12 +1,11 @@
-name: Deploy Infrastructure
+name: Test @looport/packages
+
 on:
-  push:
-    branches:
-      - main
+  pull_request:
     paths:
-      - 'infrastructure/**'
+      - 'application/packages/**'
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,10 +13,15 @@ jobs:
         env:
           DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        with:
+          version: 8
       - run: cd infrastructure/images/web && sh cmd.sh buildx
+      - run: cd infrastructure/images/messenger && sh cmd.sh buildx
+      - run: cd infrastructure/images/passport && sh cmd.sh buildx
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DO_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save ${{ secrets.DO_CLUSTER_CONTEXT_ID }}
-      - uses: azure/setup-helm@v3
-      - run: cd infrastructure/k8s && sh cmd.sh upgrade-prod
+      - run: kubectl rollout restart deployment passport
+      - run: kubectl rollout restart deployment telegraph
+      - run: kubectl rollout restart deployment web
