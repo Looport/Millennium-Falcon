@@ -10,7 +10,7 @@ import {MicroservicesConfigService} from '@/app/services/microservcies-config/mi
 import {getMicroservicesModuleAsyncOptions} from '@/app/services/microservcies-config/microservices-module-options'
 import {UserModule} from '@/user/user.module'
 
-import {AppController} from './app.controller'
+import {AppController} from './contollers/app/app.controller'
 
 @Module({
   controllers: [AppController],

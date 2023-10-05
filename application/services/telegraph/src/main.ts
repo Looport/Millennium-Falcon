@@ -4,7 +4,7 @@ import {NestFactory} from '@nestjs/core'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 
 import {AppModule} from '@/app/app.module'
-import {MicroservicesConfigService} from '@/app/services/microservices-config.service'
+import {MicroservicesConfigService} from '@/app/services/microservcies-config/microservices-config.service'
 
 const EXPOSED_IP = '0.0.0.0'
 

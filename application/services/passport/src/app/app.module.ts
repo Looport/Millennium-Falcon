@@ -11,7 +11,7 @@ import {getMicroservicesModuleAsyncOptions} from '@/app/services/microservcies-c
 import {AuthenticationModule} from '@/authentication/authentication.module'
 import {UserModule} from '@/user/user.module'
 
-import {AppController} from './app.controller'
+import {AppController} from './controllers/app/app.controller'
 
 @Module({
   controllers: [AppController],

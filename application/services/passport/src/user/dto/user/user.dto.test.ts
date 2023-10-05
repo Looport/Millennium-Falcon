@@ -3,7 +3,7 @@ import {describe, it} from 'node:test'
 
 import {instanceToPlain, plainToInstance} from 'class-transformer'
 
-import {UserDto} from '@/user/dtos/user/user.dto'
+import {UserDto} from '@/user/dto/user/user.dto'
 
 describe('UserDto', () => {
   it('should remove unnecessary fields', () => {

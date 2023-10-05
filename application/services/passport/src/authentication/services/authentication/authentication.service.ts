@@ -2,14 +2,14 @@ import {TokenService} from '@looport/nest-auth'
 import {ValidationException} from '@looport/nest-common'
 import {Injectable} from '@nestjs/common'
 
-import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
+import {CredentialsDto} from '@/authentication/dto/credentials.dto'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
 } from '@/authentication/services/authentication/constants'
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
-import {UserEntity} from '@/storage/entities/user/user.entity'
+import {UserEntity} from '@/storage/entities/user.entity'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 @Injectable()

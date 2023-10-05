@@ -20,6 +20,9 @@
     "format": "pnpm lint --fix"
   },
   "dependencies": {
+    "@looport/nest-common": "workspace:*",
+    "@looport/nest-auth": "workspace:*",
+    "@looport/nest-microservices": "workspace:*",
     "@nestjs/common": "^10.2.4",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.2.4",
@@ -30,10 +33,7 @@
     "nats": "^2.17.0",
     "pg": "^8.11.3",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.17",
-    "@looport/nest-common": "workspace:*",
-    "@looport/nest-auth": "workspace:*",
-    "@looport/nest-microservices": "workspace:*"
+    "typeorm": "^0.3.17"
   },
   "devDependencies": {
     "@looport/eslint-config": "workspace:*",
