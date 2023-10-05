@@ -1,0 +1,11 @@
+name: Test @looport/packages/**
+
+on:
+  pull_request:
+    paths:
+      - 'application/packages/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "TODO"

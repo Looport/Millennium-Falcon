@@ -4,17 +4,18 @@ import {Module} from '@nestjs/common'
 import {ConfigModule} from '@nestjs/config'
 
 import {GLOBAL_PROVIDERS} from '@/app/common/global-providers'
-import {getMicroservicesModuleAsyncOptions} from '@/app/common/microservices-module-options'
-import {MicroservicesConfigService} from '@/app/services/microservices-config.service'
+import {AuthConfigService} from '@/app/services/auth-config/auth-config.service'
+import {getAuthModuleAsyncOptions} from '@/app/services/auth-config/auth-module-options'
+import {MicroservicesConfigService} from '@/app/services/microservcies-config/microservices-config.service'
+import {getMicroservicesModuleAsyncOptions} from '@/app/services/microservcies-config/microservices-module-options'
 import {AuthenticationModule} from '@/authentication/authentication.module'
-import {getAuthModuleAsyncOptions} from '@/authentication/common/auth-module-options'
 import {UserModule} from '@/user/user.module'
 
 import {AppController} from './app.controller'
 
 @Module({
   controllers: [AppController],
-  exports: [MicroservicesConfigService],
+  exports: [MicroservicesConfigService, AuthConfigService],
   imports: [
     ConfigModule.forRoot({isGlobal: true}),
     MicroservicesModule.forRootAsync(getMicroservicesModuleAsyncOptions()),
@@ -22,6 +23,10 @@ import {AppController} from './app.controller'
     AuthenticationModule,
     UserModule,
   ],
-  providers: [...GLOBAL_PROVIDERS, MicroservicesConfigService],
+  providers: [
+    ...GLOBAL_PROVIDERS,
+    MicroservicesConfigService,
+    AuthConfigService,
+  ],
 })
 export class AppModule {}

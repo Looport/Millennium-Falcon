@@ -1,7 +1,7 @@
 import {MicroservicesModuleOptionsInterface} from '@looport/nest-microservices'
 
 import {AppModule} from '@/app/app.module'
-import {MicroservicesConfigService} from '@/app/services/microservices-config.service'
+import {MicroservicesConfigService} from '@/app/services/microservcies-config/microservices-config.service'
 
 export const getMicroservicesModuleAsyncOptions =
   (): MicroservicesModuleOptionsInterface => ({
