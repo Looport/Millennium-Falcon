@@ -1,9 +1,9 @@
-name: Test @looport/messenger
+name: Test @looport/telegraph
 
 on:
   pull_request:
     paths:
-      - 'application/services/messenger/**'
+      - 'application/services/telegraph/**'
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -28,8 +28,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/messenger install && pnpm -F @looport/messenger^... build
-      - run: pnpm -F @looport/messenger test:all
+      - run: pnpm -F @looport/telegraph install && pnpm -F @looport/telegraph^... build
+      - run: pnpm -F @looport/telegraph test:all
         env:
           DB_PASSWORD: root
           DB_USER: root
@@ -49,8 +49,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/messenger install && pnpm -F @looport/messenger^... build
-      - run: pnpm -F @looport/messenger lint
+      - run: pnpm -F @looport/telegraph install && pnpm -F @looport/telegraph^... build
+      - run: pnpm -F @looport/telegraph lint
   type-check:
     runs-on: ubuntu-22.04
     steps:
@@ -61,8 +61,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/messenger install && pnpm -F @looport/messenger^... build
-      - run: pnpm -F @looport/messenger type-check
+      - run: pnpm -F @looport/telegraph install && pnpm -F @looport/telegraph^... build
+      - run: pnpm -F @looport/telegraph type-check
   build:
     runs-on: ubuntu-22.04
     steps:
@@ -73,4 +73,4 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/messenger install && pnpm -F @looport/messenger... build
+      - run: pnpm -F @looport/telegraph install && pnpm -F @looport/telegraph... build
