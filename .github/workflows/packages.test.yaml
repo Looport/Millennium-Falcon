@@ -1,4 +1,4 @@
-name: Test @looport/packages/**
+name: Test @looport/packages
 
 on:
   pull_request:
@@ -8,4 +8,37 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "TODO"
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm -F @looport/packages/* install && pnpm -F @looport/packages/*... build
+      - run: pnpm -F @looport/packages/* test
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm -F @looport/packages/* install && pnpm -F @looport/packages/*... build
+      - run: pnpm -F @looport/packages/* lint
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm -F @looport/packages/* install && pnpm -F @looport/packages/*... build
+      - run: pnpm -F @looport/packages/* type-check
+  service:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "TODO test depended services"
