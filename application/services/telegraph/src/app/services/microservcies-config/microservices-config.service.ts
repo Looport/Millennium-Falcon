@@ -9,7 +9,7 @@ export class MicroservicesConfigService {
   getNATSConfig(): MicroservicesOptions {
     return {
       options: {
-        name: 'passport',
+        name: 'telegraph',
         servers: [this.configService.getOrThrow('NATS_URL')],
       },
       transport: Transport.NATS,
