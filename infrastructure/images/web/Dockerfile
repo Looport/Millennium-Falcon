@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . .
 
 RUN pnpm -F @looport/web install \
-    &&  pnpm -F @looport/web build^...
+    &&  pnpm -F @looport/web build
 
 FROM node:20-alpine as runner
 
