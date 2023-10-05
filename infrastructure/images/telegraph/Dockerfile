@@ -10,7 +10,7 @@ COPY ./pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY ./application ./application
 
 RUN pnpm -F @looport/telegraph install \
-    && pnpm -F @looport/telegraph^... build
+    && pnpm -F @looport/telegraph... build
 
 FROM node:20-alpine as runner
 

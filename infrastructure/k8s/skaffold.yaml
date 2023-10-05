@@ -16,6 +16,10 @@ build:
       docker:
         dockerfile: infrastructure/images/passport/Dockerfile
       context: ../../
+    - image: dormammun/looport-telegraph
+      docker:
+        dockerfile: infrastructure/images/telegraph/Dockerfile
+      context: ../../
     - image: dormammun/looport-web
       docker:
         dockerfile: infrastructure/images/web/Dockerfile

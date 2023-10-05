@@ -4,19 +4,12 @@ on:
     branches:
       - main
     paths:
-      - 'infrastructure/**'
+      - 'infrastructure/k8s/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-        env:
-          DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd infrastructure/images/telegraph && sh cmd.sh buildx
-      - run: cd infrastructure/images/passport && sh cmd.sh buildx
-      - run: cd infrastructure/images/web && sh cmd.sh buildx
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DO_TOKEN }}
