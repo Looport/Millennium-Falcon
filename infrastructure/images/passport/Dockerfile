@@ -10,7 +10,7 @@ COPY ./pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY ./application ./application
 
 RUN pnpm -F @looport/passport install \
-    && pnpm -F @looport/passport... build
+    && pnpm -F @looport/passport^... build
 
 FROM node:20-alpine as runner
 

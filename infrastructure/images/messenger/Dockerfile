@@ -10,7 +10,7 @@ COPY ./pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY ./application ./application
 
 RUN pnpm -F @looport/messenger install \
-    && pnpm -F @looport/messenger... build
+    && pnpm -F @looport/messenger^... build
 
 FROM node:20-alpine as runner
 
