@@ -1,7 +1,5 @@
+import {Auth, AuthType} from '@looport/nest-auth'
 import {Controller, Get} from '@nestjs/common'
-
-import {AuthType} from '@/authorization/decorators/auth/auth-types.enum'
-import {Auth} from '@/authorization/decorators/auth/auth.decorator'
 
 @Controller('app')
 export class AppController {

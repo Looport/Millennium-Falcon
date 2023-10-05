@@ -1,4 +1,4 @@
-name: Deploy @looport/passport
+name: Deploy @looport/messenger
 on:
   push:
     branches:

@@ -23,8 +23,119 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
 
+  application/packages/nest-auth:
+    dependencies:
+      '@looport/nest-common':
+        specifier: workspace:*
+        version: link:../nest-common
+      '@nestjs/common':
+        specifier: ^10.2.4
+        version: 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/core':
+        specifier: ^10.2.4
+        version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/microservices@10.2.6)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/jwt':
+        specifier: ^10.1.1
+        version: 10.1.1(@nestjs/common@10.2.4)
+      '@nestjs/typeorm':
+        specifier: ^10.0.0
+        version: 10.0.0(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(reflect-metadata@0.1.13)(rxjs@7.8.1)(typeorm@0.3.17)
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
+    devDependencies:
+      '@looport/eslint-config':
+        specifier: workspace:*
+        version: link:../../configurations/eslint-config
+      '@nestjs/testing':
+        specifier: ^10.2.4
+        version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)
+      '@swc-node/register':
+        specifier: ^1.6.7
+        version: 1.6.7(@swc/core@1.3.82)(typescript@5.1.6)
+      '@types/node':
+        specifier: 20.5.1
+        version: 20.5.1
+      eslint:
+        specifier: ^8.42.0
+        version: 8.47.0
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      typescript:
+        specifier: ^5.1.3
+        version: 5.1.6
+
+  application/packages/nest-common:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^10.2.4
+        version: 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      class-transformer:
+        specifier: ^0.5.1
+        version: 0.5.1
+      class-validator:
+        specifier: ^0.14.0
+        version: 0.14.0
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
+    devDependencies:
+      '@looport/eslint-config':
+        specifier: workspace:*
+        version: link:../../configurations/eslint-config
+      '@swc-node/register':
+        specifier: ^1.6.7
+        version: 1.6.7(@swc/core@1.3.82)(typescript@5.1.6)
+      eslint:
+        specifier: ^8.42.0
+        version: 8.47.0
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      typescript:
+        specifier: ^5.1.3
+        version: 5.1.6
+
+  application/packages/nest-microservices:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^10.2.4
+        version: 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/microservices':
+        specifier: ^10.2.6
+        version: 10.2.6(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
+    devDependencies:
+      '@looport/eslint-config':
+        specifier: workspace:*
+        version: link:../../configurations/eslint-config
+      '@swc-node/register':
+        specifier: ^1.6.7
+        version: 1.6.7(@swc/core@1.3.82)(typescript@5.1.6)
+      eslint:
+        specifier: ^8.42.0
+        version: 8.47.0
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      typescript:
+        specifier: ^5.1.3
+        version: 5.1.6
+
   application/services/passport:
     dependencies:
+      '@looport/nest-auth':
+        specifier: workspace:*
+        version: link:../../packages/nest-auth
+      '@looport/nest-common':
+        specifier: workspace:*
+        version: link:../../packages/nest-common
+      '@looport/nest-microservices':
+        specifier: workspace:*
+        version: link:../../packages/nest-microservices
       '@nestjs/common':
         specifier: ^10.2.4
         version: 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
@@ -34,12 +145,6 @@ importers:
       '@nestjs/core':
         specifier: ^10.2.4
         version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/microservices@10.2.6)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/jwt':
-        specifier: ^10.1.1
-        version: 10.1.1(@nestjs/common@10.2.4)
-      '@nestjs/microservices':
-        specifier: ^10.2.6
-        version: 10.2.6(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(nats@2.17.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/platform-fastify':
         specifier: ^10.2.4
         version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)
@@ -73,7 +178,7 @@ importers:
         version: 10.1.17(@swc/cli@0.1.62)(@swc/core@1.3.82)
       '@nestjs/testing':
         specifier: ^10.2.4
-        version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(@nestjs/microservices@10.2.6)
+        version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)
       '@swc-node/register':
         specifier: ^1.6.7
         version: 1.6.7(@swc/core@1.3.82)(typescript@5.1.3)
@@ -104,6 +209,15 @@ importers:
 
   application/services/telegraph:
     dependencies:
+      '@looport/nest-auth':
+        specifier: workspace:*
+        version: link:../../packages/nest-auth
+      '@looport/nest-common':
+        specifier: workspace:*
+        version: link:../../packages/nest-common
+      '@looport/nest-microservices':
+        specifier: workspace:*
+        version: link:../../packages/nest-microservices
       '@nestjs/common':
         specifier: ^10.2.4
         version: 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
@@ -113,12 +227,6 @@ importers:
       '@nestjs/core':
         specifier: ^10.2.4
         version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/microservices@10.2.6)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/jwt':
-        specifier: ^10.1.1
-        version: 10.1.1(@nestjs/common@10.2.4)
-      '@nestjs/microservices':
-        specifier: ^10.2.6
-        version: 10.2.6(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(nats@2.17.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/platform-fastify':
         specifier: ^10.2.4
         version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)
@@ -152,7 +260,7 @@ importers:
         version: 10.1.17(@swc/cli@0.1.62)(@swc/core@1.3.82)
       '@nestjs/testing':
         specifier: ^10.2.4
-        version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(@nestjs/microservices@10.2.6)
+        version: 10.2.4(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)
       '@swc-node/register':
         specifier: ^1.6.7
         version: 1.6.7(@swc/core@1.3.82)(typescript@5.1.6)
@@ -402,7 +510,7 @@ packages:
     dependencies:
       ajv: 6.12.6
       debug: 4.3.4
-      espree: 9.6.0
+      espree: 9.6.1
       globals: 13.20.0
       ignore: 5.2.4
       import-fresh: 3.3.0
@@ -663,7 +771,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/microservices': 10.2.6(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(nats@2.17.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/microservices': 10.2.6(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
       iterare: 1.2.1
@@ -685,7 +793,7 @@ packages:
       jsonwebtoken: 9.0.0
     dev: false
 
-  /@nestjs/microservices@10.2.6(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(nats@2.17.0)(reflect-metadata@0.1.13)(rxjs@7.8.1):
+  /@nestjs/microservices@10.2.6(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(reflect-metadata@0.1.13)(rxjs@7.8.1):
     resolution: {integrity: sha512-Ef5Tv0arRSXmMwzlOvXHZEoOS8QlftIrDVrLkpcR6x5Q3BaKrkGOKBet6w2JbssX4eEGt2nw4dy/TbzN9pQYFw==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -724,7 +832,6 @@ packages:
       '@nestjs/common': 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/core': 10.2.4(@nestjs/common@10.2.4)(@nestjs/microservices@10.2.6)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       iterare: 1.2.1
-      nats: 2.17.0
       reflect-metadata: 0.1.13
       rxjs: 7.8.1
       tslib: 2.6.2
@@ -770,7 +877,7 @@ packages:
       - chokidar
     dev: true
 
-  /@nestjs/testing@10.2.4(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(@nestjs/microservices@10.2.6):
+  /@nestjs/testing@10.2.4(@nestjs/common@10.2.4)(@nestjs/core@10.2.4):
     resolution: {integrity: sha512-2qqymiuPbC41yCXXhtt4cL8AOcVNu13gBCT13A8roUUdcs4lmtg+H3oXKF/Gc/vlLv2RkSTNO+JuzxP1hydLPg==}
     peerDependencies:
       '@nestjs/common': ^10.0.0
@@ -785,7 +892,6 @@ packages:
     dependencies:
       '@nestjs/common': 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/core': 10.2.4(@nestjs/common@10.2.4)(@nestjs/microservices@10.2.6)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/microservices': 10.2.6(@nestjs/common@10.2.4)(@nestjs/core@10.2.4)(nats@2.17.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       tslib: 2.6.2
     dev: true
 
@@ -3009,7 +3115,7 @@ packages:
     dependencies:
       acorn: 8.9.0
       acorn-jsx: 5.3.2(acorn@8.9.0)
-      eslint-visitor-keys: 3.4.1
+      eslint-visitor-keys: 3.4.3
     dev: true
 
   /espree@9.6.1:
@@ -4369,6 +4475,7 @@ packages:
     engines: {node: '>= 14.0.0'}
     dependencies:
       nkeys.js: 1.0.5
+    dev: false
 
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
@@ -4427,6 +4534,7 @@ packages:
     engines: {node: '>=10.0.0'}
     dependencies:
       tweetnacl: 1.0.3
+    dev: false
 
   /node-abort-controller@3.1.1:
     resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
@@ -5822,6 +5930,7 @@ packages:
 
   /tweetnacl@1.0.3:
     resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==}
+    dev: false
 
   /type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}

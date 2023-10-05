@@ -1,14 +1,13 @@
 import {deepEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it} from 'node:test'
 
+import {createNatsMockService, NatsService} from '@looport/nest-microservices'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
 import request from 'supertest'
 
 import {AppModule} from '@/app/app.module'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {createNatsMockService} from '@/microservices/services/nats/nats-mock.service'
-import {NatsService} from '@/microservices/services/nats/nats.service'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('UserController (e2e)', () => {

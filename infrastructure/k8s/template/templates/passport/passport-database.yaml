@@ -51,6 +51,6 @@ spec:
   ports:
     - name: passport-database
       protocol: TCP
-      port: 5302
+      port: 5333
       targetPort: 5432
 {{ end }}

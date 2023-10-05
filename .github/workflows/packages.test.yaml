@@ -1,0 +1,44 @@
+name: Test @looport/packages
+
+on:
+  pull_request:
+    paths:
+      - 'application/packages/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm -F ./application/packages/** install && pnpm -F ./application/packages/** build
+      - run: pnpm -F ./application/packages/** test
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm -F ./application/packages/** install && pnpm -F ./application/packages/** build
+      - run: pnpm -F ./application/packages/** lint
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm -F ./application/packages/** install && pnpm -F ./application/packages/** build
+      - run: pnpm -F ./application/packages/** type-check
+  service:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "TODO test depended services"

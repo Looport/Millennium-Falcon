@@ -10,7 +10,8 @@ COPY ./pnpm-workspace.yaml ./pnpm-workspace.yaml
 
 COPY ./application ./application
 
-RUN pnpm -F @looport/web install &&  pnpm -F @looport/web build
+RUN pnpm -F @looport/web install \
+    &&  pnpm -F @looport/web build...
 
 FROM node:20-alpine as runner
 

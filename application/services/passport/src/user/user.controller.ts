@@ -1,8 +1,7 @@
+import {ActiveUser, ActiveUserInterface} from '@looport/nest-auth'
+import {Serialize} from '@looport/nest-common'
 import {Controller, Get} from '@nestjs/common'
 
-import {ActiveUser} from '@/authorization/decorators/active-user.decorator'
-import {ActiveUserInterface} from '@/authorization/interfaces/active-user.interface'
-import {Serialize} from '@/common/interceptors/serialize.interceptor'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 import {UserDto} from '@/user/dtos/user/user.dto'
 

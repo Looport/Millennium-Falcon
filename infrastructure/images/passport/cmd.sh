@@ -1,6 +1,6 @@
 cmd="$1"
 
-image="dormammun/looport-messenger:latest"
+image="dormammun/looport-passport:latest"
 arch="linux/amd64"
 #arch="linux/arm64,linux/amd64"
 

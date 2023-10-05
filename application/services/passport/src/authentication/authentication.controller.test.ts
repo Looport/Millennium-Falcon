@@ -1,14 +1,13 @@
 import {deepEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
+import {createNatsMockService, NatsService} from '@looport/nest-microservices'
 import {Test} from '@nestjs/testing'
 
 import {AuthenticationController} from '@/authentication/authentication.controller'
 import {createAuthenticationMockService} from '@/authentication/services/authentication/authentication-mock.service'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {validCredentials} from '@/authentication/test/authentication.mock'
-import {createNatsMockService} from '@/microservices/services/nats/nats-mock.service'
-import {NatsService} from '@/microservices/services/nats/nats.service'
 import {userMock} from '@/storage/repositories/user/user-mock.repository'
 
 describe('AuthenticationController', () => {

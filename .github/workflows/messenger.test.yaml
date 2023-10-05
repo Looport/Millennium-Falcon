@@ -49,7 +49,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/messenger install
+      - run: pnpm -F @looport/messenger install && pnpm -F @looport/messenger^... build
       - run: pnpm -F @looport/messenger lint
   type-check:
     runs-on: ubuntu-22.04
@@ -61,7 +61,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/messenger install
+      - run: pnpm -F @looport/messenger install && pnpm -F @looport/messenger^... build
       - run: pnpm -F @looport/messenger type-check
   build:
     runs-on: ubuntu-22.04
@@ -73,5 +73,4 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/messenger install
-      - run: pnpm -F @looport/messenger build
+      - run: pnpm -F @looport/messenger install && pnpm -F @looport/messenger... build

@@ -1,7 +1,6 @@
+import {ValidationPipe} from '@looport/nest-common'
 import {Provider} from '@nestjs/common'
 import {APP_PIPE} from '@nestjs/core'
-
-import {ValidationPipe} from '@/common/pipes/validation.pipe/validation.pipe'
 
 export const GLOBAL_PROVIDERS: Provider[] = [
   {
