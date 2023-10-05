@@ -2,7 +2,7 @@ import {Auth, AuthType} from '@looport/nest-auth'
 import {NatsService} from '@looport/nest-microservices'
 import {Body, Controller, HttpCode, HttpStatus, Post} from '@nestjs/common'
 
-import {CredentialsDto} from '@/authentication/dtos/credentials.dto'
+import {CredentialsDto} from '@/authentication/dto/credentials.dto'
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 
 @Controller('authentication')

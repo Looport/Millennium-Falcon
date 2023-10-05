@@ -1,13 +1,12 @@
 import {mock} from 'node:test'
 
 import {FAKE_PASSWORD_HASH} from '@/authentication/services/password-hash/password-hash-mock.service'
-import {validCredentials} from '@/authentication/test/authentication.mock'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 export const FAKE_USER_ID = 1
 
 export const userMock = {
-  email: validCredentials.email,
+  email: 'elliot@e-corp.com',
   id: FAKE_USER_ID,
   passwordHash: FAKE_PASSWORD_HASH,
 }

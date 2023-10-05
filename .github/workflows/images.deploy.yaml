@@ -1,4 +1,4 @@
-name: Deploy Infrastructure
+name: Deploy Images
 on:
   push:
     branches:

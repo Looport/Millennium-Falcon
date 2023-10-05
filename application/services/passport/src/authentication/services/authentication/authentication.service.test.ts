@@ -5,6 +5,7 @@ import {createTokenMockService, TokenService} from '@looport/nest-auth'
 import {ValidationException} from '@looport/nest-common'
 import {Test} from '@nestjs/testing'
 
+import {validCredentials} from '@/authentication/services/authentication/authentication-mock.service'
 import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
@@ -15,7 +16,6 @@ import {
   FAKE_PASSWORD_HASH,
 } from '@/authentication/services/password-hash/password-hash-mock.service'
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
-import {validCredentials} from '@/authentication/test/authentication.mock'
 import {
   createUserMockRepository,
   FAKE_USER_ID,
