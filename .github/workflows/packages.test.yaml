@@ -12,8 +12,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/packages/* install && pnpm -F @looport/packages/*... build
-      - run: pnpm -F @looport/packages/* test
+      - run: pnpm -F ./application/packages/** install && pnpm -F ./application/packages/** build
+      - run: pnpm -F ./application/packages/** test
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -24,8 +24,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/packages/* install && pnpm -F @looport/packages/*... build
-      - run: pnpm -F @looport/packages/* lint
+      - run: pnpm -F ./application/packages/** install && pnpm -F ./application/packages/** build
+      - run: pnpm -F ./application/packages/** lint
   type-check:
     runs-on: ubuntu-latest
     steps:
@@ -36,8 +36,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm -F @looport/packages/* install && pnpm -F @looport/packages/*... build
-      - run: pnpm -F @looport/packages/* type-check
+      - run: pnpm -F ./application/packages/** install && pnpm -F ./application/packages/** build
+      - run: pnpm -F ./application/packages/** type-check
   service:
     runs-on: ubuntu-latest
     steps:
