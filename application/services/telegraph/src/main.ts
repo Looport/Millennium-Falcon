@@ -19,8 +19,8 @@ async function bootstrap() {
   app.connectMicroservice<MicroserviceOptions>(
     microservicesConfigService.getNATSConfig()
   )
-
   await app.startAllMicroservices()
+
   const configService = app.get(ConfigService)
   await app.listen(configService.get('PORT') ?? 3000, EXPOSED_IP)
 }
