@@ -1,5 +1,5 @@
+import {EventPattern, Payload} from '@looport/nest-microservices'
 import {Controller} from '@nestjs/common'
-import {EventPattern, Payload} from '@nestjs/microservices'
 
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 import {UserDto} from '@/user/dtos/user/user.dto'

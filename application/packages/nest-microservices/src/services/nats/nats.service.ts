@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@nestjs/common'
 import {ClientProxy} from '@nestjs/microservices'
 
-import {NATS_CLIENT_KEY} from '@/microservices/common/clients-module-options/constants'
+import {NATS_CLIENT_KEY} from '../../common/clients-module-options/constants'
 
 @Injectable()
 export class NatsService {
@@ -12,8 +12,4 @@ export class NatsService {
   emit: typeof this.natsClient.emit = this.natsClient.emit.bind(this.natsClient)
 
   send: typeof this.natsClient.send = this.natsClient.send.bind(this.natsClient)
-
-  close: typeof this.natsClient.close = this.natsClient.close.bind(
-    this.natsClient
-  )
 }

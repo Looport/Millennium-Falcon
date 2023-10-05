@@ -1,0 +1,5 @@
+export * from './microservices.module'
+export * from './interfaces/microservices-module-options.interface'
+export * from './services/nats/nats.service'
+export * from './services/nats/nats-mock.service'
+export * from '@nestjs/microservices'

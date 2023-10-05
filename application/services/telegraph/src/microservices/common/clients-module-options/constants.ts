@@ -1,1 +1,0 @@
-export const NATS_CLIENT_KEY = 'NATS_CLIENT'

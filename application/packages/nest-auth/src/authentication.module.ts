@@ -2,33 +2,17 @@ import {
   DynamicModule,
   MiddlewareConsumer,
   Module,
-  ModuleMetadata,
   NestModule,
-  Provider,
 } from '@nestjs/common'
-import {JwtModule, JwtModuleOptions} from '@nestjs/jwt'
+import {JwtModule} from '@nestjs/jwt'
 
 import {GLOBAL_PROVIDERS} from './common/global-providers'
 import {AccessTokenGuard} from './guards/access-token/access-token.guard'
+import {AuthModuleAsyncOptions} from './interfaces/auth-module-options.interface'
 import {TokenMiddleware} from './middleware/token/token.middleware'
 import {TokenService} from './services/token/token.service'
 
-export interface AuthOptions {
-  jwt: JwtModuleOptions
-}
-
-export interface AuthModuleAsyncOptions
-  extends Pick<ModuleMetadata, 'imports'> {
-  global?: boolean
-  useFactory?: (...args: any[]) => AuthOptions
-  inject?: any[]
-  extraProviders?: Provider[]
-}
-
-@Module({
-  exports: [TokenService],
-  providers: [TokenService, AccessTokenGuard],
-})
+@Module({})
 export class AuthModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(TokenMiddleware).forRoutes('*')
@@ -37,6 +21,7 @@ export class AuthModule implements NestModule {
   static forRootAsync(options: AuthModuleAsyncOptions): DynamicModule {
     return {
       exports: [TokenService],
+      global: true,
       imports: [
         JwtModule.registerAsync({
           imports: options.imports,

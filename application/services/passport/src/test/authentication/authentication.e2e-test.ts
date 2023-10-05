@@ -1,8 +1,9 @@
 import {deepEqual, equal, notEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it} from 'node:test'
 
+import {TokenService} from '@looport/nest-auth'
 import {VALIDATION_EXCEPTION_MESSAGE} from '@looport/nest-common'
-import {JwtService} from '@nestjs/jwt'
+import {createNatsMockService, NatsService} from '@looport/nest-microservices'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
 import request from 'supertest'
@@ -17,14 +18,12 @@ import {
   invalidCredentials,
   validCredentials,
 } from '@/authentication/test/authentication.mock'
-import {createNatsMockService} from '@/microservices/services/nats/nats-mock.service'
-import {NatsService} from '@/microservices/services/nats/nats.service'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('AuthenticationController (e2e)', () => {
   let app: NestFastifyApplication
 
-  let jwtService: JwtService
+  let tokenService: TokenService
   let userRepository: UserRepository
 
   beforeEach(async () => {
@@ -37,7 +36,7 @@ describe('AuthenticationController (e2e)', () => {
 
     app = moduleFixture.createNestApplication(new FastifyAdapter())
 
-    jwtService = moduleFixture.get<JwtService>(JwtService)
+    tokenService = moduleFixture.get<TokenService>(TokenService)
     userRepository = moduleFixture.get<UserRepository>(UserRepository)
 
     await app.init()
@@ -60,11 +59,11 @@ describe('AuthenticationController (e2e)', () => {
       })
 
       // verify token payload
-      const payload = await jwtService.verifyAsync(body.accessToken)
+      const payload = await tokenService.unwrap(body.accessToken)
 
       ok(payload.sub)
       equal(validCredentials.email, payload.email)
-      ok(!payload.password)
+      ok(!(payload as any).password)
     })
 
     it('should save user and hash password', async () => {
@@ -153,11 +152,11 @@ describe('AuthenticationController (e2e)', () => {
         accessToken: body.accessToken,
       })
 
-      const payload = await jwtService.verifyAsync(body.accessToken)
+      const payload = await tokenService.unwrap(body.accessToken)
 
       ok(payload.sub)
       equal(validCredentials.email, payload.email)
-      ok(!payload.password)
+      ok(!(payload as any).password)
     })
 
     it('should throw validation error', async () => {
