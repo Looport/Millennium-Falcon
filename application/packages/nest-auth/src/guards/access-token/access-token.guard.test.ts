@@ -2,7 +2,7 @@
 import {ok} from 'node:assert'
 import {describe, it, mock} from 'node:test'
 
-import {REQUEST_ACTIVE_USER_KEY} from '../../common/auth.constants'
+import {REQUEST_ACTIVE_USER_KEY} from '../../middleware/token/token.middleware.constants'
 import {FAKE_TOKEN, userMock} from '../../services/token/token.service.mock'
 
 import {AccessTokenGuard} from './access-token.guard'

@@ -1,7 +1,6 @@
 import {deepEqual, equal} from 'node:assert/strict'
 import {describe, it, mock} from 'node:test'
 
-import {REQUEST_ACTIVE_USER_KEY} from '../../common/auth.constants'
 import {
   authMock,
   createTokenMockService,
@@ -9,6 +8,7 @@ import {
 } from '../../services/token/token.service.mock'
 
 import {TokenMiddleware} from './token.middleware'
+import {REQUEST_ACTIVE_USER_KEY} from './token.middleware.constants'
 
 describe('TokenMiddleware', () => {
   it('should inject token payload when header present', async () => {
