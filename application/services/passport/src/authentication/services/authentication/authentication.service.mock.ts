@@ -3,7 +3,7 @@ import {mock} from 'node:test'
 import {FAKE_TOKEN} from '@looport/nest-auth'
 
 import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
-import {userMock} from '@/storage/repositories/user/user-mock.repository'
+import {userMock} from '@/storage/repositories/user/user.repository.mock'
 
 export const validCredentials = {
   email: 'elliot@ecorp.com',
@@ -11,13 +11,13 @@ export const validCredentials = {
 }
 export const invalidCredentials = {email: 'elliot', password: 'oj(3'}
 
-type AuthenticationMockService = {
+type AuthenticationServiceMock = {
   [method in keyof AuthenticationService]: ReturnType<(typeof mock)['fn']>
 }
 
 export const createAuthenticationMockService = (
-  spies?: Partial<AuthenticationMockService>
-): Partial<AuthenticationMockService> => {
+  spies?: Partial<AuthenticationServiceMock>
+): Partial<AuthenticationServiceMock> => {
   const registerSpy = mock.fn(() =>
     Promise.resolve({
       accessToken: FAKE_TOKEN,

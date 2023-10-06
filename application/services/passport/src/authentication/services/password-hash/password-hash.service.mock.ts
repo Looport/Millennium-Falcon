@@ -4,13 +4,13 @@ import {PasswordHashService} from '@/authentication/services/password-hash/passw
 
 export const FAKE_PASSWORD_HASH = 'jCf9$32*#Ejf9'
 
-type PasswordHashMockService = {
+type PasswordHashServiceMock = {
   [method in keyof PasswordHashService]: ReturnType<(typeof mock)['fn']>
 }
 
 export const createPasswordMockService = (
-  spies?: Partial<PasswordHashMockService>
-): Partial<PasswordHashMockService> => {
+  spies?: Partial<PasswordHashServiceMock>
+): Partial<PasswordHashServiceMock> => {
   const createHashSpy = mock.fn(() => Promise.resolve(FAKE_PASSWORD_HASH))
   const validatePasswordSpy = mock.fn(() => Promise.resolve(true))
 

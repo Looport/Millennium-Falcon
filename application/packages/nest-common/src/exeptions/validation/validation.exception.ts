@@ -1,6 +1,6 @@
 import {BadRequestException} from '@nestjs/common'
 
-import {VALIDATION_EXCEPTION_MESSAGE} from './constants'
+import {VALIDATION_EXCEPTION_MESSAGE} from './validation.exception.constants'
 
 export interface ValidationError {
   field: string

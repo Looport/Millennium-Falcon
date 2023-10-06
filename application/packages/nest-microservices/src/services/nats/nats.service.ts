@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@nestjs/common'
 import {ClientProxy} from '@nestjs/microservices'
 
-import {NATS_CLIENT_KEY} from '../../common/clients-module-options/constants'
+import {NATS_CLIENT_KEY} from './nats.service.constants'
 
 @Injectable()
 export class NatsService {

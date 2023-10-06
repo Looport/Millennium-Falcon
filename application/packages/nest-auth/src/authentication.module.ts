@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common'
 import {JwtModule} from '@nestjs/jwt'
 
-import {GLOBAL_PROVIDERS} from './common/global-providers'
+import {GLOBAL_PROVIDERS} from './common/auth.global-providers'
 import {AccessTokenGuard} from './guards/access-token/access-token.guard'
 import {AuthModuleAsyncOptions} from './interfaces/auth-module-options.interface'
 import {TokenMiddleware} from './middleware/token/token.middleware'

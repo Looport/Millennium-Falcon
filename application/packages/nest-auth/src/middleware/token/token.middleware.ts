@@ -1,7 +1,8 @@
 import {Injectable, NestMiddleware} from '@nestjs/common'
 
-import {REQUEST_ACTIVE_USER_KEY} from '../../common/constants'
 import {TokenService} from '../../services/token/token.service'
+
+import {REQUEST_ACTIVE_USER_KEY} from './token.middleware.constants'
 
 @Injectable()
 export class TokenMiddleware implements NestMiddleware {

@@ -1,6 +1,6 @@
 import {ValidationPipe as NestValidationPipe} from '@nestjs/common'
 
-import {ValidationException} from '../../exeptions/validation.exeption/validation.exception'
+import {ValidationException} from '../../exeptions/validation/validation.exception'
 
 import {serializeValidationError} from './serialize-validation-error'
 

@@ -7,7 +7,7 @@ import {Test} from '@nestjs/testing'
 import request from 'supertest'
 
 import {AppModule} from '@/app/app.module'
-import {validCredentials} from '@/authentication/services/authentication/authentication-mock.service'
+import {validCredentials} from '@/authentication/services/authentication/authentication.service.mock'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('UserController (e2e)', () => {
