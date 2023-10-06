@@ -10,14 +10,14 @@ import request from 'supertest'
 
 import {AppModule} from '@/app/app.module'
 import {
-  invalidCredentials,
-  validCredentials,
-} from '@/authentication/services/authentication/authentication-mock.service'
-import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
-} from '@/authentication/services/authentication/authentication-service.constants'
+} from '@/authentication/services/authentication/authentication.service.constants'
+import {
+  invalidCredentials,
+  validCredentials,
+} from '@/authentication/services/authentication/authentication.service.mock'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('AuthenticationController (e2e)', () => {

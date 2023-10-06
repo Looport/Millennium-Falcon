@@ -6,7 +6,7 @@ import {
   authMock,
   createTokenMockService,
   FAKE_TOKEN,
-} from '../../services/token/token-mock.service'
+} from '../../services/token/token.service.mock'
 
 import {TokenMiddleware} from './token.middleware'
 

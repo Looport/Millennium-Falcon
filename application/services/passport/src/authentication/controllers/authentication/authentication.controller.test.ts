@@ -5,12 +5,12 @@ import {createNatsMockService, NatsService} from '@looport/nest-microservices'
 import {Test} from '@nestjs/testing'
 
 import {AuthenticationController} from '@/authentication/controllers/authentication/authentication.controller'
+import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {
   createAuthenticationMockService,
   validCredentials,
-} from '@/authentication/services/authentication/authentication-mock.service'
-import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
-import {userMock} from '@/storage/repositories/user/user-mock.repository'
+} from '@/authentication/services/authentication/authentication.service.mock'
+import {userMock} from '@/storage/repositories/user/user.repository.mock'
 
 describe('AuthenticationController', () => {
   let controller: AuthenticationController

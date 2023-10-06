@@ -10,13 +10,13 @@ export const userMock = {
   passwordHash: 'FAKE_PASSWORD_HASH',
 }
 
-type UserMockRepository = {
+type UserRepositoryMock = {
   [method in keyof UserRepository]: ReturnType<(typeof mock)['fn']>
 }
 
 export const createUserMockRepository = (
-  spies?: Partial<UserMockRepository>
-): Partial<UserMockRepository> => {
+  spies?: Partial<UserRepositoryMock>
+): Partial<UserRepositoryMock> => {
   const createSpy = mock.fn((data) => data)
   const saveSpy = mock.fn((data) =>
     Promise.resolve({id: FAKE_USER_ID, ...data})

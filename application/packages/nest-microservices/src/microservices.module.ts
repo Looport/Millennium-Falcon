@@ -2,8 +2,8 @@ import {DynamicModule, Module} from '@nestjs/common'
 import {ClientsModule} from '@nestjs/microservices'
 
 import {MicroservicesModuleOptionsInterface} from './interfaces/microservices-module-options.interface'
-import {NATS_CLIENT_KEY} from './services/nats/nats-service.constants'
 import {NatsService} from './services/nats/nats.service'
+import {NATS_CLIENT_KEY} from './services/nats/nats.service.constants'
 
 @Module({})
 export class MicroservicesModule {
