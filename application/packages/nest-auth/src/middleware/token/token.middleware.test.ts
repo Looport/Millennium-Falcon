@@ -1,7 +1,7 @@
 import {deepEqual, equal} from 'node:assert/strict'
 import {describe, it, mock} from 'node:test'
 
-import {REQUEST_ACTIVE_USER_KEY} from '../../common/constants'
+import {REQUEST_ACTIVE_USER_KEY} from '../../common/auth.constants'
 import {
   authMock,
   createTokenMockService,

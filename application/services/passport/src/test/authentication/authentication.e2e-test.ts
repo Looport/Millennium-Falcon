@@ -17,7 +17,7 @@ import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
-} from '@/authentication/services/authentication/constants'
+} from '@/authentication/services/authentication/authentication-service.constants'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('AuthenticationController (e2e)', () => {

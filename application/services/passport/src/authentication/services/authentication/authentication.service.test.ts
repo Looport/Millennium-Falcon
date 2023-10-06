@@ -10,7 +10,7 @@ import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
-} from '@/authentication/services/authentication/constants'
+} from '@/authentication/services/authentication/authentication-service.constants'
 import {
   createPasswordMockService,
   FAKE_PASSWORD_HASH,

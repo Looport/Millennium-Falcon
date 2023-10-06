@@ -1,6 +1,6 @@
 import {CanActivate, ExecutionContext, Injectable} from '@nestjs/common'
 
-import {REQUEST_ACTIVE_USER_KEY} from '../../common/constants'
+import {REQUEST_ACTIVE_USER_KEY} from '../../common/auth.constants'
 
 @Injectable()
 export class AccessTokenGuard implements CanActivate {

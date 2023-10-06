@@ -1,5 +1,5 @@
 export * from './pipes/validation.pipe/validation.pipe'
 export * from './pipes/validation.pipe/serialize-validation-error'
 export * from './interceptors/serialize.interceptor'
-export * from './exeptions/validation.exeption/validation.exception'
-export * from './exeptions/validation.exeption/constants'
+export * from './exeptions/validation/validation.exception'
+export * from './exeptions/validation/validation-exception.constants'

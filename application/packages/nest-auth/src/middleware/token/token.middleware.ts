@@ -1,6 +1,6 @@
 import {Injectable, NestMiddleware} from '@nestjs/common'
 
-import {REQUEST_ACTIVE_USER_KEY} from '../../common/constants'
+import {REQUEST_ACTIVE_USER_KEY} from '../../common/auth.constants'
 import {TokenService} from '../../services/token/token.service'
 
 @Injectable()
