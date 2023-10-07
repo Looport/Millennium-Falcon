@@ -1,17 +1,14 @@
 import {Controller, Post} from '@nestjs/common'
 
-import {RoomRepository} from '@/storage/repositories/room/room.repository'
+import {RoomsService} from '@/rooms/services/rooms/rooms.service'
+import {RoomEntity} from '@/storage/entities/room.entity'
 
 @Controller('rooms')
 export class RoomsController {
-  constructor(private readonly roomRepository: RoomRepository) {}
+  constructor(private readonly roomsService: RoomsService) {}
 
   @Post()
-  async createRoom() {
-    const url = 'fakeurl'
-    const room = await this.roomRepository.save(
-      this.roomRepository.create({url})
-    )
-    return room
+  async createRoom(): Promise<RoomEntity> {
+    return this.roomsService.create()
   }
 }
