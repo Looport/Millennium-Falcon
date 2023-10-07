@@ -7,6 +7,7 @@ import {GLOBAL_PROVIDERS} from '@/app/common/app.global-providers'
 import {ConfigModule} from '@/config/config.module'
 import {getAuthModuleAsyncOptions} from '@/config/services/auth-config/auth-module-options'
 import {getMicroservicesModuleAsyncOptions} from '@/config/services/microservcies-config/microservices-module-options'
+import {RoomsModule} from '@/rooms/rooms.module'
 import {UserModule} from '@/user/user.module'
 
 import {AppController} from './contollers/app/app.controller'
@@ -19,6 +20,7 @@ import {AppController} from './contollers/app/app.controller'
     MicroservicesModule.forRootAsync(getMicroservicesModuleAsyncOptions()),
     AuthModule.forRootAsync(getAuthModuleAsyncOptions()),
     UserModule,
+    RoomsModule,
   ],
   providers: [...GLOBAL_PROVIDERS],
 })

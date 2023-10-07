@@ -1,13 +1,10 @@
 import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm'
 
-@Entity('users')
-export class UserEntity {
+@Entity('rooms')
+export class RoomEntity {
   @PrimaryGeneratedColumn()
   id: number
 
   @Column()
-  email: string
-
-  @Column()
-  passwordHash: string
+  url: string
 }
