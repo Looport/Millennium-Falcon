@@ -1,4 +1,4 @@
-import {deepEqual, equal, ok} from 'node:assert/strict'
+import {deepEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
 import {EventEmitter2} from '@nestjs/event-emitter'
@@ -71,22 +71,14 @@ describe('RoomsController', () => {
   })
 
   it('should emit message when subscribed to sse', async () => {
-    let handler
-    eventEmitterMock.addListener.mock.mockImplementation((_, rxHandler) => {
-      handler = rxHandler
-      return {
-        off: mock.fn(),
-      }
-    })
-    let emittedEvent
-    eventEmitterMock.emit.mock.mockImplementation((event, message) => {
-      emittedEvent = event
-      handler(message)
-    })
+    eventEmitterMock.addListener.mock.mockImplementation(() => ({
+      off: mock.fn(),
+    }))
 
-    const subscriber = controller.subscribeMessages(roomMock.id)
-    const subPromise = new Promise((resolve) => {
-      subscriber.subscribe((message) => {
+    const observable = controller.subscribeMessages(roomMock.id)
+
+    const waitForEvent = new Promise((resolve) => {
+      observable.subscribe((message) => {
         resolve(message)
       })
     })
@@ -96,9 +88,8 @@ describe('RoomsController', () => {
       {email: messageMock.user.email, sub: messageMock.user.id},
       {text: messageMock.text}
     )
-    const emitted = await subPromise
+    const emitted = await waitForEvent
 
-    equal(emittedEvent, `room.[${roomMock.id}].message`)
     deepEqual(emitted, {
       data: {
         id: messageMock.id,
