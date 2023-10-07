@@ -11,6 +11,13 @@ export class RoomRepository {
     private readonly roomRepository: Repository<RoomEntity>
   ) {}
 
+  find: typeof this.roomRepository.find = this.roomRepository.find.bind(
+    this.roomRepository
+  )
+
+  findOneOrFail: typeof this.roomRepository.findOneOrFail =
+    this.roomRepository.findOneOrFail.bind(this.roomRepository)
+
   findOne: typeof this.roomRepository.findOne =
     this.roomRepository.findOne.bind(this.roomRepository)
 
