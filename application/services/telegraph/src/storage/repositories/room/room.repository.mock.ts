@@ -2,10 +2,10 @@ import {mock} from 'node:test'
 
 import {RoomRepository} from '@/storage/repositories/room/room.repository'
 
-export const FAKE_USER_ID = 1
+export const FAKE_ROOM_ID = 1
 
 export const roomMock = {
-  id: FAKE_USER_ID,
+  id: FAKE_ROOM_ID,
   url: 'foweijfoisjdcj',
 }
 
@@ -18,7 +18,7 @@ export const createUserMockRepository = (
 ): Partial<RoomRepositoryMock> => {
   const createSpy = mock.fn((data) => data)
   const saveSpy = mock.fn((data) =>
-    Promise.resolve({id: FAKE_USER_ID, ...data})
+    Promise.resolve({id: FAKE_ROOM_ID, ...data})
   )
   const findOneSpy = mock.fn(() => Promise.resolve(roomMock))
 
