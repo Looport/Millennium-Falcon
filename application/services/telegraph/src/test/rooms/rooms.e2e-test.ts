@@ -1,5 +1,5 @@
 import {ok} from 'node:assert/strict'
-import {describe, it, beforeEach, afterEach} from 'node:test'
+import {afterEach, beforeEach, describe, it} from 'node:test'
 
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
@@ -7,11 +7,19 @@ import request from 'supertest'
 
 import {AppModule} from '@/app/app.module'
 import {RoomRepository} from '@/storage/repositories/room/room.repository'
-import {FAKE_TOKEN} from '@/test/common/token.constants'
+import {UserRepository} from '@/storage/repositories/user/user.repository'
+import {
+  AuthTestData,
+  generateAuthTestData,
+} from '@/test/auth/generate-auth-test-data'
 
 describe('RoomsController (e2e)', () => {
   let app: NestFastifyApplication
+
   let roomRepository: RoomRepository
+  let userRepository: UserRepository
+
+  let authTestData: AuthTestData
 
   beforeEach(async () => {
     const moduleFixture = await Test.createTestingModule({
@@ -21,6 +29,9 @@ describe('RoomsController (e2e)', () => {
     app = moduleFixture.createNestApplication(new FastifyAdapter())
 
     roomRepository = app.get<RoomRepository>(RoomRepository)
+    userRepository = app.get<UserRepository>(UserRepository)
+
+    authTestData = await generateAuthTestData(app)
 
     await app.init()
     await app.getHttpAdapter().getInstance().ready()
@@ -28,6 +39,7 @@ describe('RoomsController (e2e)', () => {
 
   describe('/rooms (POST)', () => {
     afterEach(async () => {
+      await userRepository.delete({})
       await roomRepository.delete({})
     })
 
@@ -38,7 +50,7 @@ describe('RoomsController (e2e)', () => {
     it('should create and return room', async () => {
       const {body} = await request(app.getHttpServer())
         .post('/rooms')
-        .set('Authorization', `Bearer ${FAKE_TOKEN}`)
+        .set('Authorization', `Bearer ${authTestData.token}`)
         .expect(201)
 
       ok(body.id)
