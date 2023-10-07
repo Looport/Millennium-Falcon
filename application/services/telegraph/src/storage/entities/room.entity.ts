@@ -5,6 +5,6 @@ export class RoomEntity {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column({unique: true})
   url: string
 }
