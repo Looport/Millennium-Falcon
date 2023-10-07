@@ -1,6 +1,8 @@
 import {ActiveUser, ActiveUserInterface} from '@looport/nest-auth'
 import {Serialize} from '@looport/nest-common'
-import {Body, Controller, Param, Post} from '@nestjs/common'
+import {Body, Controller, Param, Post, Sse} from '@nestjs/common'
+import {EventEmitter2} from '@nestjs/event-emitter'
+import {fromEvent, map} from 'rxjs'
 
 import {CreateMessageDto} from '@/messages/dto/create-message.dto'
 import {MessageDto} from '@/messages/dto/message.dto'
@@ -13,7 +15,8 @@ import {RoomEntity} from '@/storage/entities/room.entity'
 export class RoomsController {
   constructor(
     private readonly messagesService: MessagesService,
-    private readonly roomsService: RoomsService
+    private readonly roomsService: RoomsService,
+    private readonly eventEmitter: EventEmitter2
   ) {}
 
   @Post()
@@ -28,10 +31,21 @@ export class RoomsController {
     @ActiveUser() activeUser: ActiveUserInterface,
     @Body() createMessageDto: CreateMessageDto
   ): Promise<MessagesEntity> {
-    return this.messagesService.create({
+    const message = await this.messagesService.create({
       ...createMessageDto,
       roomId,
       userId: activeUser.sub,
     })
+
+    this.eventEmitter.emit(`room.[${roomId}].message`, message)
+
+    return message
+  }
+
+  @Sse(':id/messages/subscribe')
+  subscribeMessages(@Param('id') roomId: number) {
+    return fromEvent(this.eventEmitter, `room.[${roomId}].message`).pipe(
+      map((message) => ({data: message}))
+    )
   }
 }
