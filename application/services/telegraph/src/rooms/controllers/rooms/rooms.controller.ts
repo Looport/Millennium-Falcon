@@ -52,10 +52,9 @@ export class RoomsController {
     @ActiveUser() activeUser: ActiveUserInterface
   ) {
     return fromEvent(this.eventEmitter, `room.[${roomId}].message`).pipe(
-      skipWhile((message: MessagesEntity) => {
-        console.warn(message, activeUser, message.user.id === activeUser.sub)
-        return message.user.id === activeUser.sub
-      }),
+      skipWhile(
+        (message: MessagesEntity) => message.user.id === activeUser.sub
+      ),
       map((message: MessagesEntity) => ({data: message}))
     )
   }
