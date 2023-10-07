@@ -7,7 +7,6 @@ export const FAKE_USER_ID = 1
 export const userMock = {
   email: 'eliot@e-corp.com',
   id: FAKE_USER_ID,
-  passwordHash: 'FAKE_PASSWORD_HASH',
 }
 
 type UserRepositoryMock = {

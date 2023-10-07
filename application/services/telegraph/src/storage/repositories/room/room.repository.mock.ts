@@ -13,7 +13,7 @@ type RoomRepositoryMock = {
   [method in keyof RoomRepository]: ReturnType<(typeof mock)['fn']>
 }
 
-export const createUserMockRepository = (
+export const createRoomMockRepository = (
   spies?: Partial<RoomRepositoryMock>
 ): Partial<RoomRepositoryMock> => {
   const createSpy = mock.fn((data) => data)

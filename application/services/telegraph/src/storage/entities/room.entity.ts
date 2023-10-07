@@ -1,4 +1,12 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm'
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Relation,
+} from 'typeorm'
+
+import {MessagesEntity} from '@/storage/entities/message.entity'
 
 @Entity('rooms')
 export class RoomEntity {
@@ -7,4 +15,7 @@ export class RoomEntity {
 
   @Column({unique: true})
   url: string
+
+  @OneToMany(() => MessagesEntity, (message) => message.room)
+  messages: Relation<MessagesEntity[]>
 }

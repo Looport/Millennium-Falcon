@@ -11,6 +11,13 @@ export class UserRepository {
     private readonly userRepository: Repository<UserEntity>
   ) {}
 
+  find: typeof this.userRepository.find = this.userRepository.find.bind(
+    this.userRepository
+  )
+
+  findOneOrFail: typeof this.userRepository.findOneOrFail =
+    this.userRepository.findOneOrFail.bind(this.userRepository)
+
   findOne: typeof this.userRepository.findOne =
     this.userRepository.findOne.bind(this.userRepository)
 
