@@ -4,7 +4,6 @@ import {describe, it, beforeEach, afterEach} from 'node:test'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
 import request from 'supertest'
-import {Repository} from 'typeorm'
 
 import {AppModule} from '@/app/app.module'
 import {RoomRepository} from '@/storage/repositories/room/room.repository'

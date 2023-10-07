@@ -21,9 +21,9 @@ export class RoomsService {
       .fill(0)
       .reduce(
         (url) =>
-          (url += characters.charAt(
+          `${url}${characters.charAt(
             Math.floor(Math.random() * characters.length)
-          )),
+          )}`,
         ''
       )
   }
