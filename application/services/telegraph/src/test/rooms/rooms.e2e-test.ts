@@ -4,7 +4,7 @@ import {afterEach, beforeEach, describe, it} from 'node:test'
 import {EventEmitter2} from '@nestjs/event-emitter'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
-import {instanceToPlain, plainToClass} from 'class-transformer'
+import {instanceToPlain, plainToClass, plainToInstance} from 'class-transformer'
 import request from 'supertest'
 
 import {AppModule} from '@/app/app.module'
@@ -93,27 +93,25 @@ describe('RoomsController (e2e)', () => {
     })
 
     it('should create message and return it', async () => {
-      const MESSAGE_TEXT = 'Hello'
-
       const room = await roomsService.create()
 
       const {body} = await request(app.getHttpServer())
         .post(`/rooms/${room.id}/messages`)
         .set('Authorization', `Bearer ${authTestData.token}`)
         .send({
-          text: MESSAGE_TEXT,
+          text: messageMock.text,
         })
         .expect(201)
 
       deepEqual(
         body,
         instanceToPlain(
-          plainToClass(
+          plainToInstance(
             MessageDto,
             {
               id: body.id,
               room,
-              text: MESSAGE_TEXT,
+              text: messageMock.text,
               user: authTestData.user,
             },
             {excludeExtraneousValues: true}
@@ -125,7 +123,7 @@ describe('RoomsController (e2e)', () => {
     it('should emit message', async () => {
       const room = await roomsService.create()
 
-      const messagePromise = new Promise((resolve) => {
+      const waitForMessagePromise = new Promise((resolve) => {
         eventEmitter.once(`room.[${room.id}].message`, resolve)
       })
 
@@ -137,17 +135,19 @@ describe('RoomsController (e2e)', () => {
         })
         .expect(201)
 
-      const message = await messagePromise
+      const message = await waitForMessagePromise
 
       deepEqual(
-        instanceToPlain(plainToClass(MessageDto, message)),
-        instanceToPlain(
-          plainToClass(MessageDto, {
+        message,
+        plainToInstance(
+          MessageDto,
+          {
             id: body.id,
             room,
             text: body.text,
             user: authTestData.user,
-          })
+          },
+          {excludeExtraneousValues: true}
         )
       )
     })
@@ -162,6 +162,10 @@ describe('RoomsController (e2e)', () => {
       await userRepository.delete({})
       await roomRepository.delete({})
       await messageRepository.delete({})
+    })
+
+    it('should throw 401 when user not authenticated', async () => {
+      await request(app.getHttpServer()).post('/rooms/12/messages').expect(401)
     })
 
     it('should emit message', async () => {
@@ -197,5 +201,7 @@ describe('RoomsController (e2e)', () => {
         })
         .expect(201)
     })
+
+    it.todo('should not emit message when sender same as receiver')
   })
 })

@@ -2,7 +2,8 @@ import {ActiveUser, ActiveUserInterface} from '@looport/nest-auth'
 import {Serialize} from '@looport/nest-common'
 import {Body, Controller, Param, Post, Sse} from '@nestjs/common'
 import {EventEmitter2} from '@nestjs/event-emitter'
-import {fromEvent, map} from 'rxjs'
+import {plainToInstance} from 'class-transformer'
+import {fromEvent, map, skipWhile} from 'rxjs'
 
 import {CreateMessageDto} from '@/messages/dto/create-message.dto'
 import {MessageDto} from '@/messages/dto/message.dto'
@@ -37,15 +38,25 @@ export class RoomsController {
       userId: activeUser.sub,
     })
 
-    this.eventEmitter.emit(`room.[${roomId}].message`, message)
+    this.eventEmitter.emit(
+      `room.[${roomId}].message`,
+      plainToInstance(MessageDto, message, {excludeExtraneousValues: true})
+    )
 
     return message
   }
 
   @Sse(':id/messages/subscribe')
-  subscribeMessages(@Param('id') roomId: number) {
+  subscribeMessages(
+    @Param('id') roomId: number,
+    @ActiveUser() activeUser: ActiveUserInterface
+  ) {
     return fromEvent(this.eventEmitter, `room.[${roomId}].message`).pipe(
-      map((message) => ({data: message}))
+      skipWhile((message: MessagesEntity) => {
+        console.warn(message, activeUser, message.user.id === activeUser.sub)
+        return message.user.id === activeUser.sub
+      }),
+      map((message: MessagesEntity) => ({data: message}))
     )
   }
 }
