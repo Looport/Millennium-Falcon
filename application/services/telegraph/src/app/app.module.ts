@@ -2,7 +2,6 @@ import {AuthModule} from '@looport/nest-auth'
 import {MicroservicesModule} from '@looport/nest-microservices'
 import {Module} from '@nestjs/common'
 import {ConfigModule as NestConfigModule} from '@nestjs/config'
-import {EventEmitterModule} from '@nestjs/event-emitter'
 
 import {GLOBAL_PROVIDERS} from '@/app/common/app.global-providers'
 import {ConfigModule} from '@/config/config.module'
