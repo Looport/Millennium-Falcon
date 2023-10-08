@@ -1,12 +1,12 @@
 import {AuthModule} from '@looport/nest-auth'
-import {MicroservicesModule} from '@looport/nest-microservices'
+import {MicroserviceModule} from '@looport/nest-microservice'
 import {Module} from '@nestjs/common'
 import {ConfigModule as NestConfigModule} from '@nestjs/config'
 
 import {GLOBAL_PROVIDERS} from '@/app/common/app.global-providers'
 import {ConfigModule} from '@/config/config.module'
 import {getAuthModuleAsyncOptions} from '@/config/services/auth-config/auth-module-options'
-import {getMicroservicesModuleAsyncOptions} from '@/config/services/microservcies-config/microservices-module-options'
+import {getMicroserviceModuleAsyncOptions} from '@/config/services/microservcies-config/microservice-module-options'
 import {RoomModule} from '@/room/room.module'
 import {UserModule} from '@/user/user.module'
 
@@ -17,7 +17,7 @@ import {AppController} from './contollers/app/app.controller'
   imports: [
     NestConfigModule.forRoot({isGlobal: true}),
     ConfigModule,
-    MicroservicesModule.forRootAsync(getMicroservicesModuleAsyncOptions()),
+    MicroserviceModule.forRootAsync(getMicroserviceModuleAsyncOptions()),
     AuthModule.forRootAsync(getAuthModuleAsyncOptions()),
     UserModule,
     RoomModule,

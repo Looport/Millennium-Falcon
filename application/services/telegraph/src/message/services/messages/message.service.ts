@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common'
 
-import {CreateMessageDto} from '@/messages/dto/create-message.dto'
+import {CreateMessageDto} from '@/message/dto/create-message.dto'
 import {MessageEntity} from '@/storage/entities/message.entity'
 import {MessageRepository} from '@/storage/repositories/message/message.repository'
 import {RoomRepository} from '@/storage/repositories/room/room.repository'

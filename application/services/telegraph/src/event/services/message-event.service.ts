@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common'
 import {EventEmitter2} from '@nestjs/event-emitter'
 
 import {createMessageCreatedSubject} from '@/event/services/message-event.service.lib'
-import {serializeMessage} from '@/messages/dto/message/message-serializer'
+import {serializeMessage} from '@/message/dto/message/message-serializer'
 import {MessageEntity} from '@/storage/entities/message.entity'
 
 @Injectable()

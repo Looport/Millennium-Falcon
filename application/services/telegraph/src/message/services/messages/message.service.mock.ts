@@ -1,6 +1,6 @@
 import {mock} from 'node:test'
 
-import {MessageService} from '@/messages/services/messages/message.service'
+import {MessageService} from '@/message/services/messages/message.service'
 import {FAKE_MESSAGE_ID} from '@/storage/repositories/message/message.repository.mock'
 
 type MessageServiceMock = {
