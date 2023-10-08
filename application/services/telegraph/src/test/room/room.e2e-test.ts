@@ -20,7 +20,7 @@ import {
   generateAuthTestData,
 } from '@/test/auth/lib/generate-auth-test-data'
 
-describe('RoomsController (e2e)', () => {
+describe('RoomController (e2e)', () => {
   let app: NestFastifyApplication
 
   let userRepository: UserRepository
