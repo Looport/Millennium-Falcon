@@ -1,7 +1,7 @@
 import {Module} from '@nestjs/common'
 import {TypeOrmModule} from '@nestjs/typeorm'
 
-import {MessagesEntity} from '@/storage/entities/message.entity'
+import {MessageEntity} from '@/storage/entities/message.entity'
 import {RoomEntity} from '@/storage/entities/room.entity'
 import {UserEntity} from '@/storage/entities/user.entity'
 import {MessageRepository} from '@/storage/repositories/message/message.repository'
@@ -19,7 +19,7 @@ import {getTypeormModuleOptions} from '@/storage/services/typeorm-module-options
   ],
   imports: [
     TypeOrmModule.forRootAsync(getTypeormModuleOptions()),
-    TypeOrmModule.forFeature([UserEntity, RoomEntity, MessagesEntity]),
+    TypeOrmModule.forFeature([UserEntity, RoomEntity, MessageEntity]),
   ],
   providers: [
     StorageConfigService,

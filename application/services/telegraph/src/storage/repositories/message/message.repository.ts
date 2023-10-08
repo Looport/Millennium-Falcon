@@ -2,13 +2,13 @@ import {Injectable} from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 
-import {MessagesEntity} from '@/storage/entities/message.entity'
+import {MessageEntity} from '@/storage/entities/message.entity'
 
 @Injectable()
 export class MessageRepository {
   constructor(
-    @InjectRepository(MessagesEntity)
-    private readonly messageRepository: Repository<MessagesEntity>
+    @InjectRepository(MessageEntity)
+    private readonly messageRepository: Repository<MessageEntity>
   ) {}
 
   findOne: typeof this.messageRepository.findOne =

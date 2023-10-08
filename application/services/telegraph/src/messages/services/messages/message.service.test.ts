@@ -4,37 +4,37 @@ import {beforeEach, describe, it} from 'node:test'
 import {Test, TestingModule} from '@nestjs/testing'
 
 import {MessageRepository} from '@/storage/repositories/message/message.repository'
-import {createMessageMockRepository} from '@/storage/repositories/message/message.repository.mock'
+import {createMessageRepositoryMock} from '@/storage/repositories/message/message.repository.mock'
 import {RoomRepository} from '@/storage/repositories/room/room.repository'
-import {createRoomMockRepository} from '@/storage/repositories/room/room.repository.mock'
+import {createRoomRepositoryMock} from '@/storage/repositories/room/room.repository.mock'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
-import {createUserMockRepository} from '@/storage/repositories/user/user.repository.mock'
+import {createUserRepositoryMock} from '@/storage/repositories/user/user.repository.mock'
 
-import {MessagesService} from './messages.service'
+import {MessageService} from './message.service'
 
-describe('MessagesService', () => {
-  let service: MessagesService
+describe('MessageService', () => {
+  let service: MessageService
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        MessagesService,
+        MessageService,
         {
           provide: RoomRepository,
-          useValue: createRoomMockRepository(),
+          useValue: createRoomRepositoryMock(),
         },
         {
           provide: UserRepository,
-          useValue: createUserMockRepository(),
+          useValue: createUserRepositoryMock(),
         },
         {
           provide: MessageRepository,
-          useValue: createMessageMockRepository(),
+          useValue: createMessageRepositoryMock(),
         },
       ],
     }).compile()
 
-    service = module.get<MessagesService>(MessagesService)
+    service = module.get<MessageService>(MessageService)
   })
 
   it('should be defined', () => {

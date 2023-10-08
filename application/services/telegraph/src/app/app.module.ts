@@ -8,7 +8,7 @@ import {GLOBAL_PROVIDERS} from '@/app/common/app.global-providers'
 import {ConfigModule} from '@/config/config.module'
 import {getAuthModuleAsyncOptions} from '@/config/services/auth-config/auth-module-options'
 import {getMicroservicesModuleAsyncOptions} from '@/config/services/microservcies-config/microservices-module-options'
-import {RoomsModule} from '@/rooms/rooms.module'
+import {RoomModule} from '@/room/room.module'
 import {UserModule} from '@/user/user.module'
 
 import {AppController} from './contollers/app/app.controller'
@@ -17,12 +17,11 @@ import {AppController} from './contollers/app/app.controller'
   controllers: [AppController],
   imports: [
     NestConfigModule.forRoot({isGlobal: true}),
-    EventEmitterModule.forRoot(),
     ConfigModule,
     MicroservicesModule.forRootAsync(getMicroservicesModuleAsyncOptions()),
     AuthModule.forRootAsync(getAuthModuleAsyncOptions()),
     UserModule,
-    RoomsModule,
+    RoomModule,
   ],
   providers: [...GLOBAL_PROVIDERS],
 })

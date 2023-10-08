@@ -4,7 +4,7 @@ import {RoomEntity} from '@/storage/entities/room.entity'
 import {RoomRepository} from '@/storage/repositories/room/room.repository'
 
 @Injectable()
-export class RoomsService {
+export class RoomService {
   constructor(private readonly roomRepository: RoomRepository) {}
 
   create(): Promise<RoomEntity> {

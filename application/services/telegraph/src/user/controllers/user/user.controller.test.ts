@@ -5,7 +5,7 @@ import {Test} from '@nestjs/testing'
 
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 import {
-  createUserMockRepository,
+  createUserRepositoryMock,
   userMock,
 } from '@/storage/repositories/user/user.repository.mock'
 
@@ -14,7 +14,7 @@ import {UserController} from './user.controller'
 describe('UserController', () => {
   let controller: UserController
 
-  const userRepositoryMock = createUserMockRepository()
+  const userRepositoryMock = createUserRepositoryMock()
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({

@@ -1,13 +1,13 @@
 import {Injectable} from '@nestjs/common'
 
 import {CreateMessageDto} from '@/messages/dto/create-message.dto'
-import {MessagesEntity} from '@/storage/entities/message.entity'
+import {MessageEntity} from '@/storage/entities/message.entity'
 import {MessageRepository} from '@/storage/repositories/message/message.repository'
 import {RoomRepository} from '@/storage/repositories/room/room.repository'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 @Injectable()
-export class MessagesService {
+export class MessageService {
   constructor(
     private readonly roomRepository: RoomRepository,
     private readonly userRepository: UserRepository,
@@ -21,7 +21,7 @@ export class MessagesService {
   }: CreateMessageDto & {
     userId: number
     roomId: number
-  }): Promise<MessagesEntity> {
+  }): Promise<MessageEntity> {
     return this.messageRepository.save(
       this.messageRepository.create({
         ...createMessageDto,

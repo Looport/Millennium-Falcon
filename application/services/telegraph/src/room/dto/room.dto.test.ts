@@ -3,7 +3,7 @@ import {describe, it} from 'node:test'
 
 import {instanceToPlain, plainToInstance} from 'class-transformer'
 
-import {RoomDto} from '@/rooms/dto/room.dto'
+import {RoomDto} from '@/room/dto/room.dto'
 
 describe('RoomDto', () => {
   it('should remove unnecessary fields', () => {

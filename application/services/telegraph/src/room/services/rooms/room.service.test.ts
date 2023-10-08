@@ -4,22 +4,22 @@ import {beforeEach, describe, it} from 'node:test'
 import {Test, TestingModule} from '@nestjs/testing'
 
 import {RoomRepository} from '@/storage/repositories/room/room.repository'
-import {createRoomMockRepository} from '@/storage/repositories/room/room.repository.mock'
+import {createRoomRepositoryMock} from '@/storage/repositories/room/room.repository.mock'
 
-import {RoomsService} from './rooms.service'
+import {RoomService} from './room.service'
 
-describe('RoomsService', () => {
-  let service: RoomsService
+describe('RoomService', () => {
+  let service: RoomService
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        RoomsService,
-        {provide: RoomRepository, useValue: createRoomMockRepository()},
+        RoomService,
+        {provide: RoomRepository, useValue: createRoomRepositoryMock()},
       ],
     }).compile()
 
-    service = module.get<RoomsService>(RoomsService)
+    service = module.get<RoomService>(RoomService)
   })
 
   it('should be defined', () => {
