@@ -1,5 +1,5 @@
 import {Auth, AuthType} from '@looport/nest-auth'
-import {NatsService} from '@looport/nest-microservices'
+import {NatsService} from '@looport/nest-microservice'
 import {Body, Controller, HttpCode, HttpStatus, Post} from '@nestjs/common'
 
 import {CredentialsDto} from '@/authentication/dto/credentials.dto'

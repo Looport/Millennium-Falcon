@@ -22,7 +22,7 @@
   "dependencies": {
     "@looport/nest-common": "workspace:*",
     "@looport/nest-auth": "workspace:*",
-    "@looport/nest-microservices": "workspace:*",
+    "@looport/nest-microservice": "workspace:*",
     "@nestjs/common": "^10.2.4",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.2.4",

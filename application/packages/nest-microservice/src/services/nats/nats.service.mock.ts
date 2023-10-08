@@ -6,7 +6,7 @@ type NatsServiceMock = {
   [method in keyof NatsService]: ReturnType<(typeof mock)['fn']>
 }
 
-export const createNatsMockService = (
+export const createNatsServiceMock = (
   spies?: Partial<NatsServiceMock>
 ): Partial<NatsServiceMock> => {
   const emit = mock.fn()

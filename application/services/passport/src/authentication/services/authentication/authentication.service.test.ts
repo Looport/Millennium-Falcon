@@ -1,7 +1,7 @@
 import {deepEqual, ok, rejects} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
-import {createTokenMockService, TokenService} from '@looport/nest-auth'
+import {createTokenServiceMock, TokenService} from '@looport/nest-auth'
 import {ValidationException} from '@looport/nest-common'
 import {Test} from '@nestjs/testing'
 
@@ -27,7 +27,7 @@ import {AuthenticationService} from './authentication.service'
 describe('AuthenticationService', () => {
   let service: AuthenticationService
 
-  const tokenService = createTokenMockService()
+  const tokenService = createTokenServiceMock()
   const userRepositoryMock = createUserMockRepository()
   const passwordHashServiceMock = createPasswordMockService()
 

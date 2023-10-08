@@ -1,12 +1,12 @@
-import {MicroservicesOptions, Transport} from '@looport/nest-microservices'
+import {Transport, MicroserviceModuleOptions} from '@looport/nest-microservice'
 import {Injectable} from '@nestjs/common'
 import {ConfigService} from '@nestjs/config'
 
 @Injectable()
-export class MicroservicesConfigService {
+export class MicroserviceConfigService {
   constructor(private readonly configService: ConfigService) {}
 
-  getNATSConfig(): MicroservicesOptions {
+  getNATSConfig(): MicroserviceModuleOptions {
     return {
       options: {
         name: 'passport',

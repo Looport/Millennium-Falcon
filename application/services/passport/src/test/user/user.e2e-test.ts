@@ -1,7 +1,7 @@
 import {deepEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it} from 'node:test'
 
-import {createNatsMockService, NatsService} from '@looport/nest-microservices'
+import {createNatsServiceMock, NatsService} from '@looport/nest-microservice'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
 import request from 'supertest'
@@ -20,7 +20,7 @@ describe('UserController (e2e)', () => {
       imports: [AppModule],
     })
       .overrideProvider(NatsService)
-      .useValue(createNatsMockService())
+      .useValue(createNatsServiceMock())
       .compile()
 
     app = moduleFixture.createNestApplication(new FastifyAdapter())

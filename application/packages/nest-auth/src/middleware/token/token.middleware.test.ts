@@ -3,7 +3,7 @@ import {describe, it, mock} from 'node:test'
 
 import {
   authMock,
-  createTokenMockService,
+  createTokenServiceMock,
   FAKE_TOKEN,
 } from '../../services/token/token.service.mock'
 
@@ -13,7 +13,7 @@ import {REQUEST_ACTIVE_USER_KEY} from './token.middleware.constants'
 describe('TokenMiddleware', () => {
   it('should inject token payload when header present', async () => {
     const request = {headers: {authorization: `Bearer ${FAKE_TOKEN}`}}
-    const tokenService = createTokenMockService()
+    const tokenService = createTokenServiceMock()
 
     const nextSpy = mock.fn(() => {})
     const middleware = new TokenMiddleware(tokenService as any)
@@ -27,7 +27,7 @@ describe('TokenMiddleware', () => {
 
   it('should skip token injection when header not present', async () => {
     const request = {headers: {}}
-    const tokenService = createTokenMockService()
+    const tokenService = createTokenServiceMock()
 
     const nextSpy = mock.fn(() => {})
     const middleware = new TokenMiddleware(tokenService as any)

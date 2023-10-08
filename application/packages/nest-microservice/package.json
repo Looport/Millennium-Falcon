@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@looport/nest-microservices",
+  "name": "@looport/nest-microservice",
   "author": "Vitalii Khotei <khoteiv.dev@gmail.com>",
   "main": "./dist/index.js",
   "scripts": {

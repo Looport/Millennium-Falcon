@@ -1,7 +1,7 @@
 import {deepEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 
-import {createNatsMockService, NatsService} from '@looport/nest-microservices'
+import {createNatsServiceMock, NatsService} from '@looport/nest-microservice'
 import {Test} from '@nestjs/testing'
 
 import {AuthenticationController} from '@/authentication/controllers/authentication/authentication.controller'
@@ -16,7 +16,7 @@ describe('AuthenticationController', () => {
   let controller: AuthenticationController
 
   const authenticationServiceMock = createAuthenticationMockService()
-  const natsServiceMock = createNatsMockService()
+  const natsServiceMock = createNatsServiceMock()
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
