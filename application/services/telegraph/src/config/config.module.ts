@@ -1,7 +1,7 @@
 import {Module} from '@nestjs/common'
 
 import {AuthConfigService} from '@/config/services/auth-config/auth-config.service'
-import {MicroserviceConfigService} from '@/config/services/microservcies-config/microservice-config.service'
+import {MicroserviceConfigService} from '@/config/services/microservcie-config/microservice-config.service'
 
 @Module({
   exports: [MicroserviceConfigService, AuthConfigService],

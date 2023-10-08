@@ -1,4 +1,4 @@
-import {AuthOptions} from '@looport/nest-auth'
+import {AuthModuleOptions} from '@looport/nest-auth'
 import {Injectable} from '@nestjs/common'
 import {ConfigService} from '@nestjs/config'
 
@@ -6,7 +6,7 @@ import {ConfigService} from '@nestjs/config'
 export class AuthConfigService {
   constructor(private readonly configService: ConfigService) {}
 
-  getAuthConfig(): AuthOptions {
+  getAuthConfig(): AuthModuleOptions {
     return {
       jwt: {
         secret: this.configService.getOrThrow('JWT_SECRET'),
