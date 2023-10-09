@@ -3,7 +3,7 @@ import {beforeEach, describe, it} from 'node:test'
 
 import {Test, TestingModule} from '@nestjs/testing'
 
-import {validCredentials} from '@/auth/services/authentication/authentication.service.mock'
+import {validCredentials} from '@/authentication/services/authentication/authentication.service.mock'
 
 import {PasswordHashService} from './password-hash.service'
 

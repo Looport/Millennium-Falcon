@@ -1,10 +1,10 @@
 import {ASYNC_OPTIONS_TYPE} from '@looport/nest-auth'
 
-import {AuthModule} from '@/auth/auth.module'
-import {AuthConfigService} from '@/auth/services/auth-config/auth-config.service'
+import {AppModule} from '@/app/app.module'
+import {AuthConfigService} from '@/app/services/auth-config/auth-config.service'
 
 export const getAuthModuleAsyncOptions = (): typeof ASYNC_OPTIONS_TYPE => ({
-  imports: [AuthModule],
+  imports: [AppModule],
   inject: [AuthConfigService],
   useFactory: (authenticationConfigService: AuthConfigService) =>
     authenticationConfigService.getAuthConfig(),

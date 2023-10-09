@@ -1,6 +1,6 @@
 import {mock} from 'node:test'
 
-import {PasswordHashService} from '@/auth/services/password-hash/password-hash.service'
+import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
 
 export const FAKE_PASSWORD_HASH = 'jCf9$32*#Ejf9'
 
