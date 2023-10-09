@@ -1,4 +1,5 @@
 import {Module} from '@nestjs/common'
+import {ConfigModule} from '@nestjs/config'
 import {TypeOrmModule} from '@nestjs/typeorm'
 
 import {UserEntity} from '@/storage/entities/user.entity'
@@ -9,6 +10,7 @@ import {getTypeormModuleOptions} from '@/storage/services/typeorm-module-options
 @Module({
   exports: [UserRepository, StorageConfigService],
   imports: [
+    ConfigModule,
     TypeOrmModule.forRootAsync(getTypeormModuleOptions()),
     TypeOrmModule.forFeature([UserEntity]),
   ],

@@ -1,49 +1,33 @@
 import {DynamicModule, Module} from '@nestjs/common'
-import {ClientsModule} from '@nestjs/microservices'
 
 import {
   ASYNC_OPTIONS_TYPE,
   OPTIONS_TYPE,
 } from './library/microservice-module-options'
+import {MicroserviceCoreModule} from './microservice-core.module'
 import {NatsService} from './services/nats/nats.service'
-import {NATS_CLIENT_KEY} from './services/nats/nats.service.constants'
 
 @Module({
   exports: [NatsService],
+  imports: [MicroserviceCoreModule],
   providers: [NatsService],
 })
 export class MicroserviceModule {
-  static register(options: typeof OPTIONS_TYPE): DynamicModule {
+  static forRoot(options: typeof OPTIONS_TYPE): DynamicModule {
     return {
       exports: [NatsService],
       global: options.isGlobal,
-      imports: [
-        ClientsModule.register([
-          {
-            name: NATS_CLIENT_KEY,
-            ...options,
-          },
-        ]),
-      ],
+      imports: [MicroserviceCoreModule.register(options)],
       module: MicroserviceModule,
       providers: [NatsService],
     }
   }
 
-  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
+  static forRootAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
     return {
       exports: [NatsService],
       global: options.isGlobal,
-      imports: [
-        ClientsModule.registerAsync([
-          {
-            imports: [...options.imports],
-            inject: [...options.inject],
-            name: NATS_CLIENT_KEY,
-            useFactory: options.useFactory,
-          },
-        ]),
-      ],
+      imports: [MicroserviceCoreModule.registerAsync(options)],
       module: MicroserviceModule,
       providers: [NatsService],
     }

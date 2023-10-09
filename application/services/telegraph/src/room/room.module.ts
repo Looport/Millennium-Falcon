@@ -1,3 +1,4 @@
+import {AuthModule} from '@looport/nest-auth'
 import {Module} from '@nestjs/common'
 
 import {EventModule} from '@/event/event.module'
@@ -9,7 +10,7 @@ import {RoomService} from './services/rooms/room.service'
 
 @Module({
   controllers: [RoomController],
-  imports: [StorageModule, EventModule, MessageModule],
+  imports: [AuthModule, StorageModule, EventModule, MessageModule],
   providers: [RoomService],
 })
 export class RoomModule {}

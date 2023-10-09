@@ -2,7 +2,7 @@ import {mock} from 'node:test'
 
 import {FAKE_TOKEN} from '@looport/nest-auth'
 
-import {AuthenticationService} from '@/auth/services/authentication/authentication.service'
+import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
 import {userMock} from '@/storage/repositories/user/user.repository.mock'
 
 export const validCredentials = {

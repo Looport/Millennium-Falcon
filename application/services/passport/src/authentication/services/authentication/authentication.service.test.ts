@@ -9,13 +9,13 @@ import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
-} from '@/auth/services/authentication/authentication.service.constants'
-import {validCredentials} from '@/auth/services/authentication/authentication.service.mock'
-import {PasswordHashService} from '@/auth/services/password-hash/password-hash.service'
+} from '@/authentication/services/authentication/authentication.service.constants'
+import {validCredentials} from '@/authentication/services/authentication/authentication.service.mock'
+import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
 import {
   createPasswordMockService,
   FAKE_PASSWORD_HASH,
-} from '@/auth/services/password-hash/password-hash.service.mock'
+} from '@/authentication/services/password-hash/password-hash.service.mock'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 import {
   createUserMockRepository,
