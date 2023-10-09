@@ -1,17 +1,7 @@
-import {
-  DynamicModule,
-  Global,
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-} from '@nestjs/common'
+import {DynamicModule, Global, Module} from '@nestjs/common'
 import {JwtModule} from '@nestjs/jwt'
 
-import {AccessTokenGuard} from './guards/access-token/access-token.guard'
 import {ASYNC_OPTIONS_TYPE, OPTIONS_TYPE} from './library/auth-module-options'
-import {GLOBAL_PROVIDERS} from './library/auth.global-providers'
-import {TokenMiddleware} from './middleware/token/token.middleware'
-import {TokenService} from './services/token/token.service'
 
 @Global()
 @Module({})

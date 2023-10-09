@@ -5,7 +5,6 @@ import {
   ASYNC_OPTIONS_TYPE,
   OPTIONS_TYPE,
 } from './library/microservice-module-options'
-import {NatsService} from './services/nats/nats.service'
 import {NATS_CLIENT_KEY} from './services/nats/nats.service.constants'
 
 @Global()

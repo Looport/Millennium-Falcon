@@ -1,7 +1,4 @@
-import {
-  ASYNC_OPTIONS_TYPE,
-  MicroserviceModule,
-} from '@looport/nest-microservice'
+import {ASYNC_OPTIONS_TYPE} from '@looport/nest-microservice'
 
 import {AppModule} from '@/app/app.module'
 import {MicroserviceConfigService} from '@/app/services/microservice-config/microservice-config.service'
