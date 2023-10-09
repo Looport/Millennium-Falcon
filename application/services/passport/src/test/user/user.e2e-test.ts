@@ -1,13 +1,13 @@
 import {deepEqual, ok} from 'node:assert/strict'
 import {afterEach, beforeEach, describe, it} from 'node:test'
 
-import {createNatsMockService, NatsService} from '@looport/nest-microservices'
+import {createNatsServiceMock, NatsService} from '@looport/nest-microservice'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
 import request from 'supertest'
 
 import {AppModule} from '@/app/app.module'
-import {validCredentials} from '@/authentication/services/authentication/authentication.service.mock'
+import {validCredentials} from '@/auth/services/authentication/authentication.service.mock'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('UserController (e2e)', () => {
@@ -20,7 +20,7 @@ describe('UserController (e2e)', () => {
       imports: [AppModule],
     })
       .overrideProvider(NatsService)
-      .useValue(createNatsMockService())
+      .useValue(createNatsServiceMock())
       .compile()
 
     app = moduleFixture.createNestApplication(new FastifyAdapter())
@@ -38,6 +38,10 @@ describe('UserController (e2e)', () => {
 
     afterEach(async () => {
       await userRepository.delete({})
+    })
+
+    it('should return 401 when user not authenticated', async () => {
+      await request(app.getHttpServer()).get('/user/iam').expect(401)
     })
 
     it('should return authenticated user by token', async () => {

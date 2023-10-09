@@ -18,7 +18,7 @@ type JwtServiceMock = {
   [method in keyof TokenService]: ReturnType<(typeof mock)['fn']>
 }
 
-export const createTokenMockService = (
+export const createTokenServiceMock = (
   spies?: Partial<JwtServiceMock>
 ): Partial<JwtServiceMock> => {
   const wrapSpy = mock.fn(() => Promise.resolve(FAKE_TOKEN))

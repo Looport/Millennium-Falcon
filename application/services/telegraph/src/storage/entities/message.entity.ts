@@ -10,7 +10,7 @@ import {RoomEntity} from '@/storage/entities/room.entity'
 import {UserEntity} from '@/storage/entities/user.entity'
 
 @Entity('messages')
-export class MessagesEntity {
+export class MessageEntity {
   @PrimaryGeneratedColumn()
   id: number
 
@@ -21,11 +21,11 @@ export class MessagesEntity {
     cascade: true,
     onDelete: 'CASCADE',
   })
-  room: Relation<RoomEntity>
+  room?: Relation<RoomEntity>
 
   @ManyToOne(() => UserEntity, (user) => user.messages, {
     cascade: true,
     onDelete: 'CASCADE',
   })
-  user: Relation<UserEntity>
+  user?: Relation<UserEntity>
 }

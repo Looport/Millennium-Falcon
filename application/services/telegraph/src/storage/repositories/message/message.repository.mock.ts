@@ -17,7 +17,7 @@ type MessageRepositoryMock = {
   [method in keyof MessageRepository]: ReturnType<(typeof mock)['fn']>
 }
 
-export const createMessageMockRepository = (
+export const createMessageRepositoryMock = (
   spies?: Partial<MessageRepositoryMock>
 ): Partial<MessageRepositoryMock> => {
   const createSpy = mock.fn((data) => data)

@@ -3,7 +3,7 @@ import {afterEach, beforeEach, describe, it} from 'node:test'
 
 import {TokenService} from '@looport/nest-auth'
 import {VALIDATION_EXCEPTION_MESSAGE} from '@looport/nest-common'
-import {createNatsMockService, NatsService} from '@looport/nest-microservices'
+import {createNatsServiceMock, NatsService} from '@looport/nest-microservice'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test} from '@nestjs/testing'
 import request from 'supertest'
@@ -13,11 +13,11 @@ import {
   EMAIL_ALREADY_EXISTS_MESSAGE,
   EMAIL_FIELD_KEY,
   INVALID_LOGIN_CREDENTIALS_MESSAGE,
-} from '@/authentication/services/authentication/authentication.service.constants'
+} from '@/auth/services/authentication/authentication.service.constants'
 import {
   invalidCredentials,
   validCredentials,
-} from '@/authentication/services/authentication/authentication.service.mock'
+} from '@/auth/services/authentication/authentication.service.mock'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 describe('AuthenticationController (e2e)', () => {
@@ -31,7 +31,7 @@ describe('AuthenticationController (e2e)', () => {
       imports: [AppModule],
     })
       .overrideProvider(NatsService)
-      .useValue(createNatsMockService())
+      .useValue(createNatsServiceMock())
       .compile()
 
     app = moduleFixture.createNestApplication(new FastifyAdapter())

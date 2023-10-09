@@ -1,6 +1,6 @@
 import {mock} from 'node:test'
 
-import {FAKE_PASSWORD_HASH} from '@/authentication/services/password-hash/password-hash.service.mock'
+import {FAKE_PASSWORD_HASH} from '@/auth/services/password-hash/password-hash.service.mock'
 import {UserRepository} from '@/storage/repositories/user/user.repository'
 
 export const FAKE_USER_ID = 1

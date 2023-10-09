@@ -1,6 +1,6 @@
 import {Column, Entity, OneToMany, PrimaryColumn, Relation} from 'typeorm'
 
-import {MessagesEntity} from '@/storage/entities/message.entity'
+import {MessageEntity} from '@/storage/entities/message.entity'
 
 @Entity('users')
 export class UserEntity {
@@ -10,6 +10,6 @@ export class UserEntity {
   @Column()
   email: string
 
-  @OneToMany(() => MessagesEntity, (message) => message.room)
-  messages: Relation<MessagesEntity[]>
+  @OneToMany(() => MessageEntity, (message) => message.room)
+  messages?: Relation<MessageEntity[]>
 }

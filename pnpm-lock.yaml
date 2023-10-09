@@ -97,7 +97,7 @@ importers:
         specifier: ^5.1.3
         version: 5.1.6
 
-  application/packages/nest-microservices:
+  application/packages/nest-microservice:
     dependencies:
       '@nestjs/common':
         specifier: ^10.2.4
@@ -133,9 +133,9 @@ importers:
       '@looport/nest-common':
         specifier: workspace:*
         version: link:../../packages/nest-common
-      '@looport/nest-microservices':
+      '@looport/nest-microservice':
         specifier: workspace:*
-        version: link:../../packages/nest-microservices
+        version: link:../../packages/nest-microservice
       '@nestjs/common':
         specifier: ^10.2.4
         version: 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
@@ -215,9 +215,9 @@ importers:
       '@looport/nest-common':
         specifier: workspace:*
         version: link:../../packages/nest-common
-      '@looport/nest-microservices':
+      '@looport/nest-microservice':
         specifier: workspace:*
-        version: link:../../packages/nest-microservices
+        version: link:../../packages/nest-microservice
       '@nestjs/common':
         specifier: ^10.2.4
         version: 10.2.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)

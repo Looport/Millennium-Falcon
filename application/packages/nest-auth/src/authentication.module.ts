@@ -6,9 +6,9 @@ import {
 } from '@nestjs/common'
 import {JwtModule} from '@nestjs/jwt'
 
-import {GLOBAL_PROVIDERS} from './common/auth.global-providers'
 import {AccessTokenGuard} from './guards/access-token/access-token.guard'
-import {AuthModuleAsyncOptions} from './interfaces/auth-module-options.interface'
+import {ASYNC_OPTIONS_TYPE, OPTIONS_TYPE} from './library/auth-module-options'
+import {GLOBAL_PROVIDERS} from './library/auth.global-providers'
 import {TokenMiddleware} from './middleware/token/token.middleware'
 import {TokenService} from './services/token/token.service'
 
@@ -18,15 +18,26 @@ export class AuthModule implements NestModule {
     consumer.apply(TokenMiddleware).forRoutes('*')
   }
 
-  static forRootAsync(options: AuthModuleAsyncOptions): DynamicModule {
+  static register(options: typeof OPTIONS_TYPE): DynamicModule {
     return {
       exports: [TokenService],
-      global: true,
+      global: options.isGlobal,
+      imports: [JwtModule.register(options.jwt)],
+      module: AuthModule,
+      providers: [...GLOBAL_PROVIDERS, TokenService, AccessTokenGuard],
+    }
+  }
+
+  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
+    return {
+      exports: [TokenService],
+      global: options.isGlobal,
       imports: [
         JwtModule.registerAsync({
           imports: options.imports,
           inject: options.inject,
-          useFactory: (...args) => options.useFactory(...args).jwt,
+          useFactory: async (...args) =>
+            (await options.useFactory(...args)).jwt,
         }),
       ],
       module: AuthModule,
