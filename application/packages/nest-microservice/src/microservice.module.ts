@@ -13,7 +13,7 @@ import {NATS_CLIENT_KEY} from './services/nats/nats.service.constants'
   providers: [NatsService],
 })
 export class MicroserviceModule {
-  static forRoot(options: typeof OPTIONS_TYPE): DynamicModule {
+  static register(options: typeof OPTIONS_TYPE): DynamicModule {
     return {
       exports: [NatsService],
       global: options.isGlobal,
@@ -30,7 +30,7 @@ export class MicroserviceModule {
     }
   }
 
-  static forRootAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
+  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
     return {
       exports: [NatsService],
       global: options.isGlobal,

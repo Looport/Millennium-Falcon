@@ -1,4 +1,4 @@
-import {Transport, MicroserviceModuleOptions} from '@looport/nest-microservice'
+import {MicroserviceModuleOptions, Transport} from '@looport/nest-microservice'
 import {Injectable} from '@nestjs/common'
 import {ConfigService} from '@nestjs/config'
 

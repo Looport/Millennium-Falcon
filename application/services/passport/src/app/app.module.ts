@@ -1,13 +1,9 @@
-import {AuthModule} from '@looport/nest-auth'
-import {MicroserviceModule} from '@looport/nest-microservice'
 import {Module} from '@nestjs/common'
-import {ConfigModule as NestConfigModule} from '@nestjs/config'
+import {ConfigModule} from '@nestjs/config'
 
 import {GLOBAL_PROVIDERS} from '@/app/library/app.global-providers'
-import {AuthenticationModule} from '@/authentication/authentication.module'
-import {ConfigModule} from '@/config/config.module'
-import {getAuthModuleAsyncOptions} from '@/config/services/auth-config/auth-module-options'
-import {getMicroserviceModuleAsyncOptions} from '@/config/services/microservice-config/microservice-module-options'
+import {AuthModule} from '@/auth/auth.module'
+import {MicroserviceModule} from '@/microservice/microservice.module'
 import {UserModule} from '@/user/user.module'
 
 import {AppController} from './controllers/app/app.controller'
@@ -15,11 +11,9 @@ import {AppController} from './controllers/app/app.controller'
 @Module({
   controllers: [AppController],
   imports: [
-    NestConfigModule.forRoot({isGlobal: true}),
-    ConfigModule,
-    MicroserviceModule.forRootAsync(getMicroserviceModuleAsyncOptions()),
-    AuthModule.forRootAsync(getAuthModuleAsyncOptions()),
-    AuthenticationModule,
+    ConfigModule.forRoot({isGlobal: true}),
+    MicroserviceModule,
+    AuthModule,
     UserModule,
   ],
   providers: [...GLOBAL_PROVIDERS],

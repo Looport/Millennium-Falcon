@@ -18,7 +18,7 @@ export class AuthModule implements NestModule {
     consumer.apply(TokenMiddleware).forRoutes('*')
   }
 
-  forRoot(options: typeof OPTIONS_TYPE): DynamicModule {
+  static register(options: typeof OPTIONS_TYPE): DynamicModule {
     return {
       exports: [TokenService],
       global: options.isGlobal,
@@ -28,7 +28,7 @@ export class AuthModule implements NestModule {
     }
   }
 
-  static forRootAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
+  static registerAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
     return {
       exports: [TokenService],
       global: options.isGlobal,

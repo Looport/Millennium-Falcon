@@ -7,6 +7,5 @@ export interface AuthModuleOptions {
 
 export const {OPTIONS_TYPE, ASYNC_OPTIONS_TYPE} =
   new ConfigurableModuleBuilder<AuthModuleOptions>()
-    .setClassMethodName('forRoot')
     .setExtras({isGlobal: false})
     .build()

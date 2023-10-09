@@ -4,12 +4,12 @@ import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 import {createNatsServiceMock, NatsService} from '@looport/nest-microservice'
 import {Test} from '@nestjs/testing'
 
-import {AuthenticationController} from '@/authentication/controllers/authentication/authentication.controller'
-import {AuthenticationService} from '@/authentication/services/authentication/authentication.service'
+import {AuthenticationController} from '@/auth/controllers/authentication/authentication.controller'
+import {AuthenticationService} from '@/auth/services/authentication/authentication.service'
 import {
   createAuthenticationMockService,
   validCredentials,
-} from '@/authentication/services/authentication/authentication.service.mock'
+} from '@/auth/services/authentication/authentication.service.mock'
 import {userMock} from '@/storage/repositories/user/user.repository.mock'
 
 describe('AuthenticationController', () => {
