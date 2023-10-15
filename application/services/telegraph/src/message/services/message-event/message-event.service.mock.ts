@@ -2,7 +2,7 @@ import {mock} from 'node:test'
 
 import {EventEmitter2} from '@nestjs/event-emitter'
 
-import {MessageEventService} from '@/event/services/message-event.service'
+import {MessageEventService} from '@/message/services/message-event/message-event.service'
 
 type MessageEventServiceMock = {
   [method in keyof MessageEventService]: ReturnType<(typeof mock)['fn']>
