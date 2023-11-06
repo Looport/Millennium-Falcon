@@ -11,7 +11,7 @@
     "format": "pnpm lint --fix"
   },
   "dependencies": {
-    "next": "13.5.3-canary.1",
+    "next": "14.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1"
@@ -19,8 +19,8 @@
   "devDependencies": {
     "@looport/eslint-config": "workspace:*",
     "@types/node": "20.5.3",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
+    "@types/react": "18.2.36",
+    "@types/react-dom": "18.2.14",
     "autoprefixer": "10.4.15",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
@@ -31,6 +31,7 @@
   },
   "eslintConfig": {
     "extends": [
+      "next",
       "next/core-web-vitals",
       "@looport/eslint-config/src/react"
     ],
