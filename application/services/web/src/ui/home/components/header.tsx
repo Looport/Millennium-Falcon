@@ -2,7 +2,7 @@ import {cookies} from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import {fetchIam} from '@/network/passport/requests/iam.request'
+import {fetchIam} from '@/auth/requests/iam.request'
 import {Button} from '@/ui/common/components/button'
 import {
   AiOutlineGift,

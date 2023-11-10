@@ -1,5 +1,5 @@
+import {API_HOST, INGRESS_API_URL} from '@/common/lib/request/envs'
 import {development} from '@/common/utils/envs'
-import {API_HOST, INGRESS_API_URL} from '@/network/common/envs'
 
 export const getApiUrl = () => {
   /**

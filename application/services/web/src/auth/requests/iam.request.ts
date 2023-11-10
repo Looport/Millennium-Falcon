@@ -1,7 +1,9 @@
-import {request} from '@/network/common/request'
-import {TokenResponse} from '@/network/passport/interfaces/token-response.interface'
-import {UserResponse} from '@/network/passport/interfaces/user-response.interface'
-import {PASSPORT_API_URL} from '@/network/passport/requests/constants'
+import {request} from '@/common/lib/request/request'
+
+import {TokenResponse} from '../interfaces/token-response.interface'
+import {UserResponse} from '../interfaces/user-response.interface'
+
+import {PASSPORT_API_URL} from './constants'
 
 export const fetchIam = async ({
   accessToken,
