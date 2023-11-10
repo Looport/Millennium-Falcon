@@ -1,6 +1,5 @@
 import {useCallback} from 'react'
 
-import {CreateRoomResponse} from '@/room/interfaces/create-room-response.interface'
 import {createRoomRequest} from '@/room/requests/create-room.request'
 import {getToken} from '@/ui/auth/lib/token'
 
