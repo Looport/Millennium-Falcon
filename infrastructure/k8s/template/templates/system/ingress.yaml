@@ -19,6 +19,13 @@ spec:
                 name: passport-cluster-ip
                 port:
                   number: 3000
+          - path: /api/telegraph(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: telegraph-cluster-ip
+                port:
+                  number: 3000
           - path: /(|)(.*)
             pathType: ImplementationSpecific
             backend:

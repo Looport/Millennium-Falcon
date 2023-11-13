@@ -7,8 +7,8 @@ import {Test} from '@nestjs/testing'
 import request from 'supertest'
 
 import {AppModule} from '@/app/app.module'
-import {createMessageCreatedSubject} from '@/event/services/message-event.service.lib'
 import {serializeMessage} from '@/message/dto/message/message-serializer'
+import {createMessageCreatedSubject} from '@/message/services/message-event/message-event.service.lib'
 import {RoomService} from '@/room/services/rooms/room.service'
 import {MessageRepository} from '@/storage/repositories/message/message.repository'
 import {messageMock} from '@/storage/repositories/message/message.repository.mock'
@@ -196,4 +196,10 @@ describe('RoomController (e2e)', () => {
 
     it.todo('should not emit message when sender same as receiver')
   })
+
+  describe('/rooms/:id (GET)', () => {})
+
+  describe('/rooms/url/:url (GET)', () => {})
+
+  describe('/rooms/:id/messages (GET)', () => {})
 })

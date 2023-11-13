@@ -18,9 +18,9 @@
 
 **Deployment:** [Docker](https://www.docker.com), [Kubernetes](https://kubernetes.io), [Helm](https://helm.sh/docs/), [Skaffold](https://skaffold.dev), [Minikube](https://minikube.sigs.k8s.io/docs/start/), [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/);
 
-**Testing:**: [Node Test Runner](https://nodejs.org/api/test.html), [Node Assertions](https://nodejs.org/api/assert.html), [Playwright](https://playwright.dev/docs/intro);
+**Testing:** [Node Test Runner](https://nodejs.org/api/test.html), [Node Assertions](https://nodejs.org/api/assert.html), [Playwright](https://playwright.dev/docs/intro);
 
-**CI/CD**: [GitHub Actions](https://docs.github.com/en/actions), [Digital Ocean](https://www.digitalocean.com);
+**CI/CD:** [GitHub Actions](https://docs.github.com/en/actions), [Digital Ocean](https://www.digitalocean.com);
 
 
 ## Starting Point

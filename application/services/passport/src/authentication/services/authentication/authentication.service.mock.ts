@@ -1,4 +1,4 @@
-import {mock} from 'node:test'
+import {afterEach, mock} from 'node:test'
 
 import {FAKE_TOKEN} from '@looport/nest-auth'
 
@@ -30,6 +30,11 @@ export const createAuthenticationMockService = (
       userMock,
     })
   )
+
+  afterEach(() => {
+    registerSpy.mock.resetCalls()
+    loginSpy.mock.resetCalls()
+  })
 
   return {
     login: loginSpy,

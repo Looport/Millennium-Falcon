@@ -4,7 +4,7 @@ import {NestFactory} from '@nestjs/core'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 
 import {AppModule} from '@/app/app.module'
-import {MicroserviceConfigService} from '@/app/services/microservice-config/microservice-config.service'
+import {getNatsConfig} from '@/app/library/microservice-module-options'
 
 const EXPOSED_IP = '0.0.0.0'
 
@@ -15,13 +15,11 @@ async function bootstrap() {
     {cors: true}
   )
 
-  const microserviceConfigService = app.get(MicroserviceConfigService)
-  app.connectMicroservice<MicroserviceOptions>(
-    microserviceConfigService.getNATSConfig()
-  )
+  const configService = app.get<ConfigService>(ConfigService)
+
+  app.connectMicroservice<MicroserviceOptions>(getNatsConfig(configService))
   await app.startAllMicroservices()
 
-  const configService = app.get(ConfigService)
   await app.listen(configService.get('PORT') ?? 3000, EXPOSED_IP)
 }
 

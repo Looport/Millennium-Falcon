@@ -2,7 +2,7 @@ import {cookies} from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import {fetchIam} from '@/network/passport/requests/iam.request'
+import {requestFetchIam} from '@/auth/requests/iam.request'
 import {Button} from '@/ui/common/components/button'
 import {
   AiOutlineGift,
@@ -20,7 +20,7 @@ import {Logout} from '@/ui/home/components/logout'
 export const Header = async () => {
   const accessToken = cookies().get('accessToken')?.value
   const body = accessToken
-    ? await fetchIam({accessToken, headers: getHeaders()})
+    ? await requestFetchIam({accessToken, headers: getHeaders()})
     : null
 
   return (

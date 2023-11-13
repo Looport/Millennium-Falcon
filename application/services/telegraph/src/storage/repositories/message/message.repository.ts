@@ -11,6 +11,10 @@ export class MessageRepository {
     private readonly messageRepository: Repository<MessageEntity>
   ) {}
 
+  find: typeof this.messageRepository.find = this.messageRepository.find.bind(
+    this.messageRepository
+  )
+
   findOne: typeof this.messageRepository.findOne =
     this.messageRepository.findOne.bind(this.messageRepository)
 

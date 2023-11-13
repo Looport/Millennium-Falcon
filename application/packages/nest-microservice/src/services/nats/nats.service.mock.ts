@@ -1,4 +1,4 @@
-import {mock} from 'node:test'
+import {afterEach, mock} from 'node:test'
 
 import {NatsService} from './nats.service'
 
@@ -11,6 +11,11 @@ export const createNatsServiceMock = (
 ): Partial<NatsServiceMock> => {
   const emit = mock.fn()
   const send = mock.fn()
+
+  afterEach(() => {
+    emit.mock.resetCalls()
+    send.mock.resetCalls()
+  })
 
   return {
     emit,

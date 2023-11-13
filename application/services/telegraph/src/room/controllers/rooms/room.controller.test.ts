@@ -4,10 +4,10 @@ import {afterEach, beforeEach, describe, it, mock} from 'node:test'
 import {authMock} from '@looport/nest-auth'
 import {Test, TestingModule} from '@nestjs/testing'
 
-import {MessageEventService} from '@/event/services/message-event.service'
-import {createMessageEventMock} from '@/event/services/message-event.service.mock'
-import {MessageService} from '@/message/services/messages/message.service'
-import {createMessageServiceMock} from '@/message/services/messages/message.service.mock'
+import {MessageService} from '@/message/services/message/message.service'
+import {createMessageServiceMock} from '@/message/services/message/message.service.mock'
+import {MessageEventService} from '@/message/services/message-event/message-event.service'
+import {createMessageEventMock} from '@/message/services/message-event/message-event.service.mock'
 import {RoomService} from '@/room/services/rooms/room.service'
 import {createRoomMockService} from '@/room/services/rooms/room.service.mock'
 import {messageMock} from '@/storage/repositories/message/message.repository.mock'
@@ -19,6 +19,7 @@ describe('RoomController', () => {
   let controller: RoomController
 
   const messageServiceMock = createMessageServiceMock()
+  const roomServiceMock = createRoomMockService()
   const messageEventServiceMock = createMessageEventMock()
 
   beforeEach(async () => {
@@ -27,7 +28,7 @@ describe('RoomController', () => {
       providers: [
         {
           provide: RoomService,
-          useValue: createRoomMockService(),
+          useValue: roomServiceMock,
         },
         {
           provide: MessageService,
@@ -164,5 +165,62 @@ describe('RoomController', () => {
     } catch (error) {
       deepEqual(error, MESSAGE_NOT_EMIT_ERROR)
     }
+
+    messageServiceMock.create.mock.resetCalls()
+  })
+
+  describe('findMessages', () => {
+    afterEach(() => {
+      mock.restoreAll()
+    })
+
+    it('should return messages', async () => {
+      const result = await controller.findMessages(roomMock.id)
+
+      deepEqual(messageServiceMock.find.mock.calls[0].arguments, [
+        {roomId: roomMock.id},
+      ])
+
+      deepEqual(result, [messageMock])
+    })
+  })
+
+  describe('findByUrl', () => {
+    afterEach(() => {
+      mock.restoreAll()
+    })
+
+    it('should return room', async () => {
+      const result = await controller.findByUrl(roomMock.url)
+
+      deepEqual(roomServiceMock.findOne.mock.calls[0].arguments, [
+        {
+          url: roomMock.url,
+        },
+      ])
+
+      deepEqual(result, roomMock)
+
+      roomServiceMock.findOne.mock.resetCalls()
+    })
+  })
+
+  describe('findById', () => {
+    afterEach(() => {
+      mock.restoreAll()
+    })
+
+    it('should return room', async () => {
+      const result = await controller.findById(roomMock.id)
+
+      console.log(roomServiceMock.findOne.mock.calls.length)
+      deepEqual(roomServiceMock.findOne.mock.calls[0].arguments, [
+        {
+          id: roomMock.id,
+        },
+      ])
+
+      deepEqual(result, roomMock)
+    })
   })
 })
