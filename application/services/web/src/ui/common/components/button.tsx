@@ -69,7 +69,7 @@ export const Button = ({
       })
 
   return cloneElement(
-    component,
+    component as any,
     {
       className: classname([
         'font-bold text-[14px] text-white/80',
