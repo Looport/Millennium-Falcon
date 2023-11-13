@@ -1,7 +1,10 @@
-import {mock} from 'node:test'
+import {afterEach, mock} from 'node:test'
 
 import {MessageService} from '@/message/services/message/message.service'
-import {FAKE_MESSAGE_ID} from '@/storage/repositories/message/message.repository.mock'
+import {
+  FAKE_MESSAGE_ID,
+  messageMock,
+} from '@/storage/repositories/message/message.repository.mock'
 
 type MessageServiceMock = {
   [method in keyof MessageService]: ReturnType<(typeof mock)['fn']>
@@ -16,8 +19,16 @@ export const createMessageServiceMock = (
       ...data,
     })
   )
+  const findSpy = mock.fn(() => Promise.resolve([messageMock]))
+
+  afterEach(() => {
+    createSpy.mock.resetCalls()
+    findSpy.mock.resetCalls()
+  })
+
   return {
     create: createSpy,
+    find: findSpy,
     ...spies,
   }
 }

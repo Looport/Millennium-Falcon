@@ -5,7 +5,7 @@ import {UserResponse} from '../interfaces/user-response.interface'
 
 import {PASSPORT_API_URL} from './constants'
 
-export const fetchIam = async ({
+export const requestFetchIam = async ({
   accessToken,
   headers,
 }: TokenResponse & {

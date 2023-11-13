@@ -1,7 +1,7 @@
 'use client'
 
-import {login} from '@/auth/requests/login.request'
-import {register} from '@/auth/requests/register.request'
+import {requestLogin} from '@/auth/requests/login.request'
+import {requestRegister} from '@/auth/requests/register.request'
 import {JoinForm, JoinFormVariantEnum} from '@/ui/auth/components/join-form'
 import {setToken} from '@/ui/auth/lib/token'
 import {useRefreshPage} from '@/ui/common/hooks/refresh-page'
@@ -20,7 +20,7 @@ export const JoinContainer = () => {
 }
 
 const createSubmitAction = (variant: JoinFormVariantEnum) => {
-  const action = {login, register}[variant]
+  const action = {login: requestLogin, register: requestRegister}[variant]
 
   return async function submit(data: any) {
     const body = await action(data)

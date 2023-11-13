@@ -1,6 +1,6 @@
 import {useCallback} from 'react'
 
-import {createRoomRequest} from '@/room/requests/create-room.request'
+import {requestCreateRoom} from '@/room/requests/create-room.request'
 import {getToken} from '@/ui/auth/lib/token'
 
 export const useCreateRoom = () => {
@@ -10,7 +10,7 @@ export const useCreateRoom = () => {
       throw new Error('Token is not defined')
     }
 
-    return await createRoomRequest(token)
+    return await requestCreateRoom(token)
   }, [])
 
   return {createRoom}

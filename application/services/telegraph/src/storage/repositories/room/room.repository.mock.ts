@@ -1,4 +1,4 @@
-import {mock} from 'node:test'
+import {afterEach, mock} from 'node:test'
 
 import {RoomRepository} from '@/storage/repositories/room/room.repository'
 
@@ -21,6 +21,12 @@ export const createRoomRepositoryMock = (
     Promise.resolve({id: FAKE_ROOM_ID, ...data})
   )
   const findOneSpy = mock.fn(() => Promise.resolve(roomMock))
+
+  afterEach(() => {
+    createSpy.mock.resetCalls()
+    findOneSpy.mock.resetCalls()
+    saveSpy.mock.resetCalls()
+  })
 
   return {
     create: createSpy,

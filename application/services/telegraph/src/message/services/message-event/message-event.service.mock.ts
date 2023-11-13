@@ -1,4 +1,4 @@
-import {mock} from 'node:test'
+import {afterEach, mock} from 'node:test'
 
 import {EventEmitter2} from '@nestjs/event-emitter'
 
@@ -27,6 +27,13 @@ export const createMessageEventMock = (
     on: mock.fn(),
     removeListener: mock.fn(),
   }
+
+  afterEach(() => {
+    eventEmitterMock.addListener.mock.resetCalls()
+    eventEmitterMock.emit.mock.resetCalls()
+    eventEmitterMock.on.mock.resetCalls()
+    eventEmitterMock.removeListener.mock.resetCalls()
+  })
 
   return {
     emitMessageCreatedEvent: emitMessageCreatedEventSpy,

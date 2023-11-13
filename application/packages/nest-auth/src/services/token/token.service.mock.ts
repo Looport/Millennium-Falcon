@@ -1,4 +1,4 @@
-import {mock} from 'node:test'
+import {afterEach, mock} from 'node:test'
 
 import {TokenService} from './token.service'
 
@@ -28,6 +28,11 @@ export const createTokenServiceMock = (
       sub: FAKE_USER_ID,
     })
   )
+
+  afterEach(() => {
+    wrapSpy.mock.resetCalls()
+    unwrapSpy.mock.resetCalls()
+  })
 
   return {
     unwrap: unwrapSpy,

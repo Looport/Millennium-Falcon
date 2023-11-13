@@ -1,6 +1,6 @@
 import {ActiveUser, ActiveUserInterface} from '@looport/nest-auth'
 import {Serialize} from '@looport/nest-common'
-import {Body, Controller, Param, Post, Sse} from '@nestjs/common'
+import {Body, Controller, Get, Param, Post, Sse} from '@nestjs/common'
 import {fromEvent, map, skipWhile} from 'rxjs'
 
 import {CreateMessageDto} from '@/message/dto/create-message.dto'
@@ -25,10 +25,27 @@ export class RoomController {
     return this.roomService.create()
   }
 
+  @Get(':id')
+  async findById(@Param('id') id: number): Promise<RoomEntity> {
+    return this.roomService.findOne({id})
+  }
+
+  @Get('/url/:url')
+  async findByUrl(@Param('url') url: string): Promise<RoomEntity> {
+    return this.roomService.findOne({url})
+  }
+
+  @Get(':roomId/messages')
+  async findMessages(
+    @Param('roomId') roomId: number
+  ): Promise<MessageEntity[]> {
+    return this.messageService.find({roomId})
+  }
+
   @Serialize(MessageDto)
-  @Post(':id/messages')
+  @Post(':roomId/messages')
   async createMessage(
-    @Param('id') roomId: number,
+    @Param('roomId') roomId: number,
     @ActiveUser() activeUser: ActiveUserInterface,
     @Body() createMessageDto: CreateMessageDto
   ): Promise<MessageEntity> {

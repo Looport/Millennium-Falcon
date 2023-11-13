@@ -3,7 +3,7 @@
   "name": "@looport/verifier",
   "author": "Vitalii Khotei <khoteiv.dev@gmail.com>",
   "scripts": {
-    "test": "playwright test",
+    "test:e2e": "playwright test",
     "run": "playwright test --ui",
     "type-check": "tsc --noEmit",
     "lint": "eslint \"tests/**/*.ts\"",

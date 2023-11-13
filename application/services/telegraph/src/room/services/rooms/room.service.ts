@@ -7,10 +7,17 @@ import {RoomRepository} from '@/storage/repositories/room/room.repository'
 export class RoomService {
   constructor(private readonly roomRepository: RoomRepository) {}
 
-  create(): Promise<RoomEntity> {
+  async create(): Promise<RoomEntity> {
     return this.roomRepository.save(
       this.roomRepository.create({url: this.generateUrl()})
     )
+  }
+
+  async findOne({url, id}: {url?: string; id?: number}): Promise<RoomEntity> {
+    return this.roomRepository.findOne({
+      relations: ['messages'],
+      where: {id, url},
+    })
   }
 
   generateUrl() {

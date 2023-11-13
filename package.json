@@ -15,6 +15,7 @@
     "passport": "pnpm --filter '@looport/passport' start:dev",
     "telegraph": "pnpm --filter '@looport/telegraph' start:dev",
     "format": "pnpm --filter '*' format",
+    "test": "pnpm --filter '*' test",
     "test:all": "pnpm --filter '*' test:all"
   }
 }

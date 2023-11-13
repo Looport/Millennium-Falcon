@@ -4,7 +4,7 @@ app:
   host: aloco.club
   enableIngress: true
   jwt:
-    secret: "ioj*(*jd##$"
+    secret: "998idfj09()J%F"
     expires: "1d"
 
 passport:

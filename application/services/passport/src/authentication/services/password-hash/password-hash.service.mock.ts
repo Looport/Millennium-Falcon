@@ -1,4 +1,4 @@
-import {mock} from 'node:test'
+import {afterEach, mock} from 'node:test'
 
 import {PasswordHashService} from '@/authentication/services/password-hash/password-hash.service'
 
@@ -13,6 +13,11 @@ export const createPasswordMockService = (
 ): Partial<PasswordHashServiceMock> => {
   const createHashSpy = mock.fn(() => Promise.resolve(FAKE_PASSWORD_HASH))
   const validatePasswordSpy = mock.fn(() => Promise.resolve(true))
+
+  afterEach(() => {
+    createHashSpy.mock.resetCalls()
+    validatePasswordSpy.mock.resetCalls()
+  })
 
   return {
     createHash: createHashSpy,

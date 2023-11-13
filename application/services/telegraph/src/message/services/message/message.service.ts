@@ -32,4 +32,11 @@ export class MessageService {
       })
     )
   }
+
+  async find({roomId}: {roomId: number}): Promise<MessageEntity[]> {
+    return this.messageRepository.find({
+      relations: ['user', 'room'],
+      where: {room: {id: roomId}},
+    })
+  }
 }

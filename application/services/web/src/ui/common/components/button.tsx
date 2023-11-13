@@ -16,6 +16,7 @@ type ButtonProps = {
   href?: string
   className?: string
   onClick?: MouseEventHandler<HTMLButtonElement>
+  htmlType?: 'button' | 'submit' | 'reset'
 }
 
 const DEFAULT_ICON_SIZE = '2.4rem'
@@ -28,6 +29,7 @@ export const Button = ({
   href,
   className,
   onClick,
+  htmlType,
 }: ButtonProps) => {
   let iconComponent
 
@@ -60,7 +62,11 @@ export const Button = ({
     label = <span>{children}</span>
   }
 
-  const component = href ? createElement(Link, {href}) : createElement('button')
+  const component = href
+    ? createElement(Link, {href})
+    : createElement('button', {
+        type: htmlType ?? 'button',
+      })
 
   return cloneElement(
     component,

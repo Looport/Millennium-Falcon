@@ -20,7 +20,7 @@ export const request = async <T>(
       ...(init.body ? {'Content-Type': 'application/json'} : {}),
       ...init?.headers,
     },
-    method: init.method ?? init?.body ? 'POST' : 'GET',
+    method: init.method ?? (init?.body ? 'POST' : 'GET'),
   })
 
   const body = await response.json()

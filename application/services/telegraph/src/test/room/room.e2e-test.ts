@@ -196,4 +196,10 @@ describe('RoomController (e2e)', () => {
 
     it.todo('should not emit message when sender same as receiver')
   })
+
+  describe('/rooms/:id (GET)', () => {})
+
+  describe('/rooms/url/:url (GET)', () => {})
+
+  describe('/rooms/:id/messages (GET)', () => {})
 })

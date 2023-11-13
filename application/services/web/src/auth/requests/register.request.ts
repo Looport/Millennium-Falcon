@@ -4,7 +4,7 @@ import {TokenResponse} from '../interfaces/token-response.interface'
 
 import {PASSPORT_API_URL} from './constants'
 
-export const register = async (data: any): Promise<TokenResponse> =>
+export const requestRegister = async (data: any): Promise<TokenResponse> =>
   request<TokenResponse>(`${PASSPORT_API_URL}/authentication/register`, {
     body: JSON.stringify(data),
   })
