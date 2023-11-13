@@ -12,7 +12,6 @@ import {IconProvider, VscSend} from '@/ui/common/components/icons'
 import {classname} from '@/ui/common/utils/classname'
 
 export default function Room({room}: {room: RoomResponse}) {
-  console.log(room)
   const handleMessageFormSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
@@ -22,11 +21,11 @@ export default function Room({room}: {room: RoomResponse}) {
         throw new Error('Token is not defined')
       }
 
-      const {currentTarget} = event
       await requestCreateMessage(
         {
           roomId: room.id,
-          text: currentTarget.message.value,
+          // eslint-disable-next-line github/async-currenttarget
+          text: event.currentTarget.message.value,
         },
         token
       )
