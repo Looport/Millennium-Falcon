@@ -7,12 +7,18 @@ import {getToken} from '@/auth/lib/token.client'
 import {Button} from '@/common/components/button'
 import {IconProvider, VscSend} from '@/common/components/icons'
 import {classname} from '@/common/utils/classname'
+import {MessagesResponse} from '@/room/interfaces/message-response.interface'
 import {RoomResponse} from '@/room/interfaces/room-response.interface'
 import {requestCreateMessage} from '@/room/requests/create-message.request'
-import {requestFindMessagesByRoomId} from '@/room/requests/find-messages-by-room-id.request'
 import {requestSubscribeToMessages} from '@/room/requests/subscribe-to-messages.request'
 
-export default function Room({room}: {room: RoomResponse}) {
+export default function Room({
+  room,
+  messages,
+}: {
+  room: RoomResponse
+  messages: MessagesResponse
+}) {
   const handleMessageFormSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
@@ -33,14 +39,6 @@ export default function Room({room}: {room: RoomResponse}) {
     },
     [room.id]
   )
-
-  useEffect(() => {
-    const accessToken = getToken()
-    if (!accessToken) {
-      throw new Error('Token is not defined')
-    }
-    requestFindMessagesByRoomId(room.id, {accessToken})
-  }, [room.id])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -100,7 +98,11 @@ export default function Room({room}: {room: RoomResponse}) {
               'border-b-[1px] border-slate-50/25',
             ])}
           />
-          <div className={classname(['flex-1'])}>chat</div>
+          <div className={classname(['flex-1 overflow-y-scroll'])}>
+            {messages.map((message) => (
+              <div key={message.id}>{message.text}</div>
+            ))}
+          </div>
           <form onSubmit={handleMessageFormSubmit}>
             <div className={classname(['h-[10rem]'])}>
               <div className={classname(['relative'])}>

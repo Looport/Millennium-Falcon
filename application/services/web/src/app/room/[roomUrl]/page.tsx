@@ -4,6 +4,7 @@ import React from 'react'
 import {getServerToken} from '@/auth/lib/token.server'
 import {getHeaders} from '@/common/lib/request/headers.server'
 import Room from '@/room/components/room'
+import {requestServerFindMessagesByRoomId} from '@/room/requests/find-messages-by-room-id/find-messages-by-room-id.server.request'
 import {requestFindRoomByUrl} from '@/room/requests/find-room-by-url.request'
 
 export default async function Page({
@@ -25,5 +26,14 @@ export default async function Page({
     return redirect('/404')
   }
 
-  return <Room room={room} />
+  const messages = await requestServerFindMessagesByRoomId(room.id)
+
+  console.log(messages)
+
+  return (
+    <Room
+      room={room}
+      messages={messages}
+    />
+  )
 }
