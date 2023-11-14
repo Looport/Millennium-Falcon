@@ -1,4 +1,4 @@
-import '@/ui/common/styles/globals.css'
+import '@/common/styles/globals.css'
 import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 import {ReactNode} from 'react'

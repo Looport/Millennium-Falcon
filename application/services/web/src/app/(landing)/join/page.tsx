@@ -1,7 +1,7 @@
 import React from 'react'
 
-import {JoinContainer} from '@/ui/auth/containers/join-container'
-import {LandingLayout} from '@/ui/home/components/landing-layout'
+import {JoinContainer} from '@/auth/components/join-form/join-container'
+import {LandingLayout} from '@/common/home/components/landing-layout'
 
 export default function Page() {
   return (

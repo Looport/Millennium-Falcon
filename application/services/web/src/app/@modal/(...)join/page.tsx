@@ -5,8 +5,8 @@
 import {usePathname, useRouter} from 'next/navigation'
 import {MouseEventHandler, useRef} from 'react'
 
-import {JoinContainer} from '@/ui/auth/containers/join-container'
-import {classname} from '@/ui/common/utils/classname'
+import {JoinContainer} from '@/auth/components/join-form/join-container'
+import {classname} from '@/common/utils/classname'
 
 export default function JoinInterceptor() {
   const router = useRouter()

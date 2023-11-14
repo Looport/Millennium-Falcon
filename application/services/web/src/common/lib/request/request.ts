@@ -12,7 +12,9 @@ class RequestError extends Error {
 
 export const request = async <T>(
   url: string,
-  init: RequestInit = {}
+  init: Omit<RequestInit, 'headers'> & {
+    headers?: Record<string, string | undefined>
+  } = {}
 ): Promise<T> => {
   const response = await fetch(url, {
     ...init,

@@ -1,10 +1,10 @@
 import {redirect} from 'next/navigation'
 import React from 'react'
 
-import Room from '@/app/room/[roomUrl]/room'
+import {getServerToken} from '@/auth/lib/token.server'
+import {getHeaders} from '@/common/lib/request/headers.server'
+import Room from '@/room/components/room'
 import {requestFindRoomByUrl} from '@/room/requests/find-room-by-url.request'
-import {getServerToken} from '@/ui/auth/lib/server-token'
-import {getHeaders} from '@/ui/common/utils/get-headers'
 
 export default async function Page({
   params: {roomUrl},
