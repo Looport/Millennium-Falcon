@@ -10,6 +10,7 @@ import {classname} from '@/common/utils/classname'
 import {RoomResponse} from '@/room/interfaces/room-response.interface'
 import {requestCreateMessage} from '@/room/requests/create-message.request'
 import {requestFindMessagesByRoomId} from '@/room/requests/find-messages-by-room-id.request'
+import {requestSubscribeToMessages} from '@/room/requests/subscribe-to-messages.request'
 
 export default function Room({room}: {room: RoomResponse}) {
   const handleMessageFormSubmit = useCallback(
@@ -39,6 +40,22 @@ export default function Room({room}: {room: RoomResponse}) {
       throw new Error('Token is not defined')
     }
     requestFindMessagesByRoomId(room.id, {accessToken})
+  }, [room.id])
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    requestSubscribeToMessages({
+      onMessage: (message) => {
+        console.log(message)
+      },
+      roomId: room.id,
+      signal: controller.signal,
+    })
+
+    return () => {
+      controller.abort()
+    }
   }, [room.id])
 
   return (

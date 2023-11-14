@@ -6,7 +6,7 @@ import {Meetings} from '@/common/home/components/meeting'
 import {Roadmap} from '@/common/home/components/roadmap'
 import {classname} from '@/common/utils/classname'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <LandingLayout>
       <section

@@ -14,7 +14,7 @@ export default async function Page({
   const accessToken = getServerToken()
 
   if (!accessToken) {
-    return redirect('/login')
+    return redirect('/join')
   }
 
   const room = await requestFindRoomByUrl(roomUrl, {

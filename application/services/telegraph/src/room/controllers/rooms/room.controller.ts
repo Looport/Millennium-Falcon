@@ -69,6 +69,8 @@ export class RoomController {
       this.messageEventService.eventEmitter,
       createMessageCreatedSubject(roomId)
     ).pipe(
+      // eslint-disable-next-line no-warning-comments
+      // TODO: check why skipWhile doesn't work on sometimes
       skipWhile((message: MessageEntity) => message.user.id === activeUser.sub),
       map((message: MessageEntity) => ({data: message}))
     )
