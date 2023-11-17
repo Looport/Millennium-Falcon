@@ -1,5 +1,5 @@
-import {RequestError} from '@/common/lib/request/request-error'
-import {RequestOptions} from '@/common/lib/request/request-options.intefrace'
+import {RequestError} from '@/common/lib/request/utils/request-error'
+import {RequestOptions} from '@/common/lib/request/utils/request-options.intefrace'
 
 export const request = async <T>(
   url: string,

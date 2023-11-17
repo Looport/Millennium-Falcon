@@ -1,6 +1,6 @@
 import {headers as nextHeaders} from 'next/headers'
 
-import {API_HOST} from '@/common/lib/request/get-api-url'
+import {API_HOST} from '@/common/lib/api/get-api-url'
 import {local} from '@/common/utils/envs'
 import {getServerToken} from '@/ui/auth/lib/token.server'
 

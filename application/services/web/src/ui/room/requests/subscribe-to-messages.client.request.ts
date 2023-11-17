@@ -1,4 +1,4 @@
-import {TELEGRAPH_API_URL} from '@/common/lib/request/constants'
+import {TELEGRAPH_API_URL} from '@/common/lib/api/constants'
 import {MessageResponse} from '@/room/interfaces/message-response.interface'
 import {getClientToken} from '@/ui/auth/lib/token.client'
 

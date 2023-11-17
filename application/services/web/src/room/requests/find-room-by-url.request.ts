@@ -1,7 +1,7 @@
 import {TokenResponse} from '@/auth/interfaces/token-response.interface'
-import {TELEGRAPH_API_URL} from '@/common/lib/request/constants'
+import {TELEGRAPH_API_URL} from '@/common/lib/api/constants'
 import {request} from '@/common/lib/request/request'
-import {RequestOptions} from '@/common/lib/request/request-options.intefrace'
+import {RequestOptions} from '@/common/lib/request/utils/request-options.intefrace'
 import {RoomResponse} from '@/room/interfaces/room-response.interface'
 
 export const requestFindRoomByUrl = async (
