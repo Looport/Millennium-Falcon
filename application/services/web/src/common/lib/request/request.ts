@@ -1,35 +1,20 @@
-import {development} from '@/common/utils/envs'
-
-class RequestError extends Error {
-  constructor(
-    message: string,
-    public readonly status: number,
-    public readonly errors: any[] = []
-  ) {
-    super(message)
-  }
-}
+import {RequestError} from '@/common/lib/request/request-error'
+import {RequestOptions} from '@/common/lib/request/request-options.intefrace'
 
 export const request = async <T>(
   url: string,
-  init: Omit<RequestInit, 'headers'> & {
-    headers?: Record<string, string | undefined>
-  } = {}
+  options: RequestOptions = {}
 ): Promise<T> => {
   const response = await fetch(url, {
-    ...init,
+    ...options,
     headers: {
-      ...(init.body ? {'Content-Type': 'application/json'} : {}),
-      ...init?.headers,
+      ...(options.body ? {'Content-Type': 'application/json'} : {}),
+      ...options?.headers,
     },
-    method: init.method ?? (init?.body ? 'POST' : 'GET'),
+    method: options.method ?? (options?.body ? 'POST' : 'GET'),
   })
 
   const body = await response.json()
-
-  if (development()) {
-    console.log('request', url, init, body)
-  }
 
   if (!response.ok) {
     throw new RequestError(body.message, response.status, body.errors)

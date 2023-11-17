@@ -1,7 +1,7 @@
 import {ActiveUser, ActiveUserInterface} from '@looport/nest-auth'
 import {Serialize} from '@looport/nest-common'
 import {Body, Controller, Get, Param, Post, Sse} from '@nestjs/common'
-import {fromEvent, map, skipWhile} from 'rxjs'
+import {filter, fromEvent, map} from 'rxjs'
 
 import {CreateMessageDto} from '@/message/dto/create-message.dto'
 import {MessageDto} from '@/message/dto/message/message.dto'
@@ -69,10 +69,10 @@ export class RoomController {
       this.messageEventService.eventEmitter,
       createMessageCreatedSubject(roomId)
     ).pipe(
-      // eslint-disable-next-line no-warning-comments
-      // TODO: check why skipWhile doesn't work on sometimes
-      skipWhile((message: MessageEntity) => message.user.id === activeUser.sub),
-      map((message: MessageEntity) => ({data: message}))
+      filter((message: MessageEntity) => message.user.id !== activeUser.sub),
+      map((message: MessageEntity) => ({
+        data: message,
+      }))
     )
   }
 }

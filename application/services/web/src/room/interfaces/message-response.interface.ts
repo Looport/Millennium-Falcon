@@ -1,3 +1,12 @@
-import {CreateMessageResponse} from '@/room/interfaces/create-message-response.interface'
+import {UserResponse} from '@/auth/interfaces/user-response.interface'
+import {RoomResponse} from '@/room/interfaces/room-response.interface'
 
-export type MessagesResponse = CreateMessageResponse[]
+export interface MessageResponse {
+  id: number
+
+  text: string
+
+  room: RoomResponse
+
+  user: UserResponse
+}

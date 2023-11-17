@@ -3,49 +3,34 @@
 import Image from 'next/image'
 import React, {useCallback, useEffect} from 'react'
 
-import {getToken} from '@/auth/lib/token.client'
-import {Button} from '@/common/components/button'
-import {IconProvider, VscSend} from '@/common/components/icons'
-import {classname} from '@/common/utils/classname'
-import {MessagesResponse} from '@/room/interfaces/message-response.interface'
+import {
+  dispatchAddMessage,
+  dispatchSetMessages,
+  useMessages,
+} from '@/room/hooks/use-messages'
 import {RoomResponse} from '@/room/interfaces/room-response.interface'
-import {requestCreateMessage} from '@/room/requests/create-message.request'
-import {requestSubscribeToMessages} from '@/room/requests/subscribe-to-messages.request'
+import {Button} from '@/ui/common/components/button'
+import {IconProvider, VscSend} from '@/ui/common/components/icons'
+import {classname} from '@/ui/common/utils/classname'
+import {requestClientCreateMessage} from '@/ui/room/requests/create-message.client.request'
+import {requestClientFindMessagesByRoomId} from '@/ui/room/requests/find-messages-by-room-id.client.request'
+import {requestClientSubscribeToMessages} from '@/ui/room/requests/subscribe-to-messages.client.request'
 
-export default function Room({
-  room,
-  messages,
-}: {
-  room: RoomResponse
-  messages: MessagesResponse
-}) {
-  const handleMessageFormSubmit = useCallback(
-    async (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
+export default function Room({room}: {room: RoomResponse}) {
+  const [messages, dispatchMessagesAction] = useMessages()
 
-      const token = getToken()
-      if (!token) {
-        throw new Error('Token is not defined')
-      }
-
-      await requestCreateMessage(
-        {
-          roomId: room.id,
-          // eslint-disable-next-line github/async-currenttarget
-          text: event.currentTarget.message.value,
-        },
-        token
-      )
-    },
-    [room.id]
-  )
+  useEffect(() => {
+    requestClientFindMessagesByRoomId(room.id).then((messagesResponseData) => {
+      dispatchSetMessages(dispatchMessagesAction, messagesResponseData)
+    })
+  }, [dispatchMessagesAction, room.id])
 
   useEffect(() => {
     const controller = new AbortController()
 
-    requestSubscribeToMessages({
+    requestClientSubscribeToMessages({
       onMessage: (message) => {
-        console.log(message)
+        dispatchAddMessage(dispatchMessagesAction, message)
       },
       roomId: room.id,
       signal: controller.signal,
@@ -54,7 +39,23 @@ export default function Room({
     return () => {
       controller.abort()
     }
-  }, [room.id])
+  }, [dispatchMessagesAction, room.id])
+
+  const handleMessageFormSubmit = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+
+      dispatchAddMessage(
+        dispatchMessagesAction,
+        await requestClientCreateMessage({
+          roomId: room.id,
+          // eslint-disable-next-line github/async-currenttarget
+          text: event.currentTarget.message.value,
+        })
+      )
+    },
+    [dispatchMessagesAction, room.id]
+  )
 
   return (
     <main className={classname(['w-full h-screen'])}>
@@ -100,7 +101,9 @@ export default function Room({
           />
           <div className={classname(['flex-1 overflow-y-scroll'])}>
             {messages.map((message) => (
-              <div key={message.id}>{message.text}</div>
+              <div key={message.id}>
+                {message.user.email}: {message.text}
+              </div>
             ))}
           </div>
           <form onSubmit={handleMessageFormSubmit}>

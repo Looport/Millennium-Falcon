@@ -1,49 +1,28 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events*/
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions*/
-'use client'
+import {redirect} from 'next/navigation'
+import React from 'react'
 
-import {usePathname, useRouter} from 'next/navigation'
-import {MouseEventHandler, useRef} from 'react'
+import JoinModal from '@/app/@modal/(...)join/join-modal'
+import {LoginForm} from '@/ui/auth/components/sign/login-form'
+import {RegisterForm} from '@/ui/auth/components/sign/register-from'
 
-import {JoinContainer} from '@/auth/components/join-form/join-container'
-import {classname} from '@/common/utils/classname'
+export default function Page({
+  searchParams,
+}: {
+  searchParams: {variant?: 'login' | 'register'}
+}) {
+  const {variant} = searchParams
 
-export default function JoinInterceptor() {
-  const router = useRouter()
-
-  const formRef = useRef<HTMLDivElement>(null)
-  const outsideClick: MouseEventHandler<HTMLDialogElement> = (evt) => {
-    if (!formRef.current?.contains(evt.target as Node)) {
-      router.back()
-    }
+  if (!variant) {
+    return redirect('?variant=register')
   }
 
-  /**
-   * Warning
-   * Need to return null
-   * because if we push
-   * component doesn't remove
-   */
-  if (usePathname() !== '/join') {
-    return null
-  }
+  const register = variant === 'register'
+  const login = variant === 'login'
 
   return (
-    <dialog
-      className={classname([
-        'w-full h-full z-10 fixed',
-        'bg-slate-900',
-        'flex justify-center items-center',
-        'text-zinc-50/60',
-      ])}
-      onClick={outsideClick}
-    >
-      <div
-        className={classname(['w-2/4 max-w-[60rem]'])}
-        ref={formRef}
-      >
-        <JoinContainer />
-      </div>
-    </dialog>
+    <JoinModal>
+      {register && <RegisterForm />}
+      {login && <LoginForm />}
+    </JoinModal>
   )
 }
