@@ -56,7 +56,9 @@ const getMessage = (dataString: string) => {
   const message = dataString.match(MESSAGE_REGEXP)?.[2]
 
   if (!message) {
-    throw new Error(`Data string "${dataString}" could be parsed from stream`)
+    throw new Error(
+      `Data string "${dataString}" could not be parsed from stream`
+    )
   }
 
   return JSON.parse(message)

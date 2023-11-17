@@ -1,61 +1,16 @@
 'use client'
 
 import Image from 'next/image'
-import React, {useCallback, useEffect} from 'react'
+import React from 'react'
 
-import {
-  dispatchAddMessage,
-  dispatchSetMessages,
-  useMessages,
-} from '@/room/hooks/use-messages'
+import {useRoomMessages} from '@/room/hooks/use-room-messages'
 import {RoomResponse} from '@/room/interfaces/room-response.interface'
 import {Button} from '@/ui/common/components/button'
 import {IconProvider, VscSend} from '@/ui/common/components/icons'
 import {classname} from '@/ui/common/utils/classname'
-import {requestClientCreateMessage} from '@/ui/room/requests/create-message.client.request'
-import {requestClientFindMessagesByRoomId} from '@/ui/room/requests/find-messages-by-room-id.client.request'
-import {requestClientSubscribeToMessages} from '@/ui/room/requests/subscribe-to-messages.client.request'
 
 export default function Room({room}: {room: RoomResponse}) {
-  const [messages, dispatchMessagesAction] = useMessages()
-
-  useEffect(() => {
-    requestClientFindMessagesByRoomId(room.id).then((messagesResponseData) => {
-      dispatchSetMessages(dispatchMessagesAction, messagesResponseData)
-    })
-  }, [dispatchMessagesAction, room.id])
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    requestClientSubscribeToMessages({
-      onMessage: (message) => {
-        dispatchAddMessage(dispatchMessagesAction, message)
-      },
-      roomId: room.id,
-      signal: controller.signal,
-    })
-
-    return () => {
-      controller.abort()
-    }
-  }, [dispatchMessagesAction, room.id])
-
-  const handleMessageFormSubmit = useCallback(
-    async (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
-
-      dispatchAddMessage(
-        dispatchMessagesAction,
-        await requestClientCreateMessage({
-          roomId: room.id,
-          // eslint-disable-next-line github/async-currenttarget
-          text: event.currentTarget.message.value,
-        })
-      )
-    },
-    [dispatchMessagesAction, room.id]
-  )
+  const [messages, {handleMessageForm}] = useRoomMessages(room.id)
 
   return (
     <main className={classname(['w-full h-screen'])}>
@@ -106,7 +61,7 @@ export default function Room({room}: {room: RoomResponse}) {
               </div>
             ))}
           </div>
-          <form onSubmit={handleMessageFormSubmit}>
+          <form onSubmit={handleMessageForm}>
             <div className={classname(['h-[10rem]'])}>
               <div className={classname(['relative'])}>
                 <div
