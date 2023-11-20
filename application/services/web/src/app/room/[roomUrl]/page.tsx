@@ -1,7 +1,7 @@
 import {redirect} from 'next/navigation'
 import React from 'react'
 
-import Room from '@/room/components/room'
+import Room from '@/room/components/room/room'
 import {getServerToken} from '@/ui/auth/lib/token.server'
 import {requestServerFindRoomByUrl} from '@/ui/room/requests/find-room-by-url.server.request'
 

@@ -5,6 +5,14 @@ export const request = async <T>(
   url: string,
   options: RequestOptions = {}
 ): Promise<T> => {
+  console.log(url, {
+    ...options,
+    headers: {
+      ...(options.body ? {'Content-Type': 'application/json'} : {}),
+      ...options?.headers,
+    },
+    method: options.method ?? (options?.body ? 'POST' : 'GET'),
+  })
   const response = await fetch(url, {
     ...options,
     headers: {

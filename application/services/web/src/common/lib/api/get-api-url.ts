@@ -5,18 +5,31 @@ export const API_HOST =
   process.env.NEXT_PUBLIC_API_HOST ?? '__REPLACE__NEXT_PUBLIC_API_HOST__'
 
 export const INGRESS_API_URL =
-  'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local'
+  'ingress-nginx-controller.ingress-nginx.svc.cluster.local'
 
 export const getApiUrl = () => {
   /**
-   * When an application is running on local k8s,
-   * we should use INGRESS_API_URL for SSR requests
-   * because in can't access from local k8s to local /etc/hosts
-   * and should use an internal k8s ingress link
+   * When an application is running on a local machine inside k8s,
+   * we should use INGRESS_API_URL for SSR requests.
+   * This is because it can't access from k8s to local /etc/hosts
+   * and doesn't go to the ingress inside container,
+   * and should use an ingress internal service link
    */
   if (typeof window === 'undefined' && development()) {
-    return `${INGRESS_API_URL}/api`
+    /**
+     * Warning: Remember to pass headers with {host: API_HOST} during SSR,
+     * to show target host inside ingress
+     */
+    return `http://${INGRESS_API_URL}/api`
   }
 
   return `http://${API_HOST}/api`
+}
+
+export const getServerAPIHostHeaders = () => {
+  if (development()) {
+    return {host: API_HOST}
+  }
+
+  return {}
 }

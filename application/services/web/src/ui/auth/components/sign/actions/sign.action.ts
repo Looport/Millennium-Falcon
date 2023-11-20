@@ -2,12 +2,12 @@
 
 import {redirect} from 'next/navigation'
 
-import {requestLogin} from '@/auth/requests/login.request'
-import {requestRegister} from '@/auth/requests/register.request'
 import {setServerToken} from '@/ui/auth/lib/token.server'
+import {requestServerLogin} from '@/ui/auth/requests/login.server.request'
+import {requestServerRegister} from '@/ui/auth/requests/register.server.request'
 
 export const loginAction = async (formData: FormData) => {
-  const {accessToken} = await requestLogin({
+  const {accessToken} = await requestServerLogin({
     email: formData.get('email'),
     password: formData.get('password'),
   })
@@ -16,7 +16,7 @@ export const loginAction = async (formData: FormData) => {
 }
 
 export const registerAction = async (formData: FormData) => {
-  const {accessToken} = await requestRegister({
+  const {accessToken} = await requestServerRegister({
     email: formData.get('email'),
     password: formData.get('password'),
   })

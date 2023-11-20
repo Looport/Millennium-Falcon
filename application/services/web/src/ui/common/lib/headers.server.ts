@@ -1,30 +1,25 @@
-import {headers as nextHeaders} from 'next/headers'
+import {headers} from 'next/headers'
 
 import {API_HOST} from '@/common/lib/api/get-api-url'
+import {RequestOptions} from '@/common/lib/request/utils/request-options.intefrace'
 import {local} from '@/common/utils/envs'
-import {getServerToken} from '@/ui/auth/lib/token.server'
 
-export const getHeaders = () => {
-  const headers = Object.fromEntries(nextHeaders().entries())
-
-  const accessToken = getServerToken()
-
-  return {
-    ...(accessToken
-      ? {
-          Authorization: `Bearer ${accessToken}`,
-        }
-      : {}),
-    ...headers,
-
-    /**
-     * When an application is running on local machine(localhost)
-     * and not on k8s,
-     * we should use API_HOST
-     * to send requests to the server.
-     * Because headers.host in this case localhost:3000,
-     * but ingress server deployed on k8s with API_HOST
-     */
-    host: local() ? API_HOST : headers.host,
-  }
+interface GetServerHeaders {
+  // For requests that are made inside k8s cluster. Default: true
+  internalCall?: boolean
 }
+
+export const getServerHeaders = (
+  {internalCall}: GetServerHeaders = {internalCall: true}
+): RequestOptions['headers'] => ({
+  ...Object.keys(Object.fromEntries(headers().entries())).reduce(
+    (acc, key) => ({
+      ...acc,
+      ...(['content-length'].includes(key) ? {} : {[key]: headers().get(key)}),
+    }),
+    {}
+  ),
+  ...(local() && internalCall
+    ? {host: API_HOST}
+    : {host: Object.fromEntries(headers().entries()).host}),
+})

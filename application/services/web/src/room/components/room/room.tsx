@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import React from 'react'
 
+import {Messages} from '@/room/components/room/messages'
 import {useRoomMessages} from '@/room/hooks/use-room-messages'
 import {RoomResponse} from '@/room/interfaces/room-response.interface'
 import {Button} from '@/ui/common/components/button'
@@ -54,13 +55,7 @@ export default function Room({room}: {room: RoomResponse}) {
               'border-b-[1px] border-slate-50/25',
             ])}
           />
-          <div className={classname(['flex-1 overflow-y-scroll'])}>
-            {messages.map((message) => (
-              <div key={message.id}>
-                {message.user.email}: {message.text}
-              </div>
-            ))}
-          </div>
+          <Messages messages={messages} />
           <form onSubmit={handleMessageForm}>
             <div className={classname(['h-[10rem]'])}>
               <div className={classname(['relative'])}>
