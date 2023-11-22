@@ -15,7 +15,7 @@ spec:
       hostAliases:
         - ip: "10.96.0.88"
           hostnames:
-            - "aloco.local"
+            - {{.Values.app.host}}
       containers:
         - name: web
           image: dormammun/looport-web:latest
