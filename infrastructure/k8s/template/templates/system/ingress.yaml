@@ -33,3 +33,21 @@ spec:
                 name: web-cluster-ip
                 port:
                   number: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-cluster-ip
+  namespace: ingress-nginx
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/component: controller
+  clusterIP: 10.96.0.88
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    - name: https
+      port: 443
+      targetPort: 443
