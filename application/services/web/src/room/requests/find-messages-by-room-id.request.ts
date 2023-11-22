@@ -1,21 +1,19 @@
 import {TokenResponse} from '@/auth/interfaces/token-response.interface'
-import {TELEGRAPH_API_URL} from '@/auth/requests/constants'
+import {TELEGRAPH_API_URL} from '@/common/lib/api/constants'
 import {request} from '@/common/lib/request/request'
-import {CreateRoomResponse} from '@/room/interfaces/create-room-response.interface'
+import {RequestOptions} from '@/common/lib/request/utils/request-options.intefrace'
+import {MessagesResponse} from '@/room/interfaces/messages-response.interface'
 
 export const requestFindMessagesByRoomId = async (
   roomId: number,
-  {
-    accessToken,
-    headers,
-  }: TokenResponse & {
-    headers?: Record<string, string | undefined>
-  }
-): Promise<CreateRoomResponse> =>
-  request<CreateRoomResponse>(`${TELEGRAPH_API_URL}/rooms/${roomId}/messages`, {
+  accessToken: TokenResponse['accessToken'],
+  options: RequestOptions = {}
+): Promise<MessagesResponse> =>
+  request<MessagesResponse>(`${TELEGRAPH_API_URL}/rooms/${roomId}/messages`, {
+    ...options,
     headers: {
+      ...options.headers,
       Authorization: `Bearer ${accessToken}`,
-      ...headers,
     },
     method: 'GET',
   })

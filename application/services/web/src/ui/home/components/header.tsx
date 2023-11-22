@@ -1,27 +1,22 @@
-import {cookies} from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import {requestFetchIam} from '@/auth/requests/iam.request'
+import {requestServerIam} from '@/ui/auth/requests/iam.server.request'
 import {Button} from '@/ui/common/components/button'
 import {
   AiOutlineGift,
   BiUser,
+  BsFastForward,
   BsTelephoneOutbound,
-  LuSettings,
   FiCalendar,
   FiMap,
-  BsFastForward,
+  LuSettings,
 } from '@/ui/common/components/icons'
 import {classname} from '@/ui/common/utils/classname'
-import {getHeaders} from '@/ui/common/utils/get-headers'
 import {Logout} from '@/ui/home/components/logout'
 
 export const Header = async () => {
-  const accessToken = cookies().get('accessToken')?.value
-  const body = accessToken
-    ? await requestFetchIam({accessToken, headers: getHeaders()})
-    : null
+  const user = await requestServerIam()
 
   return (
     <header
@@ -48,7 +43,7 @@ export const Header = async () => {
       </Link>
       <nav>
         <ul className={classname(['xl:flex gap-[4rem] hidden'])}>
-          {!body && (
+          {!user && (
             <>
               <li>About Us</li>
               <li>Road Map</li>
@@ -56,7 +51,7 @@ export const Header = async () => {
               <li>Register</li>
             </>
           )}
-          {body && (
+          {user && (
             <>
               <li>
                 <Button
@@ -124,7 +119,7 @@ export const Header = async () => {
         </div>
       </div>
       <div className={classname(['md:flex gap-[2rem] items-center hidden'])}>
-        {!body && (
+        {!user && (
           <>
             <Button
               iconSize="2rem"
@@ -133,7 +128,7 @@ export const Header = async () => {
               Join a Call
             </Button>
             <Button
-              href="/join"
+              href="/join?variant=register"
               iconSize="2rem"
               type="primary"
               icon={<BiUser />}
@@ -142,7 +137,7 @@ export const Header = async () => {
             </Button>
           </>
         )}
-        {body && (
+        {user && (
           <>
             <div
               className={classname([
@@ -157,7 +152,7 @@ export const Header = async () => {
               >
                 <Image
                   className={classname(['rounded-full'])}
-                  aria-label={body.email}
+                  aria-label={user.email}
                   width={47}
                   height={47}
                   src="/Avatar.png"

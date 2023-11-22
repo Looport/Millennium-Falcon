@@ -12,6 +12,10 @@ spec:
       labels:
         app: web
     spec:
+      hostAliases:
+        - ip: "10.96.0.88"
+          hostnames:
+            - {{.Values.app.host}}
       containers:
         - name: web
           image: dormammun/looport-web:latest

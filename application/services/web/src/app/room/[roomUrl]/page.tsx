@@ -1,10 +1,9 @@
 import {redirect} from 'next/navigation'
 import React from 'react'
 
-import Room from '@/app/room/[roomUrl]/room'
-import {requestFindRoomByUrl} from '@/room/requests/find-room-by-url.request'
-import {getServerToken} from '@/ui/auth/lib/server-token'
-import {getHeaders} from '@/ui/common/utils/get-headers'
+import Room from '@/room/components/room/room'
+import {getServerToken} from '@/ui/auth/lib/token.server'
+import {requestServerFindRoomByUrl} from '@/ui/room/requests/find-room-by-url.server.request'
 
 export default async function Page({
   params: {roomUrl},
@@ -12,17 +11,13 @@ export default async function Page({
   params: {roomUrl: string}
 }) {
   const accessToken = getServerToken()
-
   if (!accessToken) {
-    return redirect('/login')
+    redirect('/join?variant=login')
   }
 
-  const room = await requestFindRoomByUrl(roomUrl, {
-    accessToken,
-    headers: getHeaders(),
-  })
+  const room = await requestServerFindRoomByUrl(roomUrl)
   if (!room) {
-    return redirect('/404')
+    redirect('/404')
   }
 
   return <Room room={room} />

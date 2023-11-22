@@ -6,7 +6,7 @@ import {LandingLayout} from '@/ui/home/components/landing-layout'
 import {Meetings} from '@/ui/home/components/meeting'
 import {Roadmap} from '@/ui/home/components/roadmap'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <LandingLayout>
       <section

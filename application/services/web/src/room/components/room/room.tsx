@@ -1,45 +1,17 @@
 'use client'
 
 import Image from 'next/image'
-import React, {useCallback, useEffect} from 'react'
+import React from 'react'
 
+import {Messages} from '@/room/components/room/messages'
+import {useRoomMessages} from '@/room/hooks/use-room-messages'
 import {RoomResponse} from '@/room/interfaces/room-response.interface'
-import {requestCreateMessage} from '@/room/requests/create-message.request'
-import {requestFindMessagesByRoomId} from '@/room/requests/find-messages-by-room-id.request'
-import {getToken} from '@/ui/auth/lib/token'
 import {Button} from '@/ui/common/components/button'
 import {IconProvider, VscSend} from '@/ui/common/components/icons'
 import {classname} from '@/ui/common/utils/classname'
 
 export default function Room({room}: {room: RoomResponse}) {
-  const handleMessageFormSubmit = useCallback(
-    async (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
-
-      const token = getToken()
-      if (!token) {
-        throw new Error('Token is not defined')
-      }
-
-      await requestCreateMessage(
-        {
-          roomId: room.id,
-          // eslint-disable-next-line github/async-currenttarget
-          text: event.currentTarget.message.value,
-        },
-        token
-      )
-    },
-    [room.id]
-  )
-
-  useEffect(() => {
-    const accessToken = getToken()
-    if (!accessToken) {
-      throw new Error('Token is not defined')
-    }
-    requestFindMessagesByRoomId(room.id, {accessToken})
-  }, [room.id])
+  const [messages, {handleMessageForm}] = useRoomMessages(room.id)
 
   return (
     <main className={classname(['w-full h-screen'])}>
@@ -83,8 +55,8 @@ export default function Room({room}: {room: RoomResponse}) {
               'border-b-[1px] border-slate-50/25',
             ])}
           />
-          <div className={classname(['flex-1'])}>chat</div>
-          <form onSubmit={handleMessageFormSubmit}>
+          <Messages messages={messages} />
+          <form onSubmit={handleMessageForm}>
             <div className={classname(['h-[10rem]'])}>
               <div className={classname(['relative'])}>
                 <div

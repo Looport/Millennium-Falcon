@@ -33,8 +33,8 @@ export const Button = ({
 }: ButtonProps) => {
   let iconComponent
 
-  const iSize = iconSize ?? DEFAULT_ICON_SIZE
   if (icon) {
+    const iSize = iconSize ?? DEFAULT_ICON_SIZE
     iconComponent = <IconProvider value={{size: iSize}}>{icon}</IconProvider>
   }
 

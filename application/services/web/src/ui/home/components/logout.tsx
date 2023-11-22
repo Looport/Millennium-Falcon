@@ -2,13 +2,13 @@
 
 import {cloneElement, ReactElement} from 'react'
 
-import {cleanToken} from '@/ui/auth/lib/token'
+import {cleanClientToken} from '@/ui/auth/lib/token.client'
 import {useRefreshPage} from '@/ui/common/hooks/refresh-page'
 
 export const Logout = ({children}: {children: ReactElement}) => {
   const {refresh} = useRefreshPage()
   const logout = () => {
-    cleanToken()
+    cleanClientToken()
 
     refresh({redirectTo: '/'})
   }

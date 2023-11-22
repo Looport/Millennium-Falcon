@@ -1,10 +1,10 @@
 'use client'
 
-export const setToken = (token: string) => {
+export const setClientToken = (token: string) => {
   document.cookie = `accessToken=${token};`
 }
 
-export const getToken = () => {
+export const getClientToken = () => {
   const cookies = document.cookie.split(';')
   const token = cookies.find((cookie) => cookie.includes('accessToken'))
   if (token) {
@@ -13,6 +13,6 @@ export const getToken = () => {
   return null
 }
 
-export const cleanToken = () => {
+export const cleanClientToken = () => {
   document.cookie = `accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`
 }
