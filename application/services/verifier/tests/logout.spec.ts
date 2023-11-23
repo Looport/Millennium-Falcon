@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 
 import {generateAuthCredentials} from '../modules/auth/credentials'
-import {PASSPORT_API_URL} from '../modules/auth/envs'
+import {getPassportApiUrl} from '../modules/auth/envs'
 import {WEB_URL} from '../modules/common/envs'
 
 test('should register user from modal and redirect on "/"', async ({
@@ -9,9 +9,9 @@ test('should register user from modal and redirect on "/"', async ({
   request,
   context,
 }) => {
-  const credentials = await generateAuthCredentials()
+  const credentials = generateAuthCredentials()
   const body = await request
-    .fetch(`${PASSPORT_API_URL}/authentication/register`, {
+    .fetch(`${getPassportApiUrl()}/authentication/register`, {
       data: JSON.stringify(credentials),
       headers: {
         'Content-Type': 'application/json',

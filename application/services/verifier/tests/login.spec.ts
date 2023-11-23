@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 
 import {generateAuthCredentials} from '../modules/auth/credentials'
-import {PASSPORT_API_URL} from '../modules/auth/envs'
+import {getPassportApiUrl} from '../modules/auth/envs'
 import {WEB_URL} from '../modules/common/envs'
 
 test('should open join modal and switch to login form', async ({page}) => {
@@ -22,7 +22,7 @@ test('should open join modal and switch to login form', async ({page}) => {
 
 test('should login user and redirect on "/"', async ({page, request}) => {
   const credentials = generateAuthCredentials()
-  await request.fetch(`${PASSPORT_API_URL}/authentication/register`, {
+  await request.fetch(`${getPassportApiUrl()}/authentication/register`, {
     data: JSON.stringify(credentials),
     headers: {
       'Content-Type': 'application/json',
@@ -49,8 +49,8 @@ test('should login user from modal and redirect on "/"', async ({
   page,
   request,
 }) => {
-  const credentials = await generateAuthCredentials()
-  await request.fetch(`${PASSPORT_API_URL}/authentication/register`, {
+  const credentials = generateAuthCredentials()
+  await request.fetch(`${getPassportApiUrl()}/authentication/register`, {
     data: JSON.stringify(credentials),
     headers: {
       'Content-Type': 'application/json',
