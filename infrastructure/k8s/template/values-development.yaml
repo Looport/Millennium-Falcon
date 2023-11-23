@@ -2,7 +2,6 @@ app:
   env: development
   name: aloco
   host: aloco.local
-  enableIngress: false
   jwt:
     secret: "998idfj09()J%F"
     expires: "1d"
@@ -20,3 +19,7 @@ telegraph:
     user: "root"
     password: "root"
     db: "telegraph"
+
+ingress:
+  clusterIP: "10.96.0.88"
+  enableIngress: false

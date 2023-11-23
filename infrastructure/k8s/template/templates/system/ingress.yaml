@@ -43,7 +43,7 @@ spec:
   type: ClusterIP
   selector:
     app.kubernetes.io/component: controller
-  clusterIP: 10.96.0.88
+  clusterIP: {{ .Values.ingress.clusterIP }}
   ports:
     - name: http
       port: 80

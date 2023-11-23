@@ -13,7 +13,7 @@ spec:
         app: web
     spec:
       hostAliases:
-        - ip: "10.96.0.88"
+        - ip: {{.Values.ingress.clusterIP}}
           hostnames:
             - {{.Values.app.host}}
       containers:
