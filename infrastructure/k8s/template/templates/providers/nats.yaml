@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nats
+      provider: nats
   template:
     metadata:
       labels:
-        app: nats
+        provider: nats
     spec:
       containers:
         - name: nats
@@ -32,7 +32,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: nats
+    provider: nats
   ports:
     - name: nats-client
       protocol: TCP
@@ -51,13 +51,13 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: nats
+    provider: nats
   ports:
-    - name: nats-client
+    - name: nats-client-debug
       protocol: TCP
       port: 4222
       targetPort: 4222
-    - name: nats-monitoring
+    - name: nats-monitoring-debug
       protocol: TCP
       port: 8222
       targetPort: 8222
