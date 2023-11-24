@@ -3,7 +3,7 @@
   "name": "@looport/millennium-falcon",
   "author": "Vitalii Khotei <khoteiv.dev@gmail.com>",
   "engines": {
-    "node": ">=19",
+    "node": ">=21",
     "pnpm": ">=8"
   },
   "repository": {
