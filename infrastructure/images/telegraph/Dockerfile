@@ -1,4 +1,4 @@
-FROM node:20-alpine as builder
+FROM node:21-alpine as builder
 
 RUN npm i -g pnpm@8
 
@@ -12,7 +12,7 @@ COPY ./application ./application
 RUN pnpm -F @looport/telegraph install \
     && pnpm -F @looport/telegraph... build
 
-FROM node:20-alpine as runner
+FROM node:21-alpine as runner
 
 RUN npm i -g pnpm@8
 

@@ -1,4 +1,4 @@
-import {TELEGRAPH_API_URL} from '@/common/lib/api/constants'
+import {getTelegraphApiUrl} from '@/common/lib/request/utils/get-api-urls'
 import {MessageResponse} from '@/room/interfaces/message-response.interface'
 import {getClientToken} from '@/ui/auth/lib/token.client'
 
@@ -17,7 +17,7 @@ export const requestClientSubscribeToMessages = async ({
   if (!accessToken) throw new Error('No access token')
 
   const response = await fetch(
-    `${TELEGRAPH_API_URL}/rooms/${roomId}/messages/subscribe`,
+    `${getTelegraphApiUrl()}/rooms/${roomId}/messages/subscribe`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,

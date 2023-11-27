@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: telegraph-database
+        provider: telegraph-database
     spec:
       containers:
         - name: telegraph-database

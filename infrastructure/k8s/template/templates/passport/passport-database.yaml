@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: passport-database
+        provider: passport-database
     spec:
       containers:
         - name: passport-database
