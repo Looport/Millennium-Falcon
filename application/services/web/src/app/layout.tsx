@@ -3,6 +3,8 @@ import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 import {ReactNode} from 'react'
 
+import {PrelineScript} from '@/ui/common/components/preline-script'
+
 const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
@@ -29,6 +31,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {modal}
         {children}
+        <PrelineScript />
       </body>
     </html>
   )
