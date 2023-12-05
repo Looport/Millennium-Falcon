@@ -1,5 +1,5 @@
-import {Actions, ActionTypes} from '@/room/hooks/use-messages/lib/types'
 import {MessageResponse} from '@/room/interfaces/message-response.interface'
+import {Actions, ActionTypes} from '@/ui/room/hooks/use-messages/lib/types'
 
 export const reducer = (state: MessageResponse[], action: Actions) => {
   switch (action.type) {

@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect} from 'react'
 
+import {MessageResponse} from '@/room/interfaces/message-response.interface'
 import {
   dispatchAddMessage,
   dispatchSetMessages,
-} from '@/room/hooks/use-messages/lib/actions'
-import {useMessages} from '@/room/hooks/use-messages/use-messages'
-import {useSubscribeToRoomMessages} from '@/room/hooks/use-subscribe-to-room-messages'
-import {MessageResponse} from '@/room/interfaces/message-response.interface'
+} from '@/ui/room/hooks/use-messages/lib/actions'
+import {useMessages} from '@/ui/room/hooks/use-messages/use-messages'
+import {useSubscribeToRoomMessages} from '@/ui/room/hooks/use-subscribe-to-room-messages'
 import {requestClientCreateMessage} from '@/ui/room/requests/create-message.client.request'
 import {requestClientFindMessagesByRoomId} from '@/ui/room/requests/find-messages-by-room-id.client.request'
 

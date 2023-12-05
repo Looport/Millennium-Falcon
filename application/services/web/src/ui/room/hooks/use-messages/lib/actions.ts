@@ -1,11 +1,11 @@
 import {Dispatch} from 'react'
 
+import {MessageResponse} from '@/room/interfaces/message-response.interface'
 import {
   ActionTypes,
   AddMessageAction,
   SetMessageAction,
-} from '@/room/hooks/use-messages/lib/types'
-import {MessageResponse} from '@/room/interfaces/message-response.interface'
+} from '@/ui/room/hooks/use-messages/lib/types'
 
 export const dispatchAddMessage = (
   dispatch: Dispatch<AddMessageAction>,

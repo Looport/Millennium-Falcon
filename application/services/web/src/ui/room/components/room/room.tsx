@@ -3,12 +3,13 @@
 import Image from 'next/image'
 import React from 'react'
 
-import {Messages} from '@/room/components/room/messages'
-import {useRoomMessages} from '@/room/hooks/use-room-messages'
 import {RoomResponse} from '@/room/interfaces/room-response.interface'
 import {Button} from '@/ui/common/components/button'
 import {IconProvider, VscSend} from '@/ui/common/components/icons'
 import {classname} from '@/ui/common/utils/classname'
+import {Messages} from '@/ui/room/components/room/messages'
+import {Video} from '@/ui/room/components/room/video'
+import {useRoomMessages} from '@/ui/room/hooks/use-room-messages'
 
 export default function Room({room}: {room: RoomResponse}) {
   const [messages, {handleMessageForm}] = useRoomMessages(room.id)
@@ -39,7 +40,9 @@ export default function Room({room}: {room: RoomResponse}) {
             />
           </div>
         </div>
-        <div className={classname(['flex-1'])}>videos</div>
+        <div className={classname(['flex-1'])}>
+          <Video />
+        </div>
         <div
           className={classname([
             'w-[45rem] border-l-[1px] border-slate-50/10 drop-shadow-xl',
