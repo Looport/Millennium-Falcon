@@ -58,7 +58,8 @@ module.exports = {
         ignorePattern: '(^import.*from.*)|(^\\} from.*)',
       },
     ],
-    // Clean plugins rules
+    // Clean plugins
+    '@typescript-eslint/no-explicit-any': 1,
     'github/no-then': 0,
     'i18n-text/no-en': 0,
     'import/no-unresolved': 0,
