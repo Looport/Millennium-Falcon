@@ -28,6 +28,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+          node-version: 21
       - run: pnpm -F @looport/passport install && pnpm -F @looport/passport^... build
       - run: pnpm -F @looport/passport test:all
         env:
@@ -43,9 +44,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 21
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -55,22 +53,18 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 21
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+          node-version: 21
       - run: pnpm -F @looport/passport install && pnpm -F @looport/passport^... build
       - run: pnpm -F @looport/passport type-check
   build:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 21
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+          node-version: 21
       - run: pnpm -F @looport/passport install && pnpm -F @looport/passport... build

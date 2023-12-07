@@ -96,6 +96,7 @@ describe('RoomController', () => {
           rxHandler = _rxHandler
         }
       )
+      // eslint-disable-next-line max-len
       messageEventServiceMock.emitMessageCreatedEvent.mock.mockImplementationOnce(
         (event, message) => {
           rxHandler(message)
@@ -139,6 +140,7 @@ describe('RoomController', () => {
           rxHandler = _rxHandler
         }
       )
+      // eslint-disable-next-line max-len
       messageEventServiceMock.emitMessageCreatedEvent.mock.mockImplementationOnce(
         (event, message) => {
           rxHandler(message)
