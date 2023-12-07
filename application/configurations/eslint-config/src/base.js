@@ -59,7 +59,7 @@ module.exports = {
       },
     ],
     // Clean plugins
-    '@typescript-eslint/no-explicit-any': 1,
+    '@typescript-eslint/no-explicit-any': 'warn',
     'github/no-then': 0,
     'i18n-text/no-en': 0,
     'import/no-unresolved': 0,
