@@ -58,8 +58,6 @@ module.exports = {
         ignorePattern: '(^import.*from.*)|(^\\} from.*)',
       },
     ],
-    'newline-per-chained-call': ['error', {ignoreChainWithDepth: 2}],
-
     // Clean plugins rules
     'github/no-then': 0,
     'i18n-text/no-en': 0,
