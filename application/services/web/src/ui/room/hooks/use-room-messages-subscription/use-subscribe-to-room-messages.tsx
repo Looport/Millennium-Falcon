@@ -1,7 +1,7 @@
 import {useEffect} from 'react'
 
-import {MessageResponse} from '@/room/interfaces/message-response.interface'
-import {requestClientSubscribeToMessages} from '@/ui/room/requests/subscribe-to-messages.client.request'
+import {MessageResponse} from '@/room/interfaces/messages/message-response.interface'
+import {requestClientSubscribeToRoomMessages} from '@/ui/room/requests/subscribe-to-room-messages.client.request'
 
 export const useSubscribeToRoomMessages = ({
   roomId,
@@ -15,7 +15,7 @@ export const useSubscribeToRoomMessages = ({
   useEffect(() => {
     const controller = new AbortController()
 
-    requestClientSubscribeToMessages({
+    requestClientSubscribeToRoomMessages({
       onMessage,
       roomId,
       signal: controller.signal,

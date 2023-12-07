@@ -1,13 +1,15 @@
 'use client'
 
-import {FormEvent, useEffect, useRef} from 'react'
+import {useEffect, useRef} from 'react'
 
 import {classname} from '@/ui/common/utils/classname'
-import {usePeer} from '@/ui/room/hooks/use-peer'
 
-export const Video = () => {
-  const {peerId, ownStream, answererStream, startCall} = usePeer()
+interface Props {
+  ownStream: MediaStream | undefined
+  answererStream: MediaStream | undefined
+}
 
+export const Conference = ({ownStream, answererStream}: Props) => {
   const userVideoRef = useRef<null | HTMLVideoElement>(null)
   const targetVideoRef = useRef<null | HTMLVideoElement>(null)
 
@@ -26,28 +28,10 @@ export const Video = () => {
     targetVideoRef.current.srcObject = answererStream
   }, [answererStream])
 
-  const handleCall = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    startCall(event.currentTarget.elements.peerId.value)
-  }
-
   return (
     <section>
-      <div>
-        <b>Peer Id:</b> {peerId}
-      </div>
-      <form onSubmit={handleCall}>
-        <label htmlFor="peerId">Peer Id:</label>
-        <br />
-        <input
-          id="peerId"
-          type="text"
-        />
-        <br />
-        <button type="submit">Call</button>
-      </form>
       <div className={classname(['flex gap-3'])}>
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           className={classname(['w-2/4'])}
           ref={userVideoRef}
@@ -55,6 +39,7 @@ export const Video = () => {
           autoPlay
           playsInline
         />
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           className={classname(['w-2/4'])}
           ref={targetVideoRef}

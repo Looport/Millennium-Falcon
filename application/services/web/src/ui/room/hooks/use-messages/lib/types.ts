@@ -1,4 +1,4 @@
-import {MessageResponse} from '@/room/interfaces/message-response.interface'
+import {MessageResponse} from '@/room/interfaces/messages/message-response.interface'
 
 export enum ActionTypes {
   ADD = 'add',

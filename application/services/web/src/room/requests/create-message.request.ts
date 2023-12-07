@@ -2,7 +2,7 @@ import {TokenResponse} from '@/auth/interfaces/token-response.interface'
 import {request} from '@/common/lib/request/request'
 import {getTelegraphApiUrl} from '@/common/lib/request/utils/get-api-urls'
 import {RequestOptions} from '@/common/lib/request/utils/request-options.intefrace'
-import {MessageResponse} from '@/room/interfaces/message-response.interface'
+import {MessageResponse} from '@/room/interfaces/messages/message-response.interface'
 
 export const requestCreateMessage = async (
   {

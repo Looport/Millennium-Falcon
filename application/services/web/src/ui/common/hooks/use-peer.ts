@@ -1,5 +1,5 @@
 import Peer, {MediaConnection} from 'peerjs'
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 
 export const usePeer = () => {
   const [peerId, setPeerId] = useState<undefined | string>(undefined)
@@ -29,11 +29,10 @@ export const usePeer = () => {
       setOwnCall(call)
     })
 
-    /*
-     * return () => {
-     *   peer.destroy()
-     * }
-     */
+    return () => {
+      setPeer(undefined)
+      peer.destroy()
+    }
   }, [peer])
 
   useEffect(() => {
@@ -81,13 +80,16 @@ export const usePeer = () => {
       })
   }, [])
 
-  const startCall = (targetPeer: string) => {
-    if (!peer || !ownStream) {
-      return
-    }
+  const startCall = useCallback(
+    (targetPeer: string) => {
+      if (!peer || !ownStream) {
+        return
+      }
 
-    setAnswererCall(peer.call(targetPeer, ownStream))
-  }
+      setAnswererCall(peer.call(targetPeer, ownStream))
+    },
+    [ownStream, peer]
+  )
 
   return {
     answererCall,

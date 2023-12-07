@@ -4,10 +4,10 @@ import {getPassportApiUrl} from '@/common/lib/request/utils/get-api-urls'
 import {RequestOptions} from '@/common/lib/request/utils/request-options.intefrace'
 
 export const requestLogin = async (
-  data: any,
+  credentials: any,
   options: RequestOptions = {}
 ): Promise<TokenResponse> =>
   request<TokenResponse>(`${getPassportApiUrl()}/authentication/login`, {
     ...options,
-    body: JSON.stringify(data),
+    body: JSON.stringify(credentials),
   })

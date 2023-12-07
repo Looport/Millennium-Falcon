@@ -1,6 +1,8 @@
+'use client'
+
 import React, {useLayoutEffect, useRef} from 'react'
 
-import {MessagesResponse} from '@/room/interfaces/messages-response.interface'
+import {MessagesResponse} from '@/room/interfaces/messages/messages-response.interface'
 import {classname} from '@/ui/common/utils/classname'
 
 export const Messages = ({messages}: {messages: MessagesResponse}) => {

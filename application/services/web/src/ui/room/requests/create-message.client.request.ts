@@ -1,4 +1,4 @@
-import {MessageResponse} from '@/room/interfaces/message-response.interface'
+import {MessageResponse} from '@/room/interfaces/messages/message-response.interface'
 import {requestCreateMessage} from '@/room/requests/create-message.request'
 import {getClientToken} from '@/ui/auth/lib/token.client'
 

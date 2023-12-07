@@ -1,4 +1,4 @@
-import {MessageResponse} from '@/room/interfaces/message-response.interface'
+import {MessageResponse} from '@/room/interfaces/messages/message-response.interface'
 import {Actions, ActionTypes} from '@/ui/room/hooks/use-messages/lib/types'
 
 export const reducer = (state: MessageResponse[], action: Actions) => {

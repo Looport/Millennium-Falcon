@@ -1,8 +1,8 @@
 import {getTelegraphApiUrl} from '@/common/lib/request/utils/get-api-urls'
-import {MessageResponse} from '@/room/interfaces/message-response.interface'
+import {MessageResponse} from '@/room/interfaces/messages/message-response.interface'
 import {getClientToken} from '@/ui/auth/lib/token.client'
 
-export const requestClientSubscribeToMessages = async ({
+export const requestClientSubscribeToRoomMessages = async ({
   roomId,
   signal,
   onMessage,

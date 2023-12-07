@@ -5,10 +5,10 @@ import {RequestOptions} from '@/common/lib/request/utils/request-options.intefra
 import {TokenResponse} from '../interfaces/token-response.interface'
 
 export const requestRegister = async (
-  data: any,
+  credentials: any,
   options: RequestOptions = {}
 ): Promise<TokenResponse> =>
   request<TokenResponse>(`${getPassportApiUrl()}/authentication/register`, {
     ...options,
-    body: JSON.stringify(data),
+    body: JSON.stringify(credentials),
   })

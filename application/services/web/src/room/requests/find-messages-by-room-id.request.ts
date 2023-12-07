@@ -2,7 +2,7 @@ import {TokenResponse} from '@/auth/interfaces/token-response.interface'
 import {request} from '@/common/lib/request/request'
 import {getTelegraphApiUrl} from '@/common/lib/request/utils/get-api-urls'
 import {RequestOptions} from '@/common/lib/request/utils/request-options.intefrace'
-import {MessagesResponse} from '@/room/interfaces/messages-response.interface'
+import {MessagesResponse} from '@/room/interfaces/messages/messages-response.interface'
 
 export const requestFindMessagesByRoomId = async (
   roomId: number,
