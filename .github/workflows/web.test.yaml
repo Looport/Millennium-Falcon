@@ -12,6 +12,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - uses: actions/setup-node@v4
+        with:
           node-version: 21
       - run: pnpm -F @looport/web install
       - run: pnpm -F @looport/web lint
@@ -22,6 +24,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - uses: actions/setup-node@v4
+        with:
           node-version: 21
       - run: pnpm -F @looport/web install
       - run: pnpm -F @looport/web type-check
@@ -32,6 +36,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - uses: actions/setup-node@v4
+        with:
           node-version: 21
       - run: pnpm -F @looport/web install
       - run: pnpm -F @looport/web build

@@ -21,12 +21,12 @@ jobs:
 #        with:
 #          addons: ingress
 #      - run: cd infrastructure/k8s && sh cmd.sh run-local
-#      - uses: actions/setup-node@v3
-#        with:
-#          node-version: 21
 #      - uses: pnpm/action-setup@v2
 #        with:
 #          version: 8
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: 21
 #      - run: sudo echo "127.0.0.1 aloco.local" | sudo tee -a /etc/hosts
 #      - run: minikube service list
 #      - run: minikube tunnel &> dev>null &
