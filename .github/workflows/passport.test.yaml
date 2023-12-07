@@ -31,7 +31,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 21
-          check-latest: true
       - run: pnpm -F @looport/passport install && pnpm -F @looport/passport^... build
       - run: pnpm -F @looport/passport test:all
         env:
