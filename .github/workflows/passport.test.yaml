@@ -8,7 +8,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: node:20-alpine
+      image: node:21-alpine
     services:
       postgres:
         image: postgres
@@ -24,7 +24,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -45,7 +45,7 @@ jobs:
   lint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -57,7 +57,7 @@ jobs:
   type-check:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -69,7 +69,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8

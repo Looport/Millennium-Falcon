@@ -7,6 +7,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: azure/setup-helm@v3
       - run: cd infrastructure/k8s && sh cmd.sh lint
