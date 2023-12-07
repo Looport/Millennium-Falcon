@@ -60,6 +60,7 @@ module.exports = {
     ],
     // Clean plugins
     '@typescript-eslint/no-explicit-any': 'warn',
+    'no-warning-comments': 'warn',
     'github/no-then': 0,
     'i18n-text/no-en': 0,
     'import/no-unresolved': 0,
