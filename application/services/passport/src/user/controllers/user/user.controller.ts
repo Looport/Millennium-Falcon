@@ -1,4 +1,4 @@
-import {ActiveUser, ActiveUserInterface} from '@looport/nest-auth'
+import {ActiveUserJwtPayload, ActiveUser} from '@looport/nest-auth'
 import {Serialize} from '@looport/nest-common'
 import {Controller, Get} from '@nestjs/common'
 
@@ -11,7 +11,7 @@ export class UserController {
   constructor(private readonly userRepository: UserRepository) {}
 
   @Get('iam')
-  async iam(@ActiveUser() activeUser: ActiveUserInterface) {
+  async iam(@ActiveUser() activeUser: ActiveUserJwtPayload): Promise<UserDto> {
     return this.userRepository.findOne({
       where: {id: activeUser.sub},
     })

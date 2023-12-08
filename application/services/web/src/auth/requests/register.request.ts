@@ -1,14 +1,14 @@
-import {PASSPORT_API_URL} from '@/common/lib/api/constants'
 import {request} from '@/common/lib/request/request'
+import {getPassportApiUrl} from '@/common/lib/request/utils/get-api-urls'
 import {RequestOptions} from '@/common/lib/request/utils/request-options.intefrace'
 
 import {TokenResponse} from '../interfaces/token-response.interface'
 
 export const requestRegister = async (
-  data: any,
+  credentials: any,
   options: RequestOptions = {}
 ): Promise<TokenResponse> =>
-  request<TokenResponse>(`${PASSPORT_API_URL}/authentication/register`, {
+  request<TokenResponse>(`${getPassportApiUrl()}/authentication/register`, {
     ...options,
-    body: JSON.stringify(data),
+    body: JSON.stringify(credentials),
   })

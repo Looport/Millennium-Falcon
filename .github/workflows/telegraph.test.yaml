@@ -8,7 +8,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: node:20-alpine
+      image: node:21-alpine
     services:
       postgres:
         image: postgres
@@ -24,10 +24,13 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 21
       - run: pnpm -F @looport/telegraph install && pnpm -F @looport/telegraph^... build
       - run: pnpm -F @looport/telegraph test:all
         env:
@@ -42,35 +45,35 @@ jobs:
   lint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 21
       - run: pnpm -F @looport/telegraph install && pnpm -F @looport/telegraph^... build
       - run: pnpm -F @looport/telegraph lint
   type-check:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 21
       - run: pnpm -F @looport/telegraph install && pnpm -F @looport/telegraph^... build
       - run: pnpm -F @looport/telegraph type-check
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 21
       - run: pnpm -F @looport/telegraph install && pnpm -F @looport/telegraph... build

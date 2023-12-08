@@ -15,4 +15,8 @@ export class MessageEventService {
       serializeMessage(message)
     )
   }
+
+  guardMessage(message: MessageEntity, activeUserId: number): boolean {
+    return message.user.id !== activeUserId
+  }
 }

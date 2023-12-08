@@ -3,7 +3,7 @@
 import {cloneElement, ReactElement} from 'react'
 
 import {cleanClientToken} from '@/ui/auth/lib/token.client'
-import {useRefreshPage} from '@/ui/common/hooks/refresh-page'
+import {useRefreshPage} from '@/ui/common/hooks/use-refresh-page'
 
 export const Logout = ({children}: {children: ReactElement}) => {
   const {refresh} = useRefreshPage()

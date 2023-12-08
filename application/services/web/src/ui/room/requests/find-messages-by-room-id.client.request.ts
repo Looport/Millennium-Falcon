@@ -1,4 +1,4 @@
-import {MessagesResponse} from '@/room/interfaces/messages-response.interface'
+import {MessagesResponse} from '@/room/interfaces/messages/messages-response.interface'
 import {requestFindMessagesByRoomId} from '@/room/requests/find-messages-by-room-id.request'
 import {getClientToken} from '@/ui/auth/lib/token.client'
 

@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: telegraph-database
+      provider: telegraph-database
   template:
     metadata:
       labels:
-        app: telegraph-database
+        provider: telegraph-database
     spec:
       containers:
         - name: telegraph-database
@@ -32,7 +32,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: telegraph-database
+    provider: telegraph-database
   ports:
     - name: telegraph-database
       protocol: TCP
@@ -47,9 +47,9 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: telegraph-database
+    provider: telegraph-database
   ports:
-    - name: telegraph-database
+    - name: telegraph-database-debug
       protocol: TCP
       port: 5334
       targetPort: 5432

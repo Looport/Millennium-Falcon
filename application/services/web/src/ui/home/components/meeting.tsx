@@ -4,11 +4,11 @@ import Image from 'next/image'
 import {useRouter} from 'next/navigation'
 import {useCallback} from 'react'
 
-import {useCreateRoom} from '@/room/hooks/use-create-room'
 import {Button} from '@/ui/common/components/button'
 import {Card} from '@/ui/common/components/card'
 import {BiUserCircle, BsCameraVideo} from '@/ui/common/components/icons'
 import {classname} from '@/ui/common/utils/classname'
+import {useCreateRoom} from '@/ui/room/hooks/use-create-room'
 
 export const Meetings = () => {
   const router = useRouter()
